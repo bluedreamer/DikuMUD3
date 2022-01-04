@@ -11,6 +11,7 @@
 #else
     #include <arpa/inet.h>
 #endif
+#include <map>
 #include "fight.h"
 #include "common.h"
 #include "color.h"
@@ -38,27 +39,31 @@ public:
     [[nodiscard]] const color_type &getColor() const;
     [[nodiscard]] const in_addr &getSubnetMask() const;
     [[nodiscard]] const in_addr &getLocalhost() const;
+    [[nodiscard]] const std::string &getLibDir() const;
+    [[nodiscard]] const std::string &getFileInLibDir(const std::string &filename) const;
 
-public:
 private:
-    int m_nMotherPort{4999};     //
-    int m_nRentModifier{10};     //
-    bool m_bAccounting{false};   //
-    bool m_bAliasShout{true};    //
-    bool m_bBBS{false};          //
-    bool m_bLawful{false};       // Unused apart from unit_tests so far
-    bool m_bNoSpecials{false};   //
-    bool m_bBOB{false};          //
-    int m_nShout{1};             // Unused apart from unit_tests so far
-    int m_hReboot{0};            //
-    color_type color{};          //
-    in_addr m_sSubnetMask{};     // Unused apart from unit_tests so far
-    in_addr m_sLocalhost{};      // Unused apart from unit_tests so far
-    in_addr m_aMplexHosts[10]{}; // Unused apart from unit_tests so far
-    char *m_promptstr{nullptr};  // Unused apart from unit_tests so far
+    void checkDirectoryExists(const std::string &name, const std::string &directory) const;
 
+private:
+    int m_nMotherPort{4999};                                         //
+    int m_nRentModifier{10};                                         //
+    bool m_bAccounting{false};                                       //
+    bool m_bAliasShout{true};                                        //
+    bool m_bBBS{false};                                              //
+    bool m_bLawful{false};                                           // Unused apart from unit_tests so far
+    bool m_bNoSpecials{false};                                       //
+    bool m_bBOB{false};                                              //
+    int m_nShout{1};                                                 // Unused apart from unit_tests so far
+    int m_hReboot{0};                                                //
+    color_type color{};                                              //
+    in_addr m_sSubnetMask{};                                         // Unused apart from unit_tests so far
+    in_addr m_sLocalhost{};                                          // Unused apart from unit_tests so far
+    in_addr m_aMplexHosts[10]{};                                     // Unused apart from unit_tests so far
+    char *m_promptstr{nullptr};                                      // Unused apart from unit_tests so far
+    std::string m_libdir{};                                          // The lib directory, etc
+    mutable std::map<std::string, std::string> m_libdir_filenames{}; // When a filename is requested for libdir it is stored and cached here
 public:
-    char *m_libdir{nullptr}; /* The lib directory, etc */
     char *m_plydir{nullptr};
     char *m_etcdir{nullptr};
     char *m_logdir{nullptr};

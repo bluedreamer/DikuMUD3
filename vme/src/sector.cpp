@@ -118,7 +118,7 @@ void boot_sector(void)
     std::vector<std::string> sector_vect;
     std::queue<int> sector_queue;
 
-    in_file.open(str_cc(g_cServerConfig.m_libdir, SECTOR_DEFS));
+    in_file.open(g_cServerConfig.getFileInLibDir(SECTOR_DEFS));
     if (in_file.bad())
     {
         slog(LOG_ALL, 0, "ERROR:  Problem opening the Sector.dat");

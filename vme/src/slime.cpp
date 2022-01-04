@@ -28,7 +28,7 @@ static void slime_save(void)
     int i;
     FILE *f;
 
-    if (!(f = fopen(str_cc(g_cServerConfig.m_libdir, SLIME_FILE), "wb")))
+    if (!(f = fopen(g_cServerConfig.getFileInLibDir(SLIME_FILE).c_str(), "wb")))
     {
         slog(LOG_ALL, 0, "Slime file could not be opened.");
         assert(FALSE);
@@ -175,8 +175,8 @@ void slime_boot(void)
     char buf1[256], buf2[256];
     FILE *f;
 
-    touch_file(str_cc(g_cServerConfig.m_libdir, SLIME_FILE));
-    if (!(f = fopen(str_cc(g_cServerConfig.m_libdir, SLIME_FILE), "rb")))
+    touch_file(g_cServerConfig.getFileInLibDir(SLIME_FILE));
+    if (!(f = fopen(g_cServerConfig.getFileInLibDir(SLIME_FILE).c_str(), "rb")))
     {
         slog(LOG_ALL, 0, "Slime file could not be opened.");
         assert(FALSE);

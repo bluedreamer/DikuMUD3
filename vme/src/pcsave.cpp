@@ -142,7 +142,7 @@ sbit32 read_player_id(void)
     /* By using r+ we are sure that we don't erase it accidentially
        if the host crashes just after opening the file. */
 
-    pFile = fopen_cache(str_cc(g_cServerConfig.m_libdir, PLAYER_ID_NAME), "r+");
+    pFile = fopen_cache(g_cServerConfig.getFileInLibDir(PLAYER_ID_NAME), "r+");
     assert(pFile);
     fseek(pFile, 0, SEEK_SET);
     int mstmp = fscanf(pFile, " %d ", &tmp_sl);
@@ -163,7 +163,7 @@ sbit32 new_player_id(void)
     /* By using r+ we are sure that we don't erase it accidentially
        if the host crashes just after opening the file. */
 
-    pFile = fopen_cache(str_cc(g_cServerConfig.m_libdir, PLAYER_ID_NAME), "r+");
+    pFile = fopen_cache(g_cServerConfig.getFileInLibDir(PLAYER_ID_NAME), "r+");
     assert(pFile);
     fseek(pFile, 0, SEEK_SET);
 
@@ -510,14 +510,14 @@ void player_file_index(void)
         }
     }
 
-    if (!file_exists(str_cc(g_cServerConfig.m_libdir, PLAYER_ID_NAME)))
+    if (!file_exists(g_cServerConfig.getFileInLibDir(PLAYER_ID_NAME)))
     {
-        touch_file(str_cc(g_cServerConfig.m_libdir, PLAYER_ID_NAME));
+        touch_file(g_cServerConfig.getFileInLibDir(PLAYER_ID_NAME));
         g_player_id = -7;
         return;
     }
 
-    pFile = fopen_cache(str_cc(g_cServerConfig.m_libdir, PLAYER_ID_NAME), "r+");
+    pFile = fopen_cache(g_cServerConfig.getFileInLibDir(PLAYER_ID_NAME), "r+");
     assert(pFile);
 
     int mstmp = fscanf(pFile, " %d ", &tmp_sl);

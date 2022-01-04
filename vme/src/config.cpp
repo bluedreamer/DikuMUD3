@@ -8,16 +8,12 @@
 #ifdef _WINDOWS
     #include <winsock2.h>
     #include <io.h>
-#else
-    #include <unistd.h>
-
 #endif
 
-#include <stdio.h>
-#include <string.h>
+#include <cstring>
 #include <fcntl.h>
-#include <sys/types.h>
 #include <sys/stat.h>
+#include <filesystem>
 #include "essential.h"
 #include "utility.h"
 #include "config.h"
@@ -25,7 +21,6 @@
 #include "textutil.h"
 #include "db.h"
 #include "str_parse.h"
-#include "common.h"
 #include "color.h"
 #include "values.h"
 #include "structs.h"
@@ -108,22 +103,15 @@ void CServerConfiguration::Boot(char *srvcfg)
     m_pImmortName = d;
 
     d = parse_match_name((const char **)&c, "libdir");
-    if (d == NULL)
-        d = str_dup("../lib/");
-
-#ifdef _WINDOWS
-    _stat(d, &statbuf);
-    if (!IS_SET(statbuf.st_mode, _S_IFDIR))
-#else
-    stat(d, &statbuf);
-    if (!S_ISDIR(statbuf.st_mode))
-#endif
+    if (d == nullptr)
     {
-        slog(LOG_ALL, 0, "The lib directory %s does not exist.", d);
-        exit(0);
+        m_libdir = "../lib/";
     }
-    slog(LOG_ALL, 0, "The lib directory is %s.", d);
-    m_libdir = d;
+    else
+    {
+        m_libdir = d;
+    }
+    checkDirectoryExists("lib", m_libdir);
 
     d = parse_match_name((const char **)&c, "etcdir");
     if (d == NULL)
@@ -497,4 +485,39 @@ const in_addr &CServerConfiguration::getSubnetMask() const
 const in_addr &CServerConfiguration::getLocalhost() const
 {
     return m_sLocalhost;
+}
+
+const std::string &CServerConfiguration::getLibDir() const
+{
+    return m_libdir;
+}
+
+const std::string &CServerConfiguration::getFileInLibDir(const std::string &filename) const
+{
+    auto i = m_libdir_filenames.find(filename);
+    if (i == m_libdir_filenames.end())
+    {
+        auto result = m_libdir_filenames.emplace(filename, m_libdir + filename);
+
+        if (result.second)
+        {
+            return result.first->second;
+        }
+        else
+        {
+            throw std::runtime_error(std::string(__PRETTY_FUNCTION__) + ": Failed to cache path [" + m_libdir + filename + "]");
+        }
+    }
+
+    return i->second;
+}
+
+void CServerConfiguration::checkDirectoryExists(const std::string &name, const std::string &directory) const
+{
+    if (!(std::filesystem::exists(directory) && std::filesystem::is_directory(directory)))
+    {
+        slog(LOG_ALL, 0, "The %s directory %s does not exist.", name.c_str(), directory.c_str());
+        exit(0);
+    }
+    slog(LOG_ALL, 0, "The %s directory is %s.", name.c_str(), directory.c_str());
 }

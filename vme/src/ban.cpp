@@ -27,8 +27,6 @@
 size_t strftime(char *s, size_t smax, const char *fmt, const struct tm *tp);
 #endif
 
-#define BAN_SAVE str_cc(g_cServerConfig.m_libdir, BAN_FILE)
-
 struct ban_t
 {
     char *site;
@@ -41,7 +39,7 @@ struct ban_t
 void save_ban(void)
 {
     struct ban_t *tmp;
-    FILE *bf = fopen(BAN_SAVE, "w");
+    FILE *bf = fopen(g_cServerConfig.getFileInLibDir(BAN_FILE).c_str(), "w");
     assert(bf);
 
     for (tmp = ban_list; tmp; tmp = tmp->next)
@@ -56,9 +54,9 @@ void load_ban(void)
     struct ban_t *tmp;
     char buf[256], site[256], textfile[256];
 
-    touch_file(BAN_SAVE);
+    touch_file(g_cServerConfig.getFileInLibDir(BAN_FILE).c_str());
 
-    bf = fopen(BAN_SAVE, "r");
+    bf = fopen(g_cServerConfig.getFileInLibDir(BAN_FILE).c_str(), "r");
     assert(bf);
 
     while (fgets(buf, sizeof buf, bf) != NULL)

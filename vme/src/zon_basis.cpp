@@ -292,7 +292,7 @@ void execute_append(class unit_data *pc, char *str)
 {
     FILE *f;
 
-    f = fopen(str_cc(g_cServerConfig.m_libdir, EXECUTE_FILE), "ab+");
+    f = fopen(g_cServerConfig.getFileInLibDir(EXECUTE_FILE).c_str(), "ab+");
 
     if (f == NULL)
     {

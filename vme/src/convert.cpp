@@ -20,7 +20,6 @@
 namespace fs = boost::filesystem;
 
 #include <fstream>
-#define CONVERT_PATH str_cc(g_cServerConfig.m_libdir, "ply")
 
 #include "structs.h"
 #include "utils.h"
@@ -34,6 +33,12 @@ namespace fs = boost::filesystem;
 #include "files.h"
 #include "affect.h"
 #include "money.h"
+
+inline std::string CONVERT_PATH()
+{
+    static const std::string player_directory{"ply"};
+    return g_cServerConfig.getFileInLibDir(player_directory);
+}
 
 int required_xp(int level);
 
@@ -355,7 +360,7 @@ void clist()
     listed in the server.cfg file:  "; char cpath[1024]; cpath[0]=0; std::cin.ignore(); std::cin.getline(cpath,1024); ipath=cpath;
     */
     if (ipath.empty())
-        ipath = CONVERT_PATH;
+        ipath = CONVERT_PATH();
 
     fs::path full_path(ipath);
 
@@ -508,9 +513,7 @@ void clist()
 
 void convert_file(void)
 {
-    std::string ipath;
-    ipath = CONVERT_PATH;
-
+    std::string ipath{CONVERT_PATH()};
     fs::path full_path(ipath);
 
     unsigned long file_count = 0;
@@ -606,8 +609,7 @@ void convert_file(void)
 
 void cleanup(void)
 {
-    std::string ipath;
-    ipath = CONVERT_PATH;
+    std::string ipath{CONVERT_PATH()};
 
     fs::path full_path(ipath);
 

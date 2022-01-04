@@ -57,8 +57,13 @@ ubit1 file_exists(const char *name)
     return TRUE;
 }
 
+ubit1 file_exists(const std::string &name)
+{
+    return file_exists(name.c_str());
+}
+
 /* create a file if it doesn't exist. if error, terminate */
-void touch_file(char *name)
+void touch_file(const char *name)
 {
     FILE *fp;
 
@@ -71,6 +76,11 @@ void touch_file(char *name)
         assert(FALSE);
     }
     fclose(fp);
+}
+
+void touch_file(const std::string &name)
+{
+    touch_file(name.c_str());
 }
 
 char *fread_line_commented(FILE *fl, char *buf, int max)
@@ -365,6 +375,11 @@ FILE *fopen_cache(const char *name, const char *mode)
 
         return fcache[hit_i].file;
     }
+}
+
+FILE *fopen_cache(const std::string &name, const char *mode)
+{
+    return fopen_cache(name.c_str(), mode);
 }
 
 void fclose_cache(void)
