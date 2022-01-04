@@ -489,7 +489,12 @@ const color_type &CServerConfiguration::getColor() const
     return color;
 }
 
-in_addr CServerConfiguration::getSubnetMask() const
+const in_addr &CServerConfiguration::getSubnetMask() const
 {
     return m_sSubnetMask;
+}
+
+const in_addr &CServerConfiguration::getLocalhost() const
+{
+    return m_sLocalhost;
 }

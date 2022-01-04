@@ -90,8 +90,8 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
         BOOST_TEST(config.getSubnetMask().s_addr == empty.s_addr);
     }
     {
-        auto empty = decltype(CServerConfiguration::m_sLocalhost){0};
-        BOOST_TEST(memcmp(&config.m_sLocalhost, &empty, sizeof(config.m_sLocalhost)) == 0);
+        auto empty = std::result_of<decltype (&CServerConfiguration::getLocalhost)(CServerConfiguration)>::type{0};
+        BOOST_TEST(config.getLocalhost().s_addr == empty.s_addr);
     }
     {
         auto empty = std::remove_reference<decltype(*CServerConfiguration::m_aMplexHosts)>::type{0};
@@ -137,8 +137,8 @@ BOOST_AUTO_TEST_CASE(Boot_test)
         BOOST_TEST(config.getSubnetMask().s_addr == empty.s_addr);
     }
     {
-        auto expected = decltype(CServerConfiguration::m_sLocalhost){0};
-        BOOST_TEST(memcmp(&config.m_sLocalhost, &expected, sizeof(config.m_sLocalhost)) == 0);
+        auto empty = std::result_of<decltype (&CServerConfiguration::getLocalhost)(CServerConfiguration)>::type{0};
+        BOOST_TEST(config.getLocalhost().s_addr == empty.s_addr);
     }
     {
         constexpr auto array_size = sizeof(config.m_aMplexHosts) / sizeof(config.m_aMplexHosts[0]);

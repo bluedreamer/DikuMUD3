@@ -36,7 +36,8 @@ public:
     [[nodiscard]] int getShout() const;
     [[nodiscard]] int getReboot() const;
     [[nodiscard]] const color_type &getColor() const;
-    [[nodiscard]] in_addr getSubnetMask() const;
+    [[nodiscard]] const in_addr &getSubnetMask() const;
+    [[nodiscard]] const in_addr &getLocalhost() const;
 
 private:
     int m_nMotherPort{4999};   //
@@ -51,10 +52,9 @@ private:
     int m_hReboot{0};          //
     color_type color{};        //
     in_addr m_sSubnetMask{};   // Unused apart from unit_tests so far
+    in_addr m_sLocalhost{};    // Unused apart from unit_tests so far
 
 public:
-    in_addr m_sLocalhost{};
-
     in_addr m_aMplexHosts[10]{};
     char *m_promptstr{nullptr};
     char *m_libdir{nullptr}; /* The lib directory, etc */
