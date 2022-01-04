@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
     BOOST_TEST(config.isNoSpecials() == false);
     BOOST_TEST(config.isBOB() == false);
     BOOST_TEST(config.getShout() == 1);
-    BOOST_TEST(config.m_hReboot == 0);
+    BOOST_TEST(config.getReboot() == 0);
     // Compile test that color member exists, it has its own unit tests
     (void)config.color;
     {
@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     BOOST_TEST(config.isNoSpecials() == false);
     BOOST_TEST(config.isBOB() == true);
     BOOST_TEST(config.getShout() == 0);
-    BOOST_TEST(config.m_hReboot == 0);
+    BOOST_TEST(config.getReboot() == 0);
     // Compile test that color member exists, it has its own unit tests
     (void)config.color;
     {

@@ -478,3 +478,8 @@ int CServerConfiguration::getShout() const
 {
     return m_nShout;
 }
+
+int CServerConfiguration::getReboot() const
+{
+    return m_hReboot;
+}

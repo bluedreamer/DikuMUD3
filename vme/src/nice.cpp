@@ -56,7 +56,7 @@ int check_reboot(void)
         }
     }
 
-    if ((t_info->tm_hour + 1) == g_cServerConfig.m_hReboot && (t_info->tm_min > 49))
+    if ((t_info->tm_hour + 1) == g_cServerConfig.getReboot() && (t_info->tm_min > 49))
     {
         count -= 2;
         snprintf(buf,
