@@ -26,7 +26,12 @@ public:
     int FromLAN(char *pFromHost);
     int ValidMplex(struct sockaddr_in *isa);
 
+    [[nodiscard]] int getMotherPort() const;
+
+private:
     int m_nMotherPort{4999};
+
+public:
     int m_nRentModifier{10};
     bool m_bAccounting{false};
     bool m_bAliasShout{true};

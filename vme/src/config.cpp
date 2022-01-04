@@ -433,3 +433,8 @@ void CServerConfiguration::Boot(char *srvcfg)
     touch_file(str_cc(m_etcdir, LOGO_FILE));
     m_pLogo = read_info_file(str_cc(m_etcdir, LOGO_FILE), m_pLogo);
 }
+
+int CServerConfiguration::getMotherPort() const
+{
+    return m_nMotherPort;
+}

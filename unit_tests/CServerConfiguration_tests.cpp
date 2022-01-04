@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
 {
     CServerConfiguration config;
 
-    BOOST_TEST(config.m_nMotherPort == 4999);
+    BOOST_TEST(config.getMotherPort() == 4999);
     BOOST_TEST(config.m_nRentModifier == 10);
     BOOST_TEST(config.m_bAccounting == 0);
     BOOST_TEST(config.m_bAliasShout == TRUE);
@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     CServerConfiguration config;
     config.Boot(fake_server_config_filename);
 
-    BOOST_TEST(config.m_nMotherPort == 4999);
+    BOOST_TEST(config.getMotherPort() == 4999);
     BOOST_TEST(config.m_nRentModifier == 0);
     BOOST_TEST(config.m_bAccounting == 0);
     BOOST_TEST(config.m_bAliasShout == 0);
