@@ -488,3 +488,8 @@ const color_type &CServerConfiguration::getColor() const
 {
     return color;
 }
+
+in_addr CServerConfiguration::getSubnetMask() const
+{
+    return m_sSubnetMask;
+}

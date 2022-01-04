@@ -86,8 +86,8 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
     BOOST_TEST(config.getShout() == 1);
     BOOST_TEST(config.getReboot() == 0);
     {
-        auto empty = decltype(CServerConfiguration::m_sSubnetMask){0};
-        BOOST_TEST(memcmp(&config.m_sSubnetMask, &empty, sizeof(config.m_sSubnetMask)) == 0);
+        auto empty = std::result_of<decltype (&CServerConfiguration::getSubnetMask)(CServerConfiguration)>::type{0};
+        BOOST_TEST(config.getSubnetMask().s_addr == empty.s_addr);
     }
     {
         auto empty = decltype(CServerConfiguration::m_sLocalhost){0};
@@ -133,8 +133,8 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     BOOST_TEST(config.getShout() == 0);
     BOOST_TEST(config.getReboot() == 0);
     {
-        auto expected = decltype(CServerConfiguration::m_sSubnetMask){UINT32_MAX};
-        BOOST_TEST(config.m_sSubnetMask.s_addr == expected.s_addr);
+        auto empty = std::result_of<decltype (&CServerConfiguration::getSubnetMask)(CServerConfiguration)>::type{UINT32_MAX};
+        BOOST_TEST(config.getSubnetMask().s_addr == empty.s_addr);
     }
     {
         auto expected = decltype(CServerConfiguration::m_sLocalhost){0};
