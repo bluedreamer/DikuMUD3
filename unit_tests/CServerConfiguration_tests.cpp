@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
         //            BOOST_TEST(memcmp(&config.m_aMplexHosts[i], &empty, sizeof(config.m_aMplexHosts[0])) == 0);
         //        }
     }
-    BOOST_TEST(config.m_promptstr == nullptr);
+    //    BOOST_TEST(config.m_promptstr == nullptr);
     BOOST_TEST(config.m_libdir == nullptr);
     BOOST_TEST(config.m_plydir == nullptr);
     BOOST_TEST(config.m_etcdir == nullptr);
@@ -161,8 +161,8 @@ BOOST_AUTO_TEST_CASE(Boot_test)
         //            BOOST_TEST(config.m_aMplexHosts[i].s_addr == expected[i].s_addr);
         //        }
     }
-    BOOST_TEST(config.m_promptstr);
-    BOOST_TEST(std::string(config.m_promptstr) == "%mana%m/%e%e/%hp%h> ");
+    //    BOOST_TEST(config.m_promptstr);
+    //    BOOST_TEST(std::string(config.m_promptstr) == "%mana%m/%e%e/%hp%h> ");
     BOOST_TEST(config.m_libdir);
     BOOST_TEST(std::string(config.m_libdir) == "../lib/");
     BOOST_TEST(config.m_plydir);

@@ -55,9 +55,9 @@ private:
     in_addr m_sSubnetMask{};     // Unused apart from unit_tests so far
     in_addr m_sLocalhost{};      // Unused apart from unit_tests so far
     in_addr m_aMplexHosts[10]{}; // Unused apart from unit_tests so far
+    char *m_promptstr{nullptr};  // Unused apart from unit_tests so far
 
 public:
-    char *m_promptstr{nullptr};
     char *m_libdir{nullptr}; /* The lib directory, etc */
     char *m_plydir{nullptr};
     char *m_etcdir{nullptr};
