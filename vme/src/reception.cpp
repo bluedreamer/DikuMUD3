@@ -86,7 +86,7 @@ static ubit32 subtract_recurse(class unit_data *ch,
         {
             price = (int)((float)OBJ_PRICE_DAY(item) * (float)seconds / (float)SECS_PER_REAL_DAY);
 
-            price = (price * g_cServerConfig.m_nRentModifier) / 100;
+            price = (price * g_cServerConfig.getRentModifier()) / 100;
 
             sum += price;
         }

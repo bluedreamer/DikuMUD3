@@ -27,12 +27,13 @@ public:
     int ValidMplex(struct sockaddr_in *isa);
 
     [[nodiscard]] int getMotherPort() const;
+    [[nodiscard]] int getRentModifier() const;
 
 private:
     int m_nMotherPort{4999};
+    int m_nRentModifier{10};
 
 public:
-    int m_nRentModifier{10};
     bool m_bAccounting{false};
     bool m_bAliasShout{true};
     bool m_bBBS{false};

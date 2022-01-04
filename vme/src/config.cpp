@@ -438,3 +438,8 @@ int CServerConfiguration::getMotherPort() const
 {
     return m_nMotherPort;
 }
+
+int CServerConfiguration::getRentModifier() const
+{
+    return m_nRentModifier;
+}
