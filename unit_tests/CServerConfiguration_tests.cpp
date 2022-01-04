@@ -85,8 +85,6 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
     BOOST_TEST(config.isBOB() == false);
     BOOST_TEST(config.getShout() == 1);
     BOOST_TEST(config.getReboot() == 0);
-    // Compile test that color member exists, it has its own unit tests
-    (void)config.color;
     {
         auto empty = decltype(CServerConfiguration::m_sSubnetMask){0};
         BOOST_TEST(memcmp(&config.m_sSubnetMask, &empty, sizeof(config.m_sSubnetMask)) == 0);
@@ -134,8 +132,6 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     BOOST_TEST(config.isBOB() == true);
     BOOST_TEST(config.getShout() == 0);
     BOOST_TEST(config.getReboot() == 0);
-    // Compile test that color member exists, it has its own unit tests
-    (void)config.color;
     {
         auto expected = decltype(CServerConfiguration::m_sSubnetMask){UINT32_MAX};
         BOOST_TEST(config.m_sSubnetMask.s_addr == expected.s_addr);

@@ -4,9 +4,8 @@
  $Date: 2004/01/09 20:34:23 $
  $Revision: 2.4 $
  */
+#pragma once
 
-#ifndef _MUD_CONFIG_H
-#define _MUD_CONFIG_H
 #ifdef _WINDOWS
     #include <winsock.h>
 #else
@@ -36,6 +35,7 @@ public:
     [[nodiscard]] bool isBOB() const;
     [[nodiscard]] int getShout() const;
     [[nodiscard]] int getReboot() const;
+    [[nodiscard]] const color_type &getColor() const;
 
 private:
     int m_nMotherPort{4999};   //
@@ -48,9 +48,9 @@ private:
     bool m_bBOB{false};        //
     int m_nShout{1};           // Unused apart from unit_tests so far
     int m_hReboot{0};          //
+    color_type color{};
 
 public:
-    color_type color{};
     in_addr m_sSubnetMask{};
     in_addr m_sLocalhost{};
 
@@ -67,7 +67,3 @@ public:
     char *m_pColor{nullptr};
     char *m_pImmortName{nullptr}; /*Name of the Immortal of the mud */
 };
-
-extern CServerConfiguration g_cServerConfig;
-
-#endif // _MUD_CONFIG_H

@@ -483,3 +483,8 @@ int CServerConfiguration::getReboot() const
 {
     return m_hReboot;
 }
+
+const color_type &CServerConfiguration::getColor() const
+{
+    return color;
+}
