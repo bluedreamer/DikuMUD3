@@ -81,9 +81,9 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
     BOOST_TEST(config.isAliasShout() == true);
     BOOST_TEST(config.isBBS() == false);
     BOOST_TEST(config.isLawful() == false);
-    BOOST_TEST(config.m_bNoSpecials == FALSE);
-    BOOST_TEST(config.m_bBOB == FALSE);
-    BOOST_TEST(config.m_nShout == 1);
+    BOOST_TEST(config.isNoSpecials() == false);
+    BOOST_TEST(config.isBOB() == false);
+    BOOST_TEST(config.getShout() == 1);
     BOOST_TEST(config.m_hReboot == 0);
     // Compile test that color member exists, it has its own unit tests
     (void)config.color;
@@ -130,9 +130,9 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     BOOST_TEST(config.isAliasShout() == false);
     BOOST_TEST(config.isBBS() == false);
     BOOST_TEST(config.isLawful() == false);
-    BOOST_TEST(config.m_bNoSpecials == FALSE);
-    BOOST_TEST(config.m_bBOB == 1);
-    BOOST_TEST(config.m_nShout == 0);
+    BOOST_TEST(config.isNoSpecials() == false);
+    BOOST_TEST(config.isBOB() == true);
+    BOOST_TEST(config.getShout() == 0);
     BOOST_TEST(config.m_hReboot == 0);
     // Compile test that color member exists, it has its own unit tests
     (void)config.color;

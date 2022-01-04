@@ -88,7 +88,7 @@ void special_event(void *p1, void *p2)
                             slog(LOG_ALL, 0, "The wanderer!");
                     } MS2020 debug */
 
-    if (g_cServerConfig.m_bNoSpecials)
+    if (g_cServerConfig.isNoSpecials())
         return;
 
     if (!u)

@@ -32,19 +32,22 @@ public:
     [[nodiscard]] bool isAliasShout() const;
     [[nodiscard]] bool isBBS() const;
     [[nodiscard]] bool isLawful() const;
+    [[nodiscard]] bool isNoSpecials() const;
+    [[nodiscard]] bool isBOB() const;
+    [[nodiscard]] int getShout() const;
 
 private:
-    int m_nMotherPort{4999};
-    int m_nRentModifier{10};
-    bool m_bAccounting{false};
-    bool m_bAliasShout{true};
-    bool m_bBBS{false};
-    bool m_bLawful{false}; // Unused apart from unit_tests so far
+    int m_nMotherPort{4999};   //
+    int m_nRentModifier{10};   //
+    bool m_bAccounting{false}; //
+    bool m_bAliasShout{true};  //
+    bool m_bBBS{false};        //
+    bool m_bLawful{false};     // Unused apart from unit_tests so far
+    bool m_bNoSpecials{false}; //
+    bool m_bBOB{false};        //
+    int m_nShout{1};           // Unused apart from unit_tests so far
 
 public:
-    bool m_bNoSpecials{false};
-    bool m_bBOB{false};
-    int m_nShout{1};
     int m_hReboot{0};
 
     color_type color{};

@@ -29,4 +29,5 @@ add_subdirectory(vme/src/vmc)
 add_subdirectory(vme/zone)
 add_subdirectory(vme/etc)
 
+enable_testing()
 add_subdirectory(unit_tests)

@@ -542,7 +542,7 @@ int unit_function_scan(class unit_data *u, struct spec_arg *sarg)
     ubit16 orgflag;
     class unit_fptr *next;
 
-    if (g_cServerConfig.m_bNoSpecials)
+    if (g_cServerConfig.isNoSpecials())
         return SFR_SHARE;
 
     assert(u);

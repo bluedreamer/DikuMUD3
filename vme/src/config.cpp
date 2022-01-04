@@ -463,3 +463,18 @@ bool CServerConfiguration::isLawful() const
 {
     return m_bLawful;
 }
+
+bool CServerConfiguration::isNoSpecials() const
+{
+    return m_bNoSpecials;
+}
+
+bool CServerConfiguration::isBOB() const
+{
+    return m_bBOB;
+}
+
+int CServerConfiguration::getShout() const
+{
+    return m_nShout;
+}

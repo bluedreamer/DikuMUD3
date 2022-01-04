@@ -92,7 +92,7 @@ int pk_test(class unit_data *att, class unit_data *def, int message)
         }
     }
 
-    if (!g_cServerConfig.m_bBOB)
+    if (!g_cServerConfig.isBOB())
         return FALSE;
 
     if ((att != def) && IS_PC(att) && IS_PC(def) && (!IS_SET(PC_FLAGS(att), PC_PK_RELAXED) || !IS_SET(PC_FLAGS(def), PC_PK_RELAXED)))
