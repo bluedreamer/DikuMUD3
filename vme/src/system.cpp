@@ -63,7 +63,7 @@ void init_char(class unit_data *ch)
 
     int required_xp(int level);
 
-    if (g_cServerConfig.m_bBBS)
+    if (g_cServerConfig.isBBS())
     {
         PC_SETUP_ECHO(ch) = TRUE;
         PC_SETUP_REDRAW(ch) = TRUE;

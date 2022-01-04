@@ -30,15 +30,16 @@ public:
     [[nodiscard]] int getRentModifier() const;
     [[nodiscard]] bool isAccounting() const;
     [[nodiscard]] bool isAliasShout() const;
+    [[nodiscard]] bool isBBS() const;
 
 private:
     int m_nMotherPort{4999};
     int m_nRentModifier{10};
     bool m_bAccounting{false};
     bool m_bAliasShout{true};
+    bool m_bBBS{false};
 
 public:
-    bool m_bBBS{false};
     bool m_bLawful{false};
     bool m_bNoSpecials{false};
     bool m_bBOB{false};

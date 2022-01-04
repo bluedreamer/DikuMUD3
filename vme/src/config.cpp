@@ -453,3 +453,8 @@ bool CServerConfiguration::isAliasShout() const
 {
     return m_bAliasShout;
 }
+
+bool CServerConfiguration::isBBS() const
+{
+    return m_bBBS;
+}
