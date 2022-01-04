@@ -118,7 +118,7 @@ int time_to_index(ubit8 hours, ubit8 minutes)
 
 void account_local_stat(const class unit_data *ch, class unit_data *u)
 {
-    if (!g_cServerConfig.m_bAccounting)
+    if (!g_cServerConfig.isAccounting())
     {
         send_to_char("Game is not in accounting mode.\n\r", ch);
         return;
@@ -169,7 +169,7 @@ void account_global_stat(class unit_data *ch)
     char *b;
     int i, j;
 
-    if (!g_cServerConfig.m_bAccounting)
+    if (!g_cServerConfig.isAccounting())
         return;
 
     snprintf(buf,
@@ -216,7 +216,7 @@ void account_overdue(const class unit_data *ch)
 {
     int i, j;
 
-    if (g_cServerConfig.m_bAccounting)
+    if (g_cServerConfig.isAccounting())
     {
         char Buf[256];
 
@@ -259,7 +259,7 @@ void account_paypoint(class unit_data *ch)
 
 void account_closed(class unit_data *ch)
 {
-    if (g_cServerConfig.m_bAccounting)
+    if (g_cServerConfig.isAccounting())
     {
         send_to_char(g_cAccountConfig.m_pClosedMessage, ch);
     }
@@ -390,7 +390,7 @@ void account_subtract(class unit_data *pc, time_t from, time_t to)
 
     assert(IS_PC(pc));
 
-    if (!g_cServerConfig.m_bAccounting)
+    if (!g_cServerConfig.isAccounting())
         return;
 
     if (CHAR_LEVEL(pc) >= g_cAccountConfig.m_nFreeFromLevel)
@@ -410,7 +410,7 @@ void account_subtract(class unit_data *pc, time_t from, time_t to)
 
 int account_is_overdue(const class unit_data *ch)
 {
-    if (g_cServerConfig.m_bAccounting && (CHAR_LEVEL(ch) < g_cAccountConfig.m_nFreeFromLevel))
+    if (g_cServerConfig.isAccounting() && (CHAR_LEVEL(ch) < g_cAccountConfig.m_nFreeFromLevel))
     {
         if (PC_ACCOUNT(ch).flatrate > (ubit32)time(0))
             return FALSE;
@@ -525,7 +525,7 @@ int account_is_closed(class unit_data *ch)
 {
     int i, j;
 
-    if (g_cServerConfig.m_bAccounting && (CHAR_LEVEL(ch) < g_cAccountConfig.m_nFreeFromLevel))
+    if (g_cServerConfig.isAccounting() && (CHAR_LEVEL(ch) < g_cAccountConfig.m_nFreeFromLevel))
     {
         if (PC_ACCOUNT(ch).flatrate > (ubit32)time(0))
             return FALSE;
@@ -612,7 +612,7 @@ void do_account(class unit_data *ch, char *arg, const struct command_info *cmd)
     const char *operations[] = {"insert", "withdraw", "limit", "discount", "flatrate", NULL};
     int i, amount;
 
-    if (!g_cServerConfig.m_bAccounting || !IS_PC(ch))
+    if (!g_cServerConfig.isAccounting() || !IS_PC(ch))
     {
         send_to_char("That command is not available.<br/>", ch);
         return;
@@ -943,7 +943,7 @@ void CAccountConfig::Boot(void)
     int *numlist;
     FILE *f;
 
-    if (!g_cServerConfig.m_bAccounting)
+    if (!g_cServerConfig.isAccounting())
         return;
 
     slog(LOG_OFF, 0, "Booting account system.");

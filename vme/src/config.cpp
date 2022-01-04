@@ -443,3 +443,8 @@ int CServerConfiguration::getRentModifier() const
 {
     return m_nRentModifier;
 }
+
+bool CServerConfiguration::isAccounting() const
+{
+    return m_bAccounting;
+}

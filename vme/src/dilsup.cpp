@@ -29,7 +29,7 @@
 /*   external vars  */
 int pay_point_charlie(class unit_data *ch, class unit_data *to)
 {
-    if (IS_PC(ch) && g_cServerConfig.m_bAccounting && IS_MORTAL(ch))
+    if (IS_PC(ch) && g_cServerConfig.isAccounting() && IS_MORTAL(ch))
     {
         if (CHAR_DESCRIPTOR(ch))
             if (g_cServerConfig.FromLAN(CHAR_DESCRIPTOR(ch)->host))

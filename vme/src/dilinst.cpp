@@ -563,7 +563,7 @@ void dilfi_amod(class dilprg *p)
     dilval *v1 = p->stack.pop();
 
     if (dil_type_check("acc_modify", p, 2, v1, TYPEFAIL_NULL, 1, DILV_UP, v2, FAIL_NULL, 1, DILV_INT))
-        if (g_cServerConfig.m_bAccounting && v1->val.ptr && IS_PC((class unit_data *)v1->val.ptr))
+        if (g_cServerConfig.isAccounting() && v1->val.ptr && IS_PC((class unit_data *)v1->val.ptr))
         {
             if (p->frame[0].tmpl->zone->access != 0)
             {
