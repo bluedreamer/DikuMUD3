@@ -458,3 +458,8 @@ bool CServerConfiguration::isBBS() const
 {
     return m_bBBS;
 }
+
+bool CServerConfiguration::isLawful() const
+{
+    return m_bLawful;
+}
