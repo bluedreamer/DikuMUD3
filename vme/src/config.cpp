@@ -448,3 +448,8 @@ bool CServerConfiguration::isAccounting() const
 {
     return m_bAccounting;
 }
+
+bool CServerConfiguration::isAliasShout() const
+{
+    return m_bAliasShout;
+}

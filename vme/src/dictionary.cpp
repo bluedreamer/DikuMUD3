@@ -395,7 +395,7 @@ static bool alias_is_ok(struct alias_head *ah, char *key, char *val, class unit_
             send_to_char("You can't use '!' from within an alias.<br/>", ch);
             return FALSE;
         case 5:
-            if (!g_cServerConfig.m_bAliasShout)
+            if (!g_cServerConfig.isAliasShout())
             {
                 send_to_char("Using `shout' in an alias is not very nice...<br/>", ch);
                 return FALSE;

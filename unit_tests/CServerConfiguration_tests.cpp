@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
     BOOST_TEST(config.getMotherPort() == 4999);
     BOOST_TEST(config.getRentModifier() == 10);
     BOOST_TEST(config.isAccounting() == false);
-    BOOST_TEST(config.m_bAliasShout == TRUE);
+    BOOST_TEST(config.isAliasShout() == true);
     BOOST_TEST(config.m_bBBS == FALSE);
     BOOST_TEST(config.m_bLawful == FALSE);
     BOOST_TEST(config.m_bNoSpecials == FALSE);
@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     BOOST_TEST(config.getMotherPort() == 4999);
     BOOST_TEST(config.getRentModifier() == 0);
     BOOST_TEST(config.isAccounting() == false);
-    BOOST_TEST(config.m_bAliasShout == 0);
+    BOOST_TEST(config.isAliasShout() == false);
     BOOST_TEST(config.m_bBBS == FALSE);
     BOOST_TEST(config.m_bLawful == FALSE);
     BOOST_TEST(config.m_bNoSpecials == FALSE);
