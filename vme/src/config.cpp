@@ -29,35 +29,8 @@
 #include "color.h"
 #include "values.h"
 #include "structs.h"
-class CServerConfiguration g_cServerConfig;
 
-CServerConfiguration::CServerConfiguration(void)
-{
-    m_bAccounting = 0;
-    m_bBBS = FALSE;
-    m_bLawful = FALSE;
-    m_bAliasShout = TRUE;
-    m_bNoSpecials = FALSE;
-    m_bBOB = FALSE;
-    m_nShout = 1;
-    m_nRentModifier = 10;
-    m_nMotherPort = 4999;
-
-    memset(&m_sSubnetMask, 0, sizeof(m_sSubnetMask));
-    memset(&m_sLocalhost, 0, sizeof(m_sLocalhost));
-    memset(&m_aMplexHosts, 0, sizeof(m_aMplexHosts));
-
-    m_logdir = NULL;
-    m_libdir = NULL;
-    m_etcdir = NULL;
-    m_zondir = NULL;
-    m_plydir = NULL;
-    m_mudname = NULL;
-    m_pLogo = NULL;
-    m_pImmortName = NULL;
-    m_hReboot = 0;
-    m_pColor = NULL;
-}
+CServerConfiguration g_cServerConfig;
 
 int CServerConfiguration::FromLAN(char *pFromHost)
 {

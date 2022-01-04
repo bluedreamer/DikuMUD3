@@ -19,42 +19,42 @@
 class CServerConfiguration
 {
 public:
-    CServerConfiguration(void);
+    CServerConfiguration() = default;
 
     void Boot(char *srvcfg);
 
     int FromLAN(char *pFromHost);
     int ValidMplex(struct sockaddr_in *isa);
 
-    int m_nMotherPort;
-    int m_nRentModifier;
-    int m_bAccounting;
-    int m_bAliasShout;
-    int m_bBBS;
-    int m_bLawful;
-    int m_bNoSpecials;
-    int m_bBOB;
-    int m_nShout;
-    int m_hReboot;
+    int m_nMotherPort{4999};
+    int m_nRentModifier{10};
+    bool m_bAccounting{false};
+    bool m_bAliasShout{true};
+    bool m_bBBS{false};
+    bool m_bLawful{false};
+    bool m_bNoSpecials{false};
+    bool m_bBOB{false};
+    int m_nShout{1};
+    int m_hReboot{0};
 
-    class color_type color;
-    struct in_addr m_sSubnetMask;
-    struct in_addr m_sLocalhost;
+    color_type color{};
+    in_addr m_sSubnetMask{};
+    in_addr m_sLocalhost{};
 
-    struct in_addr m_aMplexHosts[10];
-    char *m_promptstr;
-    char *m_libdir; /* The lib directory, etc */
-    char *m_plydir;
-    char *m_etcdir;
-    char *m_logdir;
-    char *m_zondir;
-    char *m_dilfiledir;
-    char *m_mudname; /* The mud name */
-    char *m_pLogo;   /* Intro screen                    */
-    char *m_pColor;
-    char *m_pImmortName; /*Name of the Immortal of the mud */
+    in_addr m_aMplexHosts[10]{};
+    char *m_promptstr{nullptr};
+    char *m_libdir{nullptr}; /* The lib directory, etc */
+    char *m_plydir{nullptr};
+    char *m_etcdir{nullptr};
+    char *m_logdir{nullptr};
+    char *m_zondir{nullptr};
+    char *m_dilfiledir{nullptr};
+    char *m_mudname{nullptr}; /* The mud name */
+    char *m_pLogo{nullptr};   /* Intro screen                    */
+    char *m_pColor{nullptr};
+    char *m_pImmortName{nullptr}; /*Name of the Immortal of the mud */
 };
 
-extern class CServerConfiguration g_cServerConfig;
+extern CServerConfiguration g_cServerConfig;
 
 #endif // _MUD_CONFIG_H

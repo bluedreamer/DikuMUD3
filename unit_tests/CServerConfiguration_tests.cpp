@@ -103,21 +103,16 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
             BOOST_TEST(memcmp(&config.m_aMplexHosts[i], &empty, sizeof(config.m_aMplexHosts[0])) == 0);
         }
     }
-    (void)config.m_promptstr;
-    BOOST_TEST_WARN(false, "m_promptstr is not set in default ctor");
+    BOOST_TEST(config.m_promptstr == nullptr);
     BOOST_TEST(config.m_libdir == nullptr);
     BOOST_TEST(config.m_plydir == nullptr);
     BOOST_TEST(config.m_etcdir == nullptr);
     BOOST_TEST(config.m_logdir == nullptr);
     BOOST_TEST(config.m_zondir == nullptr);
-    (void)config.m_dilfiledir;
-    BOOST_TEST_WARN(false, "m_dilfiledir is not set in default ctor");
+    BOOST_TEST(config.m_dilfiledir == nullptr);
     BOOST_TEST(config.m_mudname == nullptr);
     BOOST_TEST(config.m_pLogo == nullptr);
-
-    (void)config.m_pColor;
-    BOOST_TEST_WARN(false, "m_pColor is not set in default ctor");
-
+    BOOST_TEST(config.m_pColor == nullptr);
     BOOST_TEST(config.m_pImmortName == nullptr);
 }
 
@@ -233,8 +228,6 @@ BOOST_AUTO_TEST_CASE(Boot_test)
 BOOST_AUTO_TEST_CASE(FromLAN_test)
 {
     CServerConfiguration config;
-    BOOST_TEST_WARN(false, "m_pColor isn't set in Ctor - and I'm writing tests not fixing bugs so hack it here only!!");
-    config.m_pColor = nullptr;
     config.Boot(fake_server_config_filename);
 
     char bad_input[] = "No way this is a dotted IP";
@@ -250,8 +243,6 @@ BOOST_AUTO_TEST_CASE(FromLAN_test)
 BOOST_FIXTURE_TEST_CASE(ValidMplex, CServerConfiguration_Fixture)
 {
     CServerConfiguration config;
-    BOOST_TEST_WARN(false, "m_pColor isn't set in Ctor - and I'm writing tests not fixing bugs so hack it here only!!");
-    config.m_pColor = nullptr;
     config.Boot(fake_server_config_filename);
 
     sockaddr_in ip{};
