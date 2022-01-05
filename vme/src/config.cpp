@@ -64,7 +64,7 @@ int CServerConfiguration::ValidMplex(struct sockaddr_in *isa)
 void CServerConfiguration::Boot(char *srvcfg)
 {
     char Buf[2 * MAX_STRING_LENGTH];
-    char *c, *d;
+    char *c;
     int i;
 #ifdef _WINDOWS
     struct _stat statbuf;
@@ -85,88 +85,35 @@ void CServerConfiguration::Boot(char *srvcfg)
 
     c = Buf;
 
-    d = parse_match_name((const char **)&c, "mudname");
-    if (d == NULL)
-        m_mudname = "No Mud server name in server.cfg";
-    slog(LOG_ALL, 0, "The Mud Name is %s.", d);
-    if (strlen(d) > 49)
-        d[50] = '\0';
-
-    m_mudname = d;
-
-    d = parse_match_name((const char **)&c, "immortal_name");
-    if (d == NULL)
-        m_pImmortName = "immortal";
-    if (strlen(d) > PC_MAX_NAME)
-        d[PC_MAX_NAME] = '\0';
-
-    m_pImmortName = d;
-
-    d = parse_match_name((const char **)&c, "libdir");
-    if (d == nullptr)
+    m_mudname = parse_match_name((const char **)&c, "mudname", "No Mud server name in server.cfg");
+    if (m_mudname.length() > 49)
     {
-        m_libdir = "../lib/";
+        m_mudname.resize(50);
     }
-    else
+    slog(LOG_ALL, 0, "The Mud Name is %s.", m_mudname.c_str());
+
+    m_pImmortName = parse_match_name((const char **)&c, "immortal_name", "immortal");
+    if (m_pImmortName.length() > PC_MAX_NAME)
     {
-        m_libdir = d;
+        m_pImmortName.resize(PC_MAX_NAME);
     }
+
+    m_libdir = parse_match_name((const char **)&c, "libdir", "../lib/");
     checkDirectoryExists("lib", m_libdir);
 
-    d = parse_match_name((const char **)&c, "etcdir");
-    if (d == nullptr)
-    {
-        m_etcdir = "../etc/";
-    }
-    else
-    {
-        m_etcdir = d;
-    }
+    m_etcdir = parse_match_name((const char **)&c, "etcdir", "../etc/");
     checkDirectoryExists("etc", m_etcdir);
 
-    d = parse_match_name((const char **)&c, "logdir");
-    if (d == nullptr)
-    {
-        m_logdir = "../log/";
-    }
-    else
-    {
-        m_logdir = d;
-    }
+    m_logdir = parse_match_name((const char **)&c, "logdir", "../log/");
     checkDirectoryExists("log", m_logdir);
 
-    d = parse_match_name((const char **)&c, "zondir");
-    if (d == NULL)
-    {
-        m_zondir = "../zone/";
-    }
-    else
-    {
-        m_zondir = d;
-    }
+    m_zondir = parse_match_name((const char **)&c, "zondir", "../zone/");
     checkDirectoryExists("zone", m_zondir);
-    m_zondir = d;
 
-    d = parse_match_name((const char **)&c, "plydir");
-    if (d == nullptr)
-    {
-        m_plydir = "../lib/ply/";
-    }
-    else
-    {
-        m_plydir = d;
-    }
+    m_plydir = parse_match_name((const char **)&c, "plydir", "../lib/ply/");
     checkDirectoryExists("player", m_plydir);
 
-    d = parse_match_name((const char **)&c, "dil_file_dir");
-    if (d == NULL)
-    {
-        m_dilfiledir = "../lib/file/";
-    }
-    else
-    {
-        m_dilfiledir = d;
-    }
+    m_dilfiledir = parse_match_name((const char **)&c, "dil_file_dir", "../lib/file/");
     checkDirectoryExists("dil", m_dilfiledir);
 
     if (parse_match_num((const char **)&c, "Port", &i))
@@ -279,34 +226,25 @@ void CServerConfiguration::Boot(char *srvcfg)
         exit(0);
     }
 
-    d = parse_match_name((const char **)&c, "subnetmask");
-
-    if (d == NULL)
-        d = str_dup("255.255.255.255");
-
+    auto subnet = parse_match_name((const char **)&c, "subnetmask", "255.255.255.255");
 #ifdef _WINDOWS
-    if (m_sSubnetMask.S_un.S_addr = inet_addr(d) == INADDR_NONE)
+    if (m_sSubnetMask.S_un.S_addr = inet_addr(subnet.c_str()) == INADDR_NONE)
     {
         slog(LOG_ALL, 0, "SubnetMask invalid.");
         exit(0);
     }
 
 #else
-    if (inet_aton(d, &m_sSubnetMask) == 0)
+    if (inet_aton(subnet.c_str(), &m_sSubnetMask) == 0)
     {
         slog(LOG_ALL, 0, "SubnetMask invalid.");
         exit(0);
     }
 #endif
 
-    d = parse_match_name((const char **)&c, "localhost");
-
-    if (d == NULL)
-        d = str_dup("127.0.0.1");
-
+    auto localhost = parse_match_name((const char **)&c, "localhost", "127.0.0.1");
 #ifdef _WINDOWS
-
-    if (m_sLocalhost.S_un.S_addr = inet_addr(d) == INADDR_NONE)
+    if (m_sLocalhost.S_un.S_addr = inet_addr(localhost.c_str()) == INADDR_NONE)
         if (inet_addr(d) == INADDR_NONE)
         {
             slog(LOG_ALL, 0, "Localhost invalid.");
@@ -314,13 +252,11 @@ void CServerConfiguration::Boot(char *srvcfg)
         }
 
 #else
-
-    if (inet_aton(d, &m_sLocalhost) == 0)
+    if (inet_aton(localhost.c_str(), &m_sLocalhost) == 0)
     {
-        slog(LOG_ALL, 0, "Localhost [%s] invalid.", d);
+        slog(LOG_ALL, 0, "Localhost [%s] invalid.", localhost.c_str());
         exit(0);
     }
-
 #endif
     char **ppNames;
 
@@ -359,7 +295,6 @@ void CServerConfiguration::Boot(char *srvcfg)
                 slog(LOG_ALL, 0, "SubnetMask invalid.");
                 exit(0);
             }
-
 #else
             if (inet_aton(ppNames[i], &m_aMplexHosts[i]) == 0)
             {
@@ -372,8 +307,7 @@ void CServerConfiguration::Boot(char *srvcfg)
             m_aMplexHosts[i] = m_aMplexHosts[i - 1];
     }
 
-    d = parse_match_name((const char **)&c, "promptstr");
-    m_promptstr = d;
+    m_promptstr = parse_match_name((const char **)&c, "promptstr", "");
 
     slog(LOG_OFF, 0, "Reading info and configuration files.");
 
@@ -392,8 +326,6 @@ void CServerConfiguration::Boot(char *srvcfg)
     tmp = read_info_file(getFileInEtcDir(LOGO_FILE), tmp);
     m_pLogo = tmp;
     FREE(tmp);
-
-    FREE(d);
 }
 
 int CServerConfiguration::getMotherPort() const
@@ -554,6 +486,18 @@ const std::string &CServerConfiguration::getColorString() const
 const std::string &CServerConfiguration::getImmortalName() const
 {
     return m_pImmortName;
+}
+
+std::string CServerConfiguration::parse_match_name(const char **pData, const char *pMatch, std::string default_value)
+{
+    auto match = ::parse_match_name(pData, pMatch);
+    if (match == nullptr)
+    {
+        return default_value;
+    }
+    std::string retval{match};
+    FREE(match);
+    return retval;
 }
 
 // CServerConfiguration::c_str_ptr CServerConfiguration::parse_match_name(const char **pData, const char *pMatch)

@@ -60,36 +60,38 @@ private:
     using filemap_t = std::map<std::string, std::string>;
     static const std::string &getOrAddFileInMap(const std::string &filename, const std::string &directory, filemap_t &map);
 
-    int m_nMotherPort{4999};                //
-    int m_nRentModifier{10};                //
-    bool m_bAccounting{false};              //
-    bool m_bAliasShout{true};               //
-    bool m_bBBS{false};                     //
-    bool m_bLawful{false};                  // Unused apart from unit_tests so far
-    bool m_bNoSpecials{false};              //
-    bool m_bBOB{false};                     //
-    int m_nShout{1};                        // Unused apart from unit_tests so far
-    int m_hReboot{0};                       //
-    color_type color{};                     //
-    in_addr m_sSubnetMask{};                // Unused apart from unit_tests so far
-    in_addr m_sLocalhost{};                 // Unused apart from unit_tests so far
-    in_addr m_aMplexHosts[10]{};            // Unused apart from unit_tests so far
-    char *m_promptstr{nullptr};             // Unused apart from unit_tests so far
-    std::string m_libdir{};                 // The lib directory, etc
+    int m_nMotherPort{4999};     //
+    int m_nRentModifier{10};     //
+    bool m_bAccounting{false};   //
+    bool m_bAliasShout{true};    //
+    bool m_bBBS{false};          //
+    bool m_bLawful{false};       // Unused apart from unit_tests so far
+    bool m_bNoSpecials{false};   //
+    bool m_bBOB{false};          //
+    int m_nShout{1};             // Unused apart from unit_tests so far
+    int m_hReboot{0};            //
+    color_type color{};          //
+    in_addr m_sSubnetMask{};     // Unused apart from unit_tests so far
+    in_addr m_sLocalhost{};      // Unused apart from unit_tests so far
+    in_addr m_aMplexHosts[10]{}; // Unused apart from unit_tests so far
+    std::string m_promptstr{};   // Unused apart from unit_tests so far
+    std::string m_libdir{};      // The lib directory, etc
+    std::string m_plydir{};      //
+    std::string m_etcdir{};      //
+    std::string m_logdir{};      //
+    std::string m_zondir{};      //
+    std::string m_dilfiledir{};  //
+    std::string m_mudname{};     // The mud name
+    std::string m_pLogo{};       // Intro screen
+    std::string m_pColor{};      //
+    std::string m_pImmortName{}; // Name of the Immortal of the mud
+
     mutable filemap_t m_libdir_filenames{}; // When a filename is requested for libdir it is stored and cached here
-    std::string m_plydir{};                 //
-    std::string m_etcdir{};                 //
     mutable filemap_t m_etcdir_filenames{}; // When a filename is requested for etcdir it is stored and cached here
-    std::string m_logdir{};                 //
-    mutable filemap_t m_logdir_filenames{}; // When a filename is requested for etcdir it is stored and cached here
-    std::string m_zondir{};                 //
-    std::string m_dilfiledir{};             //
-    std::string m_mudname{};                // The mud name
-    std::string m_pLogo{};                  // Intro screen
-    std::string m_pColor{};                 //
-    std::string m_pImmortName{};            // Name of the Immortal of the mud
+    mutable filemap_t m_logdir_filenames{}; // When a filename is requested for logdir it is stored and cached here
 public:
 private:
+    std::string parse_match_name(const char **pData, const char *pMatch, std::string default_value);
     //    using c_str_ptr=std::unique_ptr<char,decltype(free)*>;
     //    static c_str_ptr parse_match_name(const char **pData, const char *pMatch);
 };
