@@ -1598,7 +1598,7 @@ void dilfe_flog(class dilprg *p)
                             }
                             else
                             {
-                                strcpy(filename, g_cServerConfig.m_logdir);
+                                strcpy(filename, g_cServerConfig.getLogDir().c_str());
                                 strcat(filename, (char *)v1->val.ptr);
                                 sstr = str_dup((char *)v2->val.ptr);
                                 v->val.num = save_string(filename, &sstr, (char *)v3->val.ptr);

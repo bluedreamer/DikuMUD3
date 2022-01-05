@@ -516,7 +516,7 @@ void eliza_log(class unit_data *who, const char *str, int comms)
         return;
     }
 
-    if (!(f = fopen_cache(str_cc(g_cServerConfig.m_logdir, ELIZA_LOGFILE), "a+")))
+    if (!(f = fopen_cache(g_cServerConfig.getFileInLogDir(ELIZA_LOGFILE), "a+")))
         abort();
 
     if (idx <= MAX_ELIBUF)

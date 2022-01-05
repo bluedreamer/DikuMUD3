@@ -44,6 +44,8 @@ public:
     [[nodiscard]] const std::string &getPlyDir() const;
     [[nodiscard]] const std::string &getEtcDir() const;
     [[nodiscard]] const std::string &getFileInEtcDir(const std::string &filename) const;
+    [[nodiscard]] const std::string &getLogDir() const;
+    [[nodiscard]] const std::string &getFileInLogDir(const std::string &filename) const;
 
 private:
     void checkDirectoryExists(const std::string &name, const std::string &directory) const;
@@ -71,9 +73,9 @@ private:
     std::string m_etcdir{};
     mutable filemap_t m_etcdir_filenames{}; // When a filename is requested for etcdir it is stored and cached here
     static const std::string &getOrAddFileInMap(const std::string &filename, const std::string &directory, filemap_t &map);
-
+    std::string m_logdir{};
+    mutable filemap_t m_logdir_filenames{}; // When a filename is requested for etcdir it is stored and cached here
 public:
-    char *m_logdir{nullptr};
     char *m_zondir{nullptr};
     char *m_dilfiledir{nullptr};
     char *m_mudname{nullptr}; /* The mud name */

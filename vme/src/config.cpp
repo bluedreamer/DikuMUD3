@@ -125,22 +125,15 @@ void CServerConfiguration::Boot(char *srvcfg)
     checkDirectoryExists("etc", m_etcdir);
 
     d = parse_match_name((const char **)&c, "logdir");
-    if (d == NULL)
-        d = str_dup("../log/");
-
-#ifdef _WINDOWS
-    _stat(d, &statbuf);
-    if (!IS_SET(statbuf.st_mode, _S_IFDIR))
-#else
-    stat(d, &statbuf);
-    if (!S_ISDIR(statbuf.st_mode))
-#endif
+    if (d == nullptr)
     {
-        slog(LOG_ALL, 0, "The log directory %s does not exist.", d);
-        exit(0);
+        m_logdir = "../log/";
     }
-    slog(LOG_ALL, 0, "The log directory is %s.", d);
-    m_logdir = d;
+    else
+    {
+        m_logdir = d;
+    }
+    checkDirectoryExists("log", m_logdir);
 
     d = parse_match_name((const char **)&c, "zondir");
     if (d == NULL)
@@ -524,4 +517,14 @@ const std::string &CServerConfiguration::getEtcDir() const
 const std::string &CServerConfiguration::getFileInEtcDir(const std::string &filename) const
 {
     return getOrAddFileInMap(filename, m_etcdir, m_etcdir_filenames);
+}
+
+const std::string &CServerConfiguration::getLogDir() const
+{
+    return m_logdir;
+}
+
+const std::string &CServerConfiguration::getFileInLogDir(const std::string &filename) const
+{
+    return getOrAddFileInMap(filename, m_logdir, m_logdir_filenames);
 }

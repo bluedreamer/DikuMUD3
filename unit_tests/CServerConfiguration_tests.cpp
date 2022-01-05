@@ -102,11 +102,11 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
         //            BOOST_TEST(memcmp(&config.m_aMplexHosts[i], &empty, sizeof(config.m_aMplexHosts[0])) == 0);
         //        }
     }
-    //    BOOST_TEST(config.m_promptstr == nullptr);
+    //        BOOST_TEST(config.m_promptstr == nullptr);
     BOOST_TEST(config.getLibDir().empty());
     BOOST_TEST(config.getPlyDir().empty());
     BOOST_TEST(config.getEtcDir().empty());
-    BOOST_TEST(config.m_logdir == nullptr);
+    BOOST_TEST(config.getLogDir().empty());
     BOOST_TEST(config.m_zondir == nullptr);
     BOOST_TEST(config.m_dilfiledir == nullptr);
     BOOST_TEST(config.m_mudname == nullptr);
@@ -169,8 +169,8 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     BOOST_TEST(config.getPlyDir() == "../lib/ply/");
     BOOST_TEST(!config.getEtcDir().empty());
     BOOST_TEST(config.getEtcDir() == "../etc/");
-    BOOST_TEST(config.m_logdir);
-    BOOST_TEST(std::string(config.m_logdir) == "../log/");
+    BOOST_TEST(!config.getLogDir().empty());
+    BOOST_TEST(config.getLogDir() == "../log/");
     BOOST_TEST(config.m_zondir);
     BOOST_TEST(std::string(config.m_zondir) == "../zone/");
     BOOST_TEST(config.m_dilfiledir);

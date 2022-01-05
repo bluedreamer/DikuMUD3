@@ -47,7 +47,7 @@ void account_cclog(class unit_data *ch, int amount)
 {
     FILE *f;
 
-    f = fopen(str_cc(g_cServerConfig.m_logdir, CREDITFILE_LOG), "a+b");
+    f = fopen(g_cServerConfig.getFileInLogDir(CREDITFILE_LOG).c_str(), "a+b");
 
     fprintf(f, "%-16s %6.2f %s\n", UNIT_NAME(ch), ((float)amount) / 100.0, g_cAccountConfig.m_pCoinName);
 
@@ -66,7 +66,7 @@ static void account_log(char action, class unit_data *god, class unit_data *pc, 
 
     next_crc ^= vxor;
 
-    f = fopen_cache(str_cc(g_cServerConfig.m_logdir, ACCOUNT_LOG), "r+b");
+    f = fopen_cache(g_cServerConfig.getFileInLogDir(ACCOUNT_LOG), "r+b");
 
     if (fseek(f, 8L, SEEK_SET) != 0)
         error(HERE, "Unable to seek in account log.");
@@ -948,11 +948,11 @@ void CAccountConfig::Boot(void)
 
     slog(LOG_OFF, 0, "Booting account system.");
 
-    if (!file_exists(str_cc(g_cServerConfig.m_logdir, ACCOUNT_LOG)))
+    if (!file_exists(g_cServerConfig.getFileInLogDir(ACCOUNT_LOG)))
     {
         time_t now = time(0);
 
-        f = fopen(str_cc(g_cServerConfig.m_logdir, ACCOUNT_LOG), "wb");
+        f = fopen(g_cServerConfig.getFileInLogDir(ACCOUNT_LOG).c_str(), "wb");
 
         if (f == NULL)
         {
@@ -968,7 +968,7 @@ void CAccountConfig::Boot(void)
         fclose(f);
     }
 
-    f = fopen_cache(str_cc(g_cServerConfig.m_logdir, ACCOUNT_LOG), "rb");
+    f = fopen_cache(g_cServerConfig.getFileInLogDir(ACCOUNT_LOG), "rb");
 
     int mstmp = fscanf(f, "%*08x%08x", &next_crc);
     if (mstmp < 1)

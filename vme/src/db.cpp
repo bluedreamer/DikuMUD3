@@ -1737,7 +1737,7 @@ void boot_db(void)
     slog(LOG_OFF, 0, "Performing boot time reset.");
     reset_all_zones();
 
-    touch_file(str_cc(g_cServerConfig.m_logdir, STATISTICS_FILE));
+    touch_file(g_cServerConfig.getFileInLogDir(STATISTICS_FILE));
 }
 
 void db_shutdown(void)
