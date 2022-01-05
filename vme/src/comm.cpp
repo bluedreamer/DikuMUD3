@@ -102,7 +102,7 @@ void substHTMLcolor(std::string &dest, const char *src, class color_type &color)
                 pCol = color.get(buf);
 
                 if (pCol == NULL)
-                    pCol = g_cServerConfig.getColor().get(buf);
+                    pCol = g_cServerConfig.getColorType().get(buf);
 
                 if (pCol)
                 {

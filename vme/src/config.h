@@ -36,7 +36,7 @@ public:
     [[nodiscard]] bool isBOB() const;
     [[nodiscard]] int getShout() const;
     [[nodiscard]] int getReboot() const;
-    [[nodiscard]] const color_type &getColor() const;
+    [[nodiscard]] const color_type &getColorType() const;
     [[nodiscard]] const in_addr &getSubnetMask() const;
     [[nodiscard]] const in_addr &getLocalhost() const;
     [[nodiscard]] const std::string &getLibDir() const;
@@ -50,6 +50,8 @@ public:
     [[nodiscard]] const std::string &getDILFileDir() const;
     [[nodiscard]] const std::string &getMudName() const;
     [[nodiscard]] const std::string &getLogo() const;
+    [[nodiscard]] const std::string &getColorString() const;
+    [[nodiscard]] const std::string &getImmortalName() const;
 
 private:
     void checkDirectoryExists(const std::string &name, const std::string &directory) const;
@@ -84,10 +86,9 @@ private:
     std::string m_dilfiledir{};             //
     std::string m_mudname{};                // The mud name
     std::string m_pLogo{};                  // Intro screen
-
+    std::string m_pColor{};                 //
+    std::string m_pImmortName{};            // Name of the Immortal of the mud
 public:
-    char *m_pColor{nullptr};
-    char *m_pImmortName{nullptr}; /*Name of the Immortal of the mud */
 private:
     //    using c_str_ptr=std::unique_ptr<char,decltype(free)*>;
     //    static c_str_ptr parse_match_name(const char **pData, const char *pMatch);

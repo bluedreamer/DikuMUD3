@@ -405,7 +405,7 @@ void pc_data::gstate_togame(dilprg *pdontstop)
     }
 
     /*		if (!dilway)*/
-    if (strcmp(g_cServerConfig.m_pImmortName, UNIT_NAME(this)) == 0)
+    if (strcmp(g_cServerConfig.getImmortalName().c_str(), UNIT_NAME(this)) == 0)
         CHAR_LEVEL(this) = ULTIMATE_LEVEL;
 
     if (IS_ULTIMATE(this) && PC_IS_UNSAVED(this))

@@ -111,8 +111,8 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
     BOOST_TEST(config.getDILFileDir().empty());
     BOOST_TEST(config.getMudName().empty());
     BOOST_TEST(config.getLogo().empty());
-    BOOST_TEST(config.m_pColor == nullptr);
-    BOOST_TEST(config.m_pImmortName == nullptr);
+    BOOST_TEST(config.getColorString().empty());
+    BOOST_TEST(config.getImmortalName().empty());
 }
 
 /**
@@ -179,18 +179,16 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     }
 
     {
-        BOOST_TEST(config.m_pColor);
         // Don't like doing it this way TODO Update to pass in color file
         std::string filename{config.getEtcDir()};
         filename += COLOR_FILE;
         std::ifstream in(filename, std::ios_base::binary);
         std::string expected{(std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>()};
-        BOOST_TEST(std::string(config.m_pColor) == expected);
+        BOOST_TEST(config.getColorString() == expected);
     }
-    BOOST_TEST(config.m_pImmortName);
-    BOOST_TEST(std::string(config.m_pImmortName) == "Papi");
+    BOOST_TEST(config.getImmortalName() == "Papi");
 
-    remove(fake_server_config_filename);
+    std::remove(fake_server_config_filename);
 }
 
 // TODO I don't like this - it needs to be done better after refactor

@@ -39,7 +39,7 @@ public:
     const char *get(const char *key, char *full_key) const;
     int remove(char *key);
     void remove_all(void);
-    void create(char *input_str);
+    void create(const char *input_str);
     char *key_string(void);
     char *key_string(const color_type &dft);
     char *save_string(void) const;

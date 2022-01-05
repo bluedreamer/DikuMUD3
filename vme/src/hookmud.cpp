@@ -338,7 +338,7 @@ void cMotherHook::Input(int nFlags)
 
         slog(LOG_ALL, 0, "A multi-host has connected to the game.");
         protocol_send_exchange(&g_Multi.Multi[i], 0, g_cServerConfig.getMudName().c_str());
-        protocol_send_color(&g_Multi.Multi[i], 0, g_cServerConfig.m_pColor);
+        protocol_send_color(&g_Multi.Multi[i], 0, g_cServerConfig.getColorString().c_str());
     }
 }
 

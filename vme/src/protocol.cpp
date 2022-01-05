@@ -271,7 +271,7 @@ void protocol_send_exchange(cHook *Hook, ubit16 id, const char *mudname)
 }
 
 // Send the default colors to the Mplex
-void protocol_send_color(cHook *Hook, ubit16 id, char *colorstr)
+void protocol_send_color(cHook *Hook, ubit16 id, const char *colorstr)
 {
     ubit16 len;
     ubit8 buf[(MAX_STRING_LENGTH * 2) + 11];

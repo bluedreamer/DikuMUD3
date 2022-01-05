@@ -287,7 +287,7 @@ void color_type::remove_all()
     count = 0;
 }
 
-void color_type::create(char *input_temp)
+void color_type::create(const char *input_temp)
 {
     char *delstr;
     char *tok, *key;

@@ -96,7 +96,7 @@ void CServerConfiguration::Boot(char *srvcfg)
 
     d = parse_match_name((const char **)&c, "immortal_name");
     if (d == NULL)
-        d = str_dup("immortal");
+        m_pImmortName = "immortal";
     if (strlen(d) > PC_MAX_NAME)
         d[PC_MAX_NAME] = '\0';
 
@@ -379,8 +379,11 @@ void CServerConfiguration::Boot(char *srvcfg)
 
     slog(LOG_OFF, 0, "Reading in etc / colors.");
     touch_file(getFileInEtcDir(COLOR_FILE));
-    m_pColor = read_info_file(getFileInEtcDir(COLOR_FILE), m_pColor);
-    color.create(m_pColor);
+    char *tmp2 = nullptr;
+    tmp2 = read_info_file(getFileInEtcDir(COLOR_FILE), tmp2);
+    m_pColor = tmp2;
+    FREE(tmp2);
+    color.create(m_pColor.c_str());
 
     slog(LOG_OFF, 0, "Reading in etc / logo.");
     touch_file(getFileInEtcDir(LOGO_FILE));
@@ -443,7 +446,7 @@ int CServerConfiguration::getReboot() const
     return m_hReboot;
 }
 
-const color_type &CServerConfiguration::getColor() const
+const color_type &CServerConfiguration::getColorType() const
 {
     return color;
 }
@@ -541,6 +544,16 @@ const std::string &CServerConfiguration::getMudName() const
 const std::string &CServerConfiguration::getLogo() const
 {
     return m_pLogo;
+}
+
+const std::string &CServerConfiguration::getColorString() const
+{
+    return m_pColor;
+}
+
+const std::string &CServerConfiguration::getImmortalName() const
+{
+    return m_pImmortName;
 }
 
 // CServerConfiguration::c_str_ptr CServerConfiguration::parse_match_name(const char **pData, const char *pMatch)

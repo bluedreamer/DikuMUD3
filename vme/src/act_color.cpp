@@ -56,7 +56,7 @@ void do_color(class unit_data *ch, char *aaa, const struct command_info *cmd)
 
     if (str_is_empty(buf))
     {
-        print_str = UPC(ch)->color.key_string(g_cServerConfig.getColor());
+        print_str = UPC(ch)->color.key_string(g_cServerConfig.getColorType());
         page_string(CHAR_DESCRIPTOR(ch), print_str);
         send_to_char("<br/><br/>", ch);
         send_to_char("Example: color default <forground color> <background color><br/>", ch);
@@ -75,7 +75,7 @@ void do_color(class unit_data *ch, char *aaa, const struct command_info *cmd)
         change = TRUE;
     }
 
-    if (g_cServerConfig.getColor().get(buf, full_name))
+    if (g_cServerConfig.getColorType().get(buf, full_name))
     {
         add = TRUE;
     }
