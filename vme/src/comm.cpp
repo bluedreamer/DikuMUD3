@@ -166,6 +166,11 @@ void send_to_descriptor(const char *messg, class descriptor_data *d)
     }
 }
 
+void send_to_descriptor(const std::string &messg, class descriptor_data *d)
+{
+    send_to_descriptor(messg.c_str(), d);
+}
+
 void page_string(class descriptor_data *d, const char *messg)
 {
     if (d && messg && *messg)

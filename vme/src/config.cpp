@@ -384,7 +384,12 @@ void CServerConfiguration::Boot(char *srvcfg)
 
     slog(LOG_OFF, 0, "Reading in etc / logo.");
     touch_file(getFileInEtcDir(LOGO_FILE));
-    m_pLogo = read_info_file(getFileInEtcDir(LOGO_FILE), m_pLogo);
+
+    char *tmp = nullptr;
+    tmp = read_info_file(getFileInEtcDir(LOGO_FILE), tmp);
+    m_pLogo = tmp;
+    FREE(tmp);
+
     FREE(d);
 }
 
@@ -531,6 +536,11 @@ const std::string &CServerConfiguration::getDILFileDir() const
 const std::string &CServerConfiguration::getMudName() const
 {
     return m_mudname;
+}
+
+const std::string &CServerConfiguration::getLogo() const
+{
+    return m_pLogo;
 }
 
 // CServerConfiguration::c_str_ptr CServerConfiguration::parse_match_name(const char **pData, const char *pMatch)

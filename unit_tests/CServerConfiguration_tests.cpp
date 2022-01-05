@@ -110,7 +110,7 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
     BOOST_TEST(config.getZoneDir().empty());
     BOOST_TEST(config.getDILFileDir().empty());
     BOOST_TEST(config.getMudName().empty());
-    BOOST_TEST(config.m_pLogo == nullptr);
+    BOOST_TEST(config.getLogo().empty());
     BOOST_TEST(config.m_pColor == nullptr);
     BOOST_TEST(config.m_pImmortName == nullptr);
 }
@@ -172,11 +172,10 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     BOOST_TEST(config.getMudName() == "DikuMUD III Git Vanilla");
 
     {
-        BOOST_TEST(config.m_pLogo);
         // Don't like doing it this way TODO Update to pass in logo file
         std::ifstream in(config.getFileInEtcDir(LOGO_FILE), std::ios_base::binary);
         std::string expected{(std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>()};
-        BOOST_TEST(std::string(config.m_pLogo) == expected);
+        BOOST_TEST(config.getLogo() == expected);
     }
 
     {

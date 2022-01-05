@@ -187,7 +187,7 @@ int cMultiHook::Read(void)
         case MULTI_CONNECT_REQ_CHAR:
             d = descriptor_new(this);
             protocol_send_confirm(this, d->id);
-            send_to_descriptor(g_cServerConfig.m_pLogo, d);
+            send_to_descriptor(g_cServerConfig.getLogo(), d);
             send_to_descriptor("By what name do they call you? ", d);
             break;
 
