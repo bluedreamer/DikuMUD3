@@ -67,3 +67,5 @@ public:
     char *m_pColor{nullptr};
     char *m_pImmortName{nullptr}; /*Name of the Immortal of the mud */
 };
+
+extern CServerConfiguration g_cServerConfig;
