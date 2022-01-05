@@ -977,9 +977,9 @@ void CAccountConfig::Boot(void)
         assert(FALSE);
     }
 
-    touch_file(str_cc(g_cServerConfig.m_etcdir, ACCOUNT_FILE));
+    touch_file(g_cServerConfig.getFileInEtcDir(ACCOUNT_FILE));
 
-    config_file_to_string(str_cc(g_cServerConfig.m_etcdir, ACCOUNT_FILE), Buf, sizeof(Buf));
+    config_file_to_string(g_cServerConfig.getFileInEtcDir(ACCOUNT_FILE), Buf, sizeof(Buf));
 
     c = Buf;
 

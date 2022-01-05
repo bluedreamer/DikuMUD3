@@ -230,7 +230,7 @@ void load_messages(void)
     int i, grp;
     struct combat_msg_packet *messages;
 
-    if (!(f1 = fopen(str_cc(g_cServerConfig.m_etcdir, MESS_FILE), "r")))
+    if (!(f1 = fopen(g_cServerConfig.getFileInEtcDir(MESS_FILE).c_str(), "r")))
     {
         slog(LOG_ALL, 0, "Unable to read fight messages.");
         exit(11);

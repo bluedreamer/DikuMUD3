@@ -59,7 +59,7 @@ void message_request(int signal_no)
 
     slog(LOG_ALL, 0, "Received USR1 - message request");
 
-    msg_file_fd = fopen(str_cc(g_cServerConfig.m_etcdir, MESSAGE_FILE), "r");
+    msg_file_fd = fopen(g_cServerConfig.getFileInEtcDir(MESSAGE_FILE).c_str(), "r");
     if (!msg_file_fd)
     {
         fprintf(stderr, "Error in opening the log:  '%s'", MESSAGE_FILE);

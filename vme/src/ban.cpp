@@ -313,7 +313,7 @@ void show_ban_text(char *site, class descriptor_data *d)
     {
         if (ban_check(entry->site, site))
         {
-            if (file_to_string(str_cc(g_cServerConfig.m_etcdir, entry->textfile), bantext, sizeof(bantext) - 1) == -1)
+            if (file_to_string(g_cServerConfig.getFileInEtcDir(entry->textfile), bantext, sizeof(bantext) - 1) == -1)
                 send_to_descriptor("Your site has been banned.<br/>", d);
             else
             {

@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
     //    BOOST_TEST(config.m_promptstr == nullptr);
     BOOST_TEST(config.getLibDir().empty());
     BOOST_TEST(config.getPlyDir().empty());
-    BOOST_TEST(config.m_etcdir == nullptr);
+    BOOST_TEST(config.getEtcDir().empty());
     BOOST_TEST(config.m_logdir == nullptr);
     BOOST_TEST(config.m_zondir == nullptr);
     BOOST_TEST(config.m_dilfiledir == nullptr);
@@ -167,8 +167,8 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     BOOST_TEST(config.getLibDir() == "../lib/");
     BOOST_TEST(!config.getPlyDir().empty());
     BOOST_TEST(config.getPlyDir() == "../lib/ply/");
-    BOOST_TEST(config.m_etcdir);
-    BOOST_TEST(std::string(config.m_etcdir) == "../etc/");
+    BOOST_TEST(!config.getEtcDir().empty());
+    BOOST_TEST(config.getEtcDir() == "../etc/");
     BOOST_TEST(config.m_logdir);
     BOOST_TEST(std::string(config.m_logdir) == "../log/");
     BOOST_TEST(config.m_zondir);
@@ -181,9 +181,7 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     {
         BOOST_TEST(config.m_pLogo);
         // Don't like doing it this way TODO Update to pass in logo file
-        std::string filename{config.m_etcdir};
-        filename += LOGO_FILE;
-        std::ifstream in(filename, std::ios_base::binary);
+        std::ifstream in(config.getFileInEtcDir(LOGO_FILE), std::ios_base::binary);
         std::string expected{(std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>()};
         BOOST_TEST(std::string(config.m_pLogo) == expected);
     }
@@ -191,7 +189,7 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     {
         BOOST_TEST(config.m_pColor);
         // Don't like doing it this way TODO Update to pass in color file
-        std::string filename{config.m_etcdir};
+        std::string filename{config.getEtcDir()};
         filename += COLOR_FILE;
         std::ifstream in(filename, std::ios_base::binary);
         std::string expected{(std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>()};

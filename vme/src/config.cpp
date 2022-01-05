@@ -114,22 +114,15 @@ void CServerConfiguration::Boot(char *srvcfg)
     checkDirectoryExists("lib", m_libdir);
 
     d = parse_match_name((const char **)&c, "etcdir");
-    if (d == NULL)
-        d = str_dup("../etc/");
-
-#ifdef _WINDOWS
-    _stat(d, &statbuf);
-    if (!IS_SET(statbuf.st_mode, _S_IFDIR))
-#else
-    stat(d, &statbuf);
-    if (!S_ISDIR(statbuf.st_mode))
-#endif
+    if (d == nullptr)
     {
-        slog(LOG_ALL, 0, "The etc directory %s does not exist.", d);
-        exit(0);
+        m_etcdir = "../etc/";
     }
-    slog(LOG_ALL, 0, "The etc directory is %s.", d);
-    m_etcdir = d;
+    else
+    {
+        m_etcdir = d;
+    }
+    checkDirectoryExists("etc", m_etcdir);
 
     d = parse_match_name((const char **)&c, "logdir");
     if (d == NULL)
@@ -403,16 +396,14 @@ void CServerConfiguration::Boot(char *srvcfg)
 
     slog(LOG_OFF, 0, "Reading info and configuration files.");
 
-    char *read_info_file(char *name, char *oldstr);
-
     slog(LOG_OFF, 0, "Reading in etc / colors.");
-    touch_file(str_cc(m_etcdir, COLOR_FILE));
-    m_pColor = read_info_file(str_cc(m_etcdir, COLOR_FILE), m_pColor);
+    touch_file(getFileInEtcDir(COLOR_FILE));
+    m_pColor = read_info_file(getFileInEtcDir(COLOR_FILE), m_pColor);
     color.create(m_pColor);
 
     slog(LOG_OFF, 0, "Reading in etc / logo.");
-    touch_file(str_cc(m_etcdir, LOGO_FILE));
-    m_pLogo = read_info_file(str_cc(m_etcdir, LOGO_FILE), m_pLogo);
+    touch_file(getFileInEtcDir(LOGO_FILE));
+    m_pLogo = read_info_file(getFileInEtcDir(LOGO_FILE), m_pLogo);
 }
 
 int CServerConfiguration::getMotherPort() const
@@ -485,12 +476,17 @@ const std::string &CServerConfiguration::getLibDir() const
     return m_libdir;
 }
 
-const std::string &CServerConfiguration::getFileInLibDir(const std::string &filename) const
+const std::string &CServerConfiguration::getFileInLibDir(const std::string &filename)
 {
-    auto i = m_libdir_filenames.find(filename);
-    if (i == m_libdir_filenames.end())
+    return getOrAddFileInMap(filename, m_libdir, m_libdir_filenames);
+}
+
+const std::string &CServerConfiguration::getOrAddFileInMap(const std::string &filename, const std::string &directory, filemap_t &map)
+{
+    auto i = map.find(filename);
+    if (i == map.end())
     {
-        auto result = m_libdir_filenames.emplace(filename, m_libdir + filename);
+        auto result = map.emplace(filename, directory + filename);
 
         if (result.second)
         {
@@ -498,7 +494,7 @@ const std::string &CServerConfiguration::getFileInLibDir(const std::string &file
         }
         else
         {
-            throw std::runtime_error(std::string(__PRETTY_FUNCTION__) + ": Failed to cache path [" + m_libdir + filename + "]");
+            throw std::runtime_error(std::string(__PRETTY_FUNCTION__) + ": Failed to cache path [" + directory + filename + "]");
         }
     }
 
@@ -518,4 +514,14 @@ void CServerConfiguration::checkDirectoryExists(const std::string &name, const s
 const std::string &CServerConfiguration::getPlyDir() const
 {
     return m_plydir;
+}
+
+const std::string &CServerConfiguration::getEtcDir() const
+{
+    return m_etcdir;
+}
+
+const std::string &CServerConfiguration::getFileInEtcDir(const std::string &filename) const
+{
+    return getOrAddFileInMap(filename, m_etcdir, m_etcdir_filenames);
 }

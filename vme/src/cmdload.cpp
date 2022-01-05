@@ -146,8 +146,8 @@ void command_read(void)
     struct command_info *cmdptr = NULL, *lastptr = NULL;
     struct cmdload_struct *intcmd;
 
-    touch_file(str_cc(g_cServerConfig.m_etcdir, COMMAND_DEFS));
-    if (!(fl = fopen(str_cc(g_cServerConfig.m_etcdir, COMMAND_DEFS), "rb")))
+    touch_file(g_cServerConfig.getFileInEtcDir(COMMAND_DEFS));
+    if (!(fl = fopen(g_cServerConfig.getFileInEtcDir(COMMAND_DEFS).c_str(), "rb")))
     {
         slog(LOG_ALL, 0, "FATAL: Unable to open etc/ " COMMAND_DEFS);
         exit(0);

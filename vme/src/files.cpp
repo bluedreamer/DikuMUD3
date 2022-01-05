@@ -205,8 +205,12 @@ int config_file_to_string(char *name, char *buf, int max_len)
     return (0);
 }
 
+int config_file_to_string(const std::string &name, char *buf, int max_len)
+{
+    return config_file_to_string(name.c_str(), buf, max_len);
+}
 /* read contents of a text file, and place in buf */
-int file_to_string(char *name, char *buf, int max_len)
+int file_to_string(const char *name, char *buf, int max_len)
 {
     FILE *fl;
     char tmp[500];
@@ -242,6 +246,10 @@ int file_to_string(char *name, char *buf, int max_len)
     return 0;
 }
 
+int file_to_string(const std::string &name, char *buf, int max_len)
+{
+    return file_to_string(name.c_str(), buf, max_len);
+}
 /* Read a null terminated string from file into str */
 void fstrcpy(CByteBuffer *pBuf, FILE *f)
 {

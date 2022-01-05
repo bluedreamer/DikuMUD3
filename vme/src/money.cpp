@@ -768,8 +768,7 @@ void boot_money(void)
 
     // if ((fl = fopen (str_cc (moneyfile, MONEYDEF_FILE), "r")) == NULL)
 #else
-    myfile = g_cServerConfig.m_etcdir;
-    myfile.append(MONEYDEF_FILE);
+    myfile = g_cServerConfig.getFileInEtcDir(MONEYDEF_FILE);
     // if ((fl = fopen (str_cc (g_cServerConfig.m_etcdir, MONEYDEF_FILE), "r")) == NULL)
 #endif
     if ((fl = fopen(myfile.c_str(), "r")) == NULL)

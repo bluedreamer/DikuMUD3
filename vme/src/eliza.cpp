@@ -933,7 +933,7 @@ void eliza_boot(void)
 
     slog(LOG_ALL, 0, "Booting Eliza");
 
-    if (!(f = fopen(str_cc(g_cServerConfig.m_etcdir, ELIZA_TALKFILE), "r")))
+    if (!(f = fopen(g_cServerConfig.getFileInEtcDir(ELIZA_TALKFILE).c_str(), "r")))
     {
         slog(LOG_ALL, 0, "ELIZA BOOT FILE NOT FOUND.");
         return;

@@ -523,8 +523,8 @@ static void profession_read(void)
     char *pCh;
     FILE *fl;
 
-    touch_file(str_cc(g_cServerConfig.m_etcdir, PROFESSION_DEFS));
-    if (!(fl = fopen(str_cc(g_cServerConfig.m_etcdir, PROFESSION_DEFS), "rb")))
+    touch_file(g_cServerConfig.getFileInEtcDir(PROFESSION_DEFS));
+    if (!(fl = fopen(g_cServerConfig.getFileInEtcDir(PROFESSION_DEFS).c_str(), "rb")))
     {
         slog(LOG_ALL, 0, "unable to read etc/" PROFESSION_DEFS);
         exit(0);
@@ -592,8 +592,8 @@ static void race_read(void)
     FILE *fl;
     char tmp[256];
 
-    touch_file(str_cc(g_cServerConfig.m_etcdir, RACE_DEFS));
-    if (!(fl = fopen(str_cc(g_cServerConfig.m_etcdir, RACE_DEFS), "rb")))
+    touch_file(g_cServerConfig.getFileInEtcDir(RACE_DEFS));
+    if (!(fl = fopen(g_cServerConfig.getFileInEtcDir(RACE_DEFS).c_str(), "rb")))
     {
         slog(LOG_ALL, 0, "unable to create etc/" RACE_DEFS);
         exit(0);
@@ -792,8 +792,8 @@ static void ability_read(void)
     char *pCh;
     FILE *fl;
 
-    touch_file(str_cc(g_cServerConfig.m_etcdir, ABILITY_DEFS));
-    if (!(fl = fopen(str_cc(g_cServerConfig.m_etcdir, ABILITY_DEFS), "rb")))
+    touch_file(g_cServerConfig.getFileInEtcDir(ABILITY_DEFS));
+    if (!(fl = fopen(g_cServerConfig.getFileInEtcDir(ABILITY_DEFS).c_str(), "rb")))
     {
         slog(LOG_ALL, 0, "unable to create etc/" ABILITY_DEFS);
         exit(0);
@@ -1000,8 +1000,8 @@ static void weapon_read(void)
     char *pCh;
     FILE *fl;
 
-    touch_file(str_cc(g_cServerConfig.m_etcdir, WEAPON_DEFS));
-    if (!(fl = fopen(str_cc(g_cServerConfig.m_etcdir, WEAPON_DEFS), "rb")))
+    touch_file(g_cServerConfig.getFileInEtcDir(WEAPON_DEFS));
+    if (!(fl = fopen(g_cServerConfig.getFileInEtcDir(WEAPON_DEFS).c_str(), "rb")))
     {
         slog(LOG_ALL, 0, "unable to create etc file");
         exit(0);

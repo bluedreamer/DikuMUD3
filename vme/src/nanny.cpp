@@ -66,7 +66,6 @@ void multi_close(struct multi_element *pe);
 int player_exists(const char *pName);
 void save_player_file(class unit_data *ch);
 
-char *read_info_file(char *name, char *oldstr);
 char *m_pBadNames = NULL;
 char *m_pBadStrings = NULL;
 
@@ -98,16 +97,16 @@ int _parse_name(const char *arg, char *name)
     if (fill_word(name - i)) /* Don't allow fillwords */
         return 1;
 
-    touch_file(str_cc(g_cServerConfig.m_etcdir, BAD_STRINGS_FILE));
-    m_pBadStrings = read_info_file(str_cc(g_cServerConfig.m_etcdir, BAD_STRINGS_FILE), m_pBadStrings);
+    touch_file(g_cServerConfig.getFileInEtcDir(BAD_STRINGS_FILE));
+    m_pBadStrings = read_info_file(g_cServerConfig.getFileInEtcDir(BAD_STRINGS_FILE), m_pBadStrings);
     badstrings.create(m_pBadStrings);
     FREE(m_pBadStrings);
 
     if (badstrings.in(name - i))
         return 2;
 
-    touch_file(str_cc(g_cServerConfig.m_etcdir, BAD_NAMES_FILE));
-    m_pBadNames = read_info_file(str_cc(g_cServerConfig.m_etcdir, BAD_NAMES_FILE), m_pBadNames);
+    touch_file(g_cServerConfig.getFileInEtcDir(BAD_NAMES_FILE));
+    m_pBadNames = read_info_file(g_cServerConfig.getFileInEtcDir(BAD_NAMES_FILE), m_pBadNames);
     badnames.create(m_pBadNames);
     FREE(m_pBadNames);
 
