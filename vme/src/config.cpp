@@ -87,7 +87,7 @@ void CServerConfiguration::Boot(char *srvcfg)
 
     d = parse_match_name((const char **)&c, "mudname");
     if (d == NULL)
-        d = str_dup("No Mud server name in server.cfg");
+        m_mudname = "No Mud server name in server.cfg";
     slog(LOG_ALL, 0, "The Mud Name is %s.", d);
     if (strlen(d) > 49)
         d[50] = '\0';
@@ -527,3 +527,13 @@ const std::string &CServerConfiguration::getDILFileDir() const
 {
     return m_dilfiledir;
 }
+
+const std::string &CServerConfiguration::getMudName() const
+{
+    return m_mudname;
+}
+
+// CServerConfiguration::c_str_ptr CServerConfiguration::parse_match_name(const char **pData, const char *pMatch)
+//{
+//     return {::parse_match_name(pData, pMatch), free};
+// }

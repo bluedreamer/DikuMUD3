@@ -42,7 +42,7 @@ int check_reboot(void)
                      sizeof(buf),
                      "ATTENTION: %s will automaticly reboot "
                      "in %d minutes.<br/>",
-                     g_cServerConfig.m_mudname,
+                     g_cServerConfig.getMudName().c_str(),
                      count);
             send_to_all(buf);
             return (1);
@@ -63,7 +63,7 @@ int check_reboot(void)
                  sizeof(buf),
                  "ATTENTION: %s will automaticly reboot "
                  "in 10 minutes.<br/>",
-                 g_cServerConfig.m_mudname);
+                 g_cServerConfig.getMudName().c_str());
         send_to_all(buf);
         return (1);
     }

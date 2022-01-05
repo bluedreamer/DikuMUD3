@@ -48,6 +48,7 @@ public:
     [[nodiscard]] const std::string &getFileInLogDir(const std::string &filename) const;
     [[nodiscard]] const std::string &getZoneDir() const;
     [[nodiscard]] const std::string &getDILFileDir() const;
+    [[nodiscard]] const std::string &getMudName() const;
 
 private:
     void checkDirectoryExists(const std::string &name, const std::string &directory) const;
@@ -79,12 +80,15 @@ private:
     mutable filemap_t m_logdir_filenames{}; // When a filename is requested for etcdir it is stored and cached here
     std::string m_zondir{};
     std::string m_dilfiledir{};
+    std::string m_mudname{}; // The mud name
 
 public:
-    char *m_mudname{nullptr}; /* The mud name */
-    char *m_pLogo{nullptr};   /* Intro screen                    */
+    char *m_pLogo{nullptr}; /* Intro screen                    */
     char *m_pColor{nullptr};
     char *m_pImmortName{nullptr}; /*Name of the Immortal of the mud */
+private:
+    //    using c_str_ptr=std::unique_ptr<char,decltype(free)*>;
+    //    static c_str_ptr parse_match_name(const char **pData, const char *pMatch);
 };
 
 extern CServerConfiguration g_cServerConfig;

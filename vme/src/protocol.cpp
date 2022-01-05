@@ -248,7 +248,7 @@ void protocol_send_setup(cHook *Hook, ubit16 id, struct terminal_setup_type *set
 }
 
 // Send the MUD name to the mplex
-void protocol_send_exchange(cHook *Hook, ubit16 id, char *mudname)
+void protocol_send_exchange(cHook *Hook, ubit16 id, const char *mudname)
 {
     ubit16 len;
     ubit8 buf[MULTI_MAX_MUDNAME + 1 + 6 + 4];

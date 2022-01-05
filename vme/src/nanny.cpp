@@ -517,7 +517,7 @@ void nanny_motd(class descriptor_data *d, char *arg)
     {
         /*fuck*/
         char buf[200];
-        snprintf(buf, sizeof(buf), "Welcome to %s!<br/>", g_cServerConfig.m_mudname);
+        snprintf(buf, sizeof(buf), "Welcome to %s!<br/>", g_cServerConfig.getMudName().c_str());
         send_to_descriptor(buf, d);
         enter_game(d->character);
     }
@@ -648,14 +648,14 @@ void nanny_pwd_confirm(class descriptor_data *d, char *arg)
     char buf[512];
     if (pwdcompare(crypt(arg, PC_FILENAME(d->character)), PC_PWD(d->character), PC_MAX_PASSWORD))
     {
-        snprintf(buf, sizeof(buf), "PasswordOff('', '%s')", g_cServerConfig.m_mudname);
+        snprintf(buf, sizeof(buf), "PasswordOff('', '%s')", g_cServerConfig.getMudName().c_str());
         send_to_descriptor(scriptwrap(buf).c_str(), d);
         send_to_descriptor("Passwords don't match.<br/>", d);
         set_descriptor_fptr(d, nanny_new_pwd, TRUE);
         return;
     }
 
-    snprintf(buf, sizeof(buf), "PasswordOff('%s', '%s')", PC_FILENAME(d->character), g_cServerConfig.m_mudname);
+    snprintf(buf, sizeof(buf), "PasswordOff('%s', '%s')", PC_FILENAME(d->character), g_cServerConfig.getMudName().c_str());
     send_to_descriptor(scriptwrap(buf).c_str(), d);
 
     class descriptor_data *td;
@@ -739,7 +739,7 @@ void nanny_new_pwd(class descriptor_data *d, char *arg)
     }
 
     char buf[512];
-    snprintf(buf, sizeof(buf), "PasswordOff('', '%s')", g_cServerConfig.m_mudname);
+    snprintf(buf, sizeof(buf), "PasswordOff('', '%s')", g_cServerConfig.getMudName().c_str());
     send_to_descriptor(scriptwrap(buf).c_str(), d);
 
     if (!check_pwd(d, arg))
@@ -901,7 +901,7 @@ void nanny_existing_pwd(class descriptor_data *d, char *arg)
         return;
     }
 
-    snprintf(buf, sizeof(buf), "PasswordOff('%s', '%s')", UNIT_NAME(d->character), g_cServerConfig.m_mudname);
+    snprintf(buf, sizeof(buf), "PasswordOff('%s', '%s')", UNIT_NAME(d->character), g_cServerConfig.getMudName().c_str());
     send_to_descriptor(scriptwrap(buf).c_str(), d);
 
     if (str_is_empty(arg))
@@ -953,7 +953,7 @@ void nanny_existing_pwd(class descriptor_data *d, char *arg)
              sizeof(buf),
              "<br/>Welcome back %s, you last visited %s on %s<br/>",
              UNIT_NAME(d->character),
-             g_cServerConfig.m_mudname,
+             g_cServerConfig.getMudName().c_str(),
              ctime(&PC_TIME(d->character).connect));
     send_to_descriptor(buf, d);
 
