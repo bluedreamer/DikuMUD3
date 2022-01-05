@@ -1310,7 +1310,7 @@ void dilfe_resta(register class dilprg *p)
                     }
 
                     if (str_is_empty(p->frame[0].tmpl->zone->dilfilepath))
-                        strcpy(filename, g_cServerConfig.m_dilfiledir);
+                        strcpy(filename, g_cServerConfig.getDILFileDir().c_str());
                     else
                         strcpy(filename, p->frame[0].tmpl->zone->dilfilepath);
                     strcat(filename, "/units/");
@@ -1676,7 +1676,7 @@ void dilfe_ldstr(class dilprg *p)
                         if (p->frame[0].tmpl->zone->dilfilepath)
                             strcpy(filename, p->frame[0].tmpl->zone->dilfilepath);
                         else
-                            strcpy(filename, g_cServerConfig.m_dilfiledir);
+                            strcpy(filename, g_cServerConfig.getDILFileDir().c_str());
                         strcat(filename, "/strings/");
                         strcat(filename, (char *)v1->val.ptr);
                         v->val.num = load_string(filename, &sstr);
@@ -1741,7 +1741,7 @@ void dilfe_delstr(class dilprg *p)
             else
             {
                 if (str_is_empty(p->frame[0].tmpl->zone->dilfilepath))
-                    strcpy(filename, g_cServerConfig.m_dilfiledir);
+                    strcpy(filename, g_cServerConfig.getDILFileDir().c_str());
                 else
                     strcpy(filename, p->frame[0].tmpl->zone->dilfilepath);
                 strcat(filename, "/strings/");
@@ -1791,7 +1791,7 @@ void dilfe_delunit(class dilprg *p)
             else
             {
                 if (str_is_empty(p->frame[0].tmpl->zone->dilfilepath))
-                    strcpy(filename, g_cServerConfig.m_dilfiledir);
+                    strcpy(filename, g_cServerConfig.getDILFileDir().c_str());
                 else
                     strcpy(filename, p->frame[0].tmpl->zone->dilfilepath);
                 strcat(filename, "/units/");
@@ -1852,15 +1852,16 @@ void dilfe_svstr(class dilprg *p)
                             {
                                 if (str_is_empty(p->frame[0].tmpl->zone->dilfilepath))
                                 {
-                                    if (!file_exists(g_cServerConfig.m_dilfiledir))
+                                    if (!file_exists(g_cServerConfig.getDILFileDir().c_str()))
                                     {
 #ifdef _WINDOWS
                                         _mkdir(g_cServerConfig.m_dilfiledir);
 #else
-                                        mkdir(g_cServerConfig.m_dilfiledir, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP);
+                                        mkdir(g_cServerConfig.getDILFileDir().c_str(),
+                                              S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP);
 #endif
                                     }
-                                    strcpy(filename, g_cServerConfig.m_dilfiledir);
+                                    strcpy(filename, g_cServerConfig.getDILFileDir().c_str());
                                 }
                                 else
                                 {
@@ -1937,15 +1938,15 @@ void dilfe_filesz(class dilprg *p)
         case DILV_SP:
             if (str_is_empty(p->frame[0].tmpl->zone->dilfilepath))
             {
-                if (!file_exists(g_cServerConfig.m_dilfiledir))
+                if (!file_exists(g_cServerConfig.getDILFileDir()))
                 {
 #ifdef _WINDOWS
                     _mkdir(g_cServerConfig.m_dilfiledir);
 #else
-                    mkdir(g_cServerConfig.m_dilfiledir, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP);
+                    mkdir(g_cServerConfig.getDILFileDir().c_str(), S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP);
 #endif
                 }
-                strcpy(filename, g_cServerConfig.m_dilfiledir);
+                strcpy(filename, g_cServerConfig.getDILFileDir().c_str());
             }
             else
             {
@@ -3606,7 +3607,7 @@ void dilfe_udir(register class dilprg *p)
                 v->type = DILV_SLP;
                 if (str_is_empty(p->frame[0].tmpl->zone->dilfilepath))
                 {
-                    uPath = g_cServerConfig.m_dilfiledir;
+                    uPath = g_cServerConfig.getDILFileDir();
                     uPath = uPath + "/units";
                 }
                 else
@@ -3693,7 +3694,7 @@ void dilfe_sdir(register class dilprg *p)
                 v->type = DILV_SLP;
                 if (str_is_empty(p->frame[0].tmpl->zone->dilfilepath))
                 {
-                    uPath = g_cServerConfig.m_dilfiledir;
+                    uPath = g_cServerConfig.getDILFileDir();
                     uPath = uPath + "/strings";
                 }
                 else

@@ -160,21 +160,15 @@ void CServerConfiguration::Boot(char *srvcfg)
 
     d = parse_match_name((const char **)&c, "dil_file_dir");
     if (d == NULL)
-        d = str_dup("../lib/file/");
-
-#ifdef _WINDOWS
-    _stat(d, &statbuf);
-    if (!IS_SET(statbuf.st_mode, _S_IFDIR))
-#else
-    stat(d, &statbuf);
-    if (!S_ISDIR(statbuf.st_mode))
-#endif
     {
-        slog(LOG_ALL, 0, "The dil file directory %s does not exist.", d);
-        exit(0);
+        m_dilfiledir = "../lib/file/";
     }
-    slog(LOG_ALL, 0, "The dil file directory is %s.", d);
-    m_dilfiledir = d;
+    else
+    {
+        m_dilfiledir = d;
+    }
+    checkDirectoryExists("dil", m_dilfiledir);
+
     if (parse_match_num((const char **)&c, "Port", &i))
     {
         m_nMotherPort = i;
@@ -391,6 +385,7 @@ void CServerConfiguration::Boot(char *srvcfg)
     slog(LOG_OFF, 0, "Reading in etc / logo.");
     touch_file(getFileInEtcDir(LOGO_FILE));
     m_pLogo = read_info_file(getFileInEtcDir(LOGO_FILE), m_pLogo);
+    FREE(d);
 }
 
 int CServerConfiguration::getMotherPort() const
@@ -526,4 +521,9 @@ const std::string &CServerConfiguration::getFileInLogDir(const std::string &file
 const std::string &CServerConfiguration::getZoneDir() const
 {
     return m_zondir;
+}
+
+const std::string &CServerConfiguration::getDILFileDir() const
+{
+    return m_dilfiledir;
 }

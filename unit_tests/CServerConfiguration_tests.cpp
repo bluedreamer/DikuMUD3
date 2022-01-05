@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
     BOOST_TEST(config.getEtcDir().empty());
     BOOST_TEST(config.getLogDir().empty());
     BOOST_TEST(config.getZoneDir().empty());
-    BOOST_TEST(config.m_dilfiledir == nullptr);
+    BOOST_TEST(config.getDILFileDir().empty());
     BOOST_TEST(config.m_mudname == nullptr);
     BOOST_TEST(config.m_pLogo == nullptr);
     BOOST_TEST(config.m_pColor == nullptr);
@@ -163,18 +163,12 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     }
     //    BOOST_TEST(config.m_promptstr);
     //    BOOST_TEST(std::string(config.m_promptstr) == "%mana%m/%e%e/%hp%h> ");
-    BOOST_TEST(!config.getLibDir().empty());
     BOOST_TEST(config.getLibDir() == "../lib/");
-    BOOST_TEST(!config.getPlyDir().empty());
     BOOST_TEST(config.getPlyDir() == "../lib/ply/");
-    BOOST_TEST(!config.getEtcDir().empty());
     BOOST_TEST(config.getEtcDir() == "../etc/");
-    BOOST_TEST(!config.getLogDir().empty());
     BOOST_TEST(config.getLogDir() == "../log/");
-    BOOST_TEST(!config.getZoneDir().empty());
     BOOST_TEST(config.getZoneDir() == "../zone/");
-    BOOST_TEST(config.m_dilfiledir);
-    BOOST_TEST(std::string(config.m_dilfiledir) == "../lib/dilfiles/");
+    BOOST_TEST(config.getDILFileDir() == "../lib/dilfiles/");
     BOOST_TEST(config.m_mudname);
     BOOST_TEST(std::string(config.m_mudname) == "DikuMUD III Git Vanilla");
 

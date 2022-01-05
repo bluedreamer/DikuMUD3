@@ -47,6 +47,7 @@ public:
     [[nodiscard]] const std::string &getLogDir() const;
     [[nodiscard]] const std::string &getFileInLogDir(const std::string &filename) const;
     [[nodiscard]] const std::string &getZoneDir() const;
+    [[nodiscard]] const std::string &getDILFileDir() const;
 
 private:
     void checkDirectoryExists(const std::string &name, const std::string &directory) const;
@@ -77,9 +78,9 @@ private:
     std::string m_logdir{};
     mutable filemap_t m_logdir_filenames{}; // When a filename is requested for etcdir it is stored and cached here
     std::string m_zondir{};
+    std::string m_dilfiledir{};
 
 public:
-    char *m_dilfiledir{nullptr};
     char *m_mudname{nullptr}; /* The mud name */
     char *m_pLogo{nullptr};   /* Intro screen                    */
     char *m_pColor{nullptr};
