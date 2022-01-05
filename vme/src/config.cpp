@@ -137,20 +137,14 @@ void CServerConfiguration::Boot(char *srvcfg)
 
     d = parse_match_name((const char **)&c, "zondir");
     if (d == NULL)
-        d = str_dup("../zone/");
-
-#ifdef _WINDOWS
-    _stat(d, &statbuf);
-    if (!IS_SET(statbuf.st_mode, _S_IFDIR))
-#else
-    stat(d, &statbuf);
-    if (!S_ISDIR(statbuf.st_mode))
-#endif
     {
-        slog(LOG_ALL, 0, "The zone directory %s does not exist.", d);
-        exit(0);
+        m_zondir = "../zone/";
     }
-    slog(LOG_ALL, 0, "The zone directory is %s.", d);
+    else
+    {
+        m_zondir = d;
+    }
+    checkDirectoryExists("zone", m_zondir);
     m_zondir = d;
 
     d = parse_match_name((const char **)&c, "plydir");
@@ -527,4 +521,9 @@ const std::string &CServerConfiguration::getLogDir() const
 const std::string &CServerConfiguration::getFileInLogDir(const std::string &filename) const
 {
     return getOrAddFileInMap(filename, m_logdir, m_logdir_filenames);
+}
+
+const std::string &CServerConfiguration::getZoneDir() const
+{
+    return m_zondir;
 }

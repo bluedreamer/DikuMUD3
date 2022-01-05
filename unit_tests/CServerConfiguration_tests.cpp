@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
     BOOST_TEST(config.getPlyDir().empty());
     BOOST_TEST(config.getEtcDir().empty());
     BOOST_TEST(config.getLogDir().empty());
-    BOOST_TEST(config.m_zondir == nullptr);
+    BOOST_TEST(config.getZoneDir().empty());
     BOOST_TEST(config.m_dilfiledir == nullptr);
     BOOST_TEST(config.m_mudname == nullptr);
     BOOST_TEST(config.m_pLogo == nullptr);
@@ -171,8 +171,8 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     BOOST_TEST(config.getEtcDir() == "../etc/");
     BOOST_TEST(!config.getLogDir().empty());
     BOOST_TEST(config.getLogDir() == "../log/");
-    BOOST_TEST(config.m_zondir);
-    BOOST_TEST(std::string(config.m_zondir) == "../zone/");
+    BOOST_TEST(!config.getZoneDir().empty());
+    BOOST_TEST(config.getZoneDir() == "../zone/");
     BOOST_TEST(config.m_dilfiledir);
     BOOST_TEST(std::string(config.m_dilfiledir) == "../lib/dilfiles/");
     BOOST_TEST(config.m_mudname);

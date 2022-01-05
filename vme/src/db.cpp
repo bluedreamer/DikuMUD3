@@ -363,7 +363,7 @@ void generate_zone_indexes(void)
         if (str_is_empty(zone))
             break;
 
-        snprintf(filename, sizeof(filename), "%s%s.data", g_cServerConfig.m_zondir, zone);
+        snprintf(filename, sizeof(filename), "%s%s.data", g_cServerConfig.getZoneDir().c_str(), zone);
 
         /* Skip password */
         c = str_next_word_copy(c, tmpbuf);
@@ -1333,7 +1333,7 @@ void read_unit_file(class file_index_type *org_fi, CByteBuffer *pBuf)
     FILE *f;
     char buf[256];
 
-    snprintf(buf, sizeof(buf), "%s%s.data", g_cServerConfig.m_zondir, org_fi->zone->filename);
+    snprintf(buf, sizeof(buf), "%s%s.data", g_cServerConfig.getZoneDir().c_str(), org_fi->zone->filename);
 
     if ((f = fopen_cache(buf, "rb")) == NULL)
         error(HERE, "Couldn't open %s for reading.", buf);
@@ -1595,7 +1595,7 @@ void read_all_zones(void)
         if (strcmp(zone->second->name, "_players") == 0)
             continue;
 
-        snprintf(filename, sizeof(filename), "%s%s.reset", g_cServerConfig.m_zondir, zone->second->filename);
+        snprintf(filename, sizeof(filename), "%s%s.reset", g_cServerConfig.getZoneDir().c_str(), zone->second->filename);
 
         if ((f = fopen(filename, "rb")) == NULL)
         {

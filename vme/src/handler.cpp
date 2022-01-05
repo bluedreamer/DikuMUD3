@@ -1034,7 +1034,7 @@ void szonelog(class zone_type *zone, const char *fmt, ...)
     snprintf(buf2, sizeof(buf2), "%s/%s", zone->name, buf);
     slog(LOG_ALL, 0, buf2);
 
-    snprintf(name, sizeof(name), "%s%s.err", g_cServerConfig.m_zondir, zone->filename);
+    snprintf(name, sizeof(name), "%s%s.err", g_cServerConfig.getZoneDir().c_str(), zone->filename);
 
     if ((f = fopen_cache(name, "a")) == NULL)
     {

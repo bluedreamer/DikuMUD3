@@ -100,7 +100,7 @@ int error_rod(struct spec_arg *sarg)
         return SFR_BLOCK;
     }
 
-    snprintf(filename, sizeof(filename), "%s%s.err", g_cServerConfig.m_zondir, zone->filename);
+    snprintf(filename, sizeof(filename), "%s%s.err", g_cServerConfig.getZoneDir().c_str(), zone->filename);
 
     if (!(fl = fopen(filename, "w")))
     {
@@ -137,7 +137,7 @@ int info_rod(struct spec_arg *sarg)
         return SFR_BLOCK;
     }
 
-    snprintf(filename, sizeof(filename), "%s%s.inf", g_cServerConfig.m_zondir, zone->filename);
+    snprintf(filename, sizeof(filename), "%s%s.inf", g_cServerConfig.getZoneDir().c_str(), zone->filename);
 
     if (!(fl = fopen(filename, "w")))
     {
