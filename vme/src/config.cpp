@@ -168,22 +168,15 @@ void CServerConfiguration::Boot(char *srvcfg)
     m_zondir = d;
 
     d = parse_match_name((const char **)&c, "plydir");
-    if (d == NULL)
-        d = str_dup("../lib/ply/");
-
-#ifdef _WINDOWS
-    _stat(d, &statbuf);
-    if (!IS_SET(statbuf.st_mode, _S_IFDIR))
-#else
-    stat(d, &statbuf);
-    if (!S_ISDIR(statbuf.st_mode))
-#endif
+    if (d == nullptr)
     {
-        slog(LOG_ALL, 0, "The player directory %s does not exist.", d);
-        exit(0);
+        m_plydir = "../lib/ply/";
     }
-    slog(LOG_ALL, 0, "The player directory is %s.", d);
-    m_plydir = d;
+    else
+    {
+        m_plydir = d;
+    }
+    checkDirectoryExists("player", m_plydir);
 
     d = parse_match_name((const char **)&c, "dil_file_dir");
     if (d == NULL)
@@ -520,4 +513,9 @@ void CServerConfiguration::checkDirectoryExists(const std::string &name, const s
         exit(0);
     }
     slog(LOG_ALL, 0, "The %s directory is %s.", name.c_str(), directory.c_str());
+}
+
+const std::string &CServerConfiguration::getPlyDir() const
+{
+    return m_plydir;
 }

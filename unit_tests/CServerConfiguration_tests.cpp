@@ -104,7 +104,7 @@ BOOST_AUTO_TEST_CASE(default_ctor_test)
     }
     //    BOOST_TEST(config.m_promptstr == nullptr);
     BOOST_TEST(config.getLibDir().empty());
-    BOOST_TEST(config.m_plydir == nullptr);
+    BOOST_TEST(config.getPlyDir().empty());
     BOOST_TEST(config.m_etcdir == nullptr);
     BOOST_TEST(config.m_logdir == nullptr);
     BOOST_TEST(config.m_zondir == nullptr);
@@ -165,8 +165,8 @@ BOOST_AUTO_TEST_CASE(Boot_test)
     //    BOOST_TEST(std::string(config.m_promptstr) == "%mana%m/%e%e/%hp%h> ");
     BOOST_TEST(!config.getLibDir().empty());
     BOOST_TEST(config.getLibDir() == "../lib/");
-    BOOST_TEST(config.m_plydir);
-    BOOST_TEST(std::string(config.m_plydir) == "../lib/ply/");
+    BOOST_TEST(!config.getPlyDir().empty());
+    BOOST_TEST(config.getPlyDir() == "../lib/ply/");
     BOOST_TEST(config.m_etcdir);
     BOOST_TEST(std::string(config.m_etcdir) == "../etc/");
     BOOST_TEST(config.m_logdir);

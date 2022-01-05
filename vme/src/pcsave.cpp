@@ -59,7 +59,7 @@ char *PlayerFileName(const char *pName)
 
     strcpy(TmpBuf, pName);
     str_lower(TmpBuf);
-    snprintf(Buf, sizeof(Buf), "%s%c/%s", g_cServerConfig.m_plydir, *TmpBuf, TmpBuf);
+    snprintf(Buf, sizeof(Buf), "%s%c/%s", g_cServerConfig.getPlyDir().c_str(), *TmpBuf, TmpBuf);
 
     return Buf;
 }
@@ -179,7 +179,7 @@ void save_player_disk(const char *pName, char *pPassword, sbit32 id, int nPlyLen
     int n;
     FILE *pPlayerFile;
     static char *tmp_player_name;
-    tmp_player_name = str_cc(g_cServerConfig.m_plydir, "player.tmp");
+    tmp_player_name = str_cc(g_cServerConfig.getPlyDir().c_str(), "player.tmp");
 
     /* Fucking shiting pissing lort! This marcel is driving me mad! */
     assert(!file_exists(tmp_player_name));
@@ -491,18 +491,17 @@ void player_file_index(void)
     FILE *pFile;
     sbit32 tmp_sl;
     int n;
-    static char *tmp_player_name;
-    tmp_player_name = str_cc(g_cServerConfig.m_plydir, "player.tmp");
+    std::string tmp_player_name = g_cServerConfig.getPlyDir() + "player.tmp";
 
     /* Get rid of any temporary player save file */
     while (file_exists(tmp_player_name))
     {
-        n = remove(tmp_player_name);
+        n = std::remove(tmp_player_name.c_str());
         if (n != 0)
             slog(LOG_ALL, 0, "Remove failed");
         if (file_exists(tmp_player_name))
         {
-            n = rename(tmp_player_name, "./playingfuck");
+            n = std::rename(tmp_player_name.c_str(), "./playingfuck");
             if (n != 0)
             {
                 error(HERE, "Rename failed too - going down :-(");

@@ -41,6 +41,7 @@ public:
     [[nodiscard]] const in_addr &getLocalhost() const;
     [[nodiscard]] const std::string &getLibDir() const;
     [[nodiscard]] const std::string &getFileInLibDir(const std::string &filename) const;
+    [[nodiscard]] const std::string &getPlyDir() const;
 
 private:
     void checkDirectoryExists(const std::string &name, const std::string &directory) const;
@@ -63,8 +64,9 @@ private:
     char *m_promptstr{nullptr};                                      // Unused apart from unit_tests so far
     std::string m_libdir{};                                          // The lib directory, etc
     mutable std::map<std::string, std::string> m_libdir_filenames{}; // When a filename is requested for libdir it is stored and cached here
+    std::string m_plydir{};
+
 public:
-    char *m_plydir{nullptr};
     char *m_etcdir{nullptr};
     char *m_logdir{nullptr};
     char *m_zondir{nullptr};
