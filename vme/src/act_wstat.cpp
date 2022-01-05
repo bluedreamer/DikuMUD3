@@ -887,7 +887,7 @@ static void stat_extra(const class unit_data *ch, class extra_list &elist, char 
                 }
                 else
                     str.append("\"");
-                str.append(ed->descr.c_str());
+                str.append(ed->descr);
                 str.append("\"<br/>-------------------<br/>");
             }
             else if (!(*buf))
@@ -914,7 +914,7 @@ static void stat_extra(const class unit_data *ch, class extra_list &elist, char 
                 }
                 else
                     str.append("\"");
-                str.append(ed->descr.c_str());
+                str.append(ed->descr);
                 str.append("\"<br/>-------------------<br/>");
             }
         }

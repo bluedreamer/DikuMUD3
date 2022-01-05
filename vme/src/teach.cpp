@@ -385,7 +385,7 @@ void info_show_roots(class unit_data *teacher,
     std::string str;
     str = "<pre>";
     for (auto it = vect.begin(); it != vect.end(); ++it)
-        str.append(it->second.c_str());
+        str.append(it->second);
     str.append("</pre>");
 
     if (str.length() <= 11)
@@ -432,7 +432,7 @@ void info_show_leaves(class unit_data *teacher,
     for (auto it = vect.begin(); it != vect.end(); ++it)
     {
         if (IS_SET(PC_FLAGS(pupil), PC_EXPERT) || it->first <= 25) // Limit display
-            str.append(it->second.c_str());
+            str.append(it->second);
     }
     str.append("</pre>");
 
@@ -553,7 +553,7 @@ void info_one_skill(class unit_data *teacher,
     std::string str;
     str = "<pre>";
     for (auto it = vect.begin(); it != vect.end(); ++it)
-        str.append(it->second.c_str());
+        str.append(it->second);
     str.append("</pre>");
     send_to_char(str.c_str(), pupil);
 }

@@ -54,7 +54,7 @@ void load_ban(void)
     struct ban_t *tmp;
     char buf[256], site[256], textfile[256];
 
-    touch_file(g_cServerConfig.getFileInLibDir(BAN_FILE).c_str());
+    touch_file(g_cServerConfig.getFileInLibDir(BAN_FILE));
 
     bf = fopen(g_cServerConfig.getFileInLibDir(BAN_FILE).c_str(), "r");
     assert(bf);

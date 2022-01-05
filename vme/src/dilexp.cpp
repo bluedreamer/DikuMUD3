@@ -1852,7 +1852,7 @@ void dilfe_svstr(class dilprg *p)
                             {
                                 if (str_is_empty(p->frame[0].tmpl->zone->dilfilepath))
                                 {
-                                    if (!file_exists(g_cServerConfig.getDILFileDir().c_str()))
+                                    if (!file_exists(g_cServerConfig.getDILFileDir()))
                                     {
 #ifdef _WINDOWS
                                         _mkdir(g_cServerConfig.m_dilfiledir);
