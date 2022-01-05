@@ -46,7 +46,7 @@ long fsize(FILE *f)
 }
 
 /* check if a file exists */
-ubit1 file_exists(const char *name)
+static ubit1 file_exists(const char *name)
 {
     FILE *fp;
 
@@ -63,7 +63,7 @@ ubit1 file_exists(const std::string &name)
 }
 
 /* create a file if it doesn't exist. if error, terminate */
-void touch_file(const char *name)
+static void touch_file(const char *name)
 {
     FILE *fp;
 
@@ -162,7 +162,7 @@ char *fread_string(FILE *fl)
 }
 
 /* Read contents of a file, but skip all remark lines and blank lines. */
-int config_file_to_string(char *name, char *buf, int max_len)
+static int config_file_to_string(const char *name, char *buf, int max_len)
 {
     FILE *fl;
     char tmp[500];
@@ -210,7 +210,7 @@ int config_file_to_string(const std::string &name, char *buf, int max_len)
     return config_file_to_string(name.c_str(), buf, max_len);
 }
 /* read contents of a text file, and place in buf */
-int file_to_string(const char *name, char *buf, int max_len)
+static int file_to_string(const char *name, char *buf, int max_len)
 {
     FILE *fl;
     char tmp[500];
@@ -323,7 +323,7 @@ BUT 'read-only' files may be written to!
 
 */
 
-FILE *fopen_cache(const char *name, const char *mode)
+static FILE *fopen_cache(const char *name, const char *mode)
 {
     int i, min_i, hit_i;
     static int pure_hits = 0, purge = 0;

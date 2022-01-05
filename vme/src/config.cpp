@@ -11,8 +11,6 @@
 #endif
 
 #include <cstring>
-#include <fcntl.h>
-#include <sys/stat.h>
 #include <filesystem>
 #include "essential.h"
 #include "utility.h"
@@ -27,57 +25,45 @@
 
 CServerConfiguration g_cServerConfig;
 
-int CServerConfiguration::FromLAN(char *pFromHost)
+bool CServerConfiguration::FromLAN(char *pFromHost) const
 {
-    struct in_addr sTmp;
+    in_addr sTmp{};
 
 #ifdef _WINDOWS
     if (inet_addr(pFromHost) == INADDR_NONE)
     {
         slog(LOG_ALL, 0, "Localhost invalid.");
-        return FALSE;
+        return false;
     }
 #else
     if (inet_aton(pFromHost, &sTmp) == 0)
     {
         slog(LOG_ALL, 0, "Localhost [%s] invalid.", pFromHost);
-        return FALSE;
+        return false;
     }
 #endif
 
     return ((m_sSubnetMask.s_addr & m_sLocalhost.s_addr) == (m_sSubnetMask.s_addr & sTmp.s_addr));
 }
 
-int CServerConfiguration::ValidMplex(struct sockaddr_in *isa)
+bool CServerConfiguration::ValidMplex(sockaddr_in *isa)
 {
-    int i;
-
-    for (i = 0; i < 10; i++)
-    {
-        if (isa->sin_addr.s_addr == m_aMplexHosts[i].s_addr)
-            return TRUE;
-    }
-
-    return FALSE;
+    return std::any_of(m_aMplexHosts.begin(),
+                       m_aMplexHosts.end(),
+                       [&isa](const in_addr &mplex) { return isa->sin_addr.s_addr == mplex.s_addr; });
 }
 
-void CServerConfiguration::Boot(char *srvcfg)
+void CServerConfiguration::Boot(std::string srvcfg)
 {
-    char Buf[2 * MAX_STRING_LENGTH];
-    char *c;
-    int i;
-#ifdef _WINDOWS
-    struct _stat statbuf;
-#else
-    struct stat statbuf;
-
-#endif
+    char Buf[2 * MAX_STRING_LENGTH]{};
+    char *c{};
+    int i{};
 
     slog(LOG_OFF, 0, "Booting server.");
 
     if (!file_exists(srvcfg))
     {
-        slog(LOG_ALL, 0, "Could not find server configuration file. %s", srvcfg);
+        slog(LOG_ALL, 0, "Could not find server configuration file. %s", srvcfg.c_str());
         exit(0);
     }
 
@@ -227,84 +213,35 @@ void CServerConfiguration::Boot(char *srvcfg)
     }
 
     auto subnet = parse_match_name((const char **)&c, "subnetmask", "255.255.255.255");
-#ifdef _WINDOWS
-    if (m_sSubnetMask.S_un.S_addr = inet_addr(subnet.c_str()) == INADDR_NONE)
-    {
-        slog(LOG_ALL, 0, "SubnetMask invalid.");
-        exit(0);
-    }
-
-#else
-    if (inet_aton(subnet.c_str(), &m_sSubnetMask) == 0)
-    {
-        slog(LOG_ALL, 0, "SubnetMask invalid.");
-        exit(0);
-    }
-#endif
+    m_sSubnetMask = stringToIPAddress(subnet, "SubnetMask [%s] invalid.");
 
     auto localhost = parse_match_name((const char **)&c, "localhost", "127.0.0.1");
-#ifdef _WINDOWS
-    if (m_sLocalhost.S_un.S_addr = inet_addr(localhost.c_str()) == INADDR_NONE)
-        if (inet_addr(d) == INADDR_NONE)
-        {
-            slog(LOG_ALL, 0, "Localhost invalid.");
-            exit(0);
-        }
+    m_sLocalhost = stringToIPAddress(localhost, "Localhost [%s] invalid.");
 
-#else
-    if (inet_aton(localhost.c_str(), &m_sLocalhost) == 0)
-    {
-        slog(LOG_ALL, 0, "Localhost [%s] invalid.", localhost.c_str());
-        exit(0);
-    }
-#endif
-    char **ppNames;
+    auto ppNames = parse_match_namelist((const char **)&c, "mplex hosts");
 
-    ppNames = parse_match_namelist((const char **)&c, "mplex hosts");
-
-    if (ppNames == NULL)
+    if (ppNames.empty())
     {
         slog(LOG_ALL, 0, "Mplex hosts must be specified.");
         exit(0);
     }
 
-    int l = 0;
-
-    while (ppNames[l])
-        l++;
-
-    if (l < 1)
-    {
-        slog(LOG_ALL, 0, "Mplex hosts must have at least one entry.");
-        exit(0);
-    }
-
-    if (l > 10)
+    if (ppNames.size() > MAX_MPLEX_HOSTS)
     {
         slog(LOG_ALL, 0, "10 is maximum number of mplex hosts.");
         exit(0);
     }
 
-    for (i = 0; i < 10; i++)
+    for (size_t idx = 0; idx < MAX_MPLEX_HOSTS; ++idx)
     {
-        if (i < l)
+        if (idx < ppNames.size())
         {
-#ifdef _WINDOWS
-            if (m_aMplexHosts[i].S_un.S_addr = inet_addr(ppNames[i]) == INADDR_NONE)
-            {
-                slog(LOG_ALL, 0, "SubnetMask invalid.");
-                exit(0);
-            }
-#else
-            if (inet_aton(ppNames[i], &m_aMplexHosts[i]) == 0)
-            {
-                slog(LOG_ALL, 0, "Mplex host invalid IP.");
-                exit(0);
-            }
-#endif
+            m_aMplexHosts[idx] = stringToIPAddress(ppNames[idx], "Mplex host [%s] invalid IP.");
         }
         else
-            m_aMplexHosts[i] = m_aMplexHosts[i - 1];
+        {
+            m_aMplexHosts[idx] = m_aMplexHosts[idx - 1];
+        }
     }
 
     m_promptstr = parse_match_name((const char **)&c, "promptstr", "");
@@ -393,37 +330,22 @@ const in_addr &CServerConfiguration::getLocalhost() const
     return m_sLocalhost;
 }
 
+const std::string &CServerConfiguration::getPromptString() const
+{
+    return m_promptstr;
+}
+
 const std::string &CServerConfiguration::getLibDir() const
 {
     return m_libdir;
 }
 
-const std::string &CServerConfiguration::getFileInLibDir(const std::string &filename)
+std::string CServerConfiguration::getFileInLibDir(const std::string &filename) const
 {
-    return getOrAddFileInMap(filename, m_libdir, m_libdir_filenames);
+    return {m_libdir + filename};
 }
 
-const std::string &CServerConfiguration::getOrAddFileInMap(const std::string &filename, const std::string &directory, filemap_t &map)
-{
-    auto i = map.find(filename);
-    if (i == map.end())
-    {
-        auto result = map.emplace(filename, directory + filename);
-
-        if (result.second)
-        {
-            return result.first->second;
-        }
-        else
-        {
-            throw std::runtime_error(std::string(__PRETTY_FUNCTION__) + ": Failed to cache path [" + directory + filename + "]");
-        }
-    }
-
-    return i->second;
-}
-
-void CServerConfiguration::checkDirectoryExists(const std::string &name, const std::string &directory) const
+void CServerConfiguration::checkDirectoryExists(const std::string &name, const std::string &directory)
 {
     if (!(std::filesystem::exists(directory) && std::filesystem::is_directory(directory)))
     {
@@ -443,9 +365,9 @@ const std::string &CServerConfiguration::getEtcDir() const
     return m_etcdir;
 }
 
-const std::string &CServerConfiguration::getFileInEtcDir(const std::string &filename) const
+std::string CServerConfiguration::getFileInEtcDir(const std::string &filename) const
 {
-    return getOrAddFileInMap(filename, m_etcdir, m_etcdir_filenames);
+    return {m_etcdir + filename};
 }
 
 const std::string &CServerConfiguration::getLogDir() const
@@ -453,9 +375,9 @@ const std::string &CServerConfiguration::getLogDir() const
     return m_logdir;
 }
 
-const std::string &CServerConfiguration::getFileInLogDir(const std::string &filename) const
+std::string CServerConfiguration::getFileInLogDir(const std::string &filename) const
 {
-    return getOrAddFileInMap(filename, m_logdir, m_logdir_filenames);
+    return {m_logdir + filename};
 }
 
 const std::string &CServerConfiguration::getZoneDir() const
@@ -497,6 +419,53 @@ std::string CServerConfiguration::parse_match_name(const char **pData, const cha
     }
     std::string retval{match};
     FREE(match);
+    return retval;
+}
+
+std::vector<std::string> CServerConfiguration::parse_match_namelist(const char **pData, const char *pMatch)
+{
+    auto ppNames = ::parse_match_namelist(pData, pMatch);
+    std::vector<std::string> retval;
+
+    if (ppNames == nullptr)
+    {
+        return retval;
+    }
+
+    int l = 0;
+    while (ppNames[l])
+    {
+        retval.emplace_back(std::string{ppNames[l]});
+        l++;
+    }
+    free_namelist(ppNames);
+
+    return retval;
+}
+
+const std::vector<in_addr> &CServerConfiguration::getMplexHosts() const
+{
+    return m_aMplexHosts;
+}
+
+in_addr CServerConfiguration::stringToIPAddress(const std::string &ip_address, const std::string &error_msg)
+{
+    in_addr retval{};
+#ifdef _WINDOWS
+    retval.S_un.S_addr = inet_addr(ip_address.c_str());
+    if (retval.S_un.S_addr == INADDR_NONE)
+    {
+        slog(LOG_ALL, 0, error_msg.c_str(), ip_address.c_str());
+        exit(0);
+    }
+#else
+    if (inet_aton(ip_address.c_str(), &retval) == 0)
+    {
+        slog(LOG_ALL, 0, error_msg.c_str(), ip_address.c_str());
+        exit(0);
+    }
+#endif
+
     return retval;
 }
 

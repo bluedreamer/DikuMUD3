@@ -12,6 +12,7 @@
     #include <arpa/inet.h>
 #endif
 #include <map>
+#include <vector>
 #include "fight.h"
 #include "common.h"
 #include "color.h"
@@ -19,12 +20,18 @@
 class CServerConfiguration
 {
 public:
+    static constexpr auto MAX_MPLEX_HOSTS = 10u;
     CServerConfiguration() = default;
+    CServerConfiguration(const CServerConfiguration &) = delete;
+    CServerConfiguration &operator=(const CServerConfiguration &) = delete;
+    CServerConfiguration(CServerConfiguration &&) = delete;
+    CServerConfiguration &operator=(CServerConfiguration &&) = delete;
+    ~CServerConfiguration() = default;
 
-    void Boot(char *srvcfg);
+    void Boot(std::string srvcfg);
 
-    int FromLAN(char *pFromHost);
-    int ValidMplex(struct sockaddr_in *isa);
+    bool FromLAN(char *pFromHost) const;
+    bool ValidMplex(sockaddr_in *isa);
 
     [[nodiscard]] int getMotherPort() const;
     [[nodiscard]] int getRentModifier() const;
@@ -39,13 +46,12 @@ public:
     [[nodiscard]] const color_type &getColorType() const;
     [[nodiscard]] const in_addr &getSubnetMask() const;
     [[nodiscard]] const in_addr &getLocalhost() const;
+    [[nodiscard]] const std::vector<in_addr> &getMplexHosts() const;
+    [[nodiscard]] const std::string &getPromptString() const;
     [[nodiscard]] const std::string &getLibDir() const;
-    [[nodiscard]] const std::string &getFileInLibDir(const std::string &filename);
     [[nodiscard]] const std::string &getPlyDir() const;
     [[nodiscard]] const std::string &getEtcDir() const;
-    [[nodiscard]] const std::string &getFileInEtcDir(const std::string &filename) const;
     [[nodiscard]] const std::string &getLogDir() const;
-    [[nodiscard]] const std::string &getFileInLogDir(const std::string &filename) const;
     [[nodiscard]] const std::string &getZoneDir() const;
     [[nodiscard]] const std::string &getDILFileDir() const;
     [[nodiscard]] const std::string &getMudName() const;
@@ -53,47 +59,42 @@ public:
     [[nodiscard]] const std::string &getColorString() const;
     [[nodiscard]] const std::string &getImmortalName() const;
 
-private:
-    void checkDirectoryExists(const std::string &name, const std::string &directory) const;
+    [[nodiscard]] std::string getFileInLibDir(const std::string &filename) const;
+    [[nodiscard]] std::string getFileInEtcDir(const std::string &filename) const;
+    [[nodiscard]] std::string getFileInLogDir(const std::string &filename) const;
 
 private:
-    using filemap_t = std::map<std::string, std::string>;
-    static const std::string &getOrAddFileInMap(const std::string &filename, const std::string &directory, filemap_t &map);
+    static void checkDirectoryExists(const std::string &name, const std::string &directory);
+    static in_addr stringToIPAddress(const std::string &ip_address, const std::string &error_msg);
 
-    int m_nMotherPort{4999};     //
-    int m_nRentModifier{10};     //
-    bool m_bAccounting{false};   //
-    bool m_bAliasShout{true};    //
-    bool m_bBBS{false};          //
-    bool m_bLawful{false};       // Unused apart from unit_tests so far
-    bool m_bNoSpecials{false};   //
-    bool m_bBOB{false};          //
-    int m_nShout{1};             // Unused apart from unit_tests so far
-    int m_hReboot{0};            //
-    color_type color{};          //
-    in_addr m_sSubnetMask{};     // Unused apart from unit_tests so far
-    in_addr m_sLocalhost{};      // Unused apart from unit_tests so far
-    in_addr m_aMplexHosts[10]{}; // Unused apart from unit_tests so far
-    std::string m_promptstr{};   // Unused apart from unit_tests so far
-    std::string m_libdir{};      // The lib directory, etc
-    std::string m_plydir{};      //
-    std::string m_etcdir{};      //
-    std::string m_logdir{};      //
-    std::string m_zondir{};      //
-    std::string m_dilfiledir{};  //
-    std::string m_mudname{};     // The mud name
-    std::string m_pLogo{};       // Intro screen
-    std::string m_pColor{};      //
-    std::string m_pImmortName{}; // Name of the Immortal of the mud
-
-    mutable filemap_t m_libdir_filenames{}; // When a filename is requested for libdir it is stored and cached here
-    mutable filemap_t m_etcdir_filenames{}; // When a filename is requested for etcdir it is stored and cached here
-    mutable filemap_t m_logdir_filenames{}; // When a filename is requested for logdir it is stored and cached here
-public:
+    int m_nMotherPort{4999};                             //
+    int m_nRentModifier{10};                             //
+    bool m_bAccounting{false};                           //
+    bool m_bAliasShout{true};                            //
+    bool m_bBBS{false};                                  //
+    bool m_bLawful{false};                               // Unused apart from unit_tests so far
+    bool m_bNoSpecials{false};                           //
+    bool m_bBOB{false};                                  //
+    int m_nShout{1};                                     // Unused apart from unit_tests so far
+    int m_hReboot{0};                                    //
+    color_type color{};                                  //
+    in_addr m_sSubnetMask{};                             // Unused apart from unit_tests so far
+    in_addr m_sLocalhost{};                              // Unused apart from unit_tests so far
+    std::vector<in_addr> m_aMplexHosts{MAX_MPLEX_HOSTS}; // Unused apart from unit_tests so far
+    std::string m_promptstr{};                           // Unused apart from unit_tests so far
+    std::string m_libdir{};                              // The lib directory, etc
+    std::string m_plydir{};                              //
+    std::string m_etcdir{};                              //
+    std::string m_logdir{};                              //
+    std::string m_zondir{};                              //
+    std::string m_dilfiledir{};                          //
+    std::string m_mudname{};                             // The mud name
+    std::string m_pLogo{};                               // Intro screen
+    std::string m_pColor{};                              //
+    std::string m_pImmortName{};                         // Name of the Immortal of the mud
 private:
-    std::string parse_match_name(const char **pData, const char *pMatch, std::string default_value);
-    //    using c_str_ptr=std::unique_ptr<char,decltype(free)*>;
-    //    static c_str_ptr parse_match_name(const char **pData, const char *pMatch);
+    static std::string parse_match_name(const char **pData, const char *pMatch, std::string default_value);
+    static std::vector<std::string> parse_match_namelist(const char **pData, const char *pMatch);
 };
 
 extern CServerConfiguration g_cServerConfig;

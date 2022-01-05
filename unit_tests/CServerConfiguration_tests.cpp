@@ -142,27 +142,28 @@ BOOST_AUTO_TEST_CASE(Boot_test)
         BOOST_TEST(config.getLocalhost().s_addr == empty.s_addr);
     }
     {
-        //        constexpr auto array_size = sizeof(config.m_aMplexHosts) / sizeof(config.m_aMplexHosts[0]);
-        //        std::remove_reference<decltype(*CServerConfiguration::m_aMplexHosts)>::type expected[array_size]{
-        //            16777343,  // 127.0.0.1
-        //            352823488, // 192.168.7.21
-        //            352823488, // This looks weird - its like the last IP gets copied to the rest of the slots
-        //            352823488,
-        //            352823488,
-        //            352823488,
-        //            352823488,
-        //            352823488,
-        //            352823488,
-        //            352823488,
-        //        };
-        //
-        //        for (auto i = 0; i < array_size; ++i)
-        //        {
-        //            BOOST_TEST(config.m_aMplexHosts[i].s_addr == expected[i].s_addr);
-        //        }
+        std::vector<in_addr> expected{
+            {16777343},  // 127.0.0.1
+            {352823488}, // 192.168.7.21
+            {352823488}, // This looks weird - its like the last IP gets copied to the rest of the slots
+            {352823488},
+            {352823488},
+            {352823488},
+            {352823488},
+            {352823488},
+            {352823488},
+            {352823488},
+        };
+
+        size_t i = 0;
+        for (auto host : config.getMplexHosts())
+        {
+            BOOST_TEST(host.s_addr == expected[i].s_addr,
+                       "index " << i << ": mplex:" << host.s_addr << " = " << expected[i].s_addr << ":expected");
+            ++i;
+        }
     }
-    //    BOOST_TEST(config.m_promptstr);
-    //    BOOST_TEST(std::string(config.m_promptstr) == "%mana%m/%e%e/%hp%h> ");
+    BOOST_TEST(config.getPromptString() == "%mana%m/%e%e/%hp%h> ");
     BOOST_TEST(config.getLibDir() == "../lib/");
     BOOST_TEST(config.getPlyDir() == "../lib/ply/");
     BOOST_TEST(config.getEtcDir() == "../etc/");
