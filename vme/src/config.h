@@ -41,28 +41,28 @@ public:
     [[nodiscard]] auto isLawful() const -> bool;
     [[nodiscard]] auto isNoSpecials() const -> bool;
 
-    [[nodiscard]] auto getColorType() const -> const color_type &;
-    [[nodiscard]] auto getLocalhost() const -> const in_addr &;
-    [[nodiscard]] auto getSubnetMask() const -> const in_addr &;
     [[nodiscard]] auto getColorString() const -> const std::string &;
+    [[nodiscard]] auto getColorType() const -> const color_type &;
     [[nodiscard]] auto getDILFileDir() const -> const std::string &;
     [[nodiscard]] auto getEtcDir() const -> const std::string &;
     [[nodiscard]] auto getImmortalName() const -> const std::string &;
     [[nodiscard]] auto getLibDir() const -> const std::string &;
+    [[nodiscard]] auto getLocalhost() const -> const in_addr &;
     [[nodiscard]] auto getLogDir() const -> const std::string &;
     [[nodiscard]] auto getLogo() const -> const std::string &;
+    [[nodiscard]] auto getMotherPort() const -> int;
+    [[nodiscard]] auto getMplexHosts() const -> const std::vector<in_addr> &;
     [[nodiscard]] auto getMudName() const -> const std::string &;
     [[nodiscard]] auto getPlyDir() const -> const std::string &;
     [[nodiscard]] auto getPromptString() const -> const std::string &;
-    [[nodiscard]] auto getZoneDir() const -> const std::string &;
-    [[nodiscard]] auto getMplexHosts() const -> const std::vector<in_addr> &;
-    [[nodiscard]] auto getMotherPort() const -> int;
     [[nodiscard]] auto getReboot() const -> int;
     [[nodiscard]] auto getRentModifier() const -> int;
     [[nodiscard]] auto getShout() const -> int;
+    [[nodiscard]] auto getSubnetMask() const -> const in_addr &;
+    [[nodiscard]] auto getZoneDir() const -> const std::string &;
 
-    [[nodiscard]] auto getFileInLibDir(const std::string &filename) const -> std::string;
     [[nodiscard]] auto getFileInEtcDir(const std::string &filename) const -> std::string;
+    [[nodiscard]] auto getFileInLibDir(const std::string &filename) const -> std::string;
     [[nodiscard]] auto getFileInLogDir(const std::string &filename) const -> std::string;
 
 private:
