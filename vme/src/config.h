@@ -22,52 +22,52 @@ class CServerConfiguration
 public:
     CServerConfiguration() = default;
     CServerConfiguration(const CServerConfiguration &) = delete;
-    CServerConfiguration &operator=(const CServerConfiguration &) = delete;
+    auto operator=(const CServerConfiguration &) -> CServerConfiguration & = delete;
     CServerConfiguration(CServerConfiguration &&) = delete;
-    CServerConfiguration &operator=(CServerConfiguration &&) = delete;
+    auto operator=(CServerConfiguration &&) -> CServerConfiguration & = delete;
     ~CServerConfiguration() = default;
 
     static constexpr auto MAX_MPLEX_HOSTS = 10U;
 
     void Boot(std::string srvcfg);
 
-    [[nodiscard]] bool FromLAN(const char *pFromHost) const;
-    [[nodiscard]] bool ValidMplex(const sockaddr_in *isa) const;
+    [[nodiscard]] auto FromLAN(const char *pFromHost) const -> bool;
+    [[nodiscard]] auto ValidMplex(const sockaddr_in *isa) const -> bool;
 
-    [[nodiscard]] bool isAccounting() const;
-    [[nodiscard]] bool isAliasShout() const;
-    [[nodiscard]] bool isBBS() const;
-    [[nodiscard]] bool isBOB() const;
-    [[nodiscard]] bool isLawful() const;
-    [[nodiscard]] bool isNoSpecials() const;
+    [[nodiscard]] auto isAccounting() const -> bool;
+    [[nodiscard]] auto isAliasShout() const -> bool;
+    [[nodiscard]] auto isBBS() const -> bool;
+    [[nodiscard]] auto isBOB() const -> bool;
+    [[nodiscard]] auto isLawful() const -> bool;
+    [[nodiscard]] auto isNoSpecials() const -> bool;
 
-    [[nodiscard]] const color_type &getColorType() const;
-    [[nodiscard]] const in_addr &getLocalhost() const;
-    [[nodiscard]] const in_addr &getSubnetMask() const;
-    [[nodiscard]] const std::string &getColorString() const;
-    [[nodiscard]] const std::string &getDILFileDir() const;
-    [[nodiscard]] const std::string &getEtcDir() const;
-    [[nodiscard]] const std::string &getImmortalName() const;
-    [[nodiscard]] const std::string &getLibDir() const;
-    [[nodiscard]] const std::string &getLogDir() const;
-    [[nodiscard]] const std::string &getLogo() const;
-    [[nodiscard]] const std::string &getMudName() const;
-    [[nodiscard]] const std::string &getPlyDir() const;
-    [[nodiscard]] const std::string &getPromptString() const;
-    [[nodiscard]] const std::string &getZoneDir() const;
-    [[nodiscard]] const std::vector<in_addr> &getMplexHosts() const;
-    [[nodiscard]] int getMotherPort() const;
-    [[nodiscard]] int getReboot() const;
-    [[nodiscard]] int getRentModifier() const;
-    [[nodiscard]] int getShout() const;
+    [[nodiscard]] auto getColorType() const -> const color_type &;
+    [[nodiscard]] auto getLocalhost() const -> const in_addr &;
+    [[nodiscard]] auto getSubnetMask() const -> const in_addr &;
+    [[nodiscard]] auto getColorString() const -> const std::string &;
+    [[nodiscard]] auto getDILFileDir() const -> const std::string &;
+    [[nodiscard]] auto getEtcDir() const -> const std::string &;
+    [[nodiscard]] auto getImmortalName() const -> const std::string &;
+    [[nodiscard]] auto getLibDir() const -> const std::string &;
+    [[nodiscard]] auto getLogDir() const -> const std::string &;
+    [[nodiscard]] auto getLogo() const -> const std::string &;
+    [[nodiscard]] auto getMudName() const -> const std::string &;
+    [[nodiscard]] auto getPlyDir() const -> const std::string &;
+    [[nodiscard]] auto getPromptString() const -> const std::string &;
+    [[nodiscard]] auto getZoneDir() const -> const std::string &;
+    [[nodiscard]] auto getMplexHosts() const -> const std::vector<in_addr> &;
+    [[nodiscard]] auto getMotherPort() const -> int;
+    [[nodiscard]] auto getReboot() const -> int;
+    [[nodiscard]] auto getRentModifier() const -> int;
+    [[nodiscard]] auto getShout() const -> int;
 
-    [[nodiscard]] std::string getFileInLibDir(const std::string &filename) const;
-    [[nodiscard]] std::string getFileInEtcDir(const std::string &filename) const;
-    [[nodiscard]] std::string getFileInLogDir(const std::string &filename) const;
+    [[nodiscard]] auto getFileInLibDir(const std::string &filename) const -> std::string;
+    [[nodiscard]] auto getFileInEtcDir(const std::string &filename) const -> std::string;
+    [[nodiscard]] auto getFileInLogDir(const std::string &filename) const -> std::string;
 
 private:
     static void checkDirectoryExists(const std::string &name, const std::string &directory);
-    static in_addr stringToIPAddress(const std::string &ip_address, const std::string &error_msg);
+    static auto stringToIPAddress(const std::string &ip_address, const std::string &error_msg) -> in_addr;
 
     int m_nMotherPort{4999};                             // TCP port number
     int m_nRentModifier{10};                             //
@@ -95,8 +95,8 @@ private:
     std::string m_pColor{};                              //
     std::string m_pImmortName{};                         // Name of the Immortal of the mud
 private:
-    static std::string parse_match_name(const char **pData, const char *pMatch, std::string default_value);
-    static std::vector<std::string> parse_match_namelist(const char **pData, const char *pMatch);
+    static auto parse_match_name(const char **pData, const char *pMatch, std::string default_value) -> std::string;
+    static auto parse_match_namelist(const char **pData, const char *pMatch) -> std::vector<std::string>;
 };
 
 extern CServerConfiguration g_cServerConfig;

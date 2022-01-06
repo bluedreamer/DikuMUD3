@@ -25,7 +25,7 @@
 
 CServerConfiguration g_cServerConfig;
 
-bool CServerConfiguration::FromLAN(const char *pFromHost) const
+auto CServerConfiguration::FromLAN(const char *pFromHost) const -> bool
 {
     in_addr sTmp{};
 
@@ -46,7 +46,7 @@ bool CServerConfiguration::FromLAN(const char *pFromHost) const
     return ((m_sSubnetMask.s_addr & m_sLocalhost.s_addr) == (m_sSubnetMask.s_addr & sTmp.s_addr));
 }
 
-bool CServerConfiguration::ValidMplex(const sockaddr_in *isa) const
+auto CServerConfiguration::ValidMplex(const sockaddr_in *isa) const -> bool
 {
     return std::any_of(m_aMplexHosts.begin(),
                        m_aMplexHosts.end(),
@@ -265,82 +265,82 @@ void CServerConfiguration::Boot(std::string srvcfg)
     FREE(tmp);
 }
 
-int CServerConfiguration::getMotherPort() const
+auto CServerConfiguration::getMotherPort() const -> int
 {
     return m_nMotherPort;
 }
 
-int CServerConfiguration::getRentModifier() const
+auto CServerConfiguration::getRentModifier() const -> int
 {
     return m_nRentModifier;
 }
 
-bool CServerConfiguration::isAccounting() const
+auto CServerConfiguration::isAccounting() const -> bool
 {
     return m_bAccounting;
 }
 
-bool CServerConfiguration::isAliasShout() const
+auto CServerConfiguration::isAliasShout() const -> bool
 {
     return m_bAliasShout;
 }
 
-bool CServerConfiguration::isBBS() const
+auto CServerConfiguration::isBBS() const -> bool
 {
     return m_bBBS;
 }
 
-bool CServerConfiguration::isLawful() const
+auto CServerConfiguration::isLawful() const -> bool
 {
     return m_bLawful;
 }
 
-bool CServerConfiguration::isNoSpecials() const
+auto CServerConfiguration::isNoSpecials() const -> bool
 {
     return m_bNoSpecials;
 }
 
-bool CServerConfiguration::isBOB() const
+auto CServerConfiguration::isBOB() const -> bool
 {
     return m_bBOB;
 }
 
-int CServerConfiguration::getShout() const
+auto CServerConfiguration::getShout() const -> int
 {
     return m_nShout;
 }
 
-int CServerConfiguration::getReboot() const
+auto CServerConfiguration::getReboot() const -> int
 {
     return m_hReboot;
 }
 
-const color_type &CServerConfiguration::getColorType() const
+auto CServerConfiguration::getColorType() const -> const color_type &
 {
     return color;
 }
 
-const in_addr &CServerConfiguration::getSubnetMask() const
+auto CServerConfiguration::getSubnetMask() const -> const in_addr &
 {
     return m_sSubnetMask;
 }
 
-const in_addr &CServerConfiguration::getLocalhost() const
+auto CServerConfiguration::getLocalhost() const -> const in_addr &
 {
     return m_sLocalhost;
 }
 
-const std::string &CServerConfiguration::getPromptString() const
+auto CServerConfiguration::getPromptString() const -> const std::string &
 {
     return m_promptstr;
 }
 
-const std::string &CServerConfiguration::getLibDir() const
+auto CServerConfiguration::getLibDir() const -> const std::string &
 {
     return m_libdir;
 }
 
-std::string CServerConfiguration::getFileInLibDir(const std::string &filename) const
+auto CServerConfiguration::getFileInLibDir(const std::string &filename) const -> std::string
 {
     return {m_libdir + filename};
 }
@@ -355,62 +355,62 @@ void CServerConfiguration::checkDirectoryExists(const std::string &name, const s
     slog(LOG_ALL, 0, "The %s directory is %s.", name.c_str(), directory.c_str());
 }
 
-const std::string &CServerConfiguration::getPlyDir() const
+auto CServerConfiguration::getPlyDir() const -> const std::string &
 {
     return m_plydir;
 }
 
-const std::string &CServerConfiguration::getEtcDir() const
+auto CServerConfiguration::getEtcDir() const -> const std::string &
 {
     return m_etcdir;
 }
 
-std::string CServerConfiguration::getFileInEtcDir(const std::string &filename) const
+auto CServerConfiguration::getFileInEtcDir(const std::string &filename) const -> std::string
 {
     return {m_etcdir + filename};
 }
 
-const std::string &CServerConfiguration::getLogDir() const
+auto CServerConfiguration::getLogDir() const -> const std::string &
 {
     return m_logdir;
 }
 
-std::string CServerConfiguration::getFileInLogDir(const std::string &filename) const
+auto CServerConfiguration::getFileInLogDir(const std::string &filename) const -> std::string
 {
     return {m_logdir + filename};
 }
 
-const std::string &CServerConfiguration::getZoneDir() const
+auto CServerConfiguration::getZoneDir() const -> const std::string &
 {
     return m_zondir;
 }
 
-const std::string &CServerConfiguration::getDILFileDir() const
+auto CServerConfiguration::getDILFileDir() const -> const std::string &
 {
     return m_dilfiledir;
 }
 
-const std::string &CServerConfiguration::getMudName() const
+auto CServerConfiguration::getMudName() const -> const std::string &
 {
     return m_mudname;
 }
 
-const std::string &CServerConfiguration::getLogo() const
+auto CServerConfiguration::getLogo() const -> const std::string &
 {
     return m_pLogo;
 }
 
-const std::string &CServerConfiguration::getColorString() const
+auto CServerConfiguration::getColorString() const -> const std::string &
 {
     return m_pColor;
 }
 
-const std::string &CServerConfiguration::getImmortalName() const
+auto CServerConfiguration::getImmortalName() const -> const std::string &
 {
     return m_pImmortName;
 }
 
-std::string CServerConfiguration::parse_match_name(const char **pData, const char *pMatch, std::string default_value)
+auto CServerConfiguration::parse_match_name(const char **pData, const char *pMatch, std::string default_value) -> std::string
 {
     auto match = ::parse_match_name(pData, pMatch);
     if (match == nullptr)
@@ -422,7 +422,7 @@ std::string CServerConfiguration::parse_match_name(const char **pData, const cha
     return retval;
 }
 
-std::vector<std::string> CServerConfiguration::parse_match_namelist(const char **pData, const char *pMatch)
+auto CServerConfiguration::parse_match_namelist(const char **pData, const char *pMatch) -> std::vector<std::string>
 {
     auto ppNames = ::parse_match_namelist(pData, pMatch);
     std::vector<std::string> retval;
@@ -443,12 +443,12 @@ std::vector<std::string> CServerConfiguration::parse_match_namelist(const char *
     return retval;
 }
 
-const std::vector<in_addr> &CServerConfiguration::getMplexHosts() const
+auto CServerConfiguration::getMplexHosts() const -> const std::vector<in_addr> &
 {
     return m_aMplexHosts;
 }
 
-in_addr CServerConfiguration::stringToIPAddress(const std::string &ip_address, const std::string &error_msg)
+auto CServerConfiguration::stringToIPAddress(const std::string &ip_address, const std::string &error_msg) -> in_addr
 {
     in_addr retval{};
 #ifdef _WINDOWS
