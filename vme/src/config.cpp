@@ -1,3 +1,6 @@
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunknown-pragmas"
+#pragma ide diagnostic ignored "misc-throw-by-value-catch-by-reference"
 /*
  $Author: All $
  $RCSfile: config.cpp,v $
@@ -6,22 +9,25 @@
  */
 
 #ifdef _WINDOWS
-    #include <winsock2.h>
     #include <io.h>
+    #include <winsock2.h>
 #endif
 
+#include "color.h"
+#include "config.h"
+#include "db.h"
+#include "diku_exception.h"
+#include "essential.h"
+#include "files.h"
+#include "str_parse.h"
+#include "structs.h"
+#include "textutil.h"
+#include "utility.h"
+#include "values.h"
+
+#include <boost/format.hpp>
 #include <cstring>
 #include <filesystem>
-#include "essential.h"
-#include "utility.h"
-#include "config.h"
-#include "files.h"
-#include "textutil.h"
-#include "db.h"
-#include "str_parse.h"
-#include "color.h"
-#include "values.h"
-#include "structs.h"
 
 CServerConfiguration g_cServerConfig;
 
@@ -53,7 +59,7 @@ auto CServerConfiguration::ValidMplex(const sockaddr_in *isa) const -> bool
                        [&isa](const in_addr &mplex) { return isa->sin_addr.s_addr == mplex.s_addr; });
 }
 
-void CServerConfiguration::Boot(std::string srvcfg)
+void CServerConfiguration::Boot(const std::string &srvcfg)
 {
     char Buf[2 * MAX_STRING_LENGTH]{};
     char *c{};
@@ -64,7 +70,7 @@ void CServerConfiguration::Boot(std::string srvcfg)
     if (!file_exists(srvcfg))
     {
         slog(LOG_ALL, 0, "Could not find server configuration file. %s", srvcfg.c_str());
-        exit(0);
+        throw diku_exception{FPFL} << "Could not find server configuration file. [" << srvcfg << "]";
     }
 
     config_file_to_string(srvcfg, Buf, sizeof(Buf));
@@ -110,7 +116,7 @@ void CServerConfiguration::Boot(std::string srvcfg)
     if (!is_in(m_nMotherPort, 2000, 8000))
     {
         slog(LOG_ALL, 0, "Mother port not in [2000..8000].");
-        exit(0);
+        throw diku_exception(FPFL) << "Mother port " << m_nMotherPort << " not in [2000..8000].";
     }
 
     if (parse_match_num((const char **)&c, "auto_reboot_hour", &i))
@@ -132,29 +138,29 @@ void CServerConfiguration::Boot(std::string srvcfg)
     if (!is_in(m_nRentModifier, 0, 100))
     {
         slog(LOG_ALL, 0, "Rent modifier not in [0..100].");
-        exit(0);
+        throw diku_exception(FPFL) << "Rent modifier not in [0..100].";
     }
 
     if (parse_match_num((const char **)&c, "BOB", &i))
     {
-        m_bBOB = i;
+        m_bBOB = i == 0 ? false : true;
     }
 
-    if (!is_in(m_bBOB, 0, 1))
+    if (!is_in(i, 0, 1))
     {
         slog(LOG_ALL, 0, "BOB not 0 or 1");
-        exit(0);
+        throw diku_exception(FPFL) << "BOB not 0 or 1";
     }
 
     if (parse_match_num((const char **)&c, "Alias Shout", &i))
     {
-        m_bAliasShout = i;
+        m_bAliasShout = i == 0 ? false : true;
     }
 
-    if (!is_in(m_bAliasShout, 0, 1))
+    if (!is_in(i, 0, 1))
     {
         slog(LOG_ALL, 0, "Alias Shout not 0 or 1");
-        exit(0);
+        throw diku_exception(FPFL) << "Alias Shout not 0 or 1";
     }
 
     if (parse_match_num((const char **)&c, "No Specials", &i))
@@ -165,40 +171,40 @@ void CServerConfiguration::Boot(std::string srvcfg)
     if (!is_in(m_bNoSpecials, 0, 1))
     {
         slog(LOG_ALL, 0, "Specials not 0 or 1");
-        exit(0);
+        throw diku_exception(FPFL) << "Specials not 0 or 1";
     }
 
     if (parse_match_num((const char **)&c, "Lawful", &i))
     {
-        m_bLawful = i;
+        m_bLawful = i == 0 ? false : true;
     }
 
-    if (!is_in(m_bLawful, 0, 1))
+    if (!is_in(i, 0, 1))
     {
         slog(LOG_ALL, 0, "Lawful not 0 or 1");
-        exit(0);
+        throw diku_exception(FPFL) << "Lawful not 0 or 1";
     }
 
     if (parse_match_num((const char **)&c, "BBS", &i))
     {
-        m_bBBS = i;
+        m_bBBS = i == 0 ? false : true;
     }
 
-    if (!is_in(m_bBBS, 0, 1))
+    if (!is_in(i, 0, 1))
     {
         slog(LOG_ALL, 0, "BBS not 0 or 1");
-        exit(0);
+        throw diku_exception(FPFL) << "BBS not 0 or 1";
     }
 
     if (parse_match_num((const char **)&c, "Accounting", &i))
     {
-        m_bAccounting = i;
+        m_bAccounting = i == 0 ? false : true;
     }
 
-    if (!is_in(m_bAccounting, 0, 1))
+    if (!is_in(i, 0, 1))
     {
         slog(LOG_ALL, 0, "Accounting not 0 or 1");
-        exit(0);
+        throw diku_exception(FPFL) << "Accounting not 0 or 1";
     }
 
     if (parse_match_num((const char **)&c, "Shout", &i))
@@ -209,7 +215,7 @@ void CServerConfiguration::Boot(std::string srvcfg)
     if (!is_in(m_nShout, 0, 255))
     {
         slog(LOG_ALL, 0, "Shout level not [0..255]");
-        exit(0);
+        throw diku_exception(FPFL) << "Shout level not [0..255]";
     }
 
     auto subnet = parse_match_name((const char **)&c, "subnetmask", "255.255.255.255");
@@ -223,13 +229,13 @@ void CServerConfiguration::Boot(std::string srvcfg)
     if (ppNames.empty())
     {
         slog(LOG_ALL, 0, "Mplex hosts must be specified.");
-        exit(0);
+        throw diku_exception(FPFL) << "Mplex hosts must be specified.";
     }
 
     if (ppNames.size() > MAX_MPLEX_HOSTS)
     {
         slog(LOG_ALL, 0, "10 is maximum number of mplex hosts.");
-        exit(0);
+        throw diku_exception(FPFL) << "10 is maximum number of mplex hosts.";
     }
 
     for (size_t idx = 0; idx < MAX_MPLEX_HOSTS; ++idx)
@@ -350,7 +356,7 @@ void CServerConfiguration::checkDirectoryExists(const std::string &name, const s
     if (!(std::filesystem::exists(directory) && std::filesystem::is_directory(directory)))
     {
         slog(LOG_ALL, 0, "The %s directory %s does not exist.", name.c_str(), directory.c_str());
-        exit(0);
+        throw diku_exception(FPFL) << "The [" << name << "] directory [" << directory << "] does not exist.";
     }
     slog(LOG_ALL, 0, "The %s directory is %s.", name.c_str(), directory.c_str());
 }
@@ -456,13 +462,13 @@ auto CServerConfiguration::stringToIPAddress(const std::string &ip_address, cons
     if (retval.S_un.S_addr == INADDR_NONE)
     {
         slog(LOG_ALL, 0, error_msg.c_str(), ip_address.c_str());
-        exit(0);
+        throw diku_exception(FPFL) << error_msg << ' ' << ip_address;
     }
 #else
     if (inet_aton(ip_address.c_str(), &retval) == 0)
     {
         slog(LOG_ALL, 0, error_msg.c_str(), ip_address.c_str());
-        exit(0);
+        throw diku_exception(FPFL) << boost::format(error_msg) % ip_address;
     }
 #endif
 
@@ -473,3 +479,5 @@ auto CServerConfiguration::stringToIPAddress(const std::string &ip_address, cons
 //{
 //     return {::parse_match_name(pData, pMatch), free};
 // }
+
+#pragma clang diagnostic pop

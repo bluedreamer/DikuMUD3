@@ -11,11 +11,12 @@
 #else
     #include <arpa/inet.h>
 #endif
+#include "color.h"
+#include "common.h"
+#include "fight.h"
+
 #include <map>
 #include <vector>
-#include "fight.h"
-#include "common.h"
-#include "color.h"
 
 class CServerConfiguration
 {
@@ -29,7 +30,7 @@ public:
 
     static constexpr auto MAX_MPLEX_HOSTS = 10U;
 
-    void Boot(std::string srvcfg);
+    void Boot(const std::string &srvcfg);
 
     [[nodiscard]] auto FromLAN(const char *pFromHost) const -> bool;
     [[nodiscard]] auto ValidMplex(const sockaddr_in *isa) const -> bool;
@@ -66,8 +67,10 @@ public:
     [[nodiscard]] auto getFileInLogDir(const std::string &filename) const -> std::string;
 
 private:
-    static void checkDirectoryExists(const std::string &name, const std::string &directory);
+    static auto parse_match_name(const char **pData, const char *pMatch, std::string default_value) -> std::string;
+    static auto parse_match_namelist(const char **pData, const char *pMatch) -> std::vector<std::string>;
     static auto stringToIPAddress(const std::string &ip_address, const std::string &error_msg) -> in_addr;
+    static void checkDirectoryExists(const std::string &name, const std::string &directory);
 
     int m_nMotherPort{4999};                             // TCP port number
     int m_nRentModifier{10};                             //
@@ -78,7 +81,7 @@ private:
     bool m_bNoSpecials{false};                           //
     bool m_bBOB{false};                                  //
     int m_nShout{1};                                     // Unused apart from unit_tests so far
-    int m_hReboot{0};                                    // Hour 0-23 to reboot server on
+    int m_hReboot{0};                                    // Hour 0-24 to reboot server on
     color_type color{};                                  //
     in_addr m_sSubnetMask{};                             // Unused apart from unit_tests so far
     in_addr m_sLocalhost{};                              // Unused apart from unit_tests so far
@@ -94,9 +97,6 @@ private:
     std::string m_pLogo{};                               // Intro screen
     std::string m_pColor{};                              //
     std::string m_pImmortName{};                         // Name of the Immortal of the mud
-private:
-    static auto parse_match_name(const char **pData, const char *pMatch, std::string default_value) -> std::string;
-    static auto parse_match_namelist(const char **pData, const char *pMatch) -> std::vector<std::string>;
 };
 
 extern CServerConfiguration g_cServerConfig;
