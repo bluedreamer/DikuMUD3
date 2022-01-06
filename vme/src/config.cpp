@@ -7,14 +7,9 @@
  $Date: 2004/09/18 19:52:56 $
  $Revision: 2.5 $
  */
-
-#ifdef _WINDOWS
-    #include <io.h>
-    #include <winsock2.h>
-#endif
+#include "config.h"
 
 #include "color.h"
-#include "config.h"
 #include "db.h"
 #include "diku_exception.h"
 #include "essential.h"
@@ -25,6 +20,10 @@
 #include "utility.h"
 #include "values.h"
 
+#ifdef _WINDOWS
+    #include <io.h>
+    #include <winsock2.h>
+#endif
 #include <boost/format.hpp>
 #include <cstring>
 #include <filesystem>
@@ -356,7 +355,7 @@ void CServerConfiguration::checkDirectoryExists(const std::string &name, const s
     if (!(std::filesystem::exists(directory) && std::filesystem::is_directory(directory)))
     {
         slog(LOG_ALL, 0, "The %s directory %s does not exist.", name.c_str(), directory.c_str());
-        throw diku_exception(FPFL) << "The [" << name << "] directory [" << directory << "] does not exist.";
+        throw diku_exception(FPFL) << boost::format("The %s directory %s does not exist.") % name % directory;
     }
     slog(LOG_ALL, 0, "The %s directory is %s.", name.c_str(), directory.c_str());
 }
@@ -462,7 +461,7 @@ auto CServerConfiguration::stringToIPAddress(const std::string &ip_address, cons
     if (retval.S_un.S_addr == INADDR_NONE)
     {
         slog(LOG_ALL, 0, error_msg.c_str(), ip_address.c_str());
-        throw diku_exception(FPFL) << error_msg << ' ' << ip_address;
+        throw diku_exception(FPFL) << boost::format(error_msg) % ip_address;
     }
 #else
     if (inet_aton(ip_address.c_str(), &retval) == 0)
