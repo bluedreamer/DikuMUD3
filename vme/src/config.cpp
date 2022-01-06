@@ -25,7 +25,7 @@
 
 CServerConfiguration g_cServerConfig;
 
-bool CServerConfiguration::FromLAN(char *pFromHost) const
+bool CServerConfiguration::FromLAN(const char *pFromHost) const
 {
     in_addr sTmp{};
 
@@ -46,7 +46,7 @@ bool CServerConfiguration::FromLAN(char *pFromHost) const
     return ((m_sSubnetMask.s_addr & m_sLocalhost.s_addr) == (m_sSubnetMask.s_addr & sTmp.s_addr));
 }
 
-bool CServerConfiguration::ValidMplex(sockaddr_in *isa)
+bool CServerConfiguration::ValidMplex(const sockaddr_in *isa) const
 {
     return std::any_of(m_aMplexHosts.begin(),
                        m_aMplexHosts.end(),
