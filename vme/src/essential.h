@@ -99,12 +99,24 @@ using ubit32 = uint32_t;
 using sbit64 = int64_t;  // MS2020
 using ubit64 = uint64_t; // MS2020
 using ubit1 = bool;      /* Boolean */
+class unit_data;
+class char_data;
+class pc_data;
+class npc_data;
+class obj_data;
+class room_data;
 
 #define CREATE(res, type, num)                                                                                                             \
     if (((res) = (type *)calloc((num), sizeof(type))) == nullptr)                                                                          \
     {                                                                                                                                      \
         /* Make sure CREATE isn't being used to create the new classes instead of the structs they used to be */                           \
         static_assert(std::is_pod_v<type>);                                                                                                \
+        static_assert(!std::is_same_v<type, unit_data>);                                                                                   \
+        static_assert(!std::is_same_v<type, char_data>);                                                                                   \
+        static_assert(!std::is_same_v<type, pc_data>);                                                                                     \
+        static_assert(!std::is_same_v<type, npc_data>);                                                                                    \
+        static_assert(!std::is_same_v<type, obj_data>);                                                                                    \
+        static_assert(!std::is_same_v<type, room_data>);                                                                                   \
         assert(FALSE);                                                                                                                     \
     }
 

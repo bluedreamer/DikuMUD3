@@ -70,12 +70,7 @@ class zone_reset_cmd;
 class unit_data : public basedestruct
 {
 public:
-    unit_data();
-    explicit unit_data(ubit8 unit_type)
-        : unit_data()
-    {
-        status = unit_type;
-    }
+    explicit unit_data(ubit8 unit_type);
     virtual ~unit_data();
     unit_data *copy();
     void set_fi(file_index_type *f);

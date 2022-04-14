@@ -599,33 +599,34 @@ unit_data *new_unit_data(ubit8 type)
     }
 }
 
-unit_data::unit_data()
+unit_data::unit_data(ubit8 unit_type)
+    : func{nullptr}
+    , affected{nullptr}
+    , fi{nullptr}
+    , key{nullptr}
+    , outside{nullptr}
+    , inside{nullptr}
+    , next{nullptr}
+    , gnext{nullptr}
+    , gprevious{nullptr}
+    , manipulate{0}
+    , flags{0}
+    , base_weight{0}
+    , weight{0}
+    , capacity{0}
+    , size{0}
+    , status{unit_type}
+    , open_flags{0}
+    , open_diff{0}
+    , light{0}
+    , bright{0}
+    , illum{0}
+    , chars{0}
+    , minv{0}
+    , max_hp{0}
+    , hp{0}
+    , alignment{0}
 {
-    func = nullptr;
-    affected = nullptr;
-    fi = nullptr;
-    key = nullptr;
-    outside = nullptr;
-    inside = nullptr;
-    next = nullptr;
-    gnext = nullptr;
-    gprevious = nullptr;
-    chars = 0;
-    manipulate = 0;
-    flags = 0;
-    base_weight = 0;
-    weight = 0;
-    capacity = 0;
-    open_flags = 0;
-    open_diff = 0;
-    light = 0;
-    bright = 0;
-    illum = 0;
-    chars = 0;
-    minv = 0;
-    max_hp = 0;
-    hp = 0;
-    alignment = 0;
 }
 
 unit_data::~unit_data()
