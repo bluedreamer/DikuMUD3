@@ -83,10 +83,10 @@ static void stat_world_count(const unit_data *ch, char *arg)
 
 static void stat_world_extra(const unit_data *ch)
 {
-    auto msg = diku::format_to_str("World zones (%d):<br/>", g_zone_info.no_of_zones);
+    auto msg = diku::format_to_str("World zones (%d):<br/>", g_zone_info.getNumberOfZones());
     msg += "<div class='fourcol'>";
 
-    for (auto zp : g_zone_info.mmp)
+    for (const auto &zp : g_zone_info)
     {
         msg += diku::format_to_str("<a cmd='goto #'>%s</a><br/>", zp.second->getName());
     }
@@ -97,7 +97,11 @@ static void stat_world_extra(const unit_data *ch)
 
 static void stat_memory(unit_data *ch)
 {
-    auto msg = diku::format_to_str("Event queue entries: %d (tick 1: %d, tick 1-4: %d, tick 1-10: %d)<br/>", g_events.Count(), g_events.CountNextTicks(1), g_events.CountNextTicks(4), g_events.CountNextTicks(10));
+    auto msg = diku::format_to_str("Event queue entries: %d (tick 1: %d, tick 1-4: %d, tick 1-10: %d)<br/>",
+                                   g_events.Count(),
+                                   g_events.CountNextTicks(1),
+                                   g_events.CountNextTicks(4),
+                                   g_events.CountNextTicks(10));
     send_to_char(msg, ch);
 
     msg = diku::format_to_str("Current Tic=%d , Event Queue Tic=%d<br/>", g_tics, g_events.NextEventTic());
@@ -162,7 +166,7 @@ static void stat_world(unit_data *ch)
                                    npc_data::g_world_nonpc,
                                    pc_data::g_world_nopc,
                                    room_data::g_world_norooms + obj_data::g_world_noobjects + char_data::g_world_nochars,
-                                   zone_info_type::g_world_nozones,
+                                   g_zone_info.getNumberOfZones(),
                                    g_no_connections,
                                    g_max_no_connections,
                                    g_no_players,
@@ -314,11 +318,11 @@ static void stat_creators(unit_data *ch, char *arg)
         std::string msg{"List of all Zones with Creators.<br/><br/>"};
         found = FALSE;
 
-        for (auto it = g_zone_info.mmp.begin(); it != g_zone_info.mmp.end(); it++)
+        for (auto &it : g_zone_info)
         {
-            char *cname = it->second->getCreators().catnames();
+            char *cname = it.second->getCreators().catnames();
 
-            msg += diku::format_to_str("%-15s   %s<br/>", it->second->getName(), cname);
+            msg += diku::format_to_str("%-15s   %s<br/>", it.second->getName(), cname);
             FREE(cname);
             found = TRUE;
         }
@@ -330,11 +334,11 @@ static void stat_creators(unit_data *ch, char *arg)
     auto msg = diku::format_to_str("Zones Created by %s.<br/><br/>", tmp);
 
     found = FALSE;
-    for (auto it = g_zone_info.mmp.begin(); it != g_zone_info.mmp.end(); it++)
+    for (auto &it : g_zone_info)
     {
-        if (it->second->getCreators().IsName(tmp))
+        if (it.second->getCreators().IsName(tmp))
         {
-            msg += diku::format_to_str("%-15s   File: %s.zon<br/>", it->second->getName(), it->second->getFilename());
+            msg += diku::format_to_str("%-15s   File: %s.zon<br/>", it.second->getName(), it.second->getFilename());
             found = TRUE;
         }
     }
@@ -367,9 +371,9 @@ static void stat_global_dil(unit_data *ch, ubit32 nCount)
 
     ubit64 instructionSum = 0;
 
-    for (auto z = g_zone_info.mmp.begin(); z != g_zone_info.mmp.end(); z++)
+    for (auto &z : g_zone_info)
     {
-        msg += z->second->getStatGlobalDIL(nCount, instructionSum);
+        msg += z.second->getStatGlobalDIL(nCount, instructionSum);
     }
 
     msg += "</div><br/>"; // MS2020

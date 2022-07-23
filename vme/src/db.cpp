@@ -59,7 +59,7 @@ cSector g_sector_dat;
  * Global permanent element of zone info
  */
 size_t zone_info_type::g_world_nozones = 0; // number of zones in the world
-zone_info_type g_zone_info = {0, nullptr};
+zone_info_type g_zone_info{};
 
 /* By using this, we can easily sort the list if ever needed
 void insert_unit_in_zone_list(zone_type *zp, class unit_data *u)
@@ -170,7 +170,7 @@ void generate_bin_arrays()
 void resolve_templates()
 {
     /* all zones */
-    for (auto z = g_zone_info.mmp.begin(); z != g_zone_info.mmp.end(); z++)
+    for (auto z = g_zone_info.begin(); z != g_zone_info.end(); z++)
     {
         /* all templates in zone */
         z->second->resolveZoneTemplates();
@@ -337,8 +337,6 @@ void generate_zone_indexes()
     ubit8 loadlevel = 0;
     ubit8 payonly = 0;
 
-    g_zone_info.no_of_zones = 0;
-
     if ((zone_file = fopen(g_cServerConfig.getFileInEtcDir(ZONE_FILE_LIST).c_str(), "r")) == nullptr)
     {
         slog(LOG_OFF, 0, "Could not open file containing filenames of zones: %s", ZONE_FILE_LIST);
@@ -346,12 +344,11 @@ void generate_zone_indexes()
     }
 
     // Insert a virtual zone _players
-    auto z = new zone_type{"_players", "ply"};
+    auto z = std::make_unique<zone_type>("_players", "ply");
     z->setTitle("Reserved zone for player file_indexes");
     z->setNotes("This zone is only here to allow us to use playername@_plaeyrs as with all other indexes such as mayor@midgaard. It's not "
                 "actually a zone, and it's not a representation of player files on disk\n");
-    g_zone_info.mmp.insert(std::make_pair(z->getName(), z));
-    z = nullptr;
+    g_zone_info.insert(std::move(z));
 
     for (;;)
     {
@@ -434,22 +431,18 @@ void generate_zone_indexes()
         slog(LOG_ALL, 0, "Indexing %s AC[%3d] LL[%d] PO[%d]", filename, access, loadlevel, payonly);
 
         fstrcpy(&cBuf, f);
-        z = new zone_type{(char *)cBuf.GetData(), zone};
-        g_zone_info.no_of_zones++;
+        auto new_zone = std::make_unique<zone_type>((char *)cBuf.GetData(), zone);
 
         if (*dilfilepath)
         {
-            z->setDILFilePath(str_dup(dilfilepath));
+            new_zone->setDILFilePath(str_dup(dilfilepath));
         }
 
-        if (find_zone(z->getName().c_str()))
+        if (find_zone(new_zone->getName().c_str()))
         {
-            slog(LOG_ALL, 0, "ZONE BOOT: Duplicate zone name [%s] not allowed", z->getName());
+            slog(LOG_ALL, 0, "ZONE BOOT: Duplicate zone name [%s] not allowed", new_zone->getName());
             exit(42);
         }
-
-        // Insert zone into sorted list
-        g_zone_info.mmp.insert(std::make_pair(z->getName(), z));
 
         int temp1{0};
         int mstmp = fread(&temp1, sizeof(int), 1, f);
@@ -458,18 +451,18 @@ void generate_zone_indexes()
             slog(LOG_ALL, 0, "ERROR: Unexpected end of stream %d in db.cpp", mstmp);
             assert(FALSE);
         }
-        z->getWeather().setBase(temp1);
+        new_zone->getWeather().setBase(temp1);
 
-        z->setAccessLevel(access);
-        z->setLevelRequiredToLoadItems(loadlevel);
-        z->setPayOnly(payonly);
+        new_zone->setAccessLevel(access);
+        new_zone->setLevelRequiredToLoadItems(loadlevel);
+        new_zone->setPayOnly(payonly);
 
         /* More data read here */
         fstrcpy(&cBuf, f);
-        z->setNotes(str_dup((char *)cBuf.GetData()));
+        new_zone->setNotes(str_dup((char *)cBuf.GetData()));
 
         fstrcpy(&cBuf, f);
-        z->setHelp(str_dup((char *)cBuf.GetData()));
+        new_zone->setHelp(str_dup((char *)cBuf.GetData()));
 
         for (;;)
         {
@@ -480,33 +473,36 @@ void generate_zone_indexes()
                 break;
             }
 
-            z->getCreators().AppendName((char *)cBuf.GetData());
+            new_zone->getCreators().AppendName((char *)cBuf.GetData());
         }
 
         fstrcpy(&cBuf, f);
 
         if (cBuf.GetData()[0] != 0)
         {
-            z->setTitle(str_dup((char *)cBuf.GetData()));
+            new_zone->setTitle(str_dup((char *)cBuf.GetData()));
         }
         else
         {
-            z->setTitle(str_dup(""));
+            new_zone->setTitle(str_dup(""));
         }
 
         /* read templates */
-        generate_templates(f, z);
+        generate_templates(f, new_zone.get());
 
-        z->setZoneResetCommands(nullptr);
-        generate_file_indexes(f, z);
-        z->setNumOfRooms(g_room_number); /* Number of rooms in the zone */
+        new_zone->setZoneResetCommands(nullptr);
+        generate_file_indexes(f, new_zone.get());
+        new_zone->setNumOfRooms(g_room_number); /* Number of rooms in the zone */
+
+        // Insert zone into sorted list
+        g_zone_info.insert(std::move(new_zone));
 
         fflush(f); /* Don't fclose(f); since we are using _cache */
     }
     fclose(zone_file);
 
     // _players always there, so that plus basis is the minimum
-    if (g_zone_info.mmp.empty() || g_zone_info.no_of_zones <= 1)
+    if (g_zone_info.getNumberOfZones() <= 1)
     {
         slog(LOG_ALL, 0, "Basis zone is minimum reqired environment!");
         exit(0);
@@ -1401,10 +1397,10 @@ void read_all_rooms()
 {
     // MS2020 int room_num = 0;
 
-    for (auto z = g_zone_info.mmp.begin(); z != g_zone_info.mmp.end(); z++)
+    for (auto &z : g_zone_info)
     {
-        g_boot_zone = z->second; // TODO This looks terrible, setting a global before each function call, check if it can be removed
-        z->second->readAllUnitRooms();
+        g_boot_zone = z.second.get(); // TODO This looks terrible, setting a global before each function call, check if it can be removed
+        z.second->readAllUnitRooms();
     }
 
     g_boot_zone = nullptr;
@@ -1630,22 +1626,22 @@ zone_reset_cmd *read_zone(FILE *f, zone_reset_cmd *cmd_list)
 
 void read_all_zones()
 {
-    for (auto zone = g_zone_info.mmp.begin(); zone != g_zone_info.mmp.end(); zone++)
+    for (auto &zone : g_zone_info)
     {
-        read_zone_error = zone->second;
+        read_zone_error = zone.second.get();
 
-        if (zone->second->getName() == "_players")
+        if (zone.second->getName() == "_players")
         {
             continue;
         }
 
         std::filesystem::path filename{g_cServerConfig.getZoneDir()};
-        filename += zone->second->getFilename();
+        filename += zone.second->getFilename();
         filename += ".reset";
         FILE *f = fopen(filename.c_str(), "rb");
         if (f == nullptr)
         {
-            slog(LOG_OFF, 0, "Could not open zone file: %s", zone->second->getFilename());
+            slog(LOG_OFF, 0, "Could not open zone file: %s", zone.second->getFilename());
             exit(10);
         }
 
@@ -1654,16 +1650,16 @@ void read_all_zones()
         {
             error(HERE, "Failed to fread() zone->second->zone_time");
         }
-        zone->second->setZoneResetTime(temp);
+        zone.second->setZoneResetTime(temp);
 
         ubit8 temp2{0};
         if (fread(&temp2, sizeof(ubit8), 1, f) != 1)
         {
             error(HERE, "Failed to fread() zone->second->reset_mode");
         }
-        zone->second->setResetMode(temp2);
+        zone.second->setResetMode(temp2);
 
-        zone->second->setZoneResetCommands(read_zone(f, nullptr));
+        zone.second->setZoneResetCommands(read_zone(f, nullptr));
 
         fclose(f);
     }
@@ -1801,12 +1797,4 @@ void db_shutdown()
     }
 
     slog(LOG_OFF, 0, "Destroying zone list.");
-
-    auto nextz = g_zone_info.mmp.begin();
-
-    for (auto z = g_zone_info.mmp.begin(); z != g_zone_info.mmp.end(); z = nextz)
-    {
-        nextz = z++;
-        delete z->second;
-    }
 }

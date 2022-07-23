@@ -583,13 +583,12 @@ void dilfe_fld(dilprg *p)
 
                         if (z)
                         {
-                            auto it = g_zone_info.mmp.find(z->getName());
-                            if (it != g_zone_info.mmp.end())
+                            if (auto it = g_zone_info.find(z->getName()); it != g_zone_info.end())
                             {
                                 it++;
-                                if (it != g_zone_info.mmp.end())
+                                if (it != g_zone_info.end())
                                 {
-                                    v->val.ptr = it->second;
+                                    v->val.ptr = it->second.get();
                                 }
                             }
                         }

@@ -48,7 +48,7 @@ void zone_update_no_in_zone()
     unit_data *u = nullptr;
 
     /* Clear ALL ->no_in_zone */
-    for (auto tmp_zone = g_zone_info.mmp.begin(); tmp_zone != g_zone_info.mmp.end(); tmp_zone++)
+    for (auto tmp_zone = g_zone_info.begin(); tmp_zone != g_zone_info.end(); tmp_zone++)
     {
         tmp_zone->second->updateNumberInZone();
     }
@@ -420,25 +420,18 @@ void zone_reset(zone_type *zone)
 /* Changed back to boot all before players login */
 void reset_all_zones()
 {
-    int j = 0;
-
-    for (j = 0; j <= 255; j++)
+    for (int j = 0; j <= 255; j++)
     {
-        for (auto zone = g_zone_info.mmp.begin(); zone != g_zone_info.mmp.end(); zone++)
+        for (auto &zone : g_zone_info)
         {
-            if (j == 0)
-            {
-                zone_info_type::g_world_nozones++;
-            }
-
-            if (zone->second->getAccessLevel() != j)
+            if (zone.second->getAccessLevel() != j)
             {
                 continue;
             }
 
-            if (zone->second->getZoneResetTime() > 0)
+            if (zone.second->getZoneResetTime() > 0)
             {
-                zone_event((void *)zone->second, (void *)nullptr);
+                zone_event((void *)zone.second.get(), (void *)nullptr);
             }
         }
     }

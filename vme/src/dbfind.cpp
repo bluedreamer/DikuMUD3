@@ -38,26 +38,16 @@ descriptor_data *find_descriptor(const char *name, descriptor_data *except)
  */
 zone_type *find_zone(const char *zonename)
 {
-    // bin_search_type *ba;
-
     if ((zonename == nullptr) || !*zonename)
     {
         return nullptr;
     }
 
-    auto it = g_zone_info.mmp.find(zonename);
-    if (it != g_zone_info.mmp.end())
+    if (auto it = g_zone_info.find(zonename); it != g_zone_info.end())
     {
-        return it->second;
+        return it->second.get();
     }
-    else
-    {
-        return nullptr;
-    }
-
-    /*    ba = binary_search(g_zone_info.ba, zonename, g_zone_info.no_of_zones);
-
-        return ba ? (class zone_type *)ba->block : NULL;*/
+    return nullptr;
 }
 
 /**

@@ -316,12 +316,12 @@ void update_time_and_weather()
 
     another_hour(time_info);
 
-    for (auto &[zone_name, zone] : g_zone_info.mmp)
+    for (auto &[zone_name, zone] : g_zone_info)
     {
         auto message = zone->getWeather().updateWeather(time_info);
         if (message)
         {
-            send_to_zone_outdoor(zone, message->c_str());
+            send_to_zone_outdoor(zone.get(), message->c_str());
         }
     }
 }
@@ -368,7 +368,7 @@ void boot_time_and_weather()
          time_info.getMonth(),
          time_info.getYear());
 
-    for (auto &[zone_name, zone] : g_zone_info.mmp)
+    for (auto &[zone_name, zone] : g_zone_info)
     {
         zone->getWeather().boot(time_info);
     }

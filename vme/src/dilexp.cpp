@@ -600,7 +600,7 @@ void dilfe_zhead(dilprg *p)
     dilval *v = new dilval;
     v->atyp = DILA_NORM;
     v->type = DILV_ZP;
-    v->val.ptr = g_zone_info.mmp.begin()->second;
+    v->val.ptr = g_zone_info.begin()->second.get();
     p->stack.push(v);
 }
 

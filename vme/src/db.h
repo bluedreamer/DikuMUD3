@@ -76,13 +76,37 @@
 #define FI_MAX_ZONENAME 30 /* Max length of any zone-name    */
 #define FI_MAX_UNITNAME 15 /* Max length of any unit-name    */
 
-struct zone_info_type
+class zone_info_type
 {
-    static size_t g_world_nozones; ///< number of zones in the world
-    int no_of_zones;               ///< Total number of zones
-    // class zone_type *zone_list;	Replaced by ::map below
-    void **spmatrix; ///< Inter zone shortest paths
-    std::map<std::string, zone_type *> mmp;
+public:
+    zone_info_type() = default;
+    zone_info_type(const zone_info_type &) = delete;
+    zone_info_type(zone_info_type &&) = delete;
+    zone_info_type &operator=(const zone_info_type &) = delete;
+    zone_info_type &operator=(zone_info_type &&) = delete;
+    ~zone_info_type() = default;
+
+    using iterator = std::map<std::string, std::unique_ptr<zone_type>>::iterator;
+    using const_iterator = std::map<std::string, std::unique_ptr<zone_type>>::const_iterator;
+
+    iterator begin() { return mmp.begin(); }
+    const_iterator begin() const { return mmp.begin(); }
+    iterator end() { return mmp.end(); }
+    const_iterator end() const { return mmp.end(); }
+
+    const_iterator find(const char *name) { return mmp.find(name); }
+    const_iterator find(const std::string &name) { return mmp.find(name); }
+
+    size_t getNumberOfZones() const { return mmp.size(); }
+
+    void insert(std::unique_ptr<zone_type> value) { mmp.insert(std::make_pair(value->getName(), std::move(value))); }
+
+private:
+    static size_t g_world_nozones;                         ///< number of zones in the world
+    int no_of_zones;                                       ///< Total number of zones
+    void **spmatrix;                                       ///< Inter zone shortest paths
+                                                           //    std::map<const char *, zone_type *, cmp_str> mmp; ///<
+    std::map<std::string, std::unique_ptr<zone_type>> mmp; ///<
 };
 
 unit_data *read_unit_string(CByteBuffer *pBuf, int type, int len, const char *whom, int stspec = TRUE);
