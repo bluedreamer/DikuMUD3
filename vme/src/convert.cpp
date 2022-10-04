@@ -281,7 +281,7 @@ int shall_exclude(const char *name)
     return FALSE;
 }
 
-unit_data *convert_load_player(char *name)
+unit_data *convert_load_player(const char *name)
 {
     unit_data *ch = nullptr;
 
@@ -393,7 +393,6 @@ void clist()
 
             for (fs::directory_iterator dir_itr(full_path); dir_itr != end_iter; ++dir_itr)
             {
-                char *temp = nullptr;
                 try
                 {
                     if (fs::is_directory(*dir_itr))
@@ -405,14 +404,11 @@ void clist()
                         ++file_count;
 
                         std::cout << dir_itr->path() << ";";
-                        temp = new char[pc_data::PC_MAX_NAME];
-
-                        strcpy(temp, dir_itr->path().filename().c_str());
-                        pc = convert_load_player(temp);
+                        std::string temp{dir_itr->path().filename().string()};
+                        pc = convert_load_player(temp.c_str());
                         if (pc == nullptr)
                         {
                             std::cout << "ERROR: Corrupt\n";
-                            delete temp;
                             continue;
                         }
 
@@ -432,7 +428,7 @@ void clist()
                         // shall_delete(pc);
 
                         void_char->setUnitContains(nullptr);
-                        load_contents(temp, void_char);
+                        load_contents(temp.c_str(), void_char);
 
                         /*if (UNIT_CONTAINS(void_char))
                         {
@@ -489,8 +485,6 @@ void clist()
                         }
 
                         std::cout << "; " << std::endl;
-
-                        delete temp;
                     }
                 }
                 catch (const std::exception &ex)
@@ -552,7 +546,6 @@ void convert_file()
 
             for (fs::directory_iterator dir_itr(full_path); dir_itr != end_iter; ++dir_itr)
             {
-                char *temp = nullptr;
                 try
                 {
                     if (fs::is_directory(*dir_itr))
@@ -563,14 +556,13 @@ void convert_file()
                     {
                         ++file_count;
                         std::cout << dir_itr->path() << "\n";
-                        temp = new char[pc_data::PC_MAX_NAME];
-                        strcpy(temp, dir_itr->path().filename().c_str());
-                        pc = convert_load_player(temp);
+                        std::string temp{dir_itr->path().filename().string()};
+                        pc = convert_load_player(temp.c_str());
 
                         if (pc == nullptr)
                         {
                             std::cout << "Corrupt Player ERASED." << std::endl;
-                            delete_player(temp);
+                            delete_player(temp.c_str());
                             continue;
                         }
 
@@ -587,13 +579,12 @@ void convert_file()
                                   << std::endl;
 
                         std::cout.flush();
-                        load_contents(temp, pc);
+                        load_contents(temp.c_str(), pc);
                         convert_player(pc);
                         save_player(pc);
                         save_player_contents(pc, TRUE);
 
                         convert_free_unit(pc);
-                        delete temp;
                     }
                 }
                 catch (const std::exception &ex)
@@ -659,7 +650,6 @@ void cleanup()
 
             for (fs::directory_iterator dir_itr(full_path); dir_itr != end_iter; ++dir_itr)
             {
-                char *temp = nullptr;
                 try
                 {
                     if (fs::is_directory(*dir_itr))
@@ -670,27 +660,24 @@ void cleanup()
                     {
                         ++file_count;
                         std::cout << dir_itr->path() << "\n";
-                        temp = new char[pc_data::PC_MAX_NAME];
-                        strcpy(temp, dir_itr->path().filename().c_str());
+                        std::string temp{dir_itr->path().filename().string()};
                         std::cout << temp;
-                        pc = convert_load_player(temp);
+                        pc = convert_load_player(temp.c_str());
 
                         if (pc == nullptr)
                         {
                             std::cout << "Corrupt Player ERASED." << std::endl;
-                            delete_player(temp);
-                            delete temp;
+                            delete_player(temp.c_str());
                             ++players_deleted;
                             continue;
                         }
 
-                        if (str_ccmp(temp, pc->getNames().Name()))
+                        if (str_ccmp(temp.c_str(), pc->getNames().Name()))
                         {
                             std::cout << "Name in file doesn't match filename." << std::endl;
                             convert_free_unit(pc);
-                            delete_player(temp);
+                            delete_player(temp.c_str());
                             ++players_deleted;
-                            delete temp;
                             continue;
                         }
 
@@ -699,16 +686,15 @@ void cleanup()
                         if (shall_delete(pc))
                         {
                             convert_free_unit(pc);
-                            delete_player(temp);
+                            delete_player(temp.c_str());
                             ++players_deleted;
-                            delete temp;
                             continue;
                         }
 
                         std::cout.flush();
 
                         void_char->setUnitContains(nullptr);
-                        load_contents(temp, void_char);
+                        load_contents(temp.c_str(), void_char);
                         if (void_char->getUnitContains())
                         {
                             std::cout << "  INV";
@@ -718,7 +704,6 @@ void cleanup()
 
                         convert_free_unit(pc);
                         ++players_converted;
-                        delete temp;
                     }
                 }
                 catch (const std::exception &ex)

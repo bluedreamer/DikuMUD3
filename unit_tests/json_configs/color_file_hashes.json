@@ -27,12 +27,12 @@
         {
             "source_file": {
                 "filename": "color.def",
-                "sha512": "b64d60cec255482c434c3727849dfc975abc8588bb0aca4dc1080f3eaae21781db21e026535789bd537bc08c1f0d6b33db7244e6ca24b08da43ae1ce2bd2cee2"
+                "sha512": "f7f494c2bae4b01843315fa3a7bf41c6a41d7c712d6c03b296743b12fad9a1bc270eeee8d42cb430b6a332bc823ff46a27780bd8ad4a96de3881242345b17b84"
             },
             "output": [
                 {
                     "filename": "color.dat",
-                    "sha512": "986c2e8de3465251f81b30a907f01972f3bcee94161014cfd2e84c5722b550d26da6db084bd14c4effd5770873001b6b5b78d76858f88bd9c84b6aeab9daa1ef"
+                    "sha512": "5f0e5c5ddc91c92115fde76f850867ca6def448e058dd604726c6fe04d47445b1f3c2613a9811f2175cf7a4dc7a15677feb1ce46a5847cd3b39994d2030036b8"
                 }
             ]
         }

@@ -1,7 +1,5 @@
 include_directories(${Boost_INCLUDE_DIRS})
 
-find_package(OpenSSL)
-
 ############################### VME ######################################
 add_executable(vme_unit_tests
         vme_main.cpp

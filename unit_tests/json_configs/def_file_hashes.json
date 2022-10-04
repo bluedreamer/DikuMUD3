@@ -15,84 +15,84 @@
         {
             "source_file": {
                 "filename": "abilities.def",
-                "sha512": "d3d8aa0611cdfb47b22717cca72ffdf7264f43fea50c9f1ceedd6cddf2893e1c3741fd980ad36ceb8a39d61b559a9bd767a1b8e1119f1148d856829f9b6387fa"
+                "sha512": "7de0cbed5fd32c5d17dd8c42319377e419449c7811ac394ea23d74660807340d36a25ac4009fd3c7a38fe8f117f939422ba1be4985a12022b7b7e3893b2bf25f"
             },
             "output": [
                 {
                     "filename": "abilities.dat",
-                    "sha512": "80e2f2b86db65df34dec253a43a719f955ddffbb53e512ea4b82b165d0c1ffbc852a056465acb6a30925489cc3f61c8e1070948fb31280f530a4781bcce2fa1e"
+                    "sha512": "64e64958f0372a2bcc52e955f394ebde035ff6c51d83c2316b594a13b6e44c49322df70c709cb91634ca30ea2be1198fa186f5f781cd1f1247c8f6f92e5b5dfb"
                 }
             ]
         },
         {
             "source_file": {
                 "filename": "commands.def",
-                "sha512": "a698c635f53632ee19987604ff981429ca8064edce7618b71171e43631d1a794b75f68fec085dd95bf030eeb47310454eab4aebbbb0561364aa803039084f0ba"
+                "sha512": "adb1627b88b7565ed7d1ffe044f621ebedf682ee0a9d4c1cbcd2b60d33cf512e3a859ca90f3013d450c51ec93d5656ff430d56e1262be0b2ab241405d97b98d5"
             },
             "output": [
                 {
                     "filename": "commands.dat",
-                    "sha512": "81089b029217b23b4a9ffa33a6f8e469ebd0e67f88fa7416567c5e7ce52a5c93805a23ef34d174f44c33b9b2eec276e51d7724433803b52832e6788f3c066013"
+                    "sha512": "cf9dfa0a55aa3b65adb187f4ee959a79be377c52ecc8ac5a0984a17733782c007e84a39f75143179d953ca952f45347e16f4e3abe3148e8d9665b3474b2d80f1"
                 }
             ]
         },
         {
             "source_file": {
                 "filename": "professions.def",
-                "sha512": "2c9ba747e7216267b112abcaf346f45a005e8ecea546f9238bc58b50a3d42604b4c9d8a81399bb708ce8bc77db5ba1b09f91d17ad80816e53d8e0c86d490b7cc"
+                "sha512": "edb59f1dc6d11c3443b45e290633ba33c6ce8c8d49eca2add42358746fcc9e28d116250cb5bb2f8e7662aaa5a48999a173ad74a585c8fec9f2277bbeed8270ce"
             },
             "output": [
                 {
                     "filename": "professions.dat",
-                    "sha512": "b8e2800735826ce429a26b15984fceea6222802ff2b643714a282f4e83a2f6ded1e3b0e59c189c097976680e1e3e6d2187a51eb791169c0cc1ae399cd5294c8b"
+                    "sha512": "b3194a7644a1052c7277a5cd9ff3f58125efd5fe5ad3afd29696dabe5e7d205dd41dc3ee121ae3797a7bb2eb14f8c83ab0bc2bc241f13ffbd86b4f73d15d9133"
                 }
             ]
         },
         {
             "source_file": {
                 "filename": "races.def",
-                "sha512": "d6375ad2c6275a9ac05ab54bc4efcc0c97bc16e76ad3d88ac20b725ebf026ff5b5a8cfc14098e7f717b01e6886c935ac3b29b660a86e623fea487d9659e28b63"
+                "sha512": "9b4cc6ccd91e29aef88e1eeee86d44bc677883d9e8a57321d304e63de63db5077717ac839acbe667d57b5c2539c3e613375c96f563d968e650601f55e4b67ae8"
             },
             "output": [
                 {
                     "filename": "races.dat",
-                    "sha512": "f208ffdc368054045733b78277c8daaf4f0863e75d9f781680ca912b3a308fd5a33e289e719edf82bb41c9786f8c690590cc3176236f130a12235520f64ea3b0"
+                    "sha512": "37811792d6bf4bd4ea807ea1e6f3c6b75596a640b653847137bedede0f845e7f7eba63701d3cd2a213bf33226628371af67b2cb65cc9008fdbb405997bcdc04c"
                 }
             ]
         },
         {
             "source_file": {
                 "filename": "sector.def",
-                "sha512": "602ff2740404f2c94722173a79a1a2b9369f46e9ceb832c753d28202869cf05fe431446e1e452f2da53c270898de406596c86f316b48b06d481aa400181d2869"
+                "sha512": "bd1e4e12573ff6d48dcbced431e6dea0f1090ae82db366981336aebee617ed94e70dd383bbf574944c46a34d6ab10c37cbb25060216128cbc71bdff662245702"
             },
             "output": [
                 {
                     "filename": "sector.dat",
-                    "sha512": "87993ef79ac0377066dbb22e8ebb577252ae827215de8024d4b767249c979a2957c0e70a0f50f7b3f06539807554ff7ab133862de22b13616ed07f7e04a0a59f"
+                    "sha512": "bb010c67152df2fe79b6b0938403dba7b76531179b97f30862efd710984dcd7f6e046d5de474da2a854c879df0560c453ebddafee3c50a312c68e7acce5fdcc1"
                 }
             ]
         },
         {
             "source_file": {
                 "filename": "spells.def",
-                "sha512": "a8a8e3d507e0003489f696fcaa5adcb66fb15d4019edd425aad73df0f0618c0cdabc6eda8054a4c5462cbc762e0e31dcac5c38f6e32ba1d68671223a2382ec8a"
+                "sha512": "b3b78e601685b6dc226459090702004839076a0b19419651eecc2b6a0c3215b3a200e84925d2d15936a3b2499096584bc5a040d6eb2005524a57e172db8e6ebb"
             },
             "output": [
                 {
                     "filename": "spells.dat",
-                    "sha512": "9a3792878e25e5abb3fa21ec38717fb8c71354d69c06e86d6c28750cfa0e7d2517c57aee22674bd58ab12f8f1f0f50070b9ffb89f91fbd9283808077ce1a28c0"
+                    "sha512": "67707b6b8ac8bb7b5afb5ef2b228a0811aa56838cf6f7ccc0fc63923917e6bb89b46922c6f5a8c2cc4cbbfa4afe3261e39e16983b7aba5ded74ba3283a9fc390"
                 }
             ]
         },
         {
             "source_file": {
                 "filename": "weapons.def",
-                "sha512": "5af5430d37bb976be125777f3e6c4312330ab9e8fe6151f670803dcb23dd68bccddd2b5a675c1cf0170e4a05011a2b2afbc260645f60d3b928e027e817a95fb9"
+                "sha512": "7313e08fec08332ad18b473486b4a2d956797b716c1f0160cb045795d51028db97bd8d2bd9d03b4539347977ac99940c7e04828dc00a07f0733c991835a214dd"
             },
             "output": [
                 {
                     "filename": "weapons.dat",
-                    "sha512": "beb1abbe2919a57b13e672591d2adcd96ed1ee873dfd77c1b35df2e73dc3527991bb2d34b29b373b8ae396b2957e6a9f587a48400a1184406dff7bbbd8fcbbfd"
+                    "sha512": "fc58a029efc547beb5c73d41aa3e1f2bd1ccd4d87fcb8796d379e3391324c29bf156b7c7b3538b1e1c83c298e327b84dd5fa4a47e70d6df0731961ec73bc9a6f"
                 }
             ]
         }

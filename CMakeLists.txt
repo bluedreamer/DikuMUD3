@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.16.3)
 project(DikuMUD3)
 
-find_package(BISON)
-find_package(FLEX)
+find_package(BISON REQUIRED)
+find_package(FLEX REQUIRED)
+find_package(OpenSSL 3 REQUIRED)
 find_package(Doxygen OPTIONAL_COMPONENTS dot mscgen dia)
 
 if (DOXYGEN_FOUND)

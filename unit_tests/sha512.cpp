@@ -5,11 +5,18 @@
 #include <stdexcept>
 
 sha512::sha512()
+    : context(EVP_MD_CTX_create())
 {
-    if (SHA512_Init(&context) == 0)
+    if (EVP_DigestInit_ex(context, EVP_sha3_512(), nullptr) == 0)
     {
-        throw std::logic_error("SHA512_Init() failed");
+        throw std::logic_error("EVP_DigestInit_ex() failed");
     }
+}
+
+sha512::~sha512()
+{
+    EVP_MD_CTX_destroy(context);
+    EVP_cleanup();
 }
 
 void sha512::generate(const std::string &filename)
@@ -27,9 +34,9 @@ void sha512::generate(const std::string &filename)
     while (filesize >= blocksize)
     {
         in.read(reinterpret_cast<char *>(data_block.data()), blocksize);
-        if (SHA512_Update(&context, data_block.data(), blocksize) == 0)
+        if (EVP_DigestUpdate(context, data_block.data(), blocksize) == 0)
         {
-            throw std::logic_error("SHA512_Update() failed");
+            throw std::logic_error("EVP_DigestUpdate() failed");
         }
         filesize -= blocksize;
     }
@@ -37,15 +44,16 @@ void sha512::generate(const std::string &filename)
     if (filesize > 0)
     {
         in.read(reinterpret_cast<char *>(data_block.data()), filesize);
-        if (SHA512_Update(&context, data_block.data(), filesize) == 0)
+        if (EVP_DigestUpdate(context, data_block.data(), filesize) == 0)
         {
-            throw std::logic_error("SHA512_Update() failed");
+            throw std::logic_error("EVP_DigestUpdate() failed");
         }
     }
 
-    if (SHA512_Final(checksum.data(), &context) == 0)
+    unsigned int digest_filesize = std::filesystem::file_size(filename);
+    if (EVP_DigestFinal(context, checksum.data(), &digest_filesize) == 0)
     {
-        throw std::logic_error("SHA512_Final() failed");
+        throw std::logic_error("EVP_DigestFinal() failed");
     }
 
     std::ostringstream os;
@@ -58,7 +66,7 @@ void sha512::generate(const std::string &filename)
     checksum_calculated = true;
 }
 
-std::array<unsigned char, SHA512_DIGEST_LENGTH> sha512::getChecksum() const
+std::array<unsigned char, EVP_MAX_MD_SIZE> sha512::getChecksum() const
 {
     if (!checksum_calculated)
     {
