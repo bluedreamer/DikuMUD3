@@ -852,19 +852,19 @@ void pc_data::setFilename(const char *value)
     m_filename[PC_MAX_NAME - 1] = 0;
 }
 
-ubit32 pc_data::getLastHostAtIndex(size_t index) const
+uint32_t pc_data::getLastHostAtIndex(size_t index) const
 {
     return m_lasthosts[index];
 }
 
-void pc_data::setLastHostAtIndexTo(size_t index, ubit32 value)
+void pc_data::setLastHostAtIndexTo(size_t index, uint32_t value)
 {
     m_lasthosts[index] = value;
 }
 
-void pc_data::pushBackLastHost(ubit32 value)
+void pc_data::pushBackLastHost(uint32_t value)
 {
-    memmove(&m_lasthosts[0], &m_lasthosts[1], sizeof(ubit32) * 4);
+    memmove(&m_lasthosts[0], &m_lasthosts[1], sizeof(uint32_t) * 4);
     m_lasthosts[4] = value;
 }
 

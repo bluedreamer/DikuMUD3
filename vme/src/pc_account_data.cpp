@@ -73,32 +73,32 @@ void pc_account_data::increaseAccountBalanceBy(float value)
     credit += value;
 }
 
-ubit32 pc_account_data::getCreditLimit() const
+uint32_t pc_account_data::getCreditLimit() const
 {
     return credit_limit;
 }
 
-void pc_account_data::setCreditLimit(ubit32 value)
+void pc_account_data::setCreditLimit(uint32_t value)
 {
     credit_limit = value;
 }
 
-ubit32 pc_account_data::getTotalCredit() const
+uint32_t pc_account_data::getTotalCredit() const
 {
     return total_credit;
 }
 
-void pc_account_data::increaseTotalCreditBy(ubit32 value)
+void pc_account_data::increaseTotalCreditBy(uint32_t value)
 {
     total_credit += value;
 }
 
-void pc_account_data::reduceTotalCreditBy(ubit32 value)
+void pc_account_data::reduceTotalCreditBy(uint32_t value)
 {
     total_credit -= value;
 }
 
-void pc_account_data::setTotalCredit(ubit32 value)
+void pc_account_data::setTotalCredit(uint32_t value)
 {
     total_credit = value;
 }
@@ -133,17 +133,17 @@ void pc_account_data::setDiscountPercentage(uint8_t value)
     discount = value;
 }
 
-const ubit32 &pc_account_data::getFlatRateExpirationDate() const
+const uint32_t &pc_account_data::getFlatRateExpirationDate() const
 {
     return flatrate;
 }
 
-void pc_account_data::incFlatRateExpirationDate(ubit32 value)
+void pc_account_data::incFlatRateExpirationDate(uint32_t value)
 {
     flatrate += value;
 }
 
-void pc_account_data::setFlatRateExpirationDate(ubit32 value)
+void pc_account_data::setFlatRateExpirationDate(uint32_t value)
 {
     flatrate = value;
 }

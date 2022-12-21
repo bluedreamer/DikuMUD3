@@ -64,15 +64,14 @@ int eventqueue::CountNextTicks(int noOfTicks)
     int i;
     int n = 0;
 
-    for (i=1; i < count; i++)
+    for (i = 1; i < count; i++)
     {
-        if (heap[i]->when < heap[1]->when+noOfTicks)
+        if (heap[i]->when < heap[1]->when + noOfTicks)
             n++;
     }
 
     return n;
 }
-
 
 eventq_elem *eventqueue::add(int when, void (*func)(void *, void *), void *arg1, void *arg2)
 {
@@ -81,7 +80,7 @@ eventq_elem *eventqueue::add(int when, void (*func)(void *, void *), void *arg1,
     int current_index = 0;
 
     /* The NOOP operation has 0 time, so ditch this warning.
-    
+
     if (when <= 0)
     {
         slog(LOG_ALL, 0, "Error: %d EVENT", when);
@@ -216,7 +215,7 @@ void eventqueue::process()
     timeval now;
     timeval old;
     timeval pnow;
-    ubit32 us = 0;
+    uint32_t us = 0;
     void (*tfunc)(void *, void *) = nullptr;
     loop_process = 0;
     gettimeofday(&old, nullptr);

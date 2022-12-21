@@ -31,7 +31,7 @@
 
 static int rent_info;
 
-static void show_items(unit_data *ch, unit_data *item, ubit32 price)
+static void show_items(unit_data *ch, unit_data *item, uint32_t price)
 {
     if (price > 0)
     {
@@ -44,7 +44,7 @@ static void show_items(unit_data *ch, unit_data *item, ubit32 price)
 
 /* ----------------------------------------------------------------- */
 
-static void subtract_rent(unit_data *ch, unit_data *item, ubit32 price)
+static void subtract_rent(unit_data *ch, unit_data *item, uint32_t price)
 {
     if (price > 0)
     {
@@ -62,9 +62,10 @@ static void subtract_rent(unit_data *ch, unit_data *item, ubit32 price)
 
 /* ----------------------------------------------------------------- */
 
-static ubit32 subtract_recurse(unit_data *ch, unit_data *item, ubit32 seconds, void (*fptr)(unit_data *ch, unit_data *obj, ubit32 price))
+static uint32_t
+subtract_recurse(unit_data *ch, unit_data *item, uint32_t seconds, void (*fptr)(unit_data *ch, unit_data *obj, uint32_t price))
 {
-    ubit32 sum = 0;
+    uint32_t sum = 0;
 
     if (IS_IMMORTAL(ch))
     {
@@ -85,7 +86,7 @@ static ubit32 subtract_recurse(unit_data *ch, unit_data *item, ubit32 seconds, v
 
     if (item->isObj() && !item->getLevelOfWizardInvisibility())
     {
-        ubit32 price = 0;
+        uint32_t price = 0;
 
         if (OBJ_PRICE_DAY(item) > 0)
         {
@@ -107,9 +108,9 @@ static ubit32 subtract_recurse(unit_data *ch, unit_data *item, ubit32 seconds, v
 
 /* ----------------------------------------------------------------- */
 
-ubit32 rent_calc(unit_data *ch, time_t savetime)
+uint32_t rent_calc(unit_data *ch, time_t savetime)
 {
-    ubit32 sum = 0;
+    uint32_t sum = 0;
 
     assert(ch->isPC());
 
@@ -138,7 +139,7 @@ ubit32 rent_calc(unit_data *ch, time_t savetime)
 
 void do_rent(unit_data *ch, char *arg, const command_info *cmd)
 {
-    ubit32 sum = 0;
+    uint32_t sum = 0;
 
     rent_info = FALSE;
 
@@ -169,8 +170,8 @@ void do_rent(unit_data *ch, char *arg, const command_info *cmd)
    the header. */
 struct diffhead
 {
-    ubit32 reflen;   /* length of reference (for checking) */
-    ubit32 crc;      /* extra check - maybe one enough? */
+    uint32_t reflen; /* length of reference (for checking) */
+    uint32_t crc;    /* extra check - maybe one enough? */
     short int start; /* offset to first different byte */
     short int end;   /* offset to first similar byte after start */
 };
@@ -190,7 +191,7 @@ struct objheaderold
 /* Per-object header */
 struct objheadernew
 {
-    ubit32 length;    /* length of data */
+    uint32_t length;  /* length of data */
     uint8_t nVersion; // Version number
     char zone[FI_MAX_ZONENAME + 1];
     char unit[FI_MAX_UNITNAME + 1];
@@ -212,7 +213,7 @@ file_index_type *g_slime_fi = nullptr;
 /* save object */
 void enlist(CByteBuffer *pBuf, unit_data *unit, int level, int fast)
 {
-    ubit32 len = 0;
+    uint32_t len = 0;
     objheaderold ho;
     objheadernew hn;
     CByteBuffer TmpBuf;
@@ -392,7 +393,7 @@ void basic_save_contents(const char *pFileName, unit_data *unit, int fast, int b
         strcpy(TmpName, ContentsFileName("aaa-inv.tmp"));
         pFile = fopen(TmpName, "wb");
         assert(pFile);
-        ubit32 n = pBuf->FileWrite(pFile);
+        uint32_t n = pBuf->FileWrite(pFile);
         fclose(pFile);
 
         if (n != pBuf->GetLength())
@@ -654,7 +655,7 @@ void reception_boot()
  ************************************************************************* */
 
 /* Create difference-data (patch can reconstruct obj based on ref & dif) */
-int diff(char *ref, ubit32 reflen, char *obj, int objlen, char *dif, int diflen, ubit32 crc)
+int diff(char *ref, uint32_t reflen, char *obj, int objlen, char *dif, int diflen, uint32_t crc)
 {
     int dstart = 0;
     int dend = 0;
@@ -711,7 +712,7 @@ int diff(char *ref, ubit32 reflen, char *obj, int objlen, char *dif, int diflen,
 }
 
 /* reconstruct obj based on ref and diff */
-int patch(char *ref, ubit32 reflen, char *dif, int diflen, char *res, int reslen, ubit32 crc)
+int patch(char *ref, uint32_t reflen, char *dif, int diflen, char *res, int reslen, uint32_t crc)
 {
     diffhead head;
 

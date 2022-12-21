@@ -22,7 +22,7 @@
 
 void SetFptrTimer(unit_data *u, unit_fptr *fptr)
 {
-    ubit32 ticks = 0;
+    uint32_t ticks = 0;
 
     assert(!u->is_destructed());
     assert(!fptr->is_destructed());
@@ -61,7 +61,6 @@ void SetFptrTimer(unit_data *u, unit_fptr *fptr)
     }
 }
 
-
 void ResetFptrTimerNoop(unit_data *u, unit_fptr *fptr)
 {
     membug_verify_class(u);
@@ -71,7 +70,7 @@ void ResetFptrTimerNoop(unit_data *u, unit_fptr *fptr)
     assert(!u->is_destructed());
     assert(!fptr->is_destructed());
 
-    // The NOOP command might mess up an existing heartbeat timer. 
+    // The NOOP command might mess up an existing heartbeat timer.
     // At least I think it migt. Maybe not. But for now it's only
     // used in DIL follow which doesn't need a wait(SFB_TICK).
     //
@@ -80,7 +79,7 @@ void ResetFptrTimerNoop(unit_data *u, unit_fptr *fptr)
     //
     g_events.remove(special_event, u, fptr);
 
-    // Make sure this gets processed during the current 
+    // Make sure this gets processed during the current
     // eventqueue::process cycle
 
     // Use -1 to be sure no other timers events can trigger before
@@ -90,7 +89,6 @@ void ResetFptrTimerNoop(unit_data *u, unit_fptr *fptr)
     membug_verify_class(fptr);
     membug_verify(fptr->data);
 }
-
 
 void ResetFptrTimer(unit_data *u, unit_fptr *fptr)
 {
@@ -110,7 +108,7 @@ void special_event(void *p1, void *p2)
     unit_fptr *fptr = (unit_fptr *)p2;
     int priority = 0;
 
-    ubit32 ret = SFR_SHARE;
+    uint32_t ret = SFR_SHARE;
     unit_fptr *ftmp = nullptr;
     spec_arg sarg;
 
@@ -170,7 +168,7 @@ void special_event(void *p1, void *p2)
     {
         if (g_unit_function_array[fptr->getFunctionPointerIndex()].func)
         {
-            if (fptr->isActivateOnEventFlagSet(SFB_TICK|SFB_NOOP))
+            if (fptr->isActivateOnEventFlagSet(SFB_TICK | SFB_NOOP))
             {
 #ifdef DEBUG_HISTORY
                 add_func_history(u, fptr->getFunctionPointerIndex(), SFB_TICK);

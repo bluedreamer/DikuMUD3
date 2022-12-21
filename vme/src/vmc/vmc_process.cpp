@@ -904,7 +904,7 @@ void check_namelist(unit_data *unit, cNamelist *nl)
 
     if (nl)
     {
-        ubit32 i = 0;
+        uint32_t i = 0;
         int len = 0;
 
         for (i = 0; i < nl->Length(); i++)

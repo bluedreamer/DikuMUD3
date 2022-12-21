@@ -1299,9 +1299,9 @@ static const uint8_t utf8d[] = {
     1,   3,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1, // s7..s8
 };
 
-ubit32 inline utf8_decode(ubit32 *state, ubit32 *codep, uint8_t byte)
+uint32_t inline utf8_decode(uint32_t *state, uint32_t *codep, uint8_t byte)
 {
-    ubit32 type = utf8d[byte];
+    uint32_t type = utf8d[byte];
 
     *codep = (*state != UTF8_ACCEPT) ? (byte & 0x3fu) | (*codep << 6) : (0xff >> type) & (byte);
     *state = utf8d[256 + *state * 16 + type];
@@ -1311,9 +1311,9 @@ ubit32 inline utf8_decode(ubit32 *state, ubit32 *codep, uint8_t byte)
 
 void str_correct_utf8(char *src)
 {
-    ubit32 codepoint = 0;
-    ubit32 prev = 0;
-    ubit32 current = 0;
+    uint32_t codepoint = 0;
+    uint32_t prev = 0;
+    uint32_t current = 0;
     char *s = src;
 
     for (; *s; prev = current, s++)

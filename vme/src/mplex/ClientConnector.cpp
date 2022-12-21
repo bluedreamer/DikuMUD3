@@ -241,7 +241,7 @@ void cConHook::Unhook()
     }
 }
 
-void cConHook::Write(uint8_t *pData, ubit32 nLen, int bCopy)
+void cConHook::Write(uint8_t *pData, uint32_t nLen, int bCopy)
 {
     if (this->m_pWebsServer)
     {

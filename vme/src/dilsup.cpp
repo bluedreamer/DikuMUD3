@@ -38,13 +38,13 @@ int pay_point_charlie(unit_data *ch, unit_data *to)
                 return FALSE;
             }
             else if ((to->getFileIndex()->getZone()->getPayOnly() == 2) &&
-                     (PC_ACCOUNT(ch).getFlatRateExpirationDate() < (ubit32)time(nullptr)))
+                     (PC_ACCOUNT(ch).getFlatRateExpirationDate() < (uint32_t)time(nullptr)))
             {
                 account_paypoint(ch);
                 return FALSE;
             }
             else if ((to->getFileIndex()->getZone()->getPayOnly() == 3) &&
-                     ((PC_ACCOUNT(ch).getTotalCredit() > 0) || (PC_ACCOUNT(ch).getFlatRateExpirationDate() > (ubit32)time(nullptr))))
+                     ((PC_ACCOUNT(ch).getTotalCredit() > 0) || (PC_ACCOUNT(ch).getFlatRateExpirationDate() > (uint32_t)time(nullptr))))
             {
                 account_paypoint(ch);
                 return FALSE;

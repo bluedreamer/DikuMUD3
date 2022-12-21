@@ -58,11 +58,11 @@ static void account_log(char action, unit_data *god, unit_data *pc, int amount)
     time_t now = time(nullptr);
     char *c = nullptr;
     char buf[1024];
-    ubit32 gid = 0;
-    ubit32 pid = 0;
-    ubit32 total = 0;
-    ubit32 crc = 0;
-    ubit32 vxor = 0;
+    uint32_t gid = 0;
+    uint32_t pid = 0;
+    uint32_t total = 0;
+    uint32_t crc = 0;
+    uint32_t vxor = 0;
     FILE *f = nullptr;
 
     vxor = number(0x10000000, 0xFFFFFF00 >> 1);
@@ -106,7 +106,7 @@ static void account_log(char action, unit_data *god, unit_data *pc, int amount)
     crc ^= vxor << 4;
 
     TAIL(c);
-    sprintf(c, "%01x%08x%08x%08x%08x%08x%08x%08x%08x\n", number(0, 15), ~vxor, gid, crc, pid, amount, total, next_crc, (ubit32)now);
+    sprintf(c, "%01x%08x%08x%08x%08x%08x%08x%08x%08x\n", number(0, 15), ~vxor, gid, crc, pid, amount, total, next_crc, (uint32_t)now);
 
     fseek(f, 0L, SEEK_END);
 
@@ -158,8 +158,8 @@ void account_local_stat(const unit_data *ch, unit_data *u)
                                        PC_ACCOUNT(u).getTotalCredit() / 100.0,
                                        PC_ACCOUNT(u).getLastFourDigitsofCreditCard() == -1 ? "NONE" : "REGISTERED",
                                        PC_ACCOUNT(u).getDiscountPercentage(),
-                                       PC_ACCOUNT(u).getFlatRateExpirationDate() < (ubit32)now ? "Expired" : "Expires on ",
-                                       PC_ACCOUNT(u).getFlatRateExpirationDate() < (ubit32)now ? " (none)\n\r" : pTmstr,
+                                       PC_ACCOUNT(u).getFlatRateExpirationDate() < (uint32_t)now ? "Expired" : "Expires on ",
+                                       PC_ACCOUNT(u).getFlatRateExpirationDate() < (uint32_t)now ? " (none)\n\r" : pTmstr,
                                        PC_ACCOUNT(u).getCrackAttempts());
         send_to_char(msg, ch);
     }
@@ -233,8 +233,8 @@ void account_overdue(const unit_data *ch)
 
     if (g_cServerConfig.isAccounting())
     {
-        ubit32 discount = PC_ACCOUNT(ch).getDiscountPercentage();
-        ubit32 lcharge = ((100 - discount) * g_cAccountConfig.m_nHourlyRate) / 100;
+        uint32_t discount = PC_ACCOUNT(ch).getDiscountPercentage();
+        uint32_t lcharge = ((100 - discount) * g_cAccountConfig.m_nHourlyRate) / 100;
 
         if (lcharge == 0)
         {
@@ -275,9 +275,9 @@ void account_closed(unit_data *ch)
     }
 }
 
-static ubit32 seconds_used(uint8_t bhr, uint8_t bmi, uint8_t bse, uint8_t ehr, uint8_t emi, uint8_t ese)
+static uint32_t seconds_used(uint8_t bhr, uint8_t bmi, uint8_t bse, uint8_t ehr, uint8_t emi, uint8_t ese)
 {
-    ubit32 secs = 0;
+    uint32_t secs = 0;
 
     secs = (ese - bse);
 
@@ -327,9 +327,9 @@ static void account_calc(unit_data *pc, tm *b, tm *e)
     int bidx = 0;
     int eidx = 0;
     tm t;
-    ubit32 secs = 0;
+    uint32_t secs = 0;
 
-    if (PC_ACCOUNT(pc).getFlatRateExpirationDate() > (ubit32)time(nullptr))
+    if (PC_ACCOUNT(pc).getFlatRateExpirationDate() > (uint32_t)time(nullptr))
     {
         return;
     }
@@ -443,7 +443,7 @@ int account_is_overdue(const unit_data *ch)
 {
     if (g_cServerConfig.isAccounting() && (CHAR_LEVEL(ch) < g_cAccountConfig.m_nFreeFromLevel))
     {
-        if (PC_ACCOUNT(ch).getFlatRateExpirationDate() > (ubit32)time(nullptr))
+        if (PC_ACCOUNT(ch).getFlatRateExpirationDate() > (uint32_t)time(nullptr))
         {
             return FALSE;
         }
@@ -459,8 +459,8 @@ static void account_status(const unit_data *ch)
     int j = 0;
     int i = 0;
     char *pTmstr = nullptr;
-    ubit32 discount = PC_ACCOUNT(ch).getDiscountPercentage();
-    ubit32 lcharge = ((100 - discount) * g_cAccountConfig.m_nHourlyRate) / 100;
+    uint32_t discount = PC_ACCOUNT(ch).getDiscountPercentage();
+    uint32_t lcharge = ((100 - discount) * g_cAccountConfig.m_nHourlyRate) / 100;
 
     if (account_is_overdue(ch))
     {
@@ -474,7 +474,7 @@ static void account_status(const unit_data *ch)
         send_to_char(msg, ch);
     }
 
-    if (PC_ACCOUNT(ch).getFlatRateExpirationDate() > (ubit32)time(nullptr))
+    if (PC_ACCOUNT(ch).getFlatRateExpirationDate() > (uint32_t)time(nullptr))
     {
         pTmstr = ctime((time_t *)&PC_ACCOUNT(ch).getFlatRateExpirationDate());
         auto msg = diku::format_to_str("Your account is on a flat rate until %s", pTmstr);
@@ -550,7 +550,7 @@ int account_is_closed(unit_data *ch)
 
     if (g_cServerConfig.isAccounting() && (CHAR_LEVEL(ch) < g_cAccountConfig.m_nFreeFromLevel))
     {
-        if (PC_ACCOUNT(ch).getFlatRateExpirationDate() > (ubit32)time(nullptr))
+        if (PC_ACCOUNT(ch).getFlatRateExpirationDate() > (uint32_t)time(nullptr))
         {
             return FALSE;
         }
@@ -564,7 +564,7 @@ int account_is_closed(unit_data *ch)
     return FALSE;
 }
 
-void account_insert(unit_data *god, unit_data *whom, ubit32 amount)
+void account_insert(unit_data *god, unit_data *whom, uint32_t amount)
 {
     PC_ACCOUNT(whom).increaseAccountBalanceBy(static_cast<float>(amount));
     PC_ACCOUNT(whom).increaseTotalCreditBy(amount);
@@ -573,10 +573,10 @@ void account_insert(unit_data *god, unit_data *whom, ubit32 amount)
     account_log('I', god, whom, amount);
 }
 
-void account_withdraw(unit_data *god, unit_data *whom, ubit32 amount)
+void account_withdraw(unit_data *god, unit_data *whom, uint32_t amount)
 {
     PC_ACCOUNT(whom).reduceAccountBalanceBy(static_cast<float>(amount));
-    if ((ubit32)amount > PC_ACCOUNT(whom).getTotalCredit())
+    if ((uint32_t)amount > PC_ACCOUNT(whom).getTotalCredit())
     {
         PC_ACCOUNT(whom).setTotalCredit(0);
     }
@@ -599,7 +599,7 @@ void account_flatrate_change(unit_data *god, unit_data *whom, int32_t days)
     std::string msg;
     if (days > 0)
     {
-        if (PC_ACCOUNT(whom).getFlatRateExpirationDate() > (ubit32)now)
+        if (PC_ACCOUNT(whom).getFlatRateExpirationDate() > (uint32_t)now)
         {
             msg = diku::format_to_str("\n\rAdding %d days to the flatrate.\n\r\n\r", days);
             PC_ACCOUNT(whom).incFlatRateExpirationDate(add);
@@ -1013,7 +1013,7 @@ void CAccountConfig::Boot()
         slog(LOG_ALL, 0, "No account log existed - a new was created.");
 
         now ^= 0xAF876162;
-        fprintf(f, "%08x%08x\n", (ubit32)now, (ubit32)now);
+        fprintf(f, "%08x%08x\n", (uint32_t)now, (uint32_t)now);
 
         fclose(f);
     }

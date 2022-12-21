@@ -79,7 +79,7 @@ struct dilargtype
         char *string;
         char **stringlist;
         int *intlist;
-        ubit32 num;
+        uint32_t num;
     } data;
 };
 
@@ -554,7 +554,7 @@ struct diltemplate
     char *prgname;   /* program name @ zone */
     zone_type *zone; /* Pointer to owner of structure    */
 
-    ubit32 flags; /* recall, etc. */
+    uint32_t flags; /* recall, etc. */
     uint8_t priority;
     uint16_t intrcount; /* max number of interrupts */
     uint16_t varcrc;    /* variable crc from compiler */
@@ -563,8 +563,8 @@ struct diltemplate
     uint8_t argc;       /* number of arguments */
     DilVarType_e *argt; /* argument types */
 
-    ubit32 coresz; /* size of coreblock */
-    uint8_t *core; /* instructions, expressions and statics */
+    uint32_t coresz; /* size of coreblock */
+    uint8_t *core;   /* instructions, expressions and statics */
 
     uint16_t varc;      /* number of variables */
     DilVarType_e *vart; /* variable types */
@@ -573,9 +573,9 @@ struct diltemplate
     uint16_t xrefcount;   /* number of external references   */
     diltemplate **extprg; /* external programs (SERVER only) */
 
-    ubit32 nInstructions; /* Number of instructions          */
-    ubit32 nTriggers;     /* Number of triggers of the DIL   */
-    double fCPU;          /* CPU usage (miliseconds)         */
+    uint32_t nInstructions; /* Number of instructions          */
+    uint32_t nTriggers;     /* Number of triggers of the DIL   */
+    double fCPU;            /* CPU usage (miliseconds)         */
 
     dilprg *nextdude;     // For use in DIL sendtoall() with destroyed units
     dilprg *prg_list;     // Replacing the global dil_list with a template local one
@@ -630,7 +630,7 @@ public:
     void link(diltemplate *tmpl);
     void unlink();
 
-    ubit32 flags;     // Recall, copy, etc.
+    uint32_t flags;   // Recall, copy, etc.
     uint16_t varcrc;  // variable crc from compiler (saved)
     uint16_t corecrc; // core crc from compiler (saved)
     uint16_t nest;    // How many levels is the call nested

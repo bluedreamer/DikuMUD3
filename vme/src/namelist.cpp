@@ -45,7 +45,7 @@ void cNamelist::operator=(const char **list)
 
 void cNamelist::operator=(cNamelist *cn)
 {
-    for (ubit32 i = 0; i < cn->Length(); i++)
+    for (uint32_t i = 0; i < cn->Length(); i++)
     {
         AppendName(cn->Name(i));
     }
@@ -53,7 +53,7 @@ void cNamelist::operator=(cNamelist *cn)
 
 void cNamelist::CopyList(cNamelist *cn)
 {
-    for (ubit32 i = 0; i < cn->Length(); i++)
+    for (uint32_t i = 0; i < cn->Length(); i++)
     {
         AppendName(cn->Name(i));
     }
@@ -63,7 +63,7 @@ void cNamelist::CopyList(cNamelist *cn)
 void cNamelist::AppendBuffer(CByteBuffer *pBuf)
 {
     pBuf->Append32(Length());
-    for (ubit32 i = 0; i < Length(); i++)
+    for (uint32_t i = 0; i < Length(); i++)
     {
         pBuf->AppendString(Name(i));
     }
@@ -97,8 +97,8 @@ int cNamelist::ReadBuffer(CByteBuffer *pBuf, int unit_version)
     }
     else
     {
-        ubit32 len = 0;
-        ubit32 i = 0;
+        uint32_t len = 0;
+        uint32_t i = 0;
         int corrupt = 0;
 
         len = pBuf->ReadU32(&corrupt);
@@ -134,7 +134,7 @@ void cNamelist::bwrite(uint8_t **b)
 {
     bwrite_ubit32(b, Length());
 
-    for (ubit32 i = 0; i < Length(); i++)
+    for (uint32_t i = 0; i < Length(); i++)
     {
         bwrite_string(b, Name(i));
     }
@@ -142,9 +142,9 @@ void cNamelist::bwrite(uint8_t **b)
 
 char *cNamelist::catnames()
 {
-    ubit32 i = 0;
+    uint32_t i = 0;
     char *s = nullptr;
-    ubit32 strsize = 0;
+    uint32_t strsize = 0;
     strsize = (Length() * 3) + 3;
     for (i = 0; i < Length(); i++)
     {
@@ -175,7 +175,7 @@ std::string cNamelist::json()
 
     s = "\"namelist\": [";
 
-    for (ubit32 i = 0; i < Length(); i++)
+    for (uint32_t i = 0; i < Length(); i++)
     {
         s.append(str_json_encode_quote(Name(i)));
         if (i < Length() - 1)
@@ -189,7 +189,7 @@ std::string cNamelist::json()
     return s;
 }
 
-void cNamelist::Remove(ubit32 idx)
+void cNamelist::Remove(uint32_t idx)
 {
     if (length > idx)
     {
@@ -212,8 +212,8 @@ void cNamelist::Remove(ubit32 idx)
 
 void cNamelist::RemoveName(const char *name)
 {
-    ubit32 i = 0;
-    ubit32 j = 0;
+    uint32_t i = 0;
+    uint32_t j = 0;
 
     for (i = 0; i < length; i++)
     {
@@ -236,7 +236,7 @@ void cNamelist::RemoveName(const char *name)
     }
 }
 
-void cNamelist::Substitute(ubit32 idx, const char *newname)
+void cNamelist::Substitute(uint32_t idx, const char *newname)
 {
     if (length > idx)
     {
@@ -255,7 +255,7 @@ cNamelist::cNamelist(const char **list)
 
 void cNamelist::Free()
 {
-    ubit32 i = 0;
+    uint32_t i = 0;
 
     for (i = 0; i < length; i++)
     {
@@ -278,7 +278,7 @@ cNamelist::~cNamelist()
 cNamelist *cNamelist::Duplicate()
 {
     cNamelist *pNl = new cNamelist;
-    ubit32 i = 0;
+    uint32_t i = 0;
 
     for (i = 0; i < length; i++)
     {
@@ -314,9 +314,9 @@ const char *cNamelist::IsNameRaw(const char *name) const
     if (name == nullptr)
         return nullptr;
 
-    for (ubit32 i = 0; i < length; i++)
+    for (uint32_t i = 0; i < length; i++)
     {
-        ubit32 j;
+        uint32_t j;
 
         for (j = 0; namelist[i]->c_str()[j]; j++)
         {
@@ -364,9 +364,9 @@ const char *cNamelist::IsNameRawAbbrev(const char *name) const
     if (name == nullptr)
         return nullptr;
 
-    for (ubit32 i = 0; i < length; i++)
+    for (uint32_t i = 0; i < length; i++)
     {
-        ubit32 j;
+        uint32_t j;
 
         for (j = 0; name[j]; j++)
         {
@@ -397,9 +397,9 @@ const int cNamelist::IsNameRawIdx(const char *name)
     if (name == nullptr)
         return -1;
 
-    for (ubit32 i = 0; i < length; i++)
+    for (uint32_t i = 0; i < length; i++)
     {
-        ubit32 j;
+        uint32_t j;
 
         for (j = 0; namelist[i]->c_str()[j]; j++)
         {
@@ -437,10 +437,10 @@ const char *cNamelist::IsName(const char *name)
     while (*name == ' ')
         name++;
 
-    for (ubit32 i = 0; i < length; i++)
+    for (uint32_t i = 0; i < length; i++)
     {
         int s = 0;
-        ubit32 j;
+        uint32_t j;
 
         for (j = 0; namelist[i]->c_str()[j]; j++)
         {
@@ -481,9 +481,9 @@ const int cNamelist::IsNameIdx(const char *name)
     while (*name == ' ')
         name++;
 
-    for (ubit32 i = 0; i < length; i++)
+    for (uint32_t i = 0; i < length; i++)
     {
-        ubit32 j;
+        uint32_t j;
         int s = 0;
 
         for (j = 0; namelist[i]->c_str()[j]; j++)
@@ -514,7 +514,7 @@ const int cNamelist::IsNameIdx(const char *name)
 // see if name is in the name list names some where and return name if it is
 const char *cNamelist::StrStrRaw(const char *name)
 {
-    ubit32 i = 0;
+    uint32_t i = 0;
 
     if (name == nullptr)
         return nullptr;
@@ -563,7 +563,7 @@ const char *cNamelist::StrStr(const char *name)
     }
 }
 
-const char *cNamelist::Name(ubit32 idx) const
+const char *cNamelist::Name(uint32_t idx) const
 {
     const char *test = nullptr;
 
@@ -583,7 +583,7 @@ const char *cNamelist::Name(ubit32 idx) const
     return (test);
 }
 
-std::string *cNamelist::InstanceName(ubit32 idx)
+std::string *cNamelist::InstanceName(uint32_t idx)
 {
     if (idx < length)
     {
@@ -672,11 +672,11 @@ void cNamelist::PrependName(const char *name)
     namelist[0] = new std::string(name ? name : "");
 }
 
-void cNamelist::InsertName(const char *name, ubit32 loc)
+void cNamelist::InsertName(const char *name, uint32_t loc)
 {
-    ubit32 nadd = 0;
-    ubit32 x = 0;
-    ubit32 olen = 0;
+    uint32_t nadd = 0;
+    uint32_t x = 0;
+    uint32_t olen = 0;
     olen = length;
 
     if (name)

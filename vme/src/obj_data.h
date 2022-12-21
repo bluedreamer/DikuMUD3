@@ -80,16 +80,16 @@ public:
     /**
      * @return Price in GP
      */
-    ubit32 getPriceInGP() const;
+    uint32_t getPriceInGP() const;
     /**
      * @return Pointer to price in GP
      */
-    ubit32 *getPriceInGPPtr();
+    uint32_t *getPriceInGPPtr();
 
     /**
      * @param value Price in GP
      */
-    void setPriceInGP(ubit32 value);
+    void setPriceInGP(uint32_t value);
     /// @}
 
     /**
@@ -99,15 +99,15 @@ public:
     /**
      * @return Cost to keep per real day
      */
-    ubit32 getPricePerDay() const;
+    uint32_t getPricePerDay() const;
     /**
      * @return Pointer to cost per real day
      */
-    ubit32 *getPricePerDayPtr();
+    uint32_t *getPricePerDayPtr();
     /**
      * @param value Price to keep per real day
      */
-    void setPricePerDay(ubit32 value);
+    void setPricePerDay(uint32_t value);
     /// @}
 
     /**
@@ -136,7 +136,7 @@ public:
      * @todo Find out why a 32bit value is being passed to this function and the flags are 8bit
      * @param value Overwrites all flags with value
      */
-    void setAllObjectFlags(ubit32 value);
+    void setAllObjectFlags(uint32_t value);
     /// @}
 
     /**
@@ -192,8 +192,8 @@ public:
     /// @}
 private:
     std::array<int32_t, 5> m_value{0}; ///< Values of the item (see list)
-    ubit32 m_cost{0};                  ///< Value when sold (gp.)
-    ubit32 m_cost_per_day{0};          ///< Cost to keep pr. real day
+    uint32_t m_cost{0};                ///< Value when sold (gp.)
+    uint32_t m_cost_per_day{0};        ///< Cost to keep pr. real day
     uint8_t m_flags{0};                ///< Various special object flags
     uint8_t m_type{ITEM_TRASH};        ///< Type of item (ITEM_XXX)
     uint8_t m_equip_pos{0};            ///< 0 or position of item in equipment

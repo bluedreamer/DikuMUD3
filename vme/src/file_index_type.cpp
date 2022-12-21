@@ -149,7 +149,7 @@ long file_index_type::getFilepos() const
     return m_filepos;
 }
 
-ubit32 file_index_type::getCRC() const
+uint32_t file_index_type::getCRC() const
 {
     return m_crc;
 }
@@ -174,7 +174,7 @@ uint16_t file_index_type::getNumInMem() const
     return m_no_in_mem;
 }
 
-ubit32 file_index_type::getLength() const
+uint32_t file_index_type::getLength() const
 {
     return m_length;
 }
@@ -210,7 +210,7 @@ void file_index_type::setNumInZone(int16_t value)
     m_no_in_zone = value;
 }
 
-void file_index_type::setLength(ubit32 value)
+void file_index_type::setLength(uint32_t value)
 {
     m_length = value;
 }
@@ -225,7 +225,7 @@ void file_index_type::setRoomNum(uint16_t value)
     m_room_no = value;
 }
 
-void file_index_type::setCRC(ubit32 value)
+void file_index_type::setCRC(uint32_t value)
 {
     m_crc = value;
 }

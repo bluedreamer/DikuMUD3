@@ -58,7 +58,7 @@ int MAX(int a, int b);
 int number(int from, int to);
 int dice(int number, int size);
 
-const char *sprintbit(std::string &dest, ubit32 vektor, const char *names[]);
+const char *sprintbit(std::string &dest, uint32_t vektor, const char *names[]);
 char *sprinttype(char *buf, int type, const char *names[]);
 
 extern log_buffer g_log_buf[];

@@ -28,13 +28,13 @@ void scan4_unit_room(unit_data *room, uint8_t type);
 void scan4_unit(unit_data *ch, uint8_t type);
 unit_data *scan4_ref(unit_data *ch, unit_data *fu);
 
-unit_data *find_unit(const unit_data *ch, char **arg, const unit_data *list, const ubit32 bitvector);
-unit_data *find_unit_dil(const unit_data *ch, char **arg, const unit_data *list, const ubit32 bitvector, uint8_t type = 15);
+unit_data *find_unit(const unit_data *ch, char **arg, const unit_data *list, const uint32_t bitvector);
+unit_data *find_unit_dil(const unit_data *ch, char **arg, const unit_data *list, const uint32_t bitvector, uint8_t type = 15);
 unit_data *find_unit_general(const unit_data *viewer,
                              const unit_data *ch,
                              char **arg,
                              const unit_data *list,
-                             const ubit32 bitvector,
+                             const uint32_t bitvector,
                              uint8_t type = FIND_UNIT);
 unit_data *find_symbolic(const char *zone, const char *name);
 unit_data *find_symbolic_idx(const char *zone, const char *name, int idx);

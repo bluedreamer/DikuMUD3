@@ -509,7 +509,7 @@ void set_witness(class unit_data *criminal, class unit_data *witness,
     struct char_crime_data *c;
 
     for (c = crime_list; c; c = c->next)
-        if ((c->crime_nr == (ubit32)crime_no) && (c->id == id))
+        if ((c->crime_nr == (uint32_t)crime_no) && (c->id == id))
             return c->name_criminal;
 
     return NULL;

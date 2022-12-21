@@ -22,12 +22,12 @@ public:
      */
     void readFrom(CByteBuffer &buf, uint8_t unit_version, unit_data *unit, int &error);
 
-    ubit32 getCharacterFlags() const;
-    ubit32 *getCharacterFlagsPtr();
-    void setAllCharacterFlags(ubit32 value);
-    void setCharacterFlag(ubit32 value);
-    void removeCharacterFlag(ubit32 value);
-    void toggleCharacterFlag(ubit32 value);
+    uint32_t getCharacterFlags() const;
+    uint32_t *getCharacterFlagsPtr();
+    void setAllCharacterFlags(uint32_t value);
+    void setCharacterFlag(uint32_t value);
+    void removeCharacterFlag(uint32_t value);
+    void toggleCharacterFlag(uint32_t value);
 
     int32_t getPlayerExperience() const;
     int32_t *getPlayerExperiencePtr();
@@ -111,7 +111,7 @@ public:
     std::array<int16_t, ABIL_TREE_MAX> &getAbilitiesArray();
 
 private:
-    ubit32 flags{0};                                 ///< Char flags
+    uint32_t flags{0};                               ///< Char flags
     int32_t exp{0};                                  ///< The experience of the player
     uint16_t race{0};                                ///< PC/NPC race, Humanoid, Animal, etc.
     int16_t mana{0};                                 ///< How many mana points are left?

@@ -184,7 +184,7 @@ static amount_t calc_money(amount_t v1, char op, amount_t v2)
 /* Set all the values on money correctly according to amount - return money */
 unit_data *set_money(unit_data *money, amount_t amt)
 {
-    ubit32 i = 0;
+    uint32_t i = 0;
 
     assert(IS_MONEY(money));
 
@@ -216,8 +216,8 @@ unit_data *set_money(unit_data *money, amount_t amt)
      */
     for (i = 0; i < money->getNames().Length(); ++i)
     {
-        ubit32 j = 0;
-        ubit32 m = i;
+        uint32_t j = 0;
+        uint32_t m = i;
 
         for (j = i; j < money->getNames().Length(); ++j)
         {

@@ -15,14 +15,14 @@ class cQueueElem
 
 public:
     cQueueElem(char *c, int bCopy = TRUE);
-    cQueueElem(uint8_t *d, ubit32 n, int bCopy = TRUE);
+    cQueueElem(uint8_t *d, uint32_t n, int bCopy = TRUE);
     ~cQueueElem()
     {
         if (pData)
             FREE(pData);
     }
 
-    ubit32 Bytes() { return nSize; }
+    uint32_t Bytes() { return nSize; }
     uint8_t *Data() { return pData; }
     void SetNull()
     {
@@ -34,7 +34,7 @@ public:
 
 private:
     uint8_t *pData;
-    ubit32 nSize; ///< Optional number of bytes
+    uint32_t nSize; ///< Optional number of bytes
     cQueueElem *pNext;
 };
 
@@ -45,12 +45,12 @@ public:
     ~cQueue();
 
     int IsEmpty();
-    ubit32 Size();
-    ubit32 Bytes();
+    uint32_t Size();
+    uint32_t Bytes();
 
-    void Copy(uint8_t *data, ubit32 nLen);
-    void CutCopy(uint8_t *data, ubit32 nLen);
-    void Cut(ubit32 nLen);
+    void Copy(uint8_t *data, uint32_t nLen);
+    void CutCopy(uint8_t *data, uint32_t nLen);
+    void Cut(uint32_t nLen);
 
     void Append(cQueueElem *pe);
     void Prepend(cQueueElem *pe);
@@ -67,6 +67,6 @@ private:
     cQueueElem *pTail;
     cQueueElem *pPreTail;
 
-    ubit32 nEntries;
-    ubit32 nBytes;
+    uint32_t nEntries;
+    uint32_t nBytes;
 };

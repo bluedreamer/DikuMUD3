@@ -82,7 +82,7 @@ log_buffer g_log_buf[MAXLOG];
 
 // Clears dest and then writes the text "bits" into 'dest' and
 // also return a char * to the same resulting string (&dest[0])
-const char *sprintbit(std::string &dest, ubit32 vektor, const char *names[])
+const char *sprintbit(std::string &dest, uint32_t vektor, const char *names[])
 {
     long nr = 0;
 

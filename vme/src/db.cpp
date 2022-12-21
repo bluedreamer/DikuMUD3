@@ -195,10 +195,10 @@ diltemplate *generate_datafile_diltemplates(FILE *f, zone_type *zone, bool do_re
      * the filecrc
      */
 
-    ubit32 filecrc = 0;
+    uint32_t filecrc = 0;
     while (!feof(f))
     {
-        if (fread(&(tmplsize), sizeof(ubit32), 1, f) != 1)
+        if (fread(&(tmplsize), sizeof(uint32_t), 1, f) != 1)
         {
             error(HERE, "Failed to fread() tmplsize");
         }
@@ -246,7 +246,7 @@ diltemplate *generate_datafile_diltemplates(FILE *f, zone_type *zone, bool do_re
 
 /**
  * Generate index's for each unit in the '.data' file 'f', zone 'zone'
- * Format is: string(name), ubit32(filecrc), uint8_t(unit type), ubit32(unit string data length), ubit32(datacrc)
+ * Format is: string(name), uint32_t(filecrc), uint8_t(unit type), uint32_t(unit string data length), uint32_t(datacrc)
  * Returns number of rooms read.
  */
 int generate_datafile_file_indexes(FILE *f, zone_type *zone, bool do_reindex)
@@ -275,7 +275,7 @@ int generate_datafile_file_indexes(FILE *f, zone_type *zone, bool do_reindex)
 
         // get Length
         int32_t temp_32{};
-        if (fread(&temp_32, sizeof(ubit32), 1, f) != 1)
+        if (fread(&temp_32, sizeof(uint32_t), 1, f) != 1)
         {
             error(HERE, "Failed to fread() temp_index->length");
         }
@@ -284,7 +284,7 @@ int generate_datafile_file_indexes(FILE *f, zone_type *zone, bool do_reindex)
 
         // get data CRC
         temp_32 = 0;
-        if (fread(&temp_32, sizeof(ubit32), 1, f) != 1)
+        if (fread(&temp_32, sizeof(uint32_t), 1, f) != 1)
         {
             error(HERE, "Failed to fread() temp_index->crc");
         }
@@ -295,7 +295,7 @@ int generate_datafile_file_indexes(FILE *f, zone_type *zone, bool do_reindex)
         auto startReadPos = ftell(f);
 
         // get fileCRC (zone based)
-        if (fread(&temp_32, sizeof(ubit32), 1, f) != 1)
+        if (fread(&temp_32, sizeof(uint32_t), 1, f) != 1)
         {
             error(HERE, "Failed to fread() filecrc for the zone");
         }
@@ -636,7 +636,7 @@ unit_data *read_unit_string(CByteBuffer *pBuf, int type, int len, const char *wh
     int i = 0;
     int j = 0;
     uint8_t unit_version = 0;
-    ubit32 nStart = 0;
+    uint32_t nStart = 0;
     char tmpbuf[2 * MAX_STRING_LENGTH];
 
     g_nCorrupt = 0;
@@ -1345,14 +1345,14 @@ void read_unit_datafile(file_index_type *org_fi, CByteBuffer *pBuf)
         error(HERE, "Couldn't open %s for reading.", buf);
     }
 
-    int len = pBuf->FileRead(f, org_fi->getFilepos(), org_fi->getLength() + sizeof(ubit32)); // data length + the filecrc
+    int len = pBuf->FileRead(f, org_fi->getFilepos(), org_fi->getLength() + sizeof(uint32_t)); // data length + the filecrc
 
-    if (len != (int)(org_fi->getLength() + sizeof(ubit32)))
+    if (len != (int)(org_fi->getLength() + sizeof(uint32_t)))
     {
         error(HERE, "Unable to read specified number of bytes in .data file %s", buf);
     }
 
-    ubit32 filecrc = pBuf->ReadU32(&g_nCorrupt);
+    uint32_t filecrc = pBuf->ReadU32(&g_nCorrupt);
     if (filecrc != org_fi->getZone()->getCrc())
     {
         error(HERE, "FileCRC changed, we need to reindex");

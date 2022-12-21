@@ -420,7 +420,7 @@ BOOST_FIXTURE_TEST_SUITE(Account_Insert_Suite, AccountCPPFixture)
 BOOST_AUTO_TEST_CASE(account_insert_test)
 {
     float credit = 3.14f;
-    ubit32 total_credit = 4876;
+    uint32_t total_credit = 4876;
 
     int amount = 5546;
 
@@ -449,11 +449,11 @@ BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_FIXTURE_TEST_SUITE(Account_Withdraw_Suite, AccountCPPFixture)
 
-std::vector<ubit32> withdrawal_amounts{274, 2744, 27447};
+std::vector<uint32_t> withdrawal_amounts{274, 2744, 27447};
 BOOST_DATA_TEST_CASE(account_withdraw_test, withdrawal_amounts, amount)
 {
     float credit = 375.14f;
-    ubit32 total_credit = 4876;
+    uint32_t total_credit = 4876;
 
     whom->getPCAccountData().setAccountBalance(credit);
     whom->getPCAccountData().setTotalCredit(total_credit);
@@ -463,7 +463,7 @@ BOOST_DATA_TEST_CASE(account_withdraw_test, withdrawal_amounts, amount)
     ////////////////////////// Test Subject //////////////////////////////
 
     BOOST_TEST(whom->getPCAccountData().getAccountBalance() == credit - amount);
-    ubit32 expected_total_credit = total_credit - amount;
+    uint32_t expected_total_credit = total_credit - amount;
     if (amount > total_credit)
     {
         expected_total_credit = 0;

@@ -529,22 +529,22 @@ void unit_data::setGlobalPrevious(unit_data *value)
     m_gprevious = value;
 }
 
-ubit32 unit_data::getManipulate() const
+uint32_t unit_data::getManipulate() const
 {
     return m_manipulate;
 }
 
-ubit32 *unit_data::getManipulatePtr()
+uint32_t *unit_data::getManipulatePtr()
 {
     return &m_manipulate;
 }
 
-void unit_data::setAllManipulateFlags(ubit32 value)
+void unit_data::setAllManipulateFlags(uint32_t value)
 {
     m_manipulate = value;
 }
 
-void unit_data::setManipulateFlag(ubit32 value)
+void unit_data::setManipulateFlag(uint32_t value)
 {
     m_manipulate |= value;
 }

@@ -112,9 +112,9 @@ inline uint8_t OBJ_RESISTANCE(unit_data *obj) { return UOBJ(obj)->getMagicResist
 
 inline int32_t OBJ_VALUE(const unit_data *unit, size_t index) { return UOBJ(unit)->getValueAtIndex(index); }
 
-inline ubit32 OBJ_PRICE(const unit_data *unit) { return UOBJ(unit)->getPriceInGP(); }
+inline uint32_t OBJ_PRICE(const unit_data *unit) { return UOBJ(unit)->getPriceInGP(); }
 
-inline ubit32 OBJ_PRICE_DAY(unit_data *unit) { return UOBJ(unit)->getPricePerDay(); }
+inline uint32_t OBJ_PRICE_DAY(unit_data *unit) { return UOBJ(unit)->getPricePerDay(); }
 
 inline uint8_t OBJ_TYPE(const unit_data *unit) { return UOBJ(unit)->getObjectItemType(); }
 
@@ -136,7 +136,7 @@ inline int16_t CHAR_OFFENSIVE(const unit_data *unit) { return UCHAR(unit)->getOf
 
 inline int16_t CHAR_DEFENSIVE(const unit_data *unit) { return UCHAR(unit)->getDefensiveBonus(); }
 
-inline ubit32 CHAR_FLAGS(const unit_data *unit) { return UCHAR(unit)->getCharacterFlags(); }
+inline uint32_t CHAR_FLAGS(const unit_data *unit) { return UCHAR(unit)->getCharacterFlags(); }
 
 inline unit_data *CHAR_LAST_ROOM(unit_data *unit) { return UCHAR(unit)->getLastLocation(); }
 
@@ -213,7 +213,7 @@ inline unit_data *CHAR_ORIGINAL(unit_data *ch)
 
 inline bool CHAR_AWAKE(const unit_data *ch) { return CHAR_POS(ch) > POSITION_SLEEPING; }
 
-inline bool CHAR_HAS_FLAG(const unit_data *ch, ubit32 flags) { return IS_SET(CHAR_FLAGS(ch), (flags)); }
+inline bool CHAR_HAS_FLAG(const unit_data *ch, uint32_t flags) { return IS_SET(CHAR_FLAGS(ch), (flags)); }
 
 [[maybe_unused]] inline room_direction_data *CHAR_ROOM_EXIT(unit_data *ch, size_t door) { return ch->getUnitIn()->isRoom() ? ROOM_EXIT(ch->getUnitIn(), door) : nullptr; }
 

@@ -61,7 +61,7 @@ public:
     // virtual int IsHooked(void);
     virtual void Unhook();
 
-    virtual void Write(uint8_t *pData, ubit32 nLen, int bCopy = TRUE);
+    virtual void Write(uint8_t *pData, uint32_t nLen, int bCopy = TRUE);
     int ReadToQueue();
 
     cQueue qRX;

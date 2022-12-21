@@ -2349,13 +2349,13 @@ void dilfe_spli(dilprg *p)
 
                                                                         /* We're home free... */
 
-                                                                        *((ubit32 *)v2->ref) = g_spell_info[v1->val.num].realm;
-                                                                        *((ubit32 *)v3->ref) = g_SplColl.tree[v1->val.num].parent;
-                                                                        *((ubit32 *)v4->ref) = g_spell_info[v1->val.num].usesmana;
-                                                                        *((ubit32 *)v5->ref) = g_spell_info[v1->val.num].offensive;
-                                                                        *((ubit32 *)v6->ref) = g_spell_info[v1->val.num].cast_type;
-                                                                        *((ubit32 *)v7->ref) = g_spell_info[v1->val.num].media;
-                                                                        *((ubit32 *)v8->ref) = g_spell_info[v1->val.num].targets;
+                                                                        *((uint32_t *)v2->ref) = g_spell_info[v1->val.num].realm;
+                                                                        *((uint32_t *)v3->ref) = g_SplColl.tree[v1->val.num].parent;
+                                                                        *((uint32_t *)v4->ref) = g_spell_info[v1->val.num].usesmana;
+                                                                        *((uint32_t *)v5->ref) = g_spell_info[v1->val.num].offensive;
+                                                                        *((uint32_t *)v6->ref) = g_spell_info[v1->val.num].cast_type;
+                                                                        *((uint32_t *)v7->ref) = g_spell_info[v1->val.num].media;
+                                                                        *((uint32_t *)v8->ref) = g_spell_info[v1->val.num].targets;
 
                                                                         v->type = DILV_SP;
                                                                         v->atyp = DILA_EXP;
@@ -2867,8 +2867,8 @@ void dilfe_intr(dilprg *p)
     uint16_t intnum = 0;
     uint8_t *beg = nullptr;
     uint8_t *end = nullptr;
-    ubit32 endptr = 0;
-    ubit32 begptr = 0;
+    uint32_t endptr = 0;
+    uint32_t begptr = 0;
 
     dilval *v1 = p->stack.pop();
 

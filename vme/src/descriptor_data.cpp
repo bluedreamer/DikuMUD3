@@ -43,7 +43,7 @@ descriptor_data::descriptor_data(cMultiHook *pe)
     original = nullptr;
     snoop.setSnooping(nullptr);
     snoop.setSnoopBy(nullptr);
-    replyid = (ubit32)-1;
+    replyid = (uint32_t)-1;
 
     /* Make a new PC struct */
     character = new_unit_data(UNIT_ST_PC, nullptr); // Would be preferable to have a file_index_type passed here

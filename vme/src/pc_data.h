@@ -311,9 +311,9 @@ public:
      * @todo Add range checking to indexes
      * @{
      */
-    ubit32 getLastHostAtIndex(size_t index) const;
-    void setLastHostAtIndexTo(size_t index, ubit32 value);
-    void pushBackLastHost(ubit32 value);
+    uint32_t getLastHostAtIndex(size_t index) const;
+    void setLastHostAtIndexTo(size_t index, uint32_t value);
+    void pushBackLastHost(uint32_t value);
     /// @}
 
     /**
@@ -353,6 +353,6 @@ private:
     uint8_t m_nAccessLevel{0};                           ///< Access Level for BBS use
     char m_pwd[PC_MAX_PASSWORD]{0};                      ///< Needed when loaded w/o descriptor
     char m_filename[PC_MAX_NAME]{0};                     ///< The name on disk...
-    ubit32 m_lasthosts[5]{0};                            ///< last 5 different IPs
+    uint32_t m_lasthosts[5]{0};                          ///< last 5 different IPs
     color_type m_color;                                  ///< Players default colors
 };

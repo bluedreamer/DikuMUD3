@@ -67,7 +67,7 @@ extra_descr_data::~extra_descr_data()
 // when really I only wanted it on the list
 extra_descr_data *extra_descr_data::find_raw(const char *word)
 {
-    ubit32 i = 0;
+    uint32_t i = 0;
     extra_descr_data *exd = nullptr;
 
     for (exd = this; exd; exd = exd->next)

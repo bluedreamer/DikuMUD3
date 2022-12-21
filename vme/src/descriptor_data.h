@@ -101,7 +101,7 @@ private:
     uint8_t nLine{0};                       ///< Serial Line
     int wait{0};                            ///< wait for how many loops
     uint16_t timer{0};                      ///< num of hours idleness for mortals
-    ubit32 replyid{0};                      ///< Used for 'tell reply'
+    uint32_t replyid{0};                    ///< Used for 'tell reply'
     char *localstr{nullptr};                ///< For the 'modify-string' system. This string is expanded while editing
     PostEditFunctionPtr postedit{nullptr};  ///<
     unit_data *editing{nullptr};            ///<

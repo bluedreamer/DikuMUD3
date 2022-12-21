@@ -60,12 +60,12 @@ public:
      */
     void readFrom(CByteBuffer &buf, uint8_t unit_version, unit_data *unit, int &error);
 
-    ubit32 *getCharacterFlagsPtr();
-    ubit32 getCharacterFlags() const;
-    void setAllCharacterFlags(ubit32 value);
-    void setCharacterFlag(ubit32 value);
-    void removeCharacterFlag(ubit32 value);
-    void toggleCharacterFlag(ubit32 value);
+    uint32_t *getCharacterFlagsPtr();
+    uint32_t getCharacterFlags() const;
+    void setAllCharacterFlags(uint32_t value);
+    void setCharacterFlag(uint32_t value);
+    void removeCharacterFlag(uint32_t value);
+    void toggleCharacterFlag(uint32_t value);
 
     int32_t getPlayerExperience() const;
     int32_t *getPlayerExperiencePtr();

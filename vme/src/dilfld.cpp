@@ -153,7 +153,7 @@ void dilfe_fld(dilprg *p)
                 {
                     v->atyp = DILA_EXP;
 
-                    if (((ubit32)v2->val.num < ((cNamelist *)v1->val.ptr)->Length()) && (v2->val.num >= 0))
+                    if (((uint32_t)v2->val.num < ((cNamelist *)v1->val.ptr)->Length()) && (v2->val.num >= 0))
                     {
                         v->atyp = DILA_NONE; // Dont dealloc!
                         v->type = DILV_HASHSTR;

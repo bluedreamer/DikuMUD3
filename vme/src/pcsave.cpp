@@ -381,7 +381,7 @@ void save_player(unit_data *pc)
     if (CHAR_DESCRIPTOR(pc))
     {
         time_t t0 = 0;
-        ubit32 used = 0;
+        uint32_t used = 0;
 
         t0 = time(nullptr);
         if (t0 < CHAR_DESCRIPTOR(pc)->getLastLogonTime())
@@ -415,8 +415,8 @@ void save_player(unit_data *pc)
 unit_data *load_player_file(FILE *pFile)
 {
     unit_data *pc = nullptr;
-    ubit32 nPlyLen = 0;
-    ubit32 n = 0;
+    uint32_t nPlyLen = 0;
+    uint32_t n = 0;
     int32_t id = 0;
     CByteBuffer *pBuf = nullptr;
 

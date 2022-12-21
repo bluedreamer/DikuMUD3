@@ -150,7 +150,6 @@ template<typename T>
         fprintf(stderr, a);                                                                                                                \
     } while (0)
 
-using ubit32 = uint32_t;
 using sbit64 = int64_t;  // MS2020
 using ubit64 = uint64_t; // MS2020
 using ubit1 = bool;      /* Boolean */

@@ -23,32 +23,32 @@ char_point_data::char_point_data()
     memset(abilities.data(), 0, abilities.size());
 }
 
-ubit32 char_point_data::getCharacterFlags() const
+uint32_t char_point_data::getCharacterFlags() const
 {
     return flags;
 }
 
-ubit32 *char_point_data::getCharacterFlagsPtr()
+uint32_t *char_point_data::getCharacterFlagsPtr()
 {
     return &flags;
 }
 
-void char_point_data::setAllCharacterFlags(ubit32 value)
+void char_point_data::setAllCharacterFlags(uint32_t value)
 {
     flags = value;
 }
 
-void char_point_data::setCharacterFlag(ubit32 value)
+void char_point_data::setCharacterFlag(uint32_t value)
 {
     flags |= value;
 }
 
-void char_point_data::removeCharacterFlag(ubit32 value)
+void char_point_data::removeCharacterFlag(uint32_t value)
 {
     flags &= ~value;
 }
 
-void char_point_data::toggleCharacterFlag(ubit32 value)
+void char_point_data::toggleCharacterFlag(uint32_t value)
 {
     flags ^= value;
 }

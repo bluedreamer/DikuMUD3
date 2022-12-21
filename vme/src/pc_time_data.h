@@ -26,13 +26,13 @@ public:
     time_t *getPlayerBirthdayPtr();
     void setPlayerBirthday(time_t value);
 
-    ubit32 getTotalTimePlayedInSeconds() const;
-    void setTotalTimePlayedInSeconds(ubit32 value);
-    void incTotalTimePlayedInSecondsBy(ubit32 seconds);
+    uint32_t getTotalTimePlayedInSeconds() const;
+    void setTotalTimePlayedInSeconds(uint32_t value);
+    void incTotalTimePlayedInSecondsBy(uint32_t seconds);
 
 private:
     time_t creation{0}; ///< This represents time when the pc was created.
     time_t connect{0};  ///< This is the last time that the pc connected.
     time_t birth{0};    ///< This represents the characters age
-    ubit32 played{0};   ///< This is the total accumulated time played in secs
+    uint32_t played{0}; ///< This is the total accumulated time played in secs
 };

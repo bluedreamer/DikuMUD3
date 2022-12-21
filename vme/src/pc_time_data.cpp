@@ -10,9 +10,9 @@ void pc_time_data::readFrom(CByteBuffer &buf, int &errors)
 
 void pc_time_data::writeTo(CByteBuffer &buf) const
 {
-    buf.Append32((ubit32)creation);
-    buf.Append32((ubit32)connect);
-    buf.Append32((ubit32)birth);
+    buf.Append32((uint32_t)creation);
+    buf.Append32((uint32_t)connect);
+    buf.Append32((uint32_t)birth);
     buf.Append32(played);
 }
 
@@ -51,17 +51,17 @@ void pc_time_data::setPlayerBirthday(time_t value)
     birth = value;
 }
 
-ubit32 pc_time_data::getTotalTimePlayedInSeconds() const
+uint32_t pc_time_data::getTotalTimePlayedInSeconds() const
 {
     return played;
 }
 
-void pc_time_data::setTotalTimePlayedInSeconds(ubit32 value)
+void pc_time_data::setTotalTimePlayedInSeconds(uint32_t value)
 {
     played = value;
 }
 
-void pc_time_data::incTotalTimePlayedInSecondsBy(ubit32 seconds)
+void pc_time_data::incTotalTimePlayedInSecondsBy(uint32_t seconds)
 {
     played += seconds;
 }

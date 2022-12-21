@@ -337,7 +337,7 @@ void cHook::PushWrite()
     }
 }
 
-void cHook::Write(uint8_t *pData, ubit32 nLen, int bCopy)
+void cHook::Write(uint8_t *pData, uint32_t nLen, int bCopy)
 {
     if (nLen <= 0)
     {
@@ -372,7 +372,7 @@ int cHook::ReadToQueue()
 
         if (thisround > 0)
         {
-            qRX.Append(new cQueueElem((uint8_t *)buf, (ubit32)thisround));
+            qRX.Append(new cQueueElem((uint8_t *)buf, (uint32_t)thisround));
         }
         else if (thisround == 0)
         {

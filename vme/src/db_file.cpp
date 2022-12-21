@@ -36,7 +36,7 @@ int bread_extra(CByteBuffer *pBuf, extra_list &cExtra, int unit_version)
     extra_descr_data *e = nullptr;
     extra_descr_data *te = nullptr;
     extra_descr_data *first = nullptr;
-    ubit32 i = 0; // for 32 bit extra lists
+    uint32_t i = 0; // for 32 bit extra lists
     char *c = nullptr;
     int corrupt = 0;
 
@@ -283,7 +283,7 @@ diltemplate *bread_diltemplate(CByteBuffer *pBuf, int version)
 void bread_dilintr(CByteBuffer *pBuf, dilprg *prg, int version)
 {
     int i = 0;
-    ubit32 lab = 0;
+    uint32_t lab = 0;
 
     /* read interrupts */
     prg->frame[0].intrcount = pBuf->ReadU16();
@@ -313,8 +313,8 @@ void bread_dilintr(CByteBuffer *pBuf, dilprg *prg, int version)
 void bwrite_dilintr(CByteBuffer *pBuf, dilprg *prg)
 {
     uint16_t i = 0;
-    ubit32 lab = 0;
-    ubit32 elab = 0;
+    uint32_t lab = 0;
+    uint32_t elab = 0;
 
     pBuf->Append16(prg->frame[0].intrcount);
 
@@ -385,7 +385,7 @@ void *bread_dil(CByteBuffer *pBuf, unit_data *owner, uint8_t version, unit_fptr 
 #ifdef DMSERVER
     dilprg *prg = nullptr;
     diltemplate *tmpl = nullptr;
-    ubit32 recallpc = 0;
+    uint32_t recallpc = 0;
     int i = 0;
     int novar = 0;
     char name[255];
@@ -846,8 +846,8 @@ void bread_block(FILE *datafile, long file_pos, int length, void *buffer)
 void bwrite_affect(CByteBuffer *pBuf, unit_affected_type *af)
 {
     int i = 0;
-    ubit32 nPos = 0;
-    ubit32 nOrgPos = pBuf->GetLength();
+    uint32_t nPos = 0;
+    uint32_t nOrgPos = pBuf->GetLength();
 
     pBuf->Append16(0); /* Assume no affects by default */
 
@@ -1050,8 +1050,8 @@ void bwrite_func(CByteBuffer *pBuf, unit_fptr *fptr)
 {
     char *data = nullptr;
     int i = 0;
-    ubit32 nPos = 0;
-    ubit32 nOrgPos = pBuf->GetLength();
+    uint32_t nPos = 0;
+    uint32_t nOrgPos = pBuf->GetLength();
     pBuf->Append16(0); /* Assume no affects by default */
 
     for (; fptr; fptr = fptr->getNext())
@@ -1186,7 +1186,7 @@ int write_unit_string(CByteBuffer *pBuf, unit_data *u)
     char name[FI_MAX_UNITNAME + 1];
 #endif
 
-    ubit32 nPos = pBuf->GetLength();
+    uint32_t nPos = pBuf->GetLength();
 
     pBuf->Append8(UNIT_VERSION); /* Version Number! */
 
@@ -1235,8 +1235,8 @@ int write_unit_string(CByteBuffer *pBuf, unit_data *u)
     pBuf->Append16(u->getWeight());
     pBuf->Append16(u->getCapacity());
 
-    pBuf->Append32((ubit32)u->getMaximumHitpoints());
-    pBuf->Append32((ubit32)u->getCurrentHitpoints());
+    pBuf->Append32((uint32_t)u->getMaximumHitpoints());
+    pBuf->Append32((uint32_t)u->getCurrentHitpoints());
 
     pBuf->Append16((uint16_t)u->getAlignment());
 
@@ -1348,13 +1348,13 @@ int write_unit_string(CByteBuffer *pBuf, unit_data *u)
                     pBuf->Append32(UPC(u)->getLastHostAtIndex(i));
                 }
 
-                pBuf->Append32((ubit32)PC_ID(u));
+                pBuf->Append32((uint32_t)PC_ID(u));
                 pBuf->Append16(PC_CRACK_ATTEMPTS(u));
 
                 pBuf->AppendString(PC_HOME(u));
                 pBuf->AppendString(PC_GUILD(u));
 
-                pBuf->Append32((ubit32)0); // OBSOLETE pBuf->Append32((ubit32)PC_GUILD_TIME(u));
+                pBuf->Append32((uint32_t)0); // OBSOLETE pBuf->Append32((uint32_t)PC_GUILD_TIME(u));
                 pBuf->Append16(PC_VIRTUAL_LEVEL(u));
 
                 PC_TIME(u).writeTo(*pBuf);
@@ -1479,9 +1479,9 @@ int write_unit_string(CByteBuffer *pBuf, unit_data *u)
 /**
  * Appends unit 'u' to '.data' file 'f'. Name is the unique name
  * Used only by dmc.
- * Format is: string(name), uint8_t(unit type), ubit32(unit string data length), ubit32(datacrc), ubit32(filecrc)
+ * Format is: string(name), uint8_t(unit type), uint32_t(unit string data length), uint32_t(datacrc), uint32_t(filecrc)
  */
-void write_unit_datafile(FILE *f, unit_data *u, char *fname, const ubit32 filecrc)
+void write_unit_datafile(FILE *f, unit_data *u, char *fname, const uint32_t filecrc)
 {
     CByteBuffer *pBuf = nullptr;
 
@@ -1490,23 +1490,23 @@ void write_unit_datafile(FILE *f, unit_data *u, char *fname, const ubit32 filecr
 
     pBuf->AppendString(fname);       // Write the units unique 'name' ('name'@zone)
     pBuf->Append8(u->getUnitType()); // Write unit type, UNIT_ST_...
-    ubit32 nSizeStart = pBuf->GetLength();
+    uint32_t nSizeStart = pBuf->GetLength();
     pBuf->Append32(0);       /* Write dummy length */
     pBuf->Append32(0);       /* Write dummy CRC    */
     pBuf->Append32(filecrc); // Write file CRC (constant for all units in the file)
 
-    ubit32 nStart = pBuf->GetLength();
-    ubit32 length = write_unit_string(pBuf, u);
+    uint32_t nStart = pBuf->GetLength();
+    uint32_t length = write_unit_string(pBuf, u);
 
     /* Calculate the CRC */
-    ubit32 crc = length;
-    for (ubit32 i = 0; i < length; i++)
+    uint32_t crc = length;
+    for (uint32_t i = 0; i < length; i++)
     {
         crc += (pBuf->GetData()[nStart + i] << (i % 16));
     }
 
     // Let's go back and overwrite length and CRC with the real values
-    ubit32 nPos = pBuf->GetLength();
+    uint32_t nPos = pBuf->GetLength();
     pBuf->SetLength(nSizeStart);
     pBuf->Append32(length); // Overwrite with the calculated length of the unit itself
     pBuf->Append32(crc);    // Overwrite with the CRC calculated length of the unit itself
@@ -1520,12 +1520,12 @@ void write_unit_datafile(FILE *f, unit_data *u, char *fname, const ubit32 filecr
  * Append template 'tmpl' to file 'f'
  * Used only by dmc. for writing zones
  */
-void write_diltemplate(FILE *f, diltemplate *tmpl, const ubit32 filecrc)
+void write_diltemplate(FILE *f, diltemplate *tmpl, const uint32_t filecrc)
 {
     CByteBuffer *pBuf = nullptr;
-    ubit32 length = 0;
-    ubit32 nStart = 0;
-    ubit32 nPos = 0;
+    uint32_t length = 0;
+    uint32_t nStart = 0;
+    uint32_t nPos = 0;
 
     pBuf = &g_FileBuffer;
     pBuf->Clear();

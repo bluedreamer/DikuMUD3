@@ -11,19 +11,19 @@
 class CByteBuffer
 {
 public:
-    CByteBuffer(ubit32 nSize = 1024);
+    CByteBuffer(uint32_t nSize = 1024);
     virtual ~CByteBuffer();
 
     // Informative functions
 
-    inline ubit32 GetLength() { return m_nLength; }
-    inline ubit32 GetAllocated() { return m_nAllocated; }
-    inline ubit32 GetReadPosition() { return m_nReadPos; }
+    inline uint32_t GetLength() { return m_nLength; }
+    inline uint32_t GetAllocated() { return m_nAllocated; }
+    inline uint32_t GetReadPosition() { return m_nReadPos; }
     inline const uint8_t *GetData() { return m_pData; }
 
-    void SetReadPosition(ubit32 nReadPosition);
-    void SetLength(ubit32 nLen);
-    void SetData(uint8_t *pData, ubit32 nLength);
+    void SetReadPosition(uint32_t nReadPosition);
+    void SetLength(uint32_t nLen);
+    void SetData(uint8_t *pData, uint32_t nLength);
 
     inline void Rewind() { m_nReadPos = 0; }
     inline void Clear()
@@ -36,33 +36,33 @@ public:
 
     // Public
     //
-    int FileRead(FILE *f, ubit32 nLength);
-    int FileRead(FILE *f, long offset, ubit32 length);
+    int FileRead(FILE *f, uint32_t nLength);
+    int FileRead(FILE *f, long offset, uint32_t length);
     int FileWrite(FILE *f);
 
     // Public functions to read from a buffer
     //
-    int Read(uint8_t *pBuf, ubit32 nLen);
+    int Read(uint8_t *pBuf, uint32_t nLen);
 
-    int ReadBlock(uint8_t **pData, ubit32 *nLen);
+    int ReadBlock(uint8_t **pData, uint32_t *nLen);
 
     // The Read8 format drove me a little mad to read, trying this.
     uint8_t ReadU8(int *nError = nullptr);
     int8_t ReadS8(int *nError = nullptr);
     uint16_t ReadU16(int *nError = nullptr);
     int16_t ReadS16(int *nError = nullptr);
-    ubit32 ReadU32(int *nError = nullptr);
+    uint32_t ReadU32(int *nError = nullptr);
     int32_t ReadS32(int *nError = nullptr);
 
     [[deprecated("Replace with ReadU8")]] int Read8(uint8_t *pNum);    ///< @deprecated Replace with @ref ReadU8
     [[deprecated("Replace with ReadU16")]] int Read16(uint16_t *pNum); ///< @deprecated Replace with @ref ReadU16
-    [[deprecated("Replace with ReadU32")]] int Read32(ubit32 *pNum);   ///< @deprecated Replace with @ref ReadU32
+    [[deprecated("Replace with ReadU32")]] int Read32(uint32_t *pNum); ///< @deprecated Replace with @ref ReadU32
     [[deprecated("Replace with ReadS8")]] int Read8(int8_t *pNum);     ///< @deprecated Replace with @ref ReadS8
     [[deprecated("Replace with ReadS16")]] int Read16(int16_t *pNum);  ///< @deprecated Replace with @ref ReadS16
     [[deprecated("Replace with ReadS32")]] int Read32(int32_t *pNum);  ///< @deprecated Replace with @ref ReadS32
     int ReadFloat(float *pFloat);
     int ReadStringAlloc(char **pStr);
-    int ReadStringCopy(char *pStr, ubit32 nSize);
+    int ReadStringCopy(char *pStr, uint32_t nSize);
     int ReadNames(char ***pppStr, int bOld);
     int ReadIntList(int **ilist);
 
@@ -77,37 +77,37 @@ public:
 
     // Public functions to write to a buffer
     //
-    void Append(const uint8_t *pData, ubit32 nLen);
+    void Append(const uint8_t *pData, uint32_t nLen);
 
     void Append(CByteBuffer *pBuf);
 
-    void AppendBlock(const uint8_t *pData, ubit32 nLen);
+    void AppendBlock(const uint8_t *pData, uint32_t nLen);
 
     void Append8(uint8_t i);
     void Append16(uint16_t i);
-    void Append32(ubit32 i);
+    void Append32(uint32_t i);
     void AppendFloat(float f);
     void AppendString(const char *pStr);
     void AppendDoubleString(const char *pStr);
     void AppendNames(const char **ppNames, int bOld);
 
 protected:
-    void SetSize(ubit32 nSize);
-    void IncreaseSize(ubit32 nSize);
+    void SetSize(uint32_t nSize);
+    void IncreaseSize(uint32_t nSize);
 
 private:
-    ubit32 m_nReadPos;
-    ubit32 m_nLength;
-    ubit32 m_nAllocated;
+    uint32_t m_nReadPos;
+    uint32_t m_nLength;
+    uint32_t m_nAllocated;
     uint8_t *m_pData;
 };
 
 uint8_t bread_ubit8(uint8_t **buf);
 uint16_t bread_ubit16(uint8_t **buf);
-ubit32 bread_ubit32(uint8_t **buf);
+uint32_t bread_ubit32(uint8_t **buf);
 float bread_float(uint8_t **buf);
-uint8_t *bread_data(uint8_t **b, ubit32 *len);
-void bwrite_data(uint8_t **b, uint8_t *data, ubit32 len);
+uint8_t *bread_data(uint8_t **b, uint32_t *len);
+void bwrite_data(uint8_t **b, uint8_t *data, uint32_t len);
 void bread_strcpy(uint8_t **b, char *str);
 char *bread_str_alloc(uint8_t **buf);
 char *bread_str_skip(uint8_t **b);
@@ -115,7 +115,7 @@ char **bread_nameblock(uint8_t **b, int bOld);
 
 void bwrite_ubit8(uint8_t **b, uint8_t i);
 void bwrite_ubit16(uint8_t **b, uint16_t i);
-void bwrite_ubit32(uint8_t **b, ubit32 i);
+void bwrite_ubit32(uint8_t **b, uint32_t i);
 void bwrite_float(uint8_t **b, float f);
 void bwrite_string(uint8_t **b, const char *str);
 void bwrite_double_string(uint8_t **b, char *str);

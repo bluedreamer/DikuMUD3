@@ -162,12 +162,12 @@ void zone_type::setZoneResetTime(uint16_t value)
     m_zone_time = value;
 }
 
-ubit32 zone_type::getCrc() const
+uint32_t zone_type::getCrc() const
 {
     return m_crc;
 }
 
-void zone_type::setCrc(ubit32 crc)
+void zone_type::setCrc(uint32_t crc)
 {
     if (m_crc == 0)
     {
@@ -413,7 +413,7 @@ std::string zone_type::getStatDIL() const
     return msg;
 }
 
-std::string zone_type::getStatGlobalDIL(ubit32 nCount, ubit64 &instructionSum) const
+std::string zone_type::getStatGlobalDIL(uint32_t nCount, ubit64 &instructionSum) const
 {
     std::string msg;
     for (auto &[name, dil_template] : m_mmp_tmpl)

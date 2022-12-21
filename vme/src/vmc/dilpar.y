@@ -62,12 +62,12 @@ uint8_t in_foreach = 0;   /* inside foreach */
 
 uint16_t label_no;         /* number of labels */
 char **label_names;      /* names of labels */
-ubit32 *label_adr;       /* address of label */
+uint32_t *label_adr;       /* address of label */
 
 uint16_t label_use_no;     /* number of used labels */
-ubit32 *label_use_idx;   /* what label is used (label_adr) */
-ubit32 *label_use_adr;   /* where a label is used */
-ubit32 labelgen;         /* counter for label generation */
+uint32_t *label_use_idx;   /* what label is used (label_adr) */
+uint32_t *label_use_adr;   /* where a label is used */
+uint32_t labelgen;         /* counter for label generation */
 
 uint16_t break_no;         /* size of break stack */
 uint16_t cont_no;          /* size of continue stack */
@@ -108,9 +108,9 @@ char tmpfname[L_tmpnam] = "";
 
 void add_ref(struct dilref *ref);
 void add_var(char *name, DilVarType_e type, const char *globalVarName);
-int add_label(char *str, ubit32 adr);
-ubit32 get_label(char *name, ubit32 adr);
-void moredilcore(ubit32 size);
+int add_label(char *str, uint32_t adr);
+uint32_t get_label(char *name, uint32_t adr);
+void moredilcore(uint32_t size);
 void update_labels(void);
 void dilfatal(const char *str, ...);
 void dilwarning(const char *str);
@@ -160,7 +160,7 @@ struct sSyms
     struct exptype exp;
     struct
     {
-        ubit32 fst, lst; /* first, last addr in core */
+        uint32_t fst, lst; /* first, last addr in core */
         uint8_t dsl, typ;  /* if expression: leftvalue, type */
         uint8_t boolean;
     } ins;
@@ -170,7 +170,7 @@ struct sSyms
 
 %{
 void add_ubit8(struct exptype *dest, uint8_t d);
-void add_ubit32(struct exptype *dest, ubit32 d);
+void add_ubit32(struct exptype *dest, uint32_t d);
 void add_sbit32(struct exptype *dest, int32_t d);
 void add_ubit16(struct exptype *dest, uint16_t d);
 void add_string(struct exptype *dest, char *d);
@@ -186,8 +186,8 @@ void make_code(struct exptype *dest);
 %token UNKNOWN
 %token '(' ')' '{' '}' '[' ']' ',' ';' ':'
 %token <str> STRING
-%token <dilsym> SYMBOL 
-%token <num> PNUM FUNCTION 
+%token <dilsym> SYMBOL
+%token <num> PNUM FUNCTION
 
 %type <dilstr_list> stringlist strings
 %type <exp> dilexp dilsexp dilterm dilfactor variable dilfun idx field funcall
@@ -196,7 +196,7 @@ void make_code(struct exptype *dest);
 %type <ins> label labelskip labellist coreexp corevar corefuncall
 %type <dilint_list> intlist ints addints
 %type <ins> dilass dilassrgt corefunc
-%type <syms> decl 
+%type <syms> decl
 
 /* DIL code */
 %token DILSC_VAR DILSC_BEG DILSC_COD DILSC_END DILSC_EXT DILSC_REC DILSC_AWA
@@ -213,7 +213,7 @@ void make_code(struct exptype *dest);
 %token DILSE_AND DILSE_OR DILSE_NOT DILSE_ISPLAYER
 %token DILSE_WPNTXT DILSE_SKITXT DILSE_SENDPRE DILSE_GOPP
 %token DILSE_RHEAD DILSE_NHEAD DILSE_OHEAD DILSE_PHEAD
-%token DILSE_GFOL DILSE_SACT  DILSE_GINT DILSE_SHELL 
+%token DILSE_GFOL DILSE_SACT  DILSE_GINT DILSE_SHELL
 
 /* DIL built-in variables */
 %token DILTO_EQ DILTO_NEQ DILTO_PEQ DILTO_SEQ DILTO_LEQ DILTO_GEQ
@@ -232,7 +232,7 @@ void make_code(struct exptype *dest);
 
 /* DIL procedures */
 %token DILSI_LNK  DILSI_EXP DILSI_SET DILSI_UST DILSI_ADE DILSI_SUE
-%token DILSI_DST  DILSI_ADL DILSI_SUL DILSI_SND DILSI_SNT DILSI_RSLV 
+%token DILSI_DST  DILSI_ADL DILSI_SUL DILSI_SND DILSI_SNT DILSI_RSLV
 %token DILSI_RSVLV DILSI_RSRCE
 %token DILSI_SEC  DILSI_USE DILSI_ADA DILSI_SETF DILSI_CHAS
 %token DILSI_SUA  DILSI_EQP DILSI_UEQ DILSI_SETE
@@ -246,7 +246,7 @@ void make_code(struct exptype *dest);
 %token DILSI_ELS DILSI_GOT DILSI_PRI DILSI_NPR DILSI_BLK DILSI_CNT
 %token DILSI_PUP DILSI_FOE DILSI_BRK DILSI_RTS
 %token DILSI_ON  DILSI_AMOD DILSI_SETPWD DILSI_DELPC DILSI_REBOOT
-//DILSI_WLK 
+//DILSI_WLK
 /* DIL structure fields */
 %token DILSF_ZOI DILSF_NMI DILSF_TYP DILSF_NXT DILSF_NMS DILSF_NAM DILSF_IDX
 %token DILSF_TIT DILSF_EXT DILSF_OUT DILSF_INS DILSF_GNX DILSF_SPD
@@ -5464,7 +5464,7 @@ ihold   : /* instruction core placeholder */
 ahold   : /* address core placeholder */
     {
         $$ = wcore - tmpl.core;
-        wcore += 4; /* ubit32 */
+        wcore += 4; /* uint32_t */
     }
     ;
 
@@ -6391,7 +6391,7 @@ dilproc : corefuncall
             bwrite_ubit8(&wtmp, DILI_EXEC);
         }
     }
-    // This is not working, not yet sure why.  
+    // This is not working, not yet sure why.
     | DILSI_WAITNOOP ihold ahold
     {
         $$.fst = $2;
@@ -7022,7 +7022,7 @@ ftypecast:  '(' type ')'
     }
     ;
 
-corefuncall   : funcall 
+corefuncall   : funcall
     /*
     This rule makes code for the expression in the core
     instead of the stack element.
@@ -7119,7 +7119,7 @@ dilass   : corevar DILTO_ASS dilassrgt ihold
     }
     ;
 
-corefunc : DILSE_INTR '(' coreexp ',' ihold ahold ahold coreexp ',' labelskip ')' 
+corefunc : DILSE_INTR '(' coreexp ',' ihold ahold ahold coreexp ',' labelskip ')'
     {
         checkbool("argument 1 in 'interrupt'", $3.boolean);
         if ($3.typ != DilVarType_e::DILV_INT)
@@ -7298,7 +7298,7 @@ void add_var(char *name, DilVarType_e type, const char *globalVarName)
     }
 }
 
-int add_label(char *name, ubit32 adr)
+int add_label(char *name, uint32_t adr)
 {
     str_lower(name);
 
@@ -7307,11 +7307,11 @@ int add_label(char *name, ubit32 adr)
 
     if (label_no == 0)
     {
-        CREATE(label_adr, ubit32, 1);
+        CREATE(label_adr, uint32_t, 1);
     }
     else
     {
-        RECREATE(label_adr, ubit32, label_no + 1);
+        RECREATE(label_adr, uint32_t, label_no + 1);
     }
     label_adr[label_no] = adr; /* index adress */
 
@@ -7320,7 +7320,7 @@ int add_label(char *name, ubit32 adr)
     return (label_no++);
 }
 
-ubit32 get_label(char *name, ubit32 adr)
+uint32_t get_label(char *name, uint32_t adr)
 {
     /* get number of referenced label */
     int i;
@@ -7339,13 +7339,13 @@ ubit32 get_label(char *name, ubit32 adr)
         /* register use of label before definition */
         if (label_use_no == 0)
         {
-            CREATE(label_use_adr, ubit32, 1);
-            CREATE(label_use_idx, ubit32, 1);
+            CREATE(label_use_adr, uint32_t, 1);
+            CREATE(label_use_idx, uint32_t, 1);
         }
         else
         {
-            RECREATE(label_use_adr, ubit32, label_use_no + 1);
-            RECREATE(label_use_idx, ubit32, label_use_no + 1);
+            RECREATE(label_use_adr, uint32_t, label_use_no + 1);
+            RECREATE(label_use_idx, uint32_t, label_use_no + 1);
         }
         /*fprintf(stderr,"GET LABEL REGISTERED LOCATION: %s %d\n", name, adr);*/
         label_use_adr[label_use_no] = adr; /* update here */
@@ -7436,9 +7436,9 @@ int strlstlen(char **strlst)
 /* code manipulation */
 
 /* increase core size of tmpl.core if need be, and updates wcore */
-void moredilcore(ubit32 size)
+void moredilcore(uint32_t size)
 {
-    ubit32 p1, p2, pos;
+    uint32_t p1, p2, pos;
     p1 = tmpl.coresz;
     p2 = (wcore - tmpl.core) + size;
 
@@ -7463,10 +7463,10 @@ void add_ubit8(struct exptype *dest, uint8_t d)
     bwrite_ubit8(&(dest->codep), d);
 }
 
-void add_ubit32(struct exptype *dest, ubit32 d)
+void add_ubit32(struct exptype *dest, uint32_t d)
 {
     /*   fprintf(stderr, "UBIT32\n");*/
-    if (dest->codep - dest->code + sizeof(ubit32) >= CODESIZE)
+    if (dest->codep - dest->code + sizeof(uint32_t) >= CODESIZE)
     {
         dilfatal("U32: Expression too large");
     }
@@ -7480,7 +7480,7 @@ void add_sbit32(struct exptype *dest, int32_t d)
     {
         dilfatal("S32: Expression too large");
     }
-    bwrite_ubit32(&(dest->codep), (ubit32)d);
+    bwrite_ubit32(&(dest->codep), (uint32_t)d);
 }
 
 void add_ubit16(struct exptype *dest, uint16_t d)
@@ -7554,7 +7554,7 @@ void add_intlist(struct exptype *dest, int *d)
     }
     for (i = 0; i <= d[0]; i++)
     {
-        bwrite_ubit32(&(dest->codep), (ubit32)d[i]);
+        bwrite_ubit32(&(dest->codep), (uint32_t)d[i]);
     }
 }
 
@@ -7679,7 +7679,7 @@ void make_code(struct exptype *dest)
                 dest->codep = dest->code;
                 dest->dsl = DSL_DYN;
                 bwrite_ubit8(&(dest->codep), DILE_INT);
-                bwrite_ubit32(&(dest->codep), (ubit32)dest->num);
+                bwrite_ubit32(&(dest->codep), (uint32_t)dest->num);
             }
             break;
             case DilVarType_e::DILV_NULL: /* null pointer */

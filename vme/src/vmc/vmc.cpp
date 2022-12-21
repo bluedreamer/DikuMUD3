@@ -356,11 +356,11 @@ void check_unique_ident(unit_data *u)
     ident_names = add_name(UNIT_IDENT(u), ident_names);
 }
 
-ubit32 timecrc()
+uint32_t timecrc()
 {
     timespec spec;
     clock_gettime(CLOCK_REALTIME, &spec);
-    return (ubit32)((spec.tv_sec * 1000) + (spec.tv_nsec / 1000000));
+    return (uint32_t)((spec.tv_sec * 1000) + (spec.tv_nsec / 1000000));
 }
 
 /*
@@ -378,7 +378,7 @@ void dump_zone(char *prefix)
     int no_rooms = 0;
     diltemplate *tmpl = nullptr;
     diltemplate *ut = nullptr;
-    ubit32 dummy32 = 0;
+    uint32_t dummy32 = 0;
 
     /* Quinn, I do this to get all the sematic errors and info */
     /* appear when nooutput = TRUE - it didn't before!         */
@@ -476,7 +476,7 @@ void dump_zone(char *prefix)
     }
     if (g_zone.z_zone.creators)
     {
-        // MS2020 for (creators = zone.z_zone.creators; (ubit32)*creators; creators++)
+        // MS2020 for (creators = zone.z_zone.creators; (uint32_t)*creators; creators++)
         for (creators = g_zone.z_zone.creators; *creators; creators++)
         {
             fwrite(*creators, sizeof(char), strlen(*creators) + 1, fl);
@@ -493,7 +493,7 @@ void dump_zone(char *prefix)
         fwrite("", sizeof(char), 1, fl);
     }
 
-    const ubit32 filecrc = (ubit32)timecrc();
+    const uint32_t filecrc = (uint32_t)timecrc();
 
     /* write DIL templates */
     for (tmpl = g_zone.z_tmpl; tmpl; tmpl = tmpl->vmcnext)

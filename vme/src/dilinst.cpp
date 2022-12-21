@@ -485,7 +485,7 @@ void dilfi_fon(dilprg *p)
 {
     dilval *v1 = p->stack.pop();
     unit_data *u = nullptr;
-    ubit32 adr = 0;
+    uint32_t adr = 0;
     int i = 0;
 
     adr = bread_ubit32(&(p->fp->pc));
@@ -1715,7 +1715,7 @@ void dilfi_ass(dilprg *p)
                 case DILV_FAIL:
                     break;
                 case DILV_INT:
-                    *((ubit32 *)v1->ref) = v2->val.num;
+                    *((uint32_t *)v1->ref) = v2->val.num;
                     break;
                 default:
                     /* ERROR incompatible types */
@@ -1898,7 +1898,7 @@ void dilfi_exp(dilprg *p)
 /* Branch on expression */
 void dilfi_if(dilprg *p)
 {
-    ubit32 coreptr = 0;
+    uint32_t coreptr = 0;
     dilval *v1 = p->stack.pop();
 
     coreptr = bread_ubit32(&(p->fp->pc)); /* else branch */
@@ -1939,7 +1939,7 @@ void dilfi_set(dilprg *p)
                 *((uint16_t *)v1->ref) |= v2->val.num;
                 break;
             case DILV_UINT4R:
-                *((ubit32 *)v1->ref) |= v2->val.num;
+                *((uint32_t *)v1->ref) |= v2->val.num;
                 break;
             case DILV_FAIL:
                 break;
@@ -1983,7 +1983,7 @@ void dilfi_uset(dilprg *p)
                 REMOVE_BIT(*((uint16_t *)v1->ref), v2->val.num);
                 break;
             case DILV_UINT4R:
-                REMOVE_BIT(*((ubit32 *)v1->ref), v2->val.num);
+                REMOVE_BIT(*((uint32_t *)v1->ref), v2->val.num);
                 break;
 
             default:
@@ -2054,11 +2054,11 @@ void dilfi_inslst(dilprg *p)
                 {
                     if (dil_getval(v3) == DILV_INT)
                     {
-                        ((cNamelist *)v1->ref)->InsertName(itoa(v3->val.num), (ubit32)v2->val.num);
+                        ((cNamelist *)v1->ref)->InsertName(itoa(v3->val.num), (uint32_t)v2->val.num);
                     }
                     else if (v3->val.ptr)
                     {
-                        ((cNamelist *)v1->ref)->InsertName(((char *)v3->val.ptr), (ubit32)v2->val.num);
+                        ((cNamelist *)v1->ref)->InsertName(((char *)v3->val.ptr), (uint32_t)v2->val.num);
                     }
                 }
                 else if (v1->type == DILV_ILPR)
@@ -2434,7 +2434,7 @@ void dilfi_exec(dilprg *p)
 /* Execute command */
 void dilfi_waitnoop(dilprg *p)
 {
-    ubit32 coreptr = 0;
+    uint32_t coreptr = 0;
     uint8_t *oldpc = nullptr;
     coreptr = bread_ubit32(&(p->fp->pc));
     oldpc = &(p->fp->tmpl->core[coreptr]);
@@ -2457,7 +2457,7 @@ void dilfi_wit(dilprg *p)
 {
     dilval *v2 = p->stack.pop();
     dilval *v1 = p->stack.pop();
-    ubit32 coreptr = 0;
+    uint32_t coreptr = 0;
     uint8_t *oldpc = nullptr;
     coreptr = bread_ubit32(&(p->fp->pc));
     oldpc = &(p->fp->tmpl->core[coreptr]);
@@ -2576,7 +2576,7 @@ void dilfi_act(dilprg *p)
 /* Goto new command */
 void dilfi_goto(dilprg *p)
 {
-    ubit32 adr = 0;
+    uint32_t adr = 0;
 
     adr = bread_ubit32(&(p->fp->pc));
     p->fp->pc = &(p->fp->tmpl->core[adr]);
@@ -2587,14 +2587,14 @@ void dilfi_goto(dilprg *p)
 void dilfi_on(dilprg *p)
 {
     dilval *v1 = p->stack.pop();
-    ubit32 adr = 0;
+    uint32_t adr = 0;
     uint16_t maxlab = 0;
     uint8_t *brkptr = nullptr;
 
     p->waitcmd--;
 
     maxlab = bread_ubit16(&(p->fp->pc));
-    brkptr = p->fp->pc + sizeof(ubit32) * (maxlab);
+    brkptr = p->fp->pc + sizeof(uint32_t) * (maxlab);
 
     if (dil_getval(v1) != DILV_INT)
     {
@@ -2608,7 +2608,7 @@ void dilfi_on(dilprg *p)
         }
         else
         {
-            p->fp->pc += sizeof(ubit32) * (v1->val.num);
+            p->fp->pc += sizeof(uint32_t) * (v1->val.num);
             adr = bread_ubit32(&(p->fp->pc));
             if (adr == SKIP)
             {
@@ -3045,7 +3045,7 @@ void dilfi_log(dilprg *p)
 void dilfi_sec(dilprg *p)
 {
     dilval *v1 = p->stack.pop();
-    ubit32 adr = 0; /* address */
+    uint32_t adr = 0; /* address */
 
     adr = bread_ubit32(&(p->fp->pc));
 

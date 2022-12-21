@@ -550,7 +550,7 @@ char dil_getbool(dilval *v, dilprg *prg)
             return (*((uint16_t *)v->ref) != 0); /* return Lvalue */
 
         case DilVarType_e::DILV_UINT4R:
-            return (*((ubit32 *)v->ref) != 0); /* return Lvalue */
+            return (*((uint32_t *)v->ref) != 0); /* return Lvalue */
 
         case DilVarType_e::DILV_FAIL:
         case DilVarType_e::DILV_NULL:
@@ -627,7 +627,7 @@ int dil_getval(dilval *v)
             v->val.num = *((uint16_t *)v->ref);
             break;
         case DilVarType_e::DILV_UINT4R:
-            v->val.num = *((ubit32 *)v->ref);
+            v->val.num = *((uint32_t *)v->ref);
             break;
         case DilVarType_e::DILV_NULL:
         case DilVarType_e::DILV_FAIL:
@@ -1337,7 +1337,7 @@ static int check_interrupt(dilprg *prg)
     {
         if (IS_SET(prg->fp->intr[i].flags, prg->sarg->mflags | SFB_ACTIVATE))
         {
-            ubit32 adr = 0;
+            uint32_t adr = 0;
             int oldwaitcmd = prg->waitcmd;
             uint8_t *oldpc = prg->fp->pc;
 

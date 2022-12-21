@@ -170,7 +170,7 @@ void reset_char(unit_data *ch)
     ch->setMaximumHitpoints(hit_limit(ch));
 }
 
-void update_lasthost(unit_data *pc, ubit32 s_addr)
+void update_lasthost(unit_data *pc, uint32_t s_addr)
 {
     if ((int32_t)s_addr == -1)
     {

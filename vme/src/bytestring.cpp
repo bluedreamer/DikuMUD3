@@ -19,7 +19,7 @@
 /* =================================================================== */
 /* =================================================================== */
 
-CByteBuffer::CByteBuffer(ubit32 nSize)
+CByteBuffer::CByteBuffer(uint32_t nSize)
 {
     assert(nSize > 0);
     m_nLength = 0;
@@ -36,17 +36,17 @@ CByteBuffer::~CByteBuffer()
     FREE(m_pData);
 }
 
-void CByteBuffer::SetReadPosition(ubit32 nReadPosition)
+void CByteBuffer::SetReadPosition(uint32_t nReadPosition)
 {
     m_nReadPos = nReadPosition;
 }
 
-void CByteBuffer::SetLength(ubit32 nLen)
+void CByteBuffer::SetLength(uint32_t nLen)
 {
     m_nLength = nLen;
 }
 
-void CByteBuffer::SetSize(ubit32 nSize)
+void CByteBuffer::SetSize(uint32_t nSize)
 {
     assert(nSize > 0);
     RECREATE(m_pData, uint8_t, nSize);
@@ -54,7 +54,7 @@ void CByteBuffer::SetSize(ubit32 nSize)
     m_nAllocated = nSize;
 }
 
-void CByteBuffer::SetData(uint8_t *pData, ubit32 nSize)
+void CByteBuffer::SetData(uint8_t *pData, uint32_t nSize)
 {
     assert(nSize > 0);
 
@@ -69,7 +69,7 @@ void CByteBuffer::SetData(uint8_t *pData, ubit32 nSize)
     m_nLength = nSize;
 }
 
-void CByteBuffer::IncreaseSize(ubit32 nAdd)
+void CByteBuffer::IncreaseSize(uint32_t nAdd)
 {
     if (nAdd > m_nAllocated)
     {
@@ -84,7 +84,7 @@ void CByteBuffer::IncreaseSize(ubit32 nAdd)
 }
 
 // Returns number of bytes read
-int CByteBuffer::FileRead(FILE *f, ubit32 nLength)
+int CByteBuffer::FileRead(FILE *f, uint32_t nLength)
 {
     Clear();
 
@@ -116,7 +116,7 @@ int CByteBuffer::FileWrite(FILE *f)
 }
 
 // Returns number of bytes read or -1 on unable to position
-int CByteBuffer::FileRead(FILE *f, long nOffset, ubit32 nLength)
+int CByteBuffer::FileRead(FILE *f, long nOffset, uint32_t nLength)
 {
     Clear();
 
@@ -141,7 +141,7 @@ int CByteBuffer::FileRead(FILE *f, long nOffset, ubit32 nLength)
 }
 
 /// @returns 0 if OK, return 1 if not OK
-int CByteBuffer::Read(uint8_t *pBuf, ubit32 nLen)
+int CByteBuffer::Read(uint8_t *pBuf, uint32_t nLen)
 {
     if (m_nReadPos + nLen > m_nLength)
     {
@@ -214,11 +214,11 @@ int16_t CByteBuffer::ReadS16(int *nError)
     return n;
 }
 
-ubit32 CByteBuffer::ReadU32(int *nError)
+uint32_t CByteBuffer::ReadU32(int *nError)
 {
-    ubit32 n = 0;
+    uint32_t n = 0;
 
-    if (Read((uint8_t *)&n, sizeof(ubit32)))
+    if (Read((uint8_t *)&n, sizeof(uint32_t)))
     {
         if (nError)
         {
@@ -264,9 +264,9 @@ int CByteBuffer::Read16(int16_t *pNum)
     return Read((uint8_t *)pNum, sizeof(int16_t));
 }
 
-int CByteBuffer::Read32(ubit32 *pNum)
+int CByteBuffer::Read32(uint32_t *pNum)
 {
-    return Read((uint8_t *)pNum, sizeof(ubit32));
+    return Read((uint8_t *)pNum, sizeof(uint32_t));
 }
 
 int CByteBuffer::Read32(int32_t *pNum)
@@ -279,9 +279,9 @@ int CByteBuffer::ReadFloat(float *pFloat)
     return Read((uint8_t *)pFloat, sizeof(float));
 }
 
-int CByteBuffer::ReadStringCopy(char *pStr, ubit32 nMaxSize)
+int CByteBuffer::ReadStringCopy(char *pStr, uint32_t nMaxSize)
 {
-    ubit32 nLen = 1 + strlen((char *)m_pData + m_nReadPos);
+    uint32_t nLen = 1 + strlen((char *)m_pData + m_nReadPos);
 
     if (nLen > nMaxSize)
     {
@@ -387,7 +387,7 @@ int CByteBuffer::ReadIntList(int **ilist)
     return 0;
 }
 
-int CByteBuffer::ReadBlock(uint8_t **ppData, ubit32 *pnLen)
+int CByteBuffer::ReadBlock(uint8_t **ppData, uint32_t *pnLen)
 {
     int corrupt = 0;
     *ppData = nullptr;
@@ -432,7 +432,7 @@ int CByteBuffer::Skip16()
 
 int CByteBuffer::Skip32()
 {
-    return Skip(sizeof(ubit32));
+    return Skip(sizeof(uint32_t));
 }
 
 int CByteBuffer::SkipFloat()
@@ -496,7 +496,7 @@ int CByteBuffer::SkipVals()
     return 0;
 }
 
-void CByteBuffer::Append(const uint8_t *pData, ubit32 nLen)
+void CByteBuffer::Append(const uint8_t *pData, uint32_t nLen)
 {
     if (nLen + m_nLength > m_nAllocated)
     {
@@ -523,7 +523,7 @@ void CByteBuffer::Append16(uint16_t i)
     Append((uint8_t *)&i, sizeof(i));
 }
 
-void CByteBuffer::Append32(ubit32 i)
+void CByteBuffer::Append32(uint32_t i)
 {
     Append((uint8_t *)&i, sizeof(i));
 }
@@ -533,7 +533,7 @@ void CByteBuffer::AppendFloat(float f)
     Append((uint8_t *)&f, sizeof(f));
 }
 
-void CByteBuffer::AppendBlock(const uint8_t *pData, ubit32 nLen)
+void CByteBuffer::AppendBlock(const uint8_t *pData, uint32_t nLen)
 {
     Append32(nLen);
     Append(pData, nLen);
@@ -616,12 +616,12 @@ uint16_t bread_ubit16(uint8_t **b)
     return i;
 }
 
-ubit32 bread_ubit32(uint8_t **b)
+uint32_t bread_ubit32(uint8_t **b)
 {
-    ubit32 i = 0;
+    uint32_t i = 0;
 
-    memcpy((uint8_t *)&i, *b, sizeof(ubit32));
-    *b += sizeof(ubit32);
+    memcpy((uint8_t *)&i, *b, sizeof(uint32_t));
+    *b += sizeof(uint32_t);
 
     return i;
 }
@@ -636,9 +636,9 @@ float bread_float(uint8_t **b)
     return f;
 }
 
-uint8_t *bread_data(uint8_t **b, ubit32 *plen)
+uint8_t *bread_data(uint8_t **b, uint32_t *plen)
 {
-    ubit32 len = 0;
+    uint32_t len = 0;
     uint8_t *data = nullptr;
 
     data = nullptr;
@@ -766,10 +766,10 @@ void bwrite_ubit16(uint8_t **b, uint16_t i)
     *b += sizeof(uint16_t);
 }
 
-void bwrite_ubit32(uint8_t **b, ubit32 i)
+void bwrite_ubit32(uint8_t **b, uint32_t i)
 {
-    memcpy(*b, (uint8_t *)&i, sizeof(ubit32));
-    *b += sizeof(ubit32);
+    memcpy(*b, (uint8_t *)&i, sizeof(uint32_t));
+    *b += sizeof(uint32_t);
 }
 
 void bwrite_sbit32(uint8_t **b, int32_t i)
@@ -787,7 +787,7 @@ void bwrite_float(uint8_t **b, float f)
     *b += sizeof(float);
 }
 
-void bwrite_data(uint8_t **b, uint8_t *data, ubit32 len)
+void bwrite_data(uint8_t **b, uint8_t *data, uint32_t len)
 {
     bwrite_ubit32(b, len);
     if (len > 0)

@@ -110,32 +110,32 @@ void char_data::readFrom(CByteBuffer &buf, uint8_t unit_version, unit_data *unit
     return m_points.readFrom(buf, unit_version, unit, error);
 }
 
-ubit32 *char_data::getCharacterFlagsPtr()
+uint32_t *char_data::getCharacterFlagsPtr()
 {
     return m_points.getCharacterFlagsPtr();
 }
 
-ubit32 char_data::getCharacterFlags() const
+uint32_t char_data::getCharacterFlags() const
 {
     return m_points.getCharacterFlags();
 }
 
-void char_data::setAllCharacterFlags(ubit32 value)
+void char_data::setAllCharacterFlags(uint32_t value)
 {
     m_points.setAllCharacterFlags(value);
 }
 
-void char_data::setCharacterFlag(ubit32 value)
+void char_data::setCharacterFlag(uint32_t value)
 {
     m_points.setCharacterFlag(value);
 }
 
-void char_data::removeCharacterFlag(ubit32 value)
+void char_data::removeCharacterFlag(uint32_t value)
 {
     m_points.removeCharacterFlag(value);
 }
 
-void char_data::toggleCharacterFlag(ubit32 value)
+void char_data::toggleCharacterFlag(uint32_t value)
 {
     m_points.toggleCharacterFlag(value);
 }

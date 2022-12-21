@@ -30,17 +30,17 @@ public:
     char *catnames();
     std::string json();
 
-    void Remove(ubit32 idx);
+    void Remove(uint32_t idx);
     void RemoveName(const char *name);
 
-    void Substitute(ubit32 idx, const char *newname);
-    const char *Name(ubit32 idx = 0) const;
-    std::string *InstanceName(ubit32 idx = 0);
+    void Substitute(uint32_t idx, const char *newname);
+    const char *Name(uint32_t idx = 0) const;
+    std::string *InstanceName(uint32_t idx = 0);
 
     void AppendNameTrim(const char *name);
     void AppendName(const char *name);
     void PrependName(const char *name);
-    void InsertName(const char *name, ubit32 loc);
+    void InsertName(const char *name, uint32_t loc);
 
     cNamelist *Duplicate();
 
@@ -55,9 +55,9 @@ public:
     const char *StrStrRaw(const char *name);
     const char *StrStr(const char *name);
 
-    inline ubit32 Length() { return length; }
+    inline uint32_t Length() { return length; }
 
 private:
     std::string **namelist;
-    ubit32 length;
+    uint32_t length;
 };

@@ -28,7 +28,7 @@ struct spec_arg
 
     int *pInt; ///< Potential int to modify
     const char *arg;
-    ubit32 mflags; ///< Would like to make constant, but then can't define..
+    uint32_t mflags; ///< Would like to make constant, but then can't define..
 };
 
 struct command_info
@@ -48,7 +48,7 @@ struct command_info
     uint8_t log_level; ///<  For logging certain immortal commands
 
     diltemplate *tmpl; ///< Perhaps a DIL template...
-    ubit32 type;
+    uint32_t type;
     int inttype;
     int dir;
     command_info *next;

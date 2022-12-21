@@ -69,7 +69,7 @@ public:
     bool isEvil() const { return m_alignment <= -350; }
     bool isNeutral() const { return !isGood() && !isEvil(); }
     bool isOutside() const { return !m_outside->isUnitFlagSet(UNIT_FL_INDOORS); }
-    bool isWornOn(ubit32 part) const { return IS_SET(m_manipulate, part); }
+    bool isWornOn(uint32_t part) const { return IS_SET(m_manipulate, part); }
     bool isDark() const { return getTotalLightValue() < 0; }
     bool isLight() const { return getTotalLightValue() >= 0; }
     ///@}
@@ -186,10 +186,10 @@ public:
      * @name Flag related code
      * @{
      */
-    ubit32 getManipulate() const;
-    ubit32 *getManipulatePtr();
-    void setAllManipulateFlags(ubit32 value);
-    void setManipulateFlag(ubit32 value);
+    uint32_t getManipulate() const;
+    uint32_t *getManipulatePtr();
+    void setAllManipulateFlags(uint32_t value);
+    void setManipulateFlag(uint32_t value);
 
     uint16_t getUnitFlags() const;
     uint16_t *getUnitFlagsPtr();
@@ -378,7 +378,7 @@ private:
     unit_data *m_next{nullptr};              ///< For next unit in 'inside' linked list
     unit_data *m_gnext{nullptr};             ///< global l-list of objects, chars & rooms
     unit_data *m_gprevious{nullptr};         ///< global l-list of objects, chars & rooms
-    ubit32 m_manipulate{0};                  ///< WEAR_XXX macros
+    uint32_t m_manipulate{0};                ///< WEAR_XXX macros
     uint16_t m_flags{0};                     ///< Invisible, can_bury, burried...
     int32_t m_base_weight{0};                ///< The "empty" weight of a room/char/obj (lbs)
     int32_t m_weight{0};                     ///< Current weight of a room/obj/char

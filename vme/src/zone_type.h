@@ -66,8 +66,8 @@ public:
     char **getHelpPtrPtr();
     void setHelp(std::string value);
 
-    ubit32 getCrc() const;
-    void setCrc(ubit32 crc);
+    uint32_t getCrc() const;
+    void setCrc(uint32_t crc);
 
     /**
      * Extracted from extra_stat_zone()
@@ -172,7 +172,7 @@ public:
      * @param instructionSum Running total of all instructions
      * @return std::string Formatted message
      */
-    [[nodiscard]] std::string getStatGlobalDIL(ubit32 nCount, ubit64 &instructionSum) const;
+    [[nodiscard]] std::string getStatGlobalDIL(uint32_t nCount, ubit64 &instructionSum) const;
 
     /**
      * Extracted from resolve_templates()
@@ -216,7 +216,7 @@ private:
     uint8_t m_access{255};                    ///< Access Level 0 = highest (root)
     uint8_t m_loadlevel{0};                   ///< Level required to load items
     uint8_t m_payonly{0};                     ///< TRUE when only 4 paying players
-    ubit32 m_crc{0};                          ///< The CRC for the zone (a timestamp, used to detect file changes mid game)
+    uint32_t m_crc{0};                        ///< The CRC for the zone (a timestamp, used to detect file changes mid game)
     std::optional<std::string> m_dilfilepath; ///<
     Weather m_weather;                        ///<
 };

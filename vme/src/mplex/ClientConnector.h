@@ -31,7 +31,7 @@ public:
 
     void Unhook();
     int IsHooked(); ///< At this level we also need to check for websockets
-    void Write(uint8_t *pData, ubit32 nLen, int bCopy = TRUE);
+    void Write(uint8_t *pData, uint32_t nLen, int bCopy = TRUE);
 
     void Close(int bNotifyMud);
     char AddInputChar(uint8_t c);

@@ -40,32 +40,32 @@ void obj_data::setValueAtIndexTo(size_t index, int32_t value)
     m_value.at(index) = value;
 }
 
-ubit32 obj_data::getPriceInGP() const
+uint32_t obj_data::getPriceInGP() const
 {
     return m_cost;
 }
 
-ubit32 *obj_data::getPriceInGPPtr()
+uint32_t *obj_data::getPriceInGPPtr()
 {
     return &m_cost;
 }
 
-void obj_data::setPriceInGP(ubit32 value)
+void obj_data::setPriceInGP(uint32_t value)
 {
     m_cost = value;
 }
 
-ubit32 obj_data::getPricePerDay() const
+uint32_t obj_data::getPricePerDay() const
 {
     return m_cost_per_day;
 }
 
-ubit32 *obj_data::getPricePerDayPtr()
+uint32_t *obj_data::getPricePerDayPtr()
 {
     return &m_cost_per_day;
 }
 
-void obj_data::setPricePerDay(ubit32 value)
+void obj_data::setPricePerDay(uint32_t value)
 {
     m_cost_per_day = value;
 }
@@ -90,7 +90,7 @@ void obj_data::removeObjectFlag(uint8_t value)
     m_flags &= ~value;
 }
 
-void obj_data::setAllObjectFlags(ubit32 value)
+void obj_data::setAllObjectFlags(uint32_t value)
 {
     m_flags = static_cast<uint8_t>(value);
 }

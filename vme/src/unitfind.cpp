@@ -138,7 +138,7 @@ ubit1 same_surroundings(const unit_data *u1, const unit_data *u2)
 static inline int pcpay(unit_data *u)
 {
     return ((PC_ACCOUNT(u).getAccountBalance() > 0.0) || (PC_ACCOUNT(u).getDiscountPercentage() == 100) ||
-            (PC_ACCOUNT(u).getFlatRateExpirationDate() > (ubit32)time(nullptr)) ||
+            (PC_ACCOUNT(u).getFlatRateExpirationDate() > (uint32_t)time(nullptr)) ||
             (CHAR_DESCRIPTOR(u) ? g_cServerConfig.FromLAN(CHAR_DESCRIPTOR(u)->getHostname()) : 0));
 }
 
@@ -319,13 +319,13 @@ unit_data *find_unit_general_abbrev(const unit_data *viewer,
                                     const unit_data *ch,
                                     char **arg,
                                     const unit_data *list,
-                                    const ubit32 bitvector,
+                                    const uint32_t bitvector,
                                     uint8_t type,
                                     int original_number)
 {
     unit_data *best = nullptr;
     int best_len = 0;
-    ubit32 bitvectorm = 0;
+    uint32_t bitvectorm = 0;
 
     int number = 0;
     const char *ct = nullptr;
@@ -571,11 +571,11 @@ unit_data *find_unit_general_abbrev(const unit_data *viewer,
 // function only returns units that are visible to the viewer, or not.
 //
 unit_data *
-find_unit_general(const unit_data *viewer, const unit_data *ch, char **arg, const unit_data *list, const ubit32 bitvector, uint8_t type)
+find_unit_general(const unit_data *viewer, const unit_data *ch, char **arg, const unit_data *list, const uint32_t bitvector, uint8_t type)
 {
     unit_data *best = nullptr;
     int best_len = 0;
-    ubit32 bitvectorm = 0;
+    uint32_t bitvectorm = 0;
 
     int i = 0;
     int number = 0;
@@ -938,12 +938,12 @@ find_unit_general(const unit_data *viewer, const unit_data *ch, char **arg, cons
 
   */
 
-unit_data *find_unit(const unit_data *ch, char **arg, const unit_data *list, const ubit32 bitvector)
+unit_data *find_unit(const unit_data *ch, char **arg, const unit_data *list, const uint32_t bitvector)
 {
     return find_unit_general(ch, ch, arg, list, bitvector);
 }
 
-unit_data *find_unit_dil(const unit_data *ch, char **arg, const unit_data *list, const ubit32 bitvector, uint8_t type)
+unit_data *find_unit_dil(const unit_data *ch, char **arg, const unit_data *list, const uint32_t bitvector, uint8_t type)
 {
     return find_unit_general(ch, ch, arg, list, bitvector, type);
 }

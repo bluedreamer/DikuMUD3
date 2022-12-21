@@ -211,7 +211,7 @@ int config_file_to_string(const char *name, char *buf, int max_len)
                 continue;
             }
 
-            if (strlen(buf) + strlen(tmp) + 2 > (ubit32)max_len)
+            if (strlen(buf) + strlen(tmp) + 2 > (uint32_t)max_len)
             {
                 DEBUG("fl->strng: string too big (db.c, file_to_string)\n");
                 strcpy(buf + strlen(buf) - 20, "TRUNCATED!");
@@ -254,7 +254,7 @@ int file_to_string(const char *name, char *buf, int max_len)
     {
         if (fgets(tmp, sizeof(tmp) - 1, fl))
         {
-            if (strlen(buf) + strlen(tmp) + 2 > (ubit32)max_len)
+            if (strlen(buf) + strlen(tmp) + 2 > (uint32_t)max_len)
             {
                 slog(LOG_ALL, 0, "fl->strng: string too big (db.c, file_to_string)");
                 strcpy(buf + strlen(buf) - 20, "TRUNCATED!");
