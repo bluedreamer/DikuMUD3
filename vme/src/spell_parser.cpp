@@ -430,7 +430,7 @@ void do_cast(unit_data *ch, char *argument, const command_info *cmd)
 
     if (IS_MORTAL(ch))
     {
-        if (CHAR_MANA(ch) < (sbit16)(g_spell_info[spl].usesmana))
+        if (CHAR_MANA(ch) < (int16_t)(g_spell_info[spl].usesmana))
         {
             send_to_char("You can't summon enough energy to "
                          "cast the spell.<br/>",

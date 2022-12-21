@@ -78,7 +78,7 @@ void zone_loaded_a_unit(unit_data *u)
 bool zone_limit(unit_data *u, file_index_type *fi, zone_reset_cmd *cmd)
 {
     unit_data *tmp = nullptr;
-    sbit16 i = 0;
+    int16_t i = 0;
 
     if (fi->getType() == UNIT_ST_NPC)
     {

@@ -74,7 +74,7 @@ struct teach_packet
 
 struct pc_train_values
 {
-    sbit16 *values;
+    int16_t *values;
     uint8_t *lvl;
     sbit32 *practice_points;
 };

@@ -21,8 +21,8 @@ unit_data *new_unit_data(uint8_t type, file_index_type *fi);
 class unit_data : public basedestruct
 {
 public:
-    static constexpr sbit16 MinAlignment = -1000; ///< Minimum possible value for alignment
-    static constexpr sbit16 MaxAlignment = 1000;  ///< Maximum possible value for alignment
+    static constexpr int16_t MinAlignment = -1000; ///< Minimum possible value for alignment
+    static constexpr int16_t MaxAlignment = 1000;  ///< Maximum possible value for alignment
     static constexpr const char *NO_NAME = "NO-NAME";
     static constexpr const char *NO_ZONE = "NO-ZONE";
 
@@ -218,9 +218,9 @@ public:
      * @name Capacity related code
      * @{
      */
-    sbit16 getCapacity() const;
-    sbit16 *getCapacityPtr();
-    void setCapacity(sbit16 value);
+    int16_t getCapacity() const;
+    int16_t *getCapacityPtr();
+    void setCapacity(int16_t value);
     /// @}
 
     /**
@@ -252,17 +252,17 @@ public:
      * @name Light related code
      * @{
      */
-    sbit16 getNumberOfActiveLightSources() const;
-    void changeNumberOfActiveLightSourcesBy(sbit16 value);
-    void setNumberOfActiveLightSources(sbit16 value);
+    int16_t getNumberOfActiveLightSources() const;
+    void changeNumberOfActiveLightSourcesBy(int16_t value);
+    void setNumberOfActiveLightSources(int16_t value);
 
-    sbit16 getLightOutput() const;
-    void setLightOutput(sbit16 value);
-    void changeLightOutputBy(sbit16 value);
+    int16_t getLightOutput() const;
+    void setLightOutput(int16_t value);
+    void changeLightOutputBy(int16_t value);
 
-    sbit16 getTransparentLightOutput() const;
-    void setTransparentLightOutput(sbit16 value);
-    void changeTransparentLightOutputBy(sbit16 value);
+    int16_t getTransparentLightOutput() const;
+    void setTransparentLightOutput(int16_t value);
+    void changeTransparentLightOutputBy(int16_t value);
     ///@}
 
     /**
@@ -303,8 +303,8 @@ public:
      * @name Alignment related code
      * @{
      */
-    sbit16 getAlignment() const;
-    sbit16 *getAlignmentPtr();
+    int16_t getAlignment() const;
+    int16_t *getAlignmentPtr();
 
     /**
      * Modify alignment by value - negative numbers are subtracted, positive added.
@@ -382,19 +382,19 @@ private:
     ubit16 m_flags{0};                       ///< Invisible, can_bury, burried...
     sbit32 m_base_weight{0};                 ///< The "empty" weight of a room/char/obj (lbs)
     sbit32 m_weight{0};                      ///< Current weight of a room/obj/char
-    sbit16 m_capacity{0};                    ///< Capacity of obj/char/room, -1 => any
+    int16_t m_capacity{0};                   ///< Capacity of obj/char/room, -1 => any
     ubit16 m_size{0};                        ///< (cm) MOBs height, weapons size, ropes length
     uint8_t m_status{0};                     ///< IS_ROOM, IS_OBJ, IS_PC, IS_NPC
     uint8_t m_open_flags{0};                 ///< In general OPEN will mean can "enter"?
     uint8_t m_open_diff{0};                  ///< Open difficulty
-    sbit16 m_light{0};                       ///< Number of active light sources in unit
-    sbit16 m_bright{0};                      ///< How much the unit shines
-    sbit16 m_illum{0};                       ///< how much bright is by transparency
+    int16_t m_light{0};                      ///< Number of active light sources in unit
+    int16_t m_bright{0};                     ///< How much the unit shines
+    int16_t m_illum{0};                      ///< how much bright is by transparency
     uint8_t m_chars{0};                      ///< How many chars is inside the unit
     uint8_t m_minv{0};                       ///< Level of wizard invisible
     sbit32 m_max_hp{0};                      ///< The maximum number of hitpoints
     sbit32 m_hp{0};                          ///< The actual amount of hitpoints left
-    sbit16 m_alignment{0};                   ///< +-1000 for alignments
+    int16_t m_alignment{0};                  ///< +-1000 for alignments
     std::string m_title;                     ///< Room title, Char title, Obj "the barrel", NPC "the Beastly Fido"
     std::string m_out_descr;                 ///< The outside description of a unit
     std::string m_in_descr;                  ///< The inside description of a unit

@@ -5,12 +5,12 @@ int unit_affected_type::destruct_classindex()
     return DR_AFFECT;
 }
 
-sbit16 unit_affected_type::getID() const
+int16_t unit_affected_type::getID() const
 {
     return id;
 }
 
-void unit_affected_type::setID(sbit16 value)
+void unit_affected_type::setID(int16_t value)
 {
     id = value;
 }
@@ -45,12 +45,12 @@ void unit_affected_type::setBeat(ubit16 value)
     beat = value;
 }
 
-sbit16 unit_affected_type::getDuration() const
+int16_t unit_affected_type::getDuration() const
 {
     return duration;
 }
 
-void unit_affected_type::setDuration(sbit16 value)
+void unit_affected_type::setDuration(int16_t value)
 {
     duration = value;
 }
@@ -82,42 +82,42 @@ int unit_affected_type::readFromIntoDataAtIndex(CByteBuffer &buf, size_t index)
     return corrupt;
 }
 
-sbit16 unit_affected_type::getFirstFI() const
+int16_t unit_affected_type::getFirstFI() const
 {
     return firstf_i;
 }
 
-void unit_affected_type::setFirstFI(sbit16 value)
+void unit_affected_type::setFirstFI(int16_t value)
 {
     firstf_i = value;
 }
 
-sbit16 unit_affected_type::getTickFI() const
+int16_t unit_affected_type::getTickFI() const
 {
     return tickf_i;
 }
 
-void unit_affected_type::setTickFI(sbit16 value)
+void unit_affected_type::setTickFI(int16_t value)
 {
     tickf_i = value;
 }
 
-sbit16 unit_affected_type::getLastFI() const
+int16_t unit_affected_type::getLastFI() const
 {
     return lastf_i;
 }
 
-void unit_affected_type::setLastFI(sbit16 value)
+void unit_affected_type::setLastFI(int16_t value)
 {
     lastf_i = value;
 }
 
-sbit16 unit_affected_type::getApplyFI() const
+int16_t unit_affected_type::getApplyFI() const
 {
     return applyf_i;
 }
 
-void unit_affected_type::setApplyFI(sbit16 value)
+void unit_affected_type::setApplyFI(int16_t value)
 {
     applyf_i = value;
 }

@@ -178,7 +178,7 @@ struct diffhead
 /* Old Pre-object header */
 struct objheaderold
 {
-    sbit16 length; /* length of data */
+    int16_t length; /* length of data */
     char zone[FI_MAX_ZONENAME + 1];
     char unit[FI_MAX_UNITNAME + 1];
     uint8_t level;      /* level of 'containment' (depth) */

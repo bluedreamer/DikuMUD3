@@ -10,16 +10,16 @@ class unit_data;
 class unit_affected_type : public basedestruct
 {
 public:
-    sbit16 getID() const;
-    void setID(sbit16 value);
+    int16_t getID() const;
+    void setID(int16_t value);
 
     void bread(CByteBuffer *pBuf, int *nError);
 
     ubit16 getBeat() const;
     void setBeat(ubit16 value);
 
-    sbit16 getDuration() const;
-    void setDuration(sbit16 value);
+    int16_t getDuration() const;
+    void setDuration(int16_t value);
     void decrementDuration();
 
     int getDataAtIndex(size_t index) const;
@@ -27,17 +27,17 @@ public:
     void incrementDataAtIndex(size_t index);
     int readFromIntoDataAtIndex(CByteBuffer &buf, size_t index);
 
-    sbit16 getFirstFI() const;
-    void setFirstFI(sbit16 value);
+    int16_t getFirstFI() const;
+    void setFirstFI(int16_t value);
 
-    sbit16 getTickFI() const;
-    void setTickFI(sbit16 value);
+    int16_t getTickFI() const;
+    void setTickFI(int16_t value);
 
-    sbit16 getLastFI() const;
-    void setLastFI(sbit16 value);
+    int16_t getLastFI() const;
+    void setLastFI(int16_t value);
 
-    sbit16 getApplyFI() const;
-    void setApplyFI(sbit16 value);
+    int16_t getApplyFI() const;
+    void setApplyFI(int16_t value);
 
     const eventq_elem *cgetEventQueueElement() const;
     eventq_elem *getEventQueueElement();
@@ -59,14 +59,14 @@ public:
     int destruct_classindex();
 
 private:
-    sbit16 id{0};                           ///<
+    int16_t id{0};                          ///<
     ubit16 beat{0};                         ///< Beat in 1/4 of secs, 0 = None
-    sbit16 duration{0};                     ///< How many beats until end
+    int16_t duration{0};                    ///< How many beats until end
     sbit32 data[3]{0};                      ///<
-    sbit16 firstf_i{0};                     ///<
-    sbit16 tickf_i{0};                      ///<
-    sbit16 lastf_i{0};                      ///<
-    sbit16 applyf_i{0};                     ///<
+    int16_t firstf_i{0};                    ///<
+    int16_t tickf_i{0};                     ///<
+    int16_t lastf_i{0};                     ///<
+    int16_t applyf_i{0};                    ///<
     eventq_elem *event{nullptr};            ///< pointer to eventq for quick removing
     unit_data *owner{nullptr};              ///<
     unit_affected_type *next{nullptr};      ///<

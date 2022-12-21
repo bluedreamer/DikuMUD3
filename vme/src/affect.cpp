@@ -235,12 +235,19 @@ void get_affects(const unit_data *unit, cNamelist *sl)
     /// @todo fix unit_data so const member funcs are returns const pointers to members
     for (af = const_cast<unit_data *>(unit)->getUnitAffected(); af; af = af->getNext())
     {
-        sprintf(buf, "%d,%d,%d,%d,%d,%d", af->getID(), af->getApplyFI(), af->getDataAtIndex(0), af->getDataAtIndex(1), af->getDataAtIndex(2), af->getDuration());
+        sprintf(buf,
+                "%d,%d,%d,%d,%d,%d",
+                af->getID(),
+                af->getApplyFI(),
+                af->getDataAtIndex(0),
+                af->getDataAtIndex(1),
+                af->getDataAtIndex(2),
+                af->getDuration());
         sl->AppendName(buf);
     }
 }
 
-unit_affected_type *affected_by_spell(const unit_data *unit, sbit16 id)
+unit_affected_type *affected_by_spell(const unit_data *unit, int16_t id)
 {
     unit_affected_type *af = nullptr;
 

@@ -27,7 +27,7 @@ public:
     [[nodiscard]] long getFilepos() const;
     [[nodiscard]] ubit32 getLength() const;
     [[nodiscard]] ubit32 getCRC() const;
-    [[nodiscard]] sbit16 getNumInZone() const;
+    [[nodiscard]] int16_t getNumInZone() const;
     [[nodiscard]] ubit16 getNumInMem() const;
     [[nodiscard]] ubit16 getRoomNum() const;
     [[nodiscard]] uint8_t getType() const;
@@ -49,7 +49,7 @@ public:
      * @param to_lower If true convert to lower case
      */
     void setCRC(ubit32 value);
-    void setNumInZone(sbit16 value);
+    void setNumInZone(int16_t value);
     void setLength(ubit32 value);
     void setFilepos(long value);
     void setRoomNum(ubit16 value);
@@ -61,7 +61,7 @@ private:
     long m_filepos{0};                             ///< Byte offset into file
     ubit32 m_length{0};                            ///< No of bytes to read
     ubit32 m_crc{0};                               ///< CRC check for compressed items
-    sbit16 m_no_in_zone{0};                        ///< Updated in zone reset for reset
+    int16_t m_no_in_zone{0};                       ///< Updated in zone reset for reset
     ubit16 m_no_in_mem{0};                         ///< Number of these in the game
     ubit16 m_room_no{0};                           ///< The number of the room
     uint8_t m_type{0};                             ///< Room/Obj/Char or other?

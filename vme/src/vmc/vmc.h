@@ -71,9 +71,9 @@ struct reset_command
     char cmd_no;
     char *ref1;
     char *ref2;
-    sbit16 num1;
-    sbit16 num2;
-    sbit16 num3;
+    int16_t num1;
+    int16_t num2;
+    int16_t num3;
     char direction;
     char cmpl;
     reset_command *next;

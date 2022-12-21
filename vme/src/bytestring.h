@@ -50,16 +50,16 @@ public:
     uint8_t ReadU8(int *nError = nullptr);
     int8_t ReadS8(int *nError = nullptr);
     ubit16 ReadU16(int *nError = nullptr);
-    sbit16 ReadS16(int *nError = nullptr);
+    int16_t ReadS16(int *nError = nullptr);
     ubit32 ReadU32(int *nError = nullptr);
     sbit32 ReadS32(int *nError = nullptr);
 
-    [[deprecated("Replace with ReadU8")]] int Read8(uint8_t *pNum);  ///< @deprecated Replace with @ref ReadU8
-    [[deprecated("Replace with ReadU16")]] int Read16(ubit16 *pNum); ///< @deprecated Replace with @ref ReadU16
-    [[deprecated("Replace with ReadU32")]] int Read32(ubit32 *pNum); ///< @deprecated Replace with @ref ReadU32
-    [[deprecated("Replace with ReadS8")]] int Read8(int8_t *pNum);   ///< @deprecated Replace with @ref ReadS8
-    [[deprecated("Replace with ReadS16")]] int Read16(sbit16 *pNum); ///< @deprecated Replace with @ref ReadS16
-    [[deprecated("Replace with ReadS32")]] int Read32(sbit32 *pNum); ///< @deprecated Replace with @ref ReadS32
+    [[deprecated("Replace with ReadU8")]] int Read8(uint8_t *pNum);   ///< @deprecated Replace with @ref ReadU8
+    [[deprecated("Replace with ReadU16")]] int Read16(ubit16 *pNum);  ///< @deprecated Replace with @ref ReadU16
+    [[deprecated("Replace with ReadU32")]] int Read32(ubit32 *pNum);  ///< @deprecated Replace with @ref ReadU32
+    [[deprecated("Replace with ReadS8")]] int Read8(int8_t *pNum);    ///< @deprecated Replace with @ref ReadS8
+    [[deprecated("Replace with ReadS16")]] int Read16(int16_t *pNum); ///< @deprecated Replace with @ref ReadS16
+    [[deprecated("Replace with ReadS32")]] int Read32(sbit32 *pNum);  ///< @deprecated Replace with @ref ReadS32
     int ReadFloat(float *pFloat);
     int ReadStringAlloc(char **pStr);
     int ReadStringCopy(char *pStr, ubit32 nSize);

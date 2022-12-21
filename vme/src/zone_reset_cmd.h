@@ -20,14 +20,14 @@ public:
 
     [[nodiscard]] uint8_t getCommandNum() const;
     [[nodiscard]] file_index_type *getFileIndexType(size_t index) const;
-    [[nodiscard]] sbit16 getNum(size_t index) const;
+    [[nodiscard]] int16_t getNum(size_t index) const;
     [[nodiscard]] uint8_t getCompleteFlag() const;
     [[nodiscard]] zone_reset_cmd *getNext() const;
     [[nodiscard]] zone_reset_cmd *getNested() const;
 
     void setCommandNum(uint8_t value);
     void setFileIndexType(size_t index, file_index_type *value);
-    void setNum(size_t index, sbit16 value);
+    void setNum(size_t index, int16_t value);
     void setCompleteFlag(uint8_t value);
     void setNextPtr(zone_reset_cmd *value);
     void setNestedPtr(zone_reset_cmd *value);
@@ -36,7 +36,7 @@ private:
     uint8_t cmd_no{};                      ///< Index to array of func() ptrs
     uint8_t cmpl{};                        ///< Complete flag
     std::array<file_index_type *, 2> fi{}; ///<
-    std::array<sbit16, 3> num{};           ///<
+    std::array<int16_t, 3> num{};          ///<
     zone_reset_cmd *next{nullptr};         ///<
     zone_reset_cmd *nested{nullptr};       ///<
 };

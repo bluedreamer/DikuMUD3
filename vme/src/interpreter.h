@@ -67,7 +67,7 @@ struct unit_function_array_type
     ubit16 priority;
     int save_w_d; ///< May it be saved if it has data? True/false
     ubit16 sfb;   ///< what kind of messages should be send
-    sbit16 tick;  ///< Default tick count
+    int16_t tick; ///< Default tick count
 };
 
 /** To check for commands by string */

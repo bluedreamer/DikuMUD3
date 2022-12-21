@@ -79,22 +79,22 @@ void room_data::setRoomMagicalResistance(uint8_t value)
     m_resistance = value;
 }
 
-sbit16 room_data::getMapXCoordinate() const
+int16_t room_data::getMapXCoordinate() const
 {
     return m_mapx;
 }
 
-void room_data::setMapXCoordinate(sbit16 value)
+void room_data::setMapXCoordinate(int16_t value)
 {
     m_mapx = value;
 }
 
-sbit16 room_data::getMapYCoordinate() const
+int16_t room_data::getMapYCoordinate() const
 {
     return m_mapy;
 }
 
-void room_data::setMapYCoordinate(sbit16 value)
+void room_data::setMapYCoordinate(int16_t value)
 {
     m_mapy = value;
 }

@@ -154,7 +154,7 @@ ubit32 file_index_type::getCRC() const
     return m_crc;
 }
 
-sbit16 file_index_type::getNumInZone() const
+int16_t file_index_type::getNumInZone() const
 {
     return m_no_in_zone;
 }
@@ -205,7 +205,7 @@ void file_index_type::IncrementNumInZone()
     ++m_no_in_zone;
 }
 
-void file_index_type::setNumInZone(sbit16 value)
+void file_index_type::setNumInZone(int16_t value)
 {
     m_no_in_zone = value;
 }

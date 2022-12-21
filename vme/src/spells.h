@@ -40,7 +40,7 @@ struct spell_info_type
 
     void (*spell_pointer)(spell_args *sa);
     uint8_t minimum_position; ///< Position for caster
-    sbit16 usesmana;          ///< Amount of mana used by a spell
+    int16_t usesmana;         ///< Amount of mana used by a spell
     int8_t beats;             ///< Heartbeats until ready for next
     ubit16 targets;           ///< See below for use with TAR_XXX
     uint8_t media;            ///< found in spells/potions/...

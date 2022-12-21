@@ -23,8 +23,8 @@ public:
     void reduceTotalCreditBy(ubit32 value);
     void setTotalCredit(ubit32 value);
 
-    sbit16 getLastFourDigitsofCreditCard();
-    void setLastFourDigitsofCreditCard(sbit16 value);
+    int16_t getLastFourDigitsofCreditCard();
+    void setLastFourDigitsofCreditCard(int16_t value);
 
     uint8_t getCrackAttempts() const;
     void setCrackAttempts(uint8_t value);
@@ -40,7 +40,7 @@ private:
     float credit{0.0f};     ///< How many coin units are left on account?
     ubit32 credit_limit{0}; ///< In coin units (i.e. cents / oerer)
     ubit32 total_credit{0}; ///< Accumulated credit to date (coin units)
-    sbit16 last4{-1};       ///< The last four digits of his credit card, or -1
+    int16_t last4{-1};      ///< The last four digits of his credit card, or -1
     uint8_t cracks{0};      ///< Crack-attempts on CC last4
     uint8_t discount{0};    ///< 0 - 100% discount
     ubit32 flatrate{0};     ///< The expiration date of a flat rate service

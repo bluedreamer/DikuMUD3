@@ -32,7 +32,7 @@ struct tick_function_type
 
 void affect_beat(void *, void *);
 void affect_clear_unit(unit_data *unit);
-unit_affected_type *affected_by_spell(const unit_data *unit, sbit16 id);
+unit_affected_type *affected_by_spell(const unit_data *unit, int16_t id);
 void apply_affect(unit_data *unit);
 void create_affect(unit_data *unit, unit_affected_type *orgaf);
 void destroy_affect(unit_affected_type *af);

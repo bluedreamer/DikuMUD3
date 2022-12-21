@@ -94,11 +94,11 @@ public:
      * @name Graphical Map Coordinates
      * @{
      */
-    sbit16 getMapXCoordinate() const;
-    void setMapXCoordinate(sbit16 value);
+    int16_t getMapXCoordinate() const;
+    void setMapXCoordinate(int16_t value);
 
-    sbit16 getMapYCoordinate() const;
-    void setMapYCoordinate(sbit16 value);
+    int16_t getMapYCoordinate() const;
+    void setMapYCoordinate(int16_t value);
     /// @}
 
     /**
@@ -121,8 +121,8 @@ private:
     uint8_t m_flags{0};                                                    ///< Room flags
     uint8_t m_movement_type{0};                                            ///< The type of movement (city, hills etc.)
     uint8_t m_resistance{0};                                               ///< Magic resistance of the room
-    sbit16 m_mapx{-1};                                                     ///< Graphical map coordinates
-    sbit16 m_mapy{-1};                                                     ///< Graphical map coordinates
+    int16_t m_mapx{-1};                                                    ///< Graphical map coordinates
+    int16_t m_mapy{-1};                                                    ///< Graphical map coordinates
     int m_sc{0};                                                           ///< strong component, used for shortest path
     int m_num{0};                                                          ///< room number, used for shortest path
 

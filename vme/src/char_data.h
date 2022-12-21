@@ -76,29 +76,29 @@ public:
     ubit16 *getRacePtr();
     void setRace(ubit16 value);
 
-    sbit16 getMana() const;
-    sbit16 *getManaPtr();
-    void setMana(sbit16 value);
-    void decreaseManaBy(sbit16 value);
+    int16_t getMana() const;
+    int16_t *getManaPtr();
+    void setMana(int16_t value);
+    void decreaseManaBy(int16_t value);
 
-    sbit16 getEndurance() const;
-    sbit16 *getEndurancePtr();
-    void setEndurance(sbit16 value);
-    void decreaseEnduranceBy(sbit16 value);
+    int16_t getEndurance() const;
+    int16_t *getEndurancePtr();
+    void setEndurance(int16_t value);
+    void decreaseEnduranceBy(int16_t value);
 
-    sbit16 getOffensiveBonus() const;
-    void setOffensiveBonus(sbit16 value);
-    sbit16 *getOffensiveBonusPtr();
+    int16_t getOffensiveBonus() const;
+    void setOffensiveBonus(int16_t value);
+    int16_t *getOffensiveBonusPtr();
 
-    sbit16 getDefensiveBonus() const;
-    void setDefensiveBonus(sbit16 value);
-    sbit16 *getDefensiveBonusPtr();
+    int16_t getDefensiveBonus() const;
+    void setDefensiveBonus(int16_t value);
+    int16_t *getDefensiveBonusPtr();
 
     int getNumberOfMeleeAttacks(int naturalAttacks);
 
-    sbit16 getSpeed() const;
-    void setSpeed(sbit16 value);
-    void modifySpeedBy(sbit16 delta);
+    int16_t getSpeed() const;
+    void setSpeed(int16_t value);
+    void modifySpeedBy(int16_t delta);
     /**
      * Calculate the speed percentage. 200% max for players, 300% max for NPCs. 25% is the worst possible (4x slowed)
      * @return speed percentage
@@ -126,28 +126,28 @@ public:
     void setPosition(uint8_t value);
     uint8_t *getPositionPtr();
 
-    sbit16 getAbilityAtIndex(size_t index) const;
-    sbit16 *getAbilityAtIndexPtr(size_t index);
-    sbit16 getSTR() const;
-    sbit16 getDEX() const;
-    sbit16 getCON() const;
-    sbit16 getCHA() const;
-    sbit16 getBRA() const;
-    sbit16 getMAG() const;
-    sbit16 getDIV() const;
-    sbit16 getHPP() const;
-    void setSTR(sbit16 value);
-    void setDEX(sbit16 value);
-    void setCON(sbit16 value);
-    void setCHA(sbit16 value);
-    void setBRA(sbit16 value);
-    void setMAG(sbit16 value);
-    void setDIV(sbit16 value);
-    void setHPP(sbit16 value);
-    void setAbilityAtIndexTo(size_t index, sbit16 value);
-    void increaseAbilityAtIndexBy(size_t index, sbit16 value);
-    void decreaseAbilityAtIndexBy(size_t index, sbit16 value);
-    std::array<sbit16, ABIL_TREE_MAX> &getAbilitiesArray();
+    int16_t getAbilityAtIndex(size_t index) const;
+    int16_t *getAbilityAtIndexPtr(size_t index);
+    int16_t getSTR() const;
+    int16_t getDEX() const;
+    int16_t getCON() const;
+    int16_t getCHA() const;
+    int16_t getBRA() const;
+    int16_t getMAG() const;
+    int16_t getDIV() const;
+    int16_t getHPP() const;
+    void setSTR(int16_t value);
+    void setDEX(int16_t value);
+    void setCON(int16_t value);
+    void setCHA(int16_t value);
+    void setBRA(int16_t value);
+    void setMAG(int16_t value);
+    void setDIV(int16_t value);
+    void setHPP(int16_t value);
+    void setAbilityAtIndexTo(size_t index, int16_t value);
+    void increaseAbilityAtIndexBy(size_t index, int16_t value);
+    void decreaseAbilityAtIndexBy(size_t index, int16_t value);
+    std::array<int16_t, ABIL_TREE_MAX> &getAbilitiesArray();
     /// @}
 
     /**

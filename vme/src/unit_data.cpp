@@ -604,17 +604,17 @@ void unit_data::setWeight(sbit32 value)
     m_weight = value;
 }
 
-sbit16 unit_data::getCapacity() const
+int16_t unit_data::getCapacity() const
 {
     return m_capacity;
 }
 
-sbit16 *unit_data::getCapacityPtr()
+int16_t *unit_data::getCapacityPtr()
 {
     return &m_capacity;
 }
 
-void unit_data::setCapacity(sbit16 value)
+void unit_data::setCapacity(int16_t value)
 {
     m_capacity = value;
 }
@@ -679,47 +679,47 @@ void unit_data::setOpenDifficulty(uint8_t value)
     m_open_diff = value;
 }
 
-sbit16 unit_data::getNumberOfActiveLightSources() const
+int16_t unit_data::getNumberOfActiveLightSources() const
 {
     return m_light;
 }
 
-void unit_data::changeNumberOfActiveLightSourcesBy(sbit16 value)
+void unit_data::changeNumberOfActiveLightSourcesBy(int16_t value)
 {
     m_light += value;
 }
 
-void unit_data::setNumberOfActiveLightSources(sbit16 value)
+void unit_data::setNumberOfActiveLightSources(int16_t value)
 {
     m_light = value;
 }
 
-sbit16 unit_data::getLightOutput() const
+int16_t unit_data::getLightOutput() const
 {
     return m_bright;
 }
 
-void unit_data::setLightOutput(sbit16 value)
+void unit_data::setLightOutput(int16_t value)
 {
     m_bright = value;
 }
 
-void unit_data::changeLightOutputBy(sbit16 value)
+void unit_data::changeLightOutputBy(int16_t value)
 {
     m_bright += value;
 }
 
-sbit16 unit_data::getTransparentLightOutput() const
+int16_t unit_data::getTransparentLightOutput() const
 {
     return m_illum;
 }
 
-void unit_data::setTransparentLightOutput(sbit16 value)
+void unit_data::setTransparentLightOutput(int16_t value)
 {
     m_illum = value;
 }
 
-void unit_data::changeTransparentLightOutputBy(sbit16 value)
+void unit_data::changeTransparentLightOutputBy(int16_t value)
 {
     m_illum += value;
 }
@@ -794,12 +794,12 @@ void unit_data::changeCurrentHitpointsBy(sbit32 value)
     m_hp += value;
 }
 
-sbit16 unit_data::getAlignment() const
+int16_t unit_data::getAlignment() const
 {
     return m_alignment;
 }
 
-sbit16 *unit_data::getAlignmentPtr()
+int16_t *unit_data::getAlignmentPtr()
 {
     return &m_alignment;
 }
@@ -813,7 +813,7 @@ bool unit_data::setAlignment(int64_t value)
 {
     bool change_is_ok = true;
 
-    m_alignment = static_cast<sbit16>(value);
+    m_alignment = static_cast<int16_t>(value);
 
     if (m_alignment > MaxAlignment)
     {

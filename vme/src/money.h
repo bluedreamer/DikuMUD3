@@ -8,7 +8,7 @@
 
 #include "utils.h"
 
-typedef sbit16 currency_t;
+typedef int16_t currency_t;
 typedef sbit32 amount_t;
 
 struct money_type

@@ -364,7 +364,7 @@ int protocol_parse_incoming(cHook *Hook, ubit16 *pid, ubit16 *plen, char **str, 
     }
 
     memcpy(&id, &(buf[2]), sizeof(ubit16));
-    memcpy(&len, &(buf[4]), sizeof(sbit16));
+    memcpy(&len, &(buf[4]), sizeof(int16_t));
 
     if (Hook->qRX.Bytes() - 6 < len)
     {

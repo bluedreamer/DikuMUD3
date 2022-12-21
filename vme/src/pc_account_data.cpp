@@ -103,12 +103,12 @@ void pc_account_data::setTotalCredit(ubit32 value)
     total_credit = value;
 }
 
-sbit16 pc_account_data::getLastFourDigitsofCreditCard()
+int16_t pc_account_data::getLastFourDigitsofCreditCard()
 {
     return last4;
 }
 
-void pc_account_data::setLastFourDigitsofCreditCard(sbit16 value)
+void pc_account_data::setLastFourDigitsofCreditCard(int16_t value)
 {
     last4 = value;
 }

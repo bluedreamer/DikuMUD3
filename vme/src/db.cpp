@@ -1616,7 +1616,7 @@ zone_reset_cmd *read_zone_reset(FILE *f, zone_reset_cmd *cmd_list)
             cmd->setFileIndexType(1, nullptr);
         }
 
-        sbit16 temp{};
+        int16_t temp{};
         if (fread(&temp, sizeof(temp), 1, f) != 1)
         {
             error(HERE, "Failed to fread() cmd->num[0]");

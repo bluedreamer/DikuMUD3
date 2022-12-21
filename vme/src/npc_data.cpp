@@ -17,17 +17,17 @@ npc_data::~npc_data()
     g_world_nonpc--;
 }
 
-sbit16 npc_data::getWeaponSkillAtIndex(size_t index) const
+int16_t npc_data::getWeaponSkillAtIndex(size_t index) const
 {
     return m_weapons[index];
 }
 
-sbit16 *npc_data::getWeaponSkillAtIndexPtr(size_t index)
+int16_t *npc_data::getWeaponSkillAtIndexPtr(size_t index)
 {
     return &m_weapons[index];
 }
 
-std::array<sbit16, WPN_GROUP_MAX> &npc_data::getWeaponSkillArray()
+std::array<int16_t, WPN_GROUP_MAX> &npc_data::getWeaponSkillArray()
 {
     return m_weapons;
 }
@@ -37,32 +37,32 @@ size_t npc_data::getWeaponsSkillArraySize() const
     return m_weapons.size();
 }
 
-void npc_data::setWeaponSkillAtIndexTo(size_t index, sbit16 value)
+void npc_data::setWeaponSkillAtIndexTo(size_t index, int16_t value)
 {
     m_weapons[index] = value;
 }
 
-void npc_data::increaseWeaponSkillAtIndexBy(size_t index, sbit16 value)
+void npc_data::increaseWeaponSkillAtIndexBy(size_t index, int16_t value)
 {
     m_weapons[index] += value;
 }
 
-void npc_data::decreaseWeaponSkillAtIndexBy(size_t index, sbit16 value)
+void npc_data::decreaseWeaponSkillAtIndexBy(size_t index, int16_t value)
 {
     m_weapons[index] -= value;
 }
 
-sbit16 npc_data::getSpellSkillAtIndex(size_t index) const
+int16_t npc_data::getSpellSkillAtIndex(size_t index) const
 {
     return m_spells[index];
 }
 
-sbit16 *npc_data::getSpellSkillAtIndexPtr(size_t index)
+int16_t *npc_data::getSpellSkillAtIndexPtr(size_t index)
 {
     return &m_spells[index];
 }
 
-std::array<sbit16, SPL_GROUP_MAX> &npc_data::getSpellSkillArray()
+std::array<int16_t, SPL_GROUP_MAX> &npc_data::getSpellSkillArray()
 {
     return m_spells;
 }
@@ -72,17 +72,17 @@ size_t npc_data::getSpellSkillArraySize() const
     return m_spells.size();
 }
 
-void npc_data::setSpellSkillAtIndexTo(size_t index, sbit16 value)
+void npc_data::setSpellSkillAtIndexTo(size_t index, int16_t value)
 {
     m_spells[index] = value;
 }
 
-void npc_data::increaseSpellSkillAtIndexBy(size_t index, sbit16 value)
+void npc_data::increaseSpellSkillAtIndexBy(size_t index, int16_t value)
 {
     m_spells[index] += value;
 }
 
-void npc_data::decreaseSpellSkillAtIndexBy(size_t index, sbit16 value)
+void npc_data::decreaseSpellSkillAtIndexBy(size_t index, int16_t value)
 {
     m_spells[index] += value;
 }

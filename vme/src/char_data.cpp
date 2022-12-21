@@ -175,72 +175,72 @@ void char_data::setRace(ubit16 value)
     m_points.setRace(value);
 }
 
-sbit16 char_data::getMana() const
+int16_t char_data::getMana() const
 {
     return m_points.getMana();
 }
 
-sbit16 *char_data::getManaPtr()
+int16_t *char_data::getManaPtr()
 {
     return m_points.getManaPtr();
 }
 
-void char_data::setMana(sbit16 value)
+void char_data::setMana(int16_t value)
 {
     m_points.setMana(value);
 }
 
-void char_data::decreaseManaBy(sbit16 value)
+void char_data::decreaseManaBy(int16_t value)
 {
     m_points.decreaseManaBy(value);
 }
 
-sbit16 char_data::getEndurance() const
+int16_t char_data::getEndurance() const
 {
     return m_points.getEndurance();
 }
 
-sbit16 *char_data::getEndurancePtr()
+int16_t *char_data::getEndurancePtr()
 {
     return m_points.getEndurancePtr();
 }
 
-void char_data::setEndurance(sbit16 value)
+void char_data::setEndurance(int16_t value)
 {
     m_points.setEndurance(value);
 }
 
-void char_data::decreaseEnduranceBy(sbit16 value)
+void char_data::decreaseEnduranceBy(int16_t value)
 {
     m_points.decreaseEnduranceBy(value);
 }
 
-sbit16 char_data::getOffensiveBonus() const
+int16_t char_data::getOffensiveBonus() const
 {
     return m_points.getOffensiveBonus();
 }
 
-void char_data::setOffensiveBonus(sbit16 value)
+void char_data::setOffensiveBonus(int16_t value)
 {
     m_points.setOffensiveBonus(value);
 }
 
-sbit16 *char_data::getOffensiveBonusPtr()
+int16_t *char_data::getOffensiveBonusPtr()
 {
     return m_points.getOffensiveBonusPtr();
 }
 
-sbit16 char_data::getDefensiveBonus() const
+int16_t char_data::getDefensiveBonus() const
 {
     return m_points.getDefensiveBonus();
 }
 
-void char_data::setDefensiveBonus(sbit16 value)
+void char_data::setDefensiveBonus(int16_t value)
 {
     m_points.setDefensiveBonus(value);
 }
 
-sbit16 *char_data::getDefensiveBonusPtr()
+int16_t *char_data::getDefensiveBonusPtr()
 {
     return m_points.getDefensiveBonusPtr();
 }
@@ -250,24 +250,24 @@ int char_data::getNumberOfMeleeAttacks(int naturalAttacks)
     return std::max(1, (naturalAttacks * getSpeedPercentage()) / 100);
 }
 
-sbit16 char_data::getSpeed() const
+int16_t char_data::getSpeed() const
 {
     return m_points.getSpeed();
 }
 
-void char_data::setSpeed(sbit16 value)
+void char_data::setSpeed(int16_t value)
 {
     m_points.setSpeed(value);
 }
 
-void char_data::modifySpeedBy(sbit16 delta)
+void char_data::modifySpeedBy(int16_t delta)
 {
     m_points.modifySpeedBy(delta);
 }
 
 int char_data::getSpeedPercentage()
 {
-    sbit16 s = m_points.getSpeed();
+    int16_t s = m_points.getSpeed();
 
     if (s < SPEED_MIN)
     {
@@ -366,112 +366,112 @@ uint8_t *char_data::getPositionPtr()
     return m_points.getPositionPtr();
 }
 
-sbit16 char_data::getAbilityAtIndex(size_t index) const
+int16_t char_data::getAbilityAtIndex(size_t index) const
 {
     return m_points.getAbilityAtIndex(index);
 }
 
-sbit16 *char_data::getAbilityAtIndexPtr(size_t index)
+int16_t *char_data::getAbilityAtIndexPtr(size_t index)
 {
     return m_points.getAbilityAtIndexPtr(index);
 }
 
-sbit16 char_data::getSTR() const
+int16_t char_data::getSTR() const
 {
     return m_points.getSTR();
 }
 
-sbit16 char_data::getDEX() const
+int16_t char_data::getDEX() const
 {
     return m_points.getDEX();
 }
 
-sbit16 char_data::getCON() const
+int16_t char_data::getCON() const
 {
     return m_points.getCON();
 }
 
-sbit16 char_data::getCHA() const
+int16_t char_data::getCHA() const
 {
     return m_points.getCHA();
 }
 
-sbit16 char_data::getBRA() const
+int16_t char_data::getBRA() const
 {
     return m_points.getBRA();
 }
 
-sbit16 char_data::getMAG() const
+int16_t char_data::getMAG() const
 {
     return m_points.getMAG();
 }
 
-sbit16 char_data::getDIV() const
+int16_t char_data::getDIV() const
 {
     return m_points.getDIV();
 }
 
-sbit16 char_data::getHPP() const
+int16_t char_data::getHPP() const
 {
     return m_points.getHPP();
 }
 
-void char_data::setSTR(sbit16 value)
+void char_data::setSTR(int16_t value)
 {
     m_points.setSTR(value);
 }
 
-void char_data::setDEX(sbit16 value)
+void char_data::setDEX(int16_t value)
 {
     m_points.setDEX(value);
 }
 
-void char_data::setCON(sbit16 value)
+void char_data::setCON(int16_t value)
 {
     m_points.setCON(value);
 }
 
-void char_data::setCHA(sbit16 value)
+void char_data::setCHA(int16_t value)
 {
     m_points.setCHA(value);
 }
 
-void char_data::setBRA(sbit16 value)
+void char_data::setBRA(int16_t value)
 {
     m_points.setBRA(value);
 }
 
-void char_data::setMAG(sbit16 value)
+void char_data::setMAG(int16_t value)
 {
     m_points.setMAG(value);
 }
 
-void char_data::setDIV(sbit16 value)
+void char_data::setDIV(int16_t value)
 {
     m_points.setDIV(value);
 }
 
-void char_data::setHPP(sbit16 value)
+void char_data::setHPP(int16_t value)
 {
     m_points.setHPP(value);
 }
 
-void char_data::setAbilityAtIndexTo(size_t index, sbit16 value)
+void char_data::setAbilityAtIndexTo(size_t index, int16_t value)
 {
     m_points.setAbilityAtIndexTo(index, value);
 }
 
-void char_data::increaseAbilityAtIndexBy(size_t index, sbit16 value)
+void char_data::increaseAbilityAtIndexBy(size_t index, int16_t value)
 {
     m_points.increaseAbilityAtIndexBy(index, value);
 }
 
-void char_data::decreaseAbilityAtIndexBy(size_t index, sbit16 value)
+void char_data::decreaseAbilityAtIndexBy(size_t index, int16_t value)
 {
     m_points.decreaseAbilityAtIndexBy(index, value);
 }
 
-std::array<sbit16, ABIL_TREE_MAX> &char_data::getAbilitiesArray()
+std::array<int16_t, ABIL_TREE_MAX> &char_data::getAbilitiesArray()
 {
     return m_points.getAbilitiesArray();
 }

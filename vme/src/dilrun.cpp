@@ -538,7 +538,7 @@ char dil_getbool(dilval *v, dilprg *prg)
             return (*((int8_t *)v->ref) != 0); /* return Lvalue */
 
         case DilVarType_e::DILV_SINT2R:
-            return (*((sbit16 *)v->ref) != 0); /* return Lvalue */
+            return (*((int16_t *)v->ref) != 0); /* return Lvalue */
 
         case DilVarType_e::DILV_SINT4R:
             return (*((sbit32 *)v->ref) != 0); /* return Lvalue */
@@ -615,7 +615,7 @@ int dil_getval(dilval *v)
             v->val.num = *((int8_t *)v->ref);
             break;
         case DilVarType_e::DILV_SINT2R:
-            v->val.num = *((sbit16 *)v->ref);
+            v->val.num = *((int16_t *)v->ref);
             break;
         case DilVarType_e::DILV_SINT4R:
             v->val.num = *((sbit32 *)v->ref);

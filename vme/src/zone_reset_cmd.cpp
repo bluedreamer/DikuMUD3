@@ -20,12 +20,12 @@ file_index_type *zone_reset_cmd::getFileIndexType(size_t index) const
     return fi.at(index);
 }
 
-sbit16 zone_reset_cmd::getNum(size_t index) const
+int16_t zone_reset_cmd::getNum(size_t index) const
 {
     return num.at(index);
 }
 
-void zone_reset_cmd::setNum(size_t index, sbit16 value)
+void zone_reset_cmd::setNum(size_t index, int16_t value)
 {
     num.at(index) = value;
 }

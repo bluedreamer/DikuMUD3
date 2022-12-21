@@ -132,9 +132,9 @@ inline const descriptor_data *CHAR_DESCRIPTOR(const unit_data *ch) { return UCHA
 
 inline descriptor_data *CHAR_DESCRIPTOR(unit_data *ch) { return UCHAR(ch)->getDescriptor(); }
 
-inline sbit16 CHAR_OFFENSIVE(const unit_data *unit) { return UCHAR(unit)->getOffensiveBonus(); }
+inline int16_t CHAR_OFFENSIVE(const unit_data *unit) { return UCHAR(unit)->getOffensiveBonus(); }
 
-inline sbit16 CHAR_DEFENSIVE(const unit_data *unit) { return UCHAR(unit)->getDefensiveBonus(); }
+inline int16_t CHAR_DEFENSIVE(const unit_data *unit) { return UCHAR(unit)->getDefensiveBonus(); }
 
 inline ubit32 CHAR_FLAGS(const unit_data *unit) { return UCHAR(unit)->getCharacterFlags(); }
 
@@ -150,27 +150,27 @@ inline uint8_t CHAR_LEVEL(const unit_data *ch) { return UCHAR(ch)->getLevel(); }
 
 inline ubit16 CHAR_RACE(const unit_data *ch) { return UCHAR(ch)->getRace(); }
 
-inline sbit16 CHAR_ABILITY(const unit_data *ch, size_t index) { return UCHAR(ch)->getAbilityAtIndex(index); }
+inline int16_t CHAR_ABILITY(const unit_data *ch, size_t index) { return UCHAR(ch)->getAbilityAtIndex(index); }
 
-inline sbit16 CHAR_STR(const unit_data *ch) { return UCHAR(ch)->getSTR(); }
+inline int16_t CHAR_STR(const unit_data *ch) { return UCHAR(ch)->getSTR(); }
 
-inline sbit16 CHAR_DEX(const unit_data *ch) { return UCHAR(ch)->getDEX(); }
+inline int16_t CHAR_DEX(const unit_data *ch) { return UCHAR(ch)->getDEX(); }
 
-inline sbit16 CHAR_CON(const unit_data *ch) { return UCHAR(ch)->getCON(); }
+inline int16_t CHAR_CON(const unit_data *ch) { return UCHAR(ch)->getCON(); }
 
-inline sbit16 CHAR_CHA(const unit_data *ch) { return UCHAR(ch)->getCHA(); }
+inline int16_t CHAR_CHA(const unit_data *ch) { return UCHAR(ch)->getCHA(); }
 
-inline sbit16 CHAR_BRA(const unit_data *ch) { return UCHAR(ch)->getBRA(); }
+inline int16_t CHAR_BRA(const unit_data *ch) { return UCHAR(ch)->getBRA(); }
 
-inline sbit16 CHAR_MAG(const unit_data *ch) { return UCHAR(ch)->getMAG(); }
+inline int16_t CHAR_MAG(const unit_data *ch) { return UCHAR(ch)->getMAG(); }
 
-inline sbit16 CHAR_DIV(const unit_data *ch) { return UCHAR(ch)->getDIV(); }
+inline int16_t CHAR_DIV(const unit_data *ch) { return UCHAR(ch)->getDIV(); }
 
-inline sbit16 CHAR_HPP(const unit_data *ch) { return UCHAR(ch)->getHPP(); }
+inline int16_t CHAR_HPP(const unit_data *ch) { return UCHAR(ch)->getHPP(); }
 
-inline sbit16 CHAR_ENDURANCE(const unit_data *ch) { return UCHAR(ch)->getEndurance(); }
+inline int16_t CHAR_ENDURANCE(const unit_data *ch) { return UCHAR(ch)->getEndurance(); }
 
-inline sbit16 CHAR_MANA(const unit_data *ch) { return UCHAR(ch)->getMana(); }
+inline int16_t CHAR_MANA(const unit_data *ch) { return UCHAR(ch)->getMana(); }
 
 /* NOT to be used unless by db.... */
 [[maybe_unused]] inline const char *CHAR_MONEY(const unit_data *ch) { return UCHAR(ch)->getMoney(); }
@@ -183,7 +183,7 @@ inline uint8_t CHAR_ATTACK_TYPE(const unit_data *ch) { return UCHAR(ch)->getAtta
 
 inline uint8_t CHAR_NATURAL_ARMOUR(const unit_data *ch) { return UCHAR(ch)->getNaturalArmor(); }
 
-inline sbit16 CHAR_SPEED(const unit_data *ch) { return UCHAR(ch)->getSpeed(); }
+inline int16_t CHAR_SPEED(const unit_data *ch) { return UCHAR(ch)->getSpeed(); }
 
 inline cCombat *CHAR_COMBAT(unit_data *ch) { return UCHAR(ch)->getCombat(); }
 
@@ -283,17 +283,17 @@ inline sbit32 PC_SKILL_POINTS(unit_data *ch) { return UPC(ch)->getSkillPoints();
 
 inline uint8_t PC_ABI_LVL(unit_data *ch, size_t index) { return UPC(ch)->getAbilityLevelAtIndex(index); }
 
-inline sbit16 PC_SKI_SKILL(unit_data *ch, size_t index) { return UPC(ch)->getSkillAtIndex(index); }
+inline int16_t PC_SKI_SKILL(unit_data *ch, size_t index) { return UPC(ch)->getSkillAtIndex(index); }
 
 inline uint8_t PC_SKI_LVL(unit_data *ch, size_t index) { return UPC(ch)->getSpellSkillAtIndex(index); }
 
 inline uint8_t PC_WPN_LVL(unit_data *ch, size_t index) { return UPC(ch)->getWeaponSkillLevelAtIndex(index); }
 
-inline sbit16 PC_WPN_SKILL(unit_data *ch, size_t index) { return UPC(ch)->getWeaponSkillAtIndex(index); }
+inline int16_t PC_WPN_SKILL(unit_data *ch, size_t index) { return UPC(ch)->getWeaponSkillAtIndex(index); }
 
 inline uint8_t PC_SPL_LVL(unit_data *ch, size_t index) { return UPC(ch)->getSpellLevelAtIndex(index); }
 
-inline sbit16 PC_SPL_SKILL(unit_data *ch, size_t index) { return UPC(ch)->getSpellSkillAtIndex(index); }
+inline int16_t PC_SPL_SKILL(unit_data *ch, size_t index) { return UPC(ch)->getSpellSkillAtIndex(index); }
 
 inline ubit16 PC_CRIMES(unit_data *unit) { return UPC(unit)->getNumberOfCrimesCommitted(); }
 
@@ -320,12 +320,12 @@ inline bool PC_IS_UNSAVED(unit_data *ch) { return PC_TIME(ch).getTotalTimePlayed
 
 /* ..................................................................... */
 
-inline sbit16 NPC_WPN_SKILL(unit_data *ch, size_t index)
+inline int16_t NPC_WPN_SKILL(unit_data *ch, size_t index)
 {
     return UNPC(ch)->getWeaponSkillAtIndex(index);
 }
 
-inline sbit16 NPC_SPL_SKILL(unit_data *ch, size_t index)
+inline int16_t NPC_SPL_SKILL(unit_data *ch, size_t index)
 {
     return UNPC(ch)->getSpellSkillAtIndex(index);
 }

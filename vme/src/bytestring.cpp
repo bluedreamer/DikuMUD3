@@ -199,11 +199,11 @@ ubit16 CByteBuffer::ReadU16(int *nError)
     return n;
 }
 
-sbit16 CByteBuffer::ReadS16(int *nError)
+int16_t CByteBuffer::ReadS16(int *nError)
 {
-    sbit16 n = 0;
+    int16_t n = 0;
 
-    if (Read((uint8_t *)&n, sizeof(sbit16)))
+    if (Read((uint8_t *)&n, sizeof(int16_t)))
     {
         if (nError)
         {
@@ -259,9 +259,9 @@ int CByteBuffer::Read16(ubit16 *pNum)
     return Read((uint8_t *)pNum, sizeof(ubit16));
 }
 
-int CByteBuffer::Read16(sbit16 *pNum)
+int CByteBuffer::Read16(int16_t *pNum)
 {
-    return Read((uint8_t *)pNum, sizeof(sbit16));
+    return Read((uint8_t *)pNum, sizeof(int16_t));
 }
 
 int CByteBuffer::Read32(ubit32 *pNum)

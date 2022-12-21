@@ -606,32 +606,32 @@ void pc_data::setLifespan(ubit16 value)
     m_lifespan = value;
 }
 
-sbit16 pc_data::getSpellSkillAtIndex(size_t index) const
+int16_t pc_data::getSpellSkillAtIndex(size_t index) const
 {
     return m_spells[index];
 }
 
-sbit16 *pc_data::getSpellSkillArrayPtr()
+int16_t *pc_data::getSpellSkillArrayPtr()
 {
     return &m_spells[0];
 }
 
-sbit16 *pc_data::getSpellSkillAtIndexPtr(size_t index)
+int16_t *pc_data::getSpellSkillAtIndexPtr(size_t index)
 {
     return &m_spells[index];
 }
 
-void pc_data::setSpellSKillAtIndexTo(size_t index, sbit16 value)
+void pc_data::setSpellSKillAtIndexTo(size_t index, int16_t value)
 {
     m_spells[index] = value;
 }
 
-void pc_data::increaseSpellSkillAtIndexBy(size_t index, sbit16 value)
+void pc_data::increaseSpellSkillAtIndexBy(size_t index, int16_t value)
 {
     m_spells[index] += value;
 }
 
-void pc_data::decreaseSpellSkillAtIndexBy(size_t index, sbit16 value)
+void pc_data::decreaseSpellSkillAtIndexBy(size_t index, int16_t value)
 {
     m_spells[index] -= value;
 }
@@ -656,32 +656,32 @@ void pc_data::setSpellLevelAtIndexTo(size_t index, uint8_t value)
     m_spell_lvl[index] = value;
 }
 
-sbit16 pc_data::getSkillAtIndex(size_t index) const
+int16_t pc_data::getSkillAtIndex(size_t index) const
 {
     return m_skills[index];
 }
 
-sbit16 *pc_data::getSkillAtIndexPtr(size_t index)
+int16_t *pc_data::getSkillAtIndexPtr(size_t index)
 {
     return &m_skills[index];
 }
 
-sbit16 *pc_data::getSkillArrayPtr()
+int16_t *pc_data::getSkillArrayPtr()
 {
     return &m_skills[0];
 }
 
-void pc_data::setSkillAtIndexTo(size_t index, sbit16 value)
+void pc_data::setSkillAtIndexTo(size_t index, int16_t value)
 {
     m_skills[index] = value;
 }
 
-void pc_data::increaseSkillAtIndexBy(size_t index, sbit16 value)
+void pc_data::increaseSkillAtIndexBy(size_t index, int16_t value)
 {
     m_skills[index] += value;
 }
 
-void pc_data::decreaseSkillAtIndexBy(size_t index, sbit16 value)
+void pc_data::decreaseSkillAtIndexBy(size_t index, int16_t value)
 {
     m_skills[index] -= value;
 }
@@ -706,32 +706,32 @@ void pc_data::setSkillLevelAtIndexTo(size_t index, uint8_t value)
     m_skill_lvl[index] = value;
 }
 
-sbit16 pc_data::getWeaponSkillAtIndex(size_t index) const
+int16_t pc_data::getWeaponSkillAtIndex(size_t index) const
 {
     return m_weapons[index];
 }
 
-sbit16 *pc_data::getWeaponSkillArrayPtr()
+int16_t *pc_data::getWeaponSkillArrayPtr()
 {
     return &m_weapons[0];
 }
 
-sbit16 *pc_data::getWeaponSkillAtIndexPtr(size_t index)
+int16_t *pc_data::getWeaponSkillAtIndexPtr(size_t index)
 {
     return &m_weapons[index];
 }
 
-void pc_data::setWeaponSkillAtIndexTo(size_t index, sbit16 value)
+void pc_data::setWeaponSkillAtIndexTo(size_t index, int16_t value)
 {
     m_weapons[index] = value;
 }
 
-void pc_data::increaseWeaponSkillAtIndexBy(size_t index, sbit16 value)
+void pc_data::increaseWeaponSkillAtIndexBy(size_t index, int16_t value)
 {
     m_weapons[index] += value;
 }
 
-void pc_data::decreaseWeaponSkillAtIndexBy(size_t index, sbit16 value)
+void pc_data::decreaseWeaponSkillAtIndexBy(size_t index, int16_t value)
 {
     m_weapons[index] -= value;
 }

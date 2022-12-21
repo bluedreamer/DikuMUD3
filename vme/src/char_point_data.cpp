@@ -88,77 +88,77 @@ void char_point_data::setRace(ubit16 value)
     race = value;
 }
 
-sbit16 char_point_data::getMana() const
+int16_t char_point_data::getMana() const
 {
     return mana;
 }
 
-sbit16 *char_point_data::getManaPtr()
+int16_t *char_point_data::getManaPtr()
 {
     return &mana;
 }
 
-void char_point_data::setMana(sbit16 value)
+void char_point_data::setMana(int16_t value)
 {
     mana = value;
 }
 
-void char_point_data::decreaseManaBy(sbit16 value)
+void char_point_data::decreaseManaBy(int16_t value)
 {
     mana -= value;
 }
 
-sbit16 char_point_data::getEndurance() const
+int16_t char_point_data::getEndurance() const
 {
     return endurance;
 }
 
-sbit16 *char_point_data::getEndurancePtr()
+int16_t *char_point_data::getEndurancePtr()
 {
     return &endurance;
 }
 
-void char_point_data::setEndurance(sbit16 value)
+void char_point_data::setEndurance(int16_t value)
 {
     endurance = value;
 }
 
-void char_point_data::decreaseEnduranceBy(sbit16 value)
+void char_point_data::decreaseEnduranceBy(int16_t value)
 {
     endurance -= value;
 }
 
-sbit16 char_point_data::getOffensiveBonus() const
+int16_t char_point_data::getOffensiveBonus() const
 {
     return offensive;
 }
 
-void char_point_data::setOffensiveBonus(sbit16 value)
+void char_point_data::setOffensiveBonus(int16_t value)
 {
     offensive = value;
 }
 
-sbit16 *char_point_data::getOffensiveBonusPtr()
+int16_t *char_point_data::getOffensiveBonusPtr()
 {
     return &offensive;
 }
 
-sbit16 char_point_data::getDefensiveBonus() const
+int16_t char_point_data::getDefensiveBonus() const
 {
     return defensive;
 }
 
-void char_point_data::setDefensiveBonus(sbit16 value)
+void char_point_data::setDefensiveBonus(int16_t value)
 {
     defensive = value;
 }
 
-sbit16 *char_point_data::getDefensiveBonusPtr()
+int16_t *char_point_data::getDefensiveBonusPtr()
 {
     return &defensive;
 }
 
-sbit16 char_point_data::getSpeed() const
+int16_t char_point_data::getSpeed() const
 {
     return speed;
 }
@@ -176,7 +176,7 @@ int char_point_data::getNumberOfMeleeAttacks(int naturalAttacks, bool isPC)
 /// 300% max for NPCs. 25% is the worst possible (4x slowed)
 int char_point_data::getSpeedPercentage(bool isPC)
 {
-    sbit16 s = speed;
+    int16_t s = speed;
 
     if (s < SPEED_MIN)
         s = SPEED_MIN;
@@ -193,7 +193,7 @@ int char_point_data::getSpeedPercentage(bool isPC)
 /// max values are -8 to +8
 /// +1.. increases the speed
 /// -1.. decreases the speed
-void char_point_data::modifySpeedBy(sbit16 delta)
+void char_point_data::modifySpeedBy(int16_t delta)
 {
     if ((delta > 8) or (delta < -8))
     {
@@ -205,7 +205,7 @@ void char_point_data::modifySpeedBy(sbit16 delta)
 }
 
 /// Should only be called from raw operations
-void char_point_data::setSpeed(sbit16 value)
+void char_point_data::setSpeed(int16_t value)
 {
     speed = value;
 }
@@ -290,112 +290,112 @@ uint8_t *char_point_data::getPositionPtr()
     return &position;
 }
 
-sbit16 char_point_data::getAbilityAtIndex(size_t index) const
+int16_t char_point_data::getAbilityAtIndex(size_t index) const
 {
     return abilities[index];
 }
 
-sbit16 char_point_data::getSTR() const
+int16_t char_point_data::getSTR() const
 {
     return abilities[ABIL_STR];
 }
 
-sbit16 char_point_data::getDEX() const
+int16_t char_point_data::getDEX() const
 {
     return abilities[ABIL_DEX];
 }
 
-sbit16 char_point_data::getCON() const
+int16_t char_point_data::getCON() const
 {
     return abilities[ABIL_CON];
 }
 
-sbit16 char_point_data::getCHA() const
+int16_t char_point_data::getCHA() const
 {
     return abilities[ABIL_CHA];
 }
 
-sbit16 char_point_data::getBRA() const
+int16_t char_point_data::getBRA() const
 {
     return abilities[ABIL_BRA];
 }
 
-sbit16 char_point_data::getMAG() const
+int16_t char_point_data::getMAG() const
 {
     return abilities[ABIL_MAG];
 }
 
-sbit16 char_point_data::getDIV() const
+int16_t char_point_data::getDIV() const
 {
     return abilities[ABIL_DIV];
 }
 
-sbit16 char_point_data::getHPP() const
+int16_t char_point_data::getHPP() const
 {
     return abilities[ABIL_HP];
 }
 
-sbit16 *char_point_data::getAbilityAtIndexPtr(size_t index)
+int16_t *char_point_data::getAbilityAtIndexPtr(size_t index)
 {
     return &abilities[index];
 }
 
-void char_point_data::setAbilityAtIndexTo(size_t index, sbit16 value)
+void char_point_data::setAbilityAtIndexTo(size_t index, int16_t value)
 {
     abilities[index] = value;
 }
 
-void char_point_data::increaseAbilityAtIndexBy(size_t index, sbit16 value)
+void char_point_data::increaseAbilityAtIndexBy(size_t index, int16_t value)
 {
     abilities[index] += value;
 }
 
-void char_point_data::decreaseAbilityAtIndexBy(size_t index, sbit16 value)
+void char_point_data::decreaseAbilityAtIndexBy(size_t index, int16_t value)
 {
     abilities[index] -= value;
 }
 
-std::array<sbit16, ABIL_TREE_MAX> &char_point_data::getAbilitiesArray()
+std::array<int16_t, ABIL_TREE_MAX> &char_point_data::getAbilitiesArray()
 {
     return abilities;
 }
 
-void char_point_data::setSTR(sbit16 value)
+void char_point_data::setSTR(int16_t value)
 {
     abilities[ABIL_STR] = value;
 }
 
-void char_point_data::setDEX(sbit16 value)
+void char_point_data::setDEX(int16_t value)
 {
     abilities[ABIL_DEX] = value;
 }
 
-void char_point_data::setCON(sbit16 value)
+void char_point_data::setCON(int16_t value)
 {
     abilities[ABIL_CON] = value;
 }
 
-void char_point_data::setCHA(sbit16 value)
+void char_point_data::setCHA(int16_t value)
 {
     abilities[ABIL_CHA] = value;
 }
 
-void char_point_data::setBRA(sbit16 value)
+void char_point_data::setBRA(int16_t value)
 {
     abilities[ABIL_BRA] = value;
 }
 
-void char_point_data::setMAG(sbit16 value)
+void char_point_data::setMAG(int16_t value)
 {
     abilities[ABIL_MAG] = value;
 }
 
-void char_point_data::setDIV(sbit16 value)
+void char_point_data::setDIV(int16_t value)
 {
     abilities[ABIL_DIV] = value;
 }
 
-void char_point_data::setHPP(sbit16 value)
+void char_point_data::setHPP(int16_t value)
 {
     abilities[ABIL_HP] = value;
 }

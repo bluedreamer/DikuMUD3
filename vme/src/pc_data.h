@@ -189,12 +189,12 @@ public:
      * @todo Add range checking to indexes
      * @{
      */
-    sbit16 getSpellSkillAtIndex(size_t index) const;
-    sbit16 *getSpellSkillArrayPtr();
-    sbit16 *getSpellSkillAtIndexPtr(size_t index);
-    void setSpellSKillAtIndexTo(size_t index, sbit16 value);
-    void increaseSpellSkillAtIndexBy(size_t index, sbit16 value);
-    void decreaseSpellSkillAtIndexBy(size_t index, sbit16 value);
+    int16_t getSpellSkillAtIndex(size_t index) const;
+    int16_t *getSpellSkillArrayPtr();
+    int16_t *getSpellSkillAtIndexPtr(size_t index);
+    void setSpellSKillAtIndexTo(size_t index, int16_t value);
+    void increaseSpellSkillAtIndexBy(size_t index, int16_t value);
+    void decreaseSpellSkillAtIndexBy(size_t index, int16_t value);
     /// @}
 
     /**
@@ -213,12 +213,12 @@ public:
      * @todo Add range checking to indexes
      * @{
      */
-    sbit16 getSkillAtIndex(size_t index) const;
-    sbit16 *getSkillAtIndexPtr(size_t index);
-    sbit16 *getSkillArrayPtr();
-    void setSkillAtIndexTo(size_t index, sbit16 value);
-    void increaseSkillAtIndexBy(size_t index, sbit16 value);
-    void decreaseSkillAtIndexBy(size_t index, sbit16 value);
+    int16_t getSkillAtIndex(size_t index) const;
+    int16_t *getSkillAtIndexPtr(size_t index);
+    int16_t *getSkillArrayPtr();
+    void setSkillAtIndexTo(size_t index, int16_t value);
+    void increaseSkillAtIndexBy(size_t index, int16_t value);
+    void decreaseSkillAtIndexBy(size_t index, int16_t value);
     /// @}
 
     /**
@@ -237,12 +237,12 @@ public:
      * @todo Add range checking to indexes
      * @{
      */
-    sbit16 getWeaponSkillAtIndex(size_t index) const;
-    sbit16 *getWeaponSkillArrayPtr();
-    sbit16 *getWeaponSkillAtIndexPtr(size_t index);
-    void setWeaponSkillAtIndexTo(size_t index, sbit16 value);
-    void increaseWeaponSkillAtIndexBy(size_t index, sbit16 value);
-    void decreaseWeaponSkillAtIndexBy(size_t index, sbit16 value);
+    int16_t getWeaponSkillAtIndex(size_t index) const;
+    int16_t *getWeaponSkillArrayPtr();
+    int16_t *getWeaponSkillAtIndexPtr(size_t index);
+    void setWeaponSkillAtIndexTo(size_t index, int16_t value);
+    void increaseWeaponSkillAtIndexBy(size_t index, int16_t value);
+    void decreaseWeaponSkillAtIndexBy(size_t index, int16_t value);
     /// @}
 
     /**
@@ -342,11 +342,11 @@ private:
     ubit16 m_nr_of_crimes{0};                            ///< Number of crimes committed
     ubit16 m_crack_attempts{0};                          ///< Number of wrong passwords entered
     ubit16 m_lifespan{0};                                ///< How many year to live....
-    sbit16 m_spells[SPL_TREE_MAX]{0};                    ///< The spells learned
+    int16_t m_spells[SPL_TREE_MAX]{0};                   ///< The spells learned
     uint8_t m_spell_lvl[SPL_TREE_MAX]{0};                ///< Practiced within that level
-    sbit16 m_skills[SKI_TREE_MAX]{0};                    ///< The skills learned
+    int16_t m_skills[SKI_TREE_MAX]{0};                   ///< The skills learned
     uint8_t m_skill_lvl[SKI_TREE_MAX]{0};                ///< The skills practiced within level
-    sbit16 m_weapons[WPN_TREE_MAX]{0};                   ///< The weapons learned
+    int16_t m_weapons[WPN_TREE_MAX]{0};                  ///< The weapons learned
     uint8_t m_weapon_lvl[WPN_TREE_MAX]{0};               ///< The weapons learned
     uint8_t m_ability_lvl[ABIL_TREE_MAX]{0};             ///< The abilities learned
     int8_t m_conditions[3]{0};                           ///< Drunk full etc.

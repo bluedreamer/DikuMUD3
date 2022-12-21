@@ -1651,7 +1651,7 @@ void dilfi_ass(dilprg *p)
                 case DILV_FAIL:
                     break;
                 case DILV_INT:
-                    *((sbit16 *)v1->ref) = v2->val.num;
+                    *((int16_t *)v1->ref) = v2->val.num;
                     break;
                 default:
                     /* ERROR incompatible types */
@@ -1927,7 +1927,7 @@ void dilfi_set(dilprg *p)
                 *((int8_t *)v1->ref) |= v2->val.num;
                 break;
             case DILV_SINT2R:
-                *((sbit16 *)v1->ref) |= v2->val.num;
+                *((int16_t *)v1->ref) |= v2->val.num;
                 break;
             case DILV_SINT4R:
                 *((sbit32 *)v1->ref) |= v2->val.num;
@@ -1971,7 +1971,7 @@ void dilfi_uset(dilprg *p)
                 REMOVE_BIT(*((int8_t *)v1->ref), v2->val.num);
                 break;
             case DILV_SINT2R:
-                REMOVE_BIT(*((sbit16 *)v1->ref), v2->val.num);
+                REMOVE_BIT(*((int16_t *)v1->ref), v2->val.num);
                 break;
             case DILV_SINT4R:
                 REMOVE_BIT(*((sbit32 *)v1->ref), v2->val.num);
