@@ -461,17 +461,17 @@ void pc_data::setProfession(int8_t value)
     m_profession = value;
 }
 
-ubit16 pc_data::getVirtualPlayerLevel() const
+uint16_t pc_data::getVirtualPlayerLevel() const
 {
     return m_vlvl;
 }
 
-ubit16 *pc_data::getVirtualPlayerLevelPtr()
+uint16_t *pc_data::getVirtualPlayerLevelPtr()
 {
     return &m_vlvl;
 }
 
-void pc_data::setVirtualPlayerLevel(ubit16 value)
+void pc_data::setVirtualPlayerLevel(uint16_t value)
 {
     m_vlvl = value;
 }
@@ -531,57 +531,57 @@ void pc_data::increaseAbilityPointsBy(sbit32 value)
     m_ability_points += value;
 }
 
-ubit16 pc_data::getAllPCFlags() const
+uint16_t pc_data::getAllPCFlags() const
 {
     return m_flags;
 }
 
-ubit16 *pc_data::getAllPCFlagsPtr()
+uint16_t *pc_data::getAllPCFlagsPtr()
 {
     return &m_flags;
 }
 
-void pc_data::setPCFlag(ubit16 value)
+void pc_data::setPCFlag(uint16_t value)
 {
     m_flags |= value;
 }
 
-void pc_data::setAllPCFlags(ubit16 value)
+void pc_data::setAllPCFlags(uint16_t value)
 {
     m_flags = value;
 }
 
-void pc_data::togglePCFlag(ubit16 value)
+void pc_data::togglePCFlag(uint16_t value)
 {
     m_flags ^= value;
 }
 
-void pc_data::removePCFlag(ubit16 value)
+void pc_data::removePCFlag(uint16_t value)
 {
     m_flags &= ~value;
 }
 
-ubit16 pc_data::getNumberOfCrimesCommitted() const
+uint16_t pc_data::getNumberOfCrimesCommitted() const
 {
     return m_nr_of_crimes;
 }
 
-ubit16 *pc_data::getNumberOfCrimesCommittedPtr()
+uint16_t *pc_data::getNumberOfCrimesCommittedPtr()
 {
     return &m_nr_of_crimes;
 }
 
-void pc_data::setNumberOfCrimesCommitted(ubit16 value)
+void pc_data::setNumberOfCrimesCommitted(uint16_t value)
 {
     m_nr_of_crimes = value;
 }
 
-ubit16 pc_data::getNumberOfCrackAttempts() const
+uint16_t pc_data::getNumberOfCrackAttempts() const
 {
     return m_crack_attempts;
 }
 
-void pc_data::setNumberOfCrackAttempts(ubit16 value)
+void pc_data::setNumberOfCrackAttempts(uint16_t value)
 {
     m_crack_attempts = value;
 }
@@ -591,17 +591,17 @@ void pc_data::incrementNumberOfCrackAttempts()
     m_crack_attempts++;
 }
 
-ubit16 pc_data::getLifespan() const
+uint16_t pc_data::getLifespan() const
 {
     return m_lifespan;
 }
 
-ubit16 *pc_data::getLifespanPtr()
+uint16_t *pc_data::getLifespanPtr()
 {
     return &m_lifespan;
 }
 
-void pc_data::setLifespan(ubit16 value)
+void pc_data::setLifespan(uint16_t value)
 {
     m_lifespan = value;
 }

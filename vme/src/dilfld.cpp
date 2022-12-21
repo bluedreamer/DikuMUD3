@@ -1460,7 +1460,7 @@ void dilfe_fld(dilprg *p)
                     auto *unit = reinterpret_cast<unit_data *>(v1->val.ptr);
                     if (unit)
                     {
-                        /* ubit16 flags; */
+                        /* uint16_t flags; */
                         v->atyp = DILA_NONE;
                         v->type = DILV_UINT2R;
                         v->ref = unit->getUnitFlagsPtr();

@@ -549,27 +549,27 @@ void unit_data::setManipulateFlag(ubit32 value)
     m_manipulate |= value;
 }
 
-ubit16 unit_data::getUnitFlags() const
+uint16_t unit_data::getUnitFlags() const
 {
     return m_flags;
 }
 
-ubit16 *unit_data::getUnitFlagsPtr()
+uint16_t *unit_data::getUnitFlagsPtr()
 {
     return &m_flags;
 }
 
-void unit_data::setAllUnitFlags(ubit16 value)
+void unit_data::setAllUnitFlags(uint16_t value)
 {
     m_flags = value;
 }
 
-void unit_data::setUnitFlag(ubit16 value)
+void unit_data::setUnitFlag(uint16_t value)
 {
     m_flags |= value;
 }
 
-void unit_data::removeUnitFlag(ubit16 value)
+void unit_data::removeUnitFlag(uint16_t value)
 {
     m_flags &= ~value;
 }
@@ -619,22 +619,22 @@ void unit_data::setCapacity(int16_t value)
     m_capacity = value;
 }
 
-ubit16 unit_data::getSize() const
+uint16_t unit_data::getSize() const
 {
     return m_size;
 }
 
-ubit16 *unit_data::getSizePtr()
+uint16_t *unit_data::getSizePtr()
 {
     return &m_size;
 }
 
-void unit_data::setSize(ubit16 value)
+void unit_data::setSize(uint16_t value)
 {
     m_size = value;
 }
 
-void unit_data::increaseSizeBy(ubit16 value)
+void unit_data::increaseSizeBy(uint16_t value)
 {
     m_size += value;
 }

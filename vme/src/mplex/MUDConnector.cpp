@@ -299,8 +299,8 @@ void cMudHook::Unhook()
 int cMudHook::read_mud()
 {
     cConHook *con = nullptr;
-    ubit16 id = 0;
-    ubit16 len = 0;
+    uint16_t id = 0;
+    uint16_t len = 0;
     int p = 0;
     int n = 0;
     char *data = nullptr;

@@ -72,9 +72,9 @@ public:
     void setPlayerExperience(sbit32 value);
     void increasePlayerExperienceBy(sbit32 value);
 
-    ubit16 getRace() const;
-    ubit16 *getRacePtr();
-    void setRace(ubit16 value);
+    uint16_t getRace() const;
+    uint16_t *getRacePtr();
+    void setRace(uint16_t value);
 
     int16_t getMana() const;
     int16_t *getManaPtr();

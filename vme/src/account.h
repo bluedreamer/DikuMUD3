@@ -14,7 +14,7 @@
 struct flatrate_type
 {
     char *pMessage;
-    ubit16 days;
+    uint16_t days;
     ubit32 price;
 };
 

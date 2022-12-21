@@ -64,9 +64,9 @@ struct unit_function_array_type
 {
     const char *name;
     int (*func)(spec_arg *sarg);
-    ubit16 priority;
+    uint16_t priority;
     int save_w_d; ///< May it be saved if it has data? True/false
-    ubit16 sfb;   ///< what kind of messages should be send
+    uint16_t sfb; ///< what kind of messages should be send
     int16_t tick; ///< Default tick count
 };
 
@@ -89,7 +89,7 @@ void argument_interpreter(const char *argument, char *first_arg, char *second_ar
 int unit_function_scan(unit_data *u, spec_arg *sarg);
 int function_activate(unit_data *u, spec_arg *sarg);
 #ifdef DMSERVER
-int basic_special(unit_data *ch, spec_arg *sarg, ubit16 mflt, unit_data *extra_target = nullptr, const char *to = nullptr);
+int basic_special(unit_data *ch, spec_arg *sarg, uint16_t mflt, unit_data *extra_target = nullptr, const char *to = nullptr);
 #endif
 int send_preprocess(unit_data *ch, const command_info *cmd, char *arg);
 void send_done(unit_data *activator,
@@ -120,7 +120,7 @@ void interpreter_dil_check();
 int char_is_playing(unit_data *u);
 int descriptor_is_playing(descriptor_data *d);
 void descriptor_interpreter(descriptor_data *d, char *arg);
-void add_func_history(unit_data *u, ubit16 idx, ubit16 flags);
+void add_func_history(unit_data *u, uint16_t idx, uint16_t flags);
 
 extern command_info *g_cmd_follow;
 extern command_info *g_cmd_dirs[MAX_EXIT + 1];

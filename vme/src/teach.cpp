@@ -44,7 +44,7 @@
 struct skill_teach_type
 {
     uint8_t max_skill;      // Maximum skill that can be taught
-    ubit16 min_glevel;      // What **guild** level do you have to be to learn this?
+    uint16_t min_glevel;    // What **guild** level do you have to be to learn this?
     int node;               // A node in a tree, e.g. index in skl_text[]
     int min_cost_per_point; // The gold point cost per point
     int max_cost_per_point; // The gold point cost per point

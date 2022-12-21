@@ -160,17 +160,17 @@ void char_data::increasePlayerExperienceBy(sbit32 value)
     m_points.increasePlayerExperienceBy(value);
 }
 
-ubit16 char_data::getRace() const
+uint16_t char_data::getRace() const
 {
     return m_points.getRace();
 }
 
-ubit16 *char_data::getRacePtr()
+uint16_t *char_data::getRacePtr()
 {
     return m_points.getRacePtr();
 }
 
-void char_data::setRace(ubit16 value)
+void char_data::setRace(uint16_t value)
 {
     m_points.setRace(value);
 }

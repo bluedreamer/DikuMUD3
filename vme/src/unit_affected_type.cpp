@@ -35,12 +35,12 @@ void unit_affected_type::bread(CByteBuffer *pBuf, int *nError)
     applyf_i = pBuf->ReadS16(nError);
 }
 
-ubit16 unit_affected_type::getBeat() const
+uint16_t unit_affected_type::getBeat() const
 {
     return beat;
 }
 
-void unit_affected_type::setBeat(ubit16 value)
+void unit_affected_type::setBeat(uint16_t value)
 {
     beat = value;
 }

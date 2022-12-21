@@ -98,7 +98,7 @@ bool zone_limit(unit_data *u, file_index_type *fi, zone_reset_cmd *cmd)
     }
 
     /* Check for global maxima */
-    if (cmd->getNum(0) && (fi->getNumInMem()) >= (ubit16)(cmd->getNum(0)))
+    if (cmd->getNum(0) && (fi->getNumInMem()) >= (uint16_t)(cmd->getNum(0)))
     {
         return FALSE;
     }
@@ -225,7 +225,7 @@ unit_data *zone_equip(unit_data *u, zone_reset_cmd *cmd)
                  cmd->getFileIndexType(0)->getName(),
                  cmd->getFileIndexType(0)->getZone()->getName());
     }
-    else if (!equipment(u, cmd->getNum(1)) && !(cmd->getNum(0) && (cmd->getFileIndexType(0)->getNumInMem()) >= (ubit16)(cmd->getNum(0))))
+    else if (!equipment(u, cmd->getNum(1)) && !(cmd->getNum(0) && (cmd->getFileIndexType(0)->getNumInMem()) >= (uint16_t)(cmd->getNum(0))))
     {
         loaded = read_unit(cmd->getFileIndexType(0));
 

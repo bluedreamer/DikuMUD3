@@ -114,11 +114,11 @@ ubit1 apf_mod_unit_flags(unit_affected_type *af, unit_data *unit, ubit1 set)
 
     if (set)
     {
-        unit->setUnitFlag((ubit16)af->getDataAtIndex(0));
+        unit->setUnitFlag((uint16_t)af->getDataAtIndex(0));
     }
     else
     {
-        unit->removeUnitFlag((ubit16)af->getDataAtIndex(0));
+        unit->removeUnitFlag((uint16_t)af->getDataAtIndex(0));
 
         /* After bit has been removed, call all apply functions  */
         /* which will set bits [and one of these may be the bit  */
@@ -130,7 +130,7 @@ ubit1 apf_mod_unit_flags(unit_affected_type *af, unit_data *unit, ubit1 set)
         {
             if ((taf != af) && (taf->getApplyFI() == APF_MOD_UNIT_FLAGS))
             {
-                unit->setUnitFlag((ubit16)taf->getDataAtIndex(0));
+                unit->setUnitFlag((uint16_t)taf->getDataAtIndex(0));
             }
         }
     }

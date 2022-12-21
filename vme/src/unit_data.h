@@ -191,11 +191,11 @@ public:
     void setAllManipulateFlags(ubit32 value);
     void setManipulateFlag(ubit32 value);
 
-    ubit16 getUnitFlags() const;
-    ubit16 *getUnitFlagsPtr();
-    void setAllUnitFlags(ubit16 value);
-    void setUnitFlag(ubit16 value);
-    void removeUnitFlag(ubit16 value);
+    uint16_t getUnitFlags() const;
+    uint16_t *getUnitFlagsPtr();
+    void setAllUnitFlags(uint16_t value);
+    void setUnitFlag(uint16_t value);
+    void removeUnitFlag(uint16_t value);
     bool isUnitFlagSet(int flag) const { return IS_SET(m_flags, flag); }
     /// @}
 
@@ -227,10 +227,10 @@ public:
      * @name Size related code
      * @{
      */
-    ubit16 getSize() const;
-    ubit16 *getSizePtr();
-    void setSize(ubit16 value);
-    void increaseSizeBy(ubit16 value);
+    uint16_t getSize() const;
+    uint16_t *getSizePtr();
+    void setSize(uint16_t value);
+    void increaseSizeBy(uint16_t value);
     /// @}
 
     /**
@@ -379,11 +379,11 @@ private:
     unit_data *m_gnext{nullptr};             ///< global l-list of objects, chars & rooms
     unit_data *m_gprevious{nullptr};         ///< global l-list of objects, chars & rooms
     ubit32 m_manipulate{0};                  ///< WEAR_XXX macros
-    ubit16 m_flags{0};                       ///< Invisible, can_bury, burried...
+    uint16_t m_flags{0};                     ///< Invisible, can_bury, burried...
     sbit32 m_base_weight{0};                 ///< The "empty" weight of a room/char/obj (lbs)
     sbit32 m_weight{0};                      ///< Current weight of a room/obj/char
     int16_t m_capacity{0};                   ///< Capacity of obj/char/room, -1 => any
-    ubit16 m_size{0};                        ///< (cm) MOBs height, weapons size, ropes length
+    uint16_t m_size{0};                      ///< (cm) MOBs height, weapons size, ropes length
     uint8_t m_status{0};                     ///< IS_ROOM, IS_OBJ, IS_PC, IS_NPC
     uint8_t m_open_flags{0};                 ///< In general OPEN will mean can "enter"?
     uint8_t m_open_diff{0};                  ///< Open difficulty

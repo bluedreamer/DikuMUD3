@@ -70,7 +70,7 @@ public:
     bool m_bColorRemove;
 
     bool m_bGobble;
-    ubit16 m_nId;
+    uint16_t m_nId;
     int m_nFirst;
     uint8_t m_nLine;
     int m_nPromptMode; ///< 0 none, 1 press return

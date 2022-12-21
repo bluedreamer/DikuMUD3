@@ -21,7 +21,7 @@ public:
 
     cMultiHook *getMultiHookPtr();
 
-    ubit16 getMultiHookID() const;
+    uint16_t getMultiHookID() const;
 
     using FunctionPtr = void (*)(descriptor_data *, char *);
     const FunctionPtr getFunctionPtr() const;
@@ -35,8 +35,8 @@ public:
     const char *getHostname() const;
     void setHostname(const char *value);
 
-    ubit16 getMplexPortNum() const;
-    void setMplexPortNum(ubit16 value);
+    uint16_t getMplexPortNum() const;
+    void setMplexPortNum(uint16_t value);
 
     uint8_t getSerialLine() const;
     void setSerialLine(uint8_t value);
@@ -44,8 +44,8 @@ public:
     int predecrementLoopWaitCounter();
     void setLoopWaitCounter(int value);
 
-    ubit16 getMinutesPlayerIdle() const;
-    void setMinutesPlayerIdle(ubit16 value);
+    uint16_t getMinutesPlayerIdle() const;
+    void setMinutesPlayerIdle(uint16_t value);
     void incrementMinutesPlayerIdle();
 
     void clearLocalString();
@@ -93,14 +93,14 @@ public:
 private:
     time_t logon{0};                        ///< Time of last connect
     cMultiHook *multi{nullptr};             ///< Multi element pointer
-    ubit16 id{0};                           ///< The ID for the multi
+    uint16_t id{0};                         ///< The ID for the multi
     FunctionPtr fptr{nullptr};              ///<
     int state{0};                           ///< Locally used in each fptr
     char host[50]{0};                       ///< hostname
-    ubit16 nPort{0};                        ///< Mplex port
+    uint16_t nPort{0};                      ///< Mplex port
     uint8_t nLine{0};                       ///< Serial Line
     int wait{0};                            ///< wait for how many loops
-    ubit16 timer{0};                        ///< num of hours idleness for mortals
+    uint16_t timer{0};                      ///< num of hours idleness for mortals
     ubit32 replyid{0};                      ///< Used for 'tell reply'
     char *localstr{nullptr};                ///< For the 'modify-string' system. This string is expanded while editing
     PostEditFunctionPtr postedit{nullptr};  ///<

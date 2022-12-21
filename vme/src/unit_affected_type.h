@@ -15,8 +15,8 @@ public:
 
     void bread(CByteBuffer *pBuf, int *nError);
 
-    ubit16 getBeat() const;
-    void setBeat(ubit16 value);
+    uint16_t getBeat() const;
+    void setBeat(uint16_t value);
 
     int16_t getDuration() const;
     void setDuration(int16_t value);
@@ -60,7 +60,7 @@ public:
 
 private:
     int16_t id{0};                          ///<
-    ubit16 beat{0};                         ///< Beat in 1/4 of secs, 0 = None
+    uint16_t beat{0};                       ///< Beat in 1/4 of secs, 0 = None
     int16_t duration{0};                    ///< How many beats until end
     sbit32 data[3]{0};                      ///<
     int16_t firstf_i{0};                    ///<

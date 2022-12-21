@@ -34,9 +34,9 @@ public:
     void setPlayerExperience(sbit32 value);
     void increasePlayerExperienceBy(sbit32 value);
 
-    ubit16 getRace() const;
-    ubit16 *getRacePtr();
-    void setRace(ubit16 value);
+    uint16_t getRace() const;
+    uint16_t *getRacePtr();
+    void setRace(uint16_t value);
 
     int16_t getMana() const;
     int16_t *getManaPtr();
@@ -113,7 +113,7 @@ public:
 private:
     ubit32 flags{0};                                 ///< Char flags
     sbit32 exp{0};                                   ///< The experience of the player
-    ubit16 race{0};                                  ///< PC/NPC race, Humanoid, Animal, etc.
+    uint16_t race{0};                                ///< PC/NPC race, Humanoid, Animal, etc.
     int16_t mana{0};                                 ///< How many mana points are left?
     int16_t endurance{0};                            ///< How many endurance points are left?
     int16_t offensive{0};                            ///< The OB of a character.

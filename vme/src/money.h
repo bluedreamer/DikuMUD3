@@ -13,15 +13,15 @@ typedef sbit32 amount_t;
 
 struct money_type
 {
-    currency_t currency;     ///< Which currency for money
-    char **strings;          ///< The money-strings
-    char *tails;             ///< What to print on the dark side of the coin
-    char *abbrev;            ///< Small string for lists
-    ubit16 pl_idx;           ///< The index in above to first plural string
-    sbit32 relative_value;   ///< Relative to the internal value
-    sbit32 min_value;        ///< Minimum internal value of the currency
-    ubit16 coins_per_weight; ///< How many coins per weight unit
-    file_index_type *fi;     ///< Where is coin object in file
+    currency_t currency;       ///< Which currency for money
+    char **strings;            ///< The money-strings
+    char *tails;               ///< What to print on the dark side of the coin
+    char *abbrev;              ///< Small string for lists
+    uint16_t pl_idx;           ///< The index in above to first plural string
+    sbit32 relative_value;     ///< Relative to the internal value
+    sbit32 min_value;          ///< Minimum internal value of the currency
+    uint16_t coins_per_weight; ///< How many coins per weight unit
+    file_index_type *fi;       ///< Where is coin object in file
 };
 /**
  * You shouldn't have to refer to this array yourself.
@@ -113,7 +113,7 @@ inline sbit32 MONEY_RELATIVE(const unit_data *obj)
     return g_money_types[MONEY_TYPE(obj)].min_value;
 }
 
-inline ubit16 MONEY_WEIGHT(const unit_data *obj)
+inline uint16_t MONEY_WEIGHT(const unit_data *obj)
 {
     return g_money_types[MONEY_TYPE(obj)].coins_per_weight;
 }
@@ -183,7 +183,7 @@ ubit1 char_can_afford(unit_data *ch, amount_t amt, currency_t currency);
 /**
  * Does unit contain any money of type?
  */
-unit_data *unit_has_money_type(unit_data *unit, ubit16 type);
+unit_data *unit_has_money_type(unit_data *unit, uint16_t type);
 
 /**
  * Split `money' into two objects.  Return object with amount `amt'

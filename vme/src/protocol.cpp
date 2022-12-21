@@ -25,9 +25,9 @@
 /* Create the standard header and send a close request to file             */
 /* file descriptor 'fd'. If fd is -1 then don't send anything.             */
 /* Return -1 on socket fail, 0 on amount fail, 1 on success                */
-void protocol_send_close(cHook *Hook, ubit16 id)
+void protocol_send_close(cHook *Hook, uint16_t id)
 {
-    ubit16 len = 0;
+    uint16_t len = 0;
     uint8_t buf[20];
 
     if (!Hook->IsHooked())
@@ -62,9 +62,9 @@ void protocol_send_ping(cHook *Hook)
 /* Create the standard header and send a connection confirm to             */
 /* file descriptor 'fd'. If fd is -1 then don't send anything.             */
 /* Return -1 on socket fail, 0 on amount fail, 1 on success                */
-void protocol_send_confirm(cHook *Hook, ubit16 id)
+void protocol_send_confirm(cHook *Hook, uint16_t id)
 {
-    ubit16 len = 0;
+    uint16_t len = 0;
     uint8_t buf[20];
 
     if (!Hook->IsHooked())
@@ -87,8 +87,8 @@ void protocol_send_confirm(cHook *Hook, ubit16 id)
 /* Return -1 on socket fail, 0 on amount fail, 1 on success                */
 void protocol_send_request(cHook *Hook)
 {
-    ubit16 id = 0;
-    ubit16 len = 0;
+    uint16_t id = 0;
+    uint16_t len = 0;
     uint8_t buf[10];
 
     if (!Hook->IsHooked())
@@ -110,8 +110,8 @@ void protocol_send_request(cHook *Hook)
 /* Return -1 on socket fail, 0 on amount fail, 1 on success                */
 void protocol_send_mplex_info(cHook *Hook, uint8_t bWebsockets)
 {
-    ubit16 id = 0;
-    ubit16 len = 0;
+    uint16_t id = 0;
+    uint16_t len = 0;
     uint8_t buf[10];
 
     if (!Hook->IsHooked())
@@ -133,9 +133,9 @@ void protocol_send_mplex_info(cHook *Hook, uint8_t bWebsockets)
 /* Create the standard header and send (from mplex to server) the host     */
 /* name information.     If fd is -1 then don't send anything.             */
 /* Return -1 on socket fail, 0 on amount fail, 1 on success                */
-void protocol_send_host(cHook *Hook, ubit16 id, const char *host, ubit16 nPort, uint8_t nLine)
+void protocol_send_host(cHook *Hook, uint16_t id, const char *host, uint16_t nPort, uint8_t nLine)
 {
-    ubit16 len = 0;
+    uint16_t len = 0;
     uint8_t buf[80];
     char ptext[1024] = "UNKNOWN HOST";
     uint8_t *b = nullptr;
@@ -173,11 +173,11 @@ void protocol_send_host(cHook *Hook, ubit16 id, const char *host, ubit16 nPort, 
 /* 'type' is used to tell difference between normal text, page string text, */
 /* etc.                                                                     */
 /* Return -1 on socket fail, 0 on amount fail, 1 on success                 */
-void protocol_send_text(cHook *Hook, const ubit16 id, const char *text, const uint8_t type)
+void protocol_send_text(cHook *Hook, const uint16_t id, const char *text, const uint8_t type)
 {
 #define MAX_TEXT_LEN (32768)
-    ubit16 len = 0;
-    ubit16 txlen = 0;
+    uint16_t len = 0;
+    uint16_t txlen = 0;
     uint8_t buf[6 + MAX_TEXT_LEN];
     char c = 0;
 
@@ -237,9 +237,9 @@ void protocol_send_text(cHook *Hook, const ubit16 id, const char *text, const ui
 /* file descriptor 'fd'. If fd is -1 then don't send anything.             */
 /* Return -1 on socket fail, 0 on amount fail, 1 on success                */
 
-void protocol_send_setup(cHook *Hook, ubit16 id, terminal_setup_type *setup)
+void protocol_send_setup(cHook *Hook, uint16_t id, terminal_setup_type *setup)
 {
-    ubit16 len = 0;
+    uint16_t len = 0;
     uint8_t buf[sizeof(terminal_setup_type) + 6 + 4];
 
     assert(id != 0);
@@ -260,9 +260,9 @@ void protocol_send_setup(cHook *Hook, ubit16 id, terminal_setup_type *setup)
 }
 
 // Send the MUD name to the mplex
-void protocol_send_exchange(cHook *Hook, ubit16 id, const char *mudname)
+void protocol_send_exchange(cHook *Hook, uint16_t id, const char *mudname)
 {
-    ubit16 len = 0;
+    uint16_t len = 0;
     uint8_t buf[MULTI_MAX_MUDNAME + 1 + 6 + 4];
 
     assert(strlen(mudname) < MULTI_MAX_MUDNAME);
@@ -285,9 +285,9 @@ void protocol_send_exchange(cHook *Hook, ubit16 id, const char *mudname)
 }
 
 // Send the default colors to the Mplex
-void protocol_send_color(cHook *Hook, ubit16 id, const char *colorstr)
+void protocol_send_color(cHook *Hook, uint16_t id, const char *colorstr)
 {
-    ubit16 len = 0;
+    uint16_t len = 0;
     uint8_t buf[(MAX_STRING_LENGTH * 2) + 11];
 
     assert(strlen(colorstr) < MAX_STRING_LENGTH * 2);
@@ -323,11 +323,11 @@ void protocol_send_color(cHook *Hook, ubit16 id, const char *colorstr)
 /*      -2 on protocol fail                                                */
 /* or type on success                                                      */
 /*                                                                         */
-int protocol_parse_incoming(cHook *Hook, ubit16 *pid, ubit16 *plen, char **str, uint8_t *text_type)
+int protocol_parse_incoming(cHook *Hook, uint16_t *pid, uint16_t *plen, char **str, uint8_t *text_type)
 {
     int n = 0;
-    ubit16 id = 0;
-    ubit16 len = 0;
+    uint16_t id = 0;
+    uint16_t len = 0;
     char buf[10];
     char *data = nullptr;
 
@@ -363,7 +363,7 @@ int protocol_parse_incoming(cHook *Hook, ubit16 *pid, ubit16 *plen, char **str, 
         return -2;
     }
 
-    memcpy(&id, &(buf[2]), sizeof(ubit16));
+    memcpy(&id, &(buf[2]), sizeof(uint16_t));
     memcpy(&len, &(buf[4]), sizeof(int16_t));
 
     if (Hook->qRX.Bytes() - 6 < len)

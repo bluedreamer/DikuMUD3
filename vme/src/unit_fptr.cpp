@@ -23,7 +23,7 @@ int unit_fptr::destruct_classindex()
     return DR_FUNC;
 }
 
-ubit16 unit_fptr::getFunctionPointerIndex() const
+uint16_t unit_fptr::getFunctionPointerIndex() const
 {
     return index;
 }
@@ -33,7 +33,7 @@ void unit_fptr::readFunctionPointerIndexFrom(CByteBuffer &buf, int &nError)
     index = buf.ReadU16(&nError);
 }
 
-void unit_fptr::setFunctionPointerIndex(ubit16 value)
+void unit_fptr::setFunctionPointerIndex(uint16_t value)
 {
     index = value;
 }
@@ -53,12 +53,12 @@ void unit_fptr::setFunctionPriority(uint8_t value)
     priority = value;
 }
 
-ubit16 unit_fptr::getHeartBeat() const
+uint16_t unit_fptr::getHeartBeat() const
 {
     return heart_beat;
 }
 
-ubit16 *unit_fptr::getHeartBeatPtr()
+uint16_t *unit_fptr::getHeartBeatPtr()
 {
     return &heart_beat;
 }
@@ -68,27 +68,27 @@ void unit_fptr::readHeartBeatFrom(CByteBuffer &buf, int &nError)
     heart_beat = buf.ReadU16(&nError);
 }
 
-void unit_fptr::setHeartBeat(ubit16 value)
+void unit_fptr::setHeartBeat(uint16_t value)
 {
     heart_beat = value;
 }
 
-bool unit_fptr::isActivateOnEventFlagSet(ubit16 value)
+bool unit_fptr::isActivateOnEventFlagSet(uint16_t value)
 {
     return flags & value;
 }
 
-void unit_fptr::setActivateOnEventFlag(ubit16 value)
+void unit_fptr::setActivateOnEventFlag(uint16_t value)
 {
     flags |= value;
 }
 
-void unit_fptr::setAllActivateOnEventFlags(ubit16 value)
+void unit_fptr::setAllActivateOnEventFlags(uint16_t value)
 {
     flags = value;
 }
 
-void unit_fptr::removeActivateOnEventFlag(ubit16 value)
+void unit_fptr::removeActivateOnEventFlag(uint16_t value)
 {
     flags &= ~value;
 }
@@ -98,7 +98,7 @@ void unit_fptr::readActivateOnEventFlagsFrom(CByteBuffer &buf, int &nError)
     flags = buf.ReadU16(&nError);
 }
 
-ubit16 unit_fptr::getAllActivateOnEventFlags() const
+uint16_t unit_fptr::getAllActivateOnEventFlags() const
 {
     return flags;
 }

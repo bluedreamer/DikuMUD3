@@ -224,8 +224,8 @@ public:
         flags = 0;
         fi = nullptr;
     }
-    ubit16 idx;
-    ubit16 flags;
+    uint16_t idx;
+    uint16_t flags;
     file_index_type *fi;
 }
 
@@ -233,7 +233,7 @@ func_history_data[MAX_DEBUG_HISTORY];
 
 static int func_history_pos = 0;
 
-void add_func_history(unit_data *u, ubit16 idx, ubit16 flags)
+void add_func_history(unit_data *u, uint16_t idx, uint16_t flags)
 {
     func_history_data[func_history_pos].idx = idx;
     func_history_data[func_history_pos].flags = flags;
@@ -587,7 +587,7 @@ int unit_function_scan(unit_data *u, spec_arg *sarg)
 {
     int res = SFR_SHARE;
     int priority = 0;
-    ubit16 orgflag = 0;
+    uint16_t orgflag = 0;
     unit_fptr *next = nullptr;
 
     if (g_cServerConfig.isNoSpecials())
@@ -681,7 +681,7 @@ int unit_function_scan(unit_data *u, spec_arg *sarg)
    if extra_target is set, then also send message to that unit
 */
 
-int basic_special(unit_data *ch, spec_arg *sarg, ubit16 mflt, unit_data *extra_target, const char *to)
+int basic_special(unit_data *ch, spec_arg *sarg, uint16_t mflt, unit_data *extra_target, const char *to)
 {
     unit_data *u = nullptr;
     unit_data *uu = nullptr;

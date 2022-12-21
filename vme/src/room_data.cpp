@@ -44,7 +44,7 @@ uint8_t *room_data::getRoomFlagsPtr()
     return &m_flags;
 }
 
-void room_data::setAllRoomFlags(ubit16 value)
+void room_data::setAllRoomFlags(uint16_t value)
 {
     m_flags = static_cast<uint8_t>(value);
 }

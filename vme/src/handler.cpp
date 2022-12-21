@@ -216,7 +216,7 @@ void remove_from_unit_list(unit_data *unit)
     unit->setGlobalPrevious(nullptr);
 }
 
-unit_fptr *find_fptr(unit_data *u, ubit16 idx)
+unit_fptr *find_fptr(unit_data *u, uint16_t idx)
 {
     unit_fptr *tf = nullptr;
 
@@ -278,7 +278,7 @@ void insert_fptr(unit_data *u, unit_fptr *f)
     f->setNext(nullptr);
 }
 
-unit_fptr *create_fptr(unit_data *u, ubit16 index, ubit16 priority, ubit16 beat, ubit16 flags, void *data)
+unit_fptr *create_fptr(unit_data *u, uint16_t index, uint16_t priority, uint16_t beat, uint16_t flags, void *data)
 {
     unit_fptr *f = nullptr;
     f = new EMPLACE(unit_fptr) unit_fptr;
@@ -332,7 +332,7 @@ void destroy_fptr(unit_data *u, unit_fptr *f)
     sarg.fptr = f;
     sarg.cmd = &g_cmd_auto_extract;
     sarg.arg = "";
-    sarg.mflags = ((ubit16)0);
+    sarg.mflags = ((uint16_t)0);
 
     (*(g_unit_function_array[f->getFunctionPointerIndex()].func))(&sarg);
 

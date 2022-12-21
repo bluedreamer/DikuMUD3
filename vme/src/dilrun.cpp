@@ -320,7 +320,7 @@ void dil_intr_remove(dilprg *p, int idx)
     }
 }
 
-int dil_intr_insert(dilprg *p, uint8_t *lab, uint8_t *elab, ubit16 flags)
+int dil_intr_insert(dilprg *p, uint8_t *lab, uint8_t *elab, uint16_t flags)
 {
     int intnum = 0;
 
@@ -547,7 +547,7 @@ char dil_getbool(dilval *v, dilprg *prg)
             return (*((uint8_t *)v->ref) != 0); /* return Lvalue */
 
         case DilVarType_e::DILV_UINT2R:
-            return (*((ubit16 *)v->ref) != 0); /* return Lvalue */
+            return (*((uint16_t *)v->ref) != 0); /* return Lvalue */
 
         case DilVarType_e::DILV_UINT4R:
             return (*((ubit32 *)v->ref) != 0); /* return Lvalue */
@@ -624,7 +624,7 @@ int dil_getval(dilval *v)
             v->val.num = *((uint8_t *)v->ref);
             break;
         case DilVarType_e::DILV_UINT2R:
-            v->val.num = *((ubit16 *)v->ref);
+            v->val.num = *((uint16_t *)v->ref);
             break;
         case DilVarType_e::DILV_UINT4R:
             v->val.num = *((ubit32 *)v->ref);
@@ -1123,7 +1123,7 @@ void dil_function_table_setup()
         {DILE_SELF, dilfe_self}, /* self */
 
         /* DIL static references */
-        {DILE_VAR, dilfe_var}, /* variable (ubit16) */
+        {DILE_VAR, dilfe_var}, /* variable (uint16_t) */
         {DILE_FS, dilfe_fs},   /* fixed string (char[]) */
         {DILE_FSL, dilfe_fsl}, /* fixed stringlist (char[][]) */
         {DILE_INT, dilfe_int}, /* fixed integer (sbit32) */
@@ -1570,7 +1570,7 @@ int run_dil(spec_arg *sarg)
     }
 
     /* For optimization purposes */
-    ubit16 OrgHeartBeat = sarg->fptr->getHeartBeat();
+    uint16_t OrgHeartBeat = sarg->fptr->getHeartBeat();
 
     activates++;
 
@@ -2078,7 +2078,7 @@ void dil_activate(dilprg *prg)
     assert(fptr);
 
 #ifdef DEBUG_HISTORY
-    void add_func_history(unit_data * u, ubit16, ubit16);
+    void add_func_history(unit_data * u, uint16_t, uint16_t);
     add_func_history(prg->owner, SFUN_DIL_INTERNAL, SFB_TICK);
 #endif
 
@@ -2113,7 +2113,7 @@ void dil_activate_cmd(dilprg *prg, command_info *cmd_ptr)
     assert(fptr);
 
 #ifdef DEBUG_HISTORY
-    void add_func_history(unit_data * u, ubit16, ubit16);
+    void add_func_history(unit_data * u, uint16_t, uint16_t);
     add_func_history(prg->owner, SFUN_DIL_INTERNAL, SFB_TICK);
 #endif
 

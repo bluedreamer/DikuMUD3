@@ -152,12 +152,12 @@ size_t zone_type::getNumOfFileIndexes() const
     return m_mmp_fi.size();
 }
 
-ubit16 zone_type::getZoneResetTime() const
+uint16_t zone_type::getZoneResetTime() const
 {
     return m_zone_time;
 }
 
-void zone_type::setZoneResetTime(ubit16 value)
+void zone_type::setZoneResetTime(uint16_t value)
 {
     m_zone_time = value;
 }
@@ -183,12 +183,12 @@ void zone_type::setCrc(ubit32 crc)
     }
 }
 
-ubit16 *zone_type::getZoneResetTimePtr()
+uint16_t *zone_type::getZoneResetTimePtr()
 {
     return &m_zone_time;
 }
 
-ubit16 zone_type::getNumOfRooms() const
+uint16_t zone_type::getNumOfRooms() const
 {
     return m_no_rooms;
 }
@@ -198,12 +198,12 @@ void zone_type::incrementNumOfRooms()
     ++m_no_rooms;
 }
 
-void zone_type::setNumOfRooms(ubit16 value)
+void zone_type::setNumOfRooms(uint16_t value)
 {
     m_no_rooms = value;
 }
 
-ubit16 zone_type::getNumOfObjects() const
+uint16_t zone_type::getNumOfObjects() const
 {
     return m_no_objs;
 }
@@ -217,7 +217,7 @@ void zone_type::incrementNumOfNPCs()
 {
     ++m_no_npcs;
 }
-ubit16 zone_type::getNumOfNPCs() const
+uint16_t zone_type::getNumOfNPCs() const
 {
     return m_no_npcs;
 }

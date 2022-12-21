@@ -312,7 +312,7 @@ void bread_dilintr(CByteBuffer *pBuf, dilprg *prg, int version)
 
 void bwrite_dilintr(CByteBuffer *pBuf, dilprg *prg)
 {
-    ubit16 i = 0;
+    uint16_t i = 0;
     ubit32 lab = 0;
     ubit32 elab = 0;
 
@@ -1238,7 +1238,7 @@ int write_unit_string(CByteBuffer *pBuf, unit_data *u)
     pBuf->Append32((ubit32)u->getMaximumHitpoints());
     pBuf->Append32((ubit32)u->getCurrentHitpoints());
 
-    pBuf->Append16((ubit16)u->getAlignment());
+    pBuf->Append16((uint16_t)u->getAlignment());
 
     pBuf->Append8(u->getOpenFlags());
     pBuf->Append8(u->getOpenDifficulty());
@@ -1295,8 +1295,8 @@ int write_unit_string(CByteBuffer *pBuf, unit_data *u)
             pBuf->Append32(CHAR_EXP(u));
             pBuf->Append32(CHAR_FLAGS(u));
 
-            pBuf->Append16((ubit16)CHAR_MANA(u));
-            pBuf->Append16((ubit16)CHAR_ENDURANCE(u));
+            pBuf->Append16((uint16_t)CHAR_MANA(u));
+            pBuf->Append16((uint16_t)CHAR_ENDURANCE(u));
 
             pBuf->Append8(CHAR_NATURAL_ARMOUR(u));
             pBuf->Append16(CHAR_SPEED(u));

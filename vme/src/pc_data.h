@@ -111,9 +111,9 @@ public:
      * @name Virtual Player level code
      * @{
      */
-    ubit16 getVirtualPlayerLevel() const;
-    ubit16 *getVirtualPlayerLevelPtr();
-    void setVirtualPlayerLevel(ubit16 value);
+    uint16_t getVirtualPlayerLevel() const;
+    uint16_t *getVirtualPlayerLevelPtr();
+    void setVirtualPlayerLevel(uint16_t value);
     void incrementVirtualPlayerLevel();
     /// @}
 
@@ -149,29 +149,29 @@ public:
      * @name Flags
      * @{
      */
-    ubit16 getAllPCFlags() const;
-    ubit16 *getAllPCFlagsPtr();
-    void setPCFlag(ubit16 value);
-    void setAllPCFlags(ubit16 value);
-    void togglePCFlag(ubit16 value);
-    void removePCFlag(ubit16 value);
+    uint16_t getAllPCFlags() const;
+    uint16_t *getAllPCFlagsPtr();
+    void setPCFlag(uint16_t value);
+    void setAllPCFlags(uint16_t value);
+    void togglePCFlag(uint16_t value);
+    void removePCFlag(uint16_t value);
     /// @}
 
     /**
      * @name Crimes Committed
      * @{
      */
-    ubit16 getNumberOfCrimesCommitted() const;
-    ubit16 *getNumberOfCrimesCommittedPtr();
-    void setNumberOfCrimesCommitted(ubit16 value);
+    uint16_t getNumberOfCrimesCommitted() const;
+    uint16_t *getNumberOfCrimesCommittedPtr();
+    void setNumberOfCrimesCommitted(uint16_t value);
     /// @}
 
     /**
      * @name Crack Attempts
      * @{
      */
-    ubit16 getNumberOfCrackAttempts() const;
-    void setNumberOfCrackAttempts(ubit16 value);
+    uint16_t getNumberOfCrackAttempts() const;
+    void setNumberOfCrackAttempts(uint16_t value);
     void incrementNumberOfCrackAttempts();
     /// @}
 
@@ -179,9 +179,9 @@ public:
      * @name Lifespan
      * @{
      */
-    ubit16 getLifespan() const;
-    ubit16 *getLifespanPtr();
-    void setLifespan(ubit16 value);
+    uint16_t getLifespan() const;
+    uint16_t *getLifespanPtr();
+    void setLifespan(uint16_t value);
     /// @}
 
     /**
@@ -334,14 +334,14 @@ private:
     extra_list m_info;                                   ///< For saving Admin information
     extra_list m_quest;                                  ///< For saving QUEST information
     int8_t m_profession{-1};                             ///< The player's chosen profession, -1 means unknown
-    ubit16 m_vlvl{0};                                    ///< Virtual Level for player
+    uint16_t m_vlvl{0};                                  ///< Virtual Level for player
     sbit32 m_id{-1};                                     ///< Unique identifier for each player (-1 guest)
     sbit32 m_skill_points{0};                            ///< No of practice points left
     sbit32 m_ability_points{0};                          ///< No of practice points left
-    ubit16 m_flags{0};                                   ///< flags for PC setup (brief, noshout...)
-    ubit16 m_nr_of_crimes{0};                            ///< Number of crimes committed
-    ubit16 m_crack_attempts{0};                          ///< Number of wrong passwords entered
-    ubit16 m_lifespan{0};                                ///< How many year to live....
+    uint16_t m_flags{0};                                 ///< flags for PC setup (brief, noshout...)
+    uint16_t m_nr_of_crimes{0};                          ///< Number of crimes committed
+    uint16_t m_crack_attempts{0};                        ///< Number of wrong passwords entered
+    uint16_t m_lifespan{0};                              ///< How many year to live....
     int16_t m_spells[SPL_TREE_MAX]{0};                   ///< The spells learned
     uint8_t m_spell_lvl[SPL_TREE_MAX]{0};                ///< Practiced within that level
     int16_t m_skills[SKI_TREE_MAX]{0};                   ///< The skills learned

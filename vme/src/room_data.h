@@ -61,7 +61,7 @@ public:
      * Sets all room flags to value
      * @param value NB this is cast down to uint8_t
      */
-    void setAllRoomFlags(ubit16 value);
+    void setAllRoomFlags(uint16_t value);
     /// @}
 
     /**

@@ -113,8 +113,8 @@ int cMultiHook::Read()
 {
     descriptor_data *d = nullptr;
     int p = 0;
-    ubit16 id = 0;
-    ubit16 len = 0;
+    uint16_t id = 0;
+    uint16_t len = 0;
     char *data = nullptr;
     uint8_t text_type = 0;
 

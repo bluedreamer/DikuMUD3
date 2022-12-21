@@ -49,7 +49,7 @@ public:
     int getProfessionBonus(int professionIndex);
     int getProfessionBonus(unit_data *pc, uint8_t teachtype);
 
-    ubit16 sanity; ///< Used for sanity check
+    uint16_t sanity; ///< Used for sanity check
     uint8_t min_level;
     uint8_t min_abil[ABIL_TREE_MAX];
 
@@ -102,19 +102,19 @@ inline bool CHAR_IS_HUMANOID(const unit_data *ch)
 
 struct dice_type
 {
-    ubit16 reps;
-    ubit16 size;
+    uint16_t reps;
+    uint16_t size;
 };
 
 struct base_race_info_type
 {
-    ubit16 height;
+    uint16_t height;
     dice_type height_dice;
 
-    ubit16 weight;
+    uint16_t weight;
     dice_type weight_dice;
 
-    ubit16 lifespan;
+    uint16_t lifespan;
     dice_type lifespan_dice;
 };
 
@@ -123,7 +123,7 @@ struct race_info_type
     base_race_info_type male;
     base_race_info_type female;
 
-    ubit16 age;
+    uint16_t age;
     dice_type age_dice;
 };
 

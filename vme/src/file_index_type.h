@@ -20,7 +20,7 @@ public:
     file_index_type &operator=(file_index_type &&) = delete;      ///< Delete move assignment
 
     [[nodiscard]] unit_data *find_symbolic_instance();
-    [[nodiscard]] unit_data *find_symbolic_instance_ref(unit_data *ref, ubit16 bitvector);
+    [[nodiscard]] unit_data *find_symbolic_instance_ref(unit_data *ref, uint16_t bitvector);
 
     [[nodiscard]] const char *getName() const;
     [[nodiscard]] zone_type *getZone() const;
@@ -28,8 +28,8 @@ public:
     [[nodiscard]] ubit32 getLength() const;
     [[nodiscard]] ubit32 getCRC() const;
     [[nodiscard]] int16_t getNumInZone() const;
-    [[nodiscard]] ubit16 getNumInMem() const;
-    [[nodiscard]] ubit16 getRoomNum() const;
+    [[nodiscard]] uint16_t getNumInMem() const;
+    [[nodiscard]] uint16_t getRoomNum() const;
     [[nodiscard]] uint8_t getType() const;
 
     [[nodiscard]] bool Empty() const;
@@ -52,7 +52,7 @@ public:
     void setNumInZone(int16_t value);
     void setLength(ubit32 value);
     void setFilepos(long value);
-    void setRoomNum(ubit16 value);
+    void setRoomNum(uint16_t value);
 
 private:
     std::forward_list<unit_data *> m_fi_unit_list; ///< This list of units that match this file_index
@@ -62,7 +62,7 @@ private:
     ubit32 m_length{0};                            ///< No of bytes to read
     ubit32 m_crc{0};                               ///< CRC check for compressed items
     int16_t m_no_in_zone{0};                       ///< Updated in zone reset for reset
-    ubit16 m_no_in_mem{0};                         ///< Number of these in the game
-    ubit16 m_room_no{0};                           ///< The number of the room
+    uint16_t m_no_in_mem{0};                       ///< Number of these in the game
+    uint16_t m_room_no{0};                         ///< The number of the room
     uint8_t m_type{0};                             ///< Room/Obj/Char or other?
 };

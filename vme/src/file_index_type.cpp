@@ -16,7 +16,7 @@ file_index_type::file_index_type(zone_type *zone, const char *name, uint8_t type
     m_type = type;
 }
 
-unit_data *file_index_type::find_symbolic_instance_ref(unit_data *ref, ubit16 bitvector)
+unit_data *file_index_type::find_symbolic_instance_ref(unit_data *ref, uint16_t bitvector)
 {
     unit_data *u = nullptr;
     unit_data *uu = nullptr;
@@ -159,7 +159,7 @@ int16_t file_index_type::getNumInZone() const
     return m_no_in_zone;
 }
 
-ubit16 file_index_type::getRoomNum() const
+uint16_t file_index_type::getRoomNum() const
 {
     return m_room_no;
 }
@@ -169,7 +169,7 @@ uint8_t file_index_type::getType() const
     return m_type;
 }
 
-ubit16 file_index_type::getNumInMem() const
+uint16_t file_index_type::getNumInMem() const
 {
     return m_no_in_mem;
 }
@@ -220,7 +220,7 @@ void file_index_type::setFilepos(long value)
     m_filepos = value;
 }
 
-void file_index_type::setRoomNum(ubit16 value)
+void file_index_type::setRoomNum(uint16_t value)
 {
     m_room_no = value;
 }

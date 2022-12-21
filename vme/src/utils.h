@@ -148,7 +148,7 @@ inline uint8_t CHAR_POS(const unit_data *ch) { return UCHAR(ch)->getPosition(); 
 
 inline uint8_t CHAR_LEVEL(const unit_data *ch) { return UCHAR(ch)->getLevel(); }
 
-inline ubit16 CHAR_RACE(const unit_data *ch) { return UCHAR(ch)->getRace(); }
+inline uint16_t CHAR_RACE(const unit_data *ch) { return UCHAR(ch)->getRace(); }
 
 inline int16_t CHAR_ABILITY(const unit_data *ch, size_t index) { return UCHAR(ch)->getAbilityAtIndex(index); }
 
@@ -239,17 +239,17 @@ inline bool CHAR_CAN_SEE(unit_data *ch, unit_data *unit)
 
 inline uint8_t PC_ACCESS_LEVEL(unit_data *pc) { return UPC(pc)->getAccessLevel(); }
 
-inline ubit16 PC_CRACK_ATTEMPTS(unit_data *pc) { return UPC(pc)->getNumberOfCrackAttempts(); }
+inline uint16_t PC_CRACK_ATTEMPTS(unit_data *pc) { return UPC(pc)->getNumberOfCrackAttempts(); }
 
 inline terminal_setup_type &PC_SETUP(unit_data *pc) { return UPC(pc)->getTerminalSetupType(); }
 
-inline ubit16 PC_LIFESPAN(unit_data *pc) { return UPC(pc)->getLifespan(); }
+inline uint16_t PC_LIFESPAN(unit_data *pc) { return UPC(pc)->getLifespan(); }
 
 inline pc_account_data &PC_ACCOUNT(unit_data *pc) { return UPC(pc)->getPCAccountData(); }
 
 inline pc_account_data &PC_ACCOUNT(const unit_data *pc) { return UPC(pc)->getPCAccountData(); }
 
-inline ubit16 PC_VIRTUAL_LEVEL(unit_data *pc) { return UPC(pc)->getVirtualPlayerLevel(); }
+inline uint16_t PC_VIRTUAL_LEVEL(unit_data *pc) { return UPC(pc)->getVirtualPlayerLevel(); }
 
 inline extra_list &PC_INFO(unit_data *pc) { return UPC(pc)->getAdministrationInformation(); }
 
@@ -295,7 +295,7 @@ inline uint8_t PC_SPL_LVL(unit_data *ch, size_t index) { return UPC(ch)->getSpel
 
 inline int16_t PC_SPL_SKILL(unit_data *ch, size_t index) { return UPC(ch)->getSpellSkillAtIndex(index); }
 
-inline ubit16 PC_CRIMES(unit_data *unit) { return UPC(unit)->getNumberOfCrimesCommitted(); }
+inline uint16_t PC_CRIMES(unit_data *unit) { return UPC(unit)->getNumberOfCrimesCommitted(); }
 
 inline const char *PC_PWD(unit_data *unit) { return UPC(unit)->getPassword(); }
 
@@ -305,7 +305,7 @@ inline sbit32 PC_ID(unit_data *unit) { return UPC(unit)->getPlayerUID(); }
 
 inline const char *PC_BANK(const unit_data *unit) { return UPC(unit)->getBank(); }
 
-inline ubit16 PC_FLAGS(unit_data *unit) { return UPC(unit)->getAllPCFlags(); }
+inline uint16_t PC_FLAGS(unit_data *unit) { return UPC(unit)->getAllPCFlags(); }
 
 inline pc_time_data &PC_TIME(unit_data *unit) { return UPC(unit)->getPCTimeInformation(); }
 

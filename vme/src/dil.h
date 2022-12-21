@@ -154,7 +154,7 @@ struct dilargstype
 #define DILE_SELF 39 /* self */
 
 /* DIL static references */
-#define DILE_VAR 40 /* variable (ubit16) */
+#define DILE_VAR 40 /* variable (uint16_t) */
 #define DILE_FS 41  /* fixed string (char[]) */
 #define DILE_FSL 42 /* fixed stringlist (char[][]) */
 #define DILE_INT 43 /* fixed integer (sbit32) */
@@ -556,9 +556,9 @@ struct diltemplate
 
     ubit32 flags; /* recall, etc. */
     uint8_t priority;
-    ubit16 intrcount;   /* max number of interrupts */
-    ubit16 varcrc;      /* variable crc from compiler */
-    ubit16 corecrc;     /* core crc from compiler */
+    uint16_t intrcount; /* max number of interrupts */
+    uint16_t varcrc;    /* variable crc from compiler */
+    uint16_t corecrc;   /* core crc from compiler */
     uint8_t rtnt;       /* return type */
     uint8_t argc;       /* number of arguments */
     DilVarType_e *argt; /* argument types */
@@ -566,11 +566,11 @@ struct diltemplate
     ubit32 coresz; /* size of coreblock */
     uint8_t *core; /* instructions, expressions and statics */
 
-    ubit16 varc;        /* number of variables */
+    uint16_t varc;      /* number of variables */
     DilVarType_e *vart; /* variable types */
     char **varg;        // the name of a global variable or null
 
-    ubit16 xrefcount;     /* number of external references   */
+    uint16_t xrefcount;   /* number of external references   */
     diltemplate **extprg; /* external programs (SERVER only) */
 
     ubit32 nInstructions; /* Number of instructions          */
@@ -585,9 +585,9 @@ struct diltemplate
 
 struct dilintr
 {
-    ubit16 flags;  /* what message types to react on 0=off */
-    uint8_t *lab;  /* where to perform check */
-    uint8_t *elab; /* where the end of the check evals to*/
+    uint16_t flags; /* what message types to react on 0=off */
+    uint8_t *lab;   /* where to perform check */
+    uint8_t *elab;  /* where the end of the check evals to*/
 };
 
 /*
@@ -604,12 +604,12 @@ struct dilframe
 
     uint8_t *pc; /* program counter */
 
-    ubit16 securecount;   /* number of secures (not saved) */
+    uint16_t securecount; /* number of secures (not saved) */
     dilsecure *secure;    /* secured vars (not saved) */
     bool wasSecureTested; // Set to true if dil_test_secure() was called on this frame
 
-    ubit16 intrcount; /* number of interrupts */
-    dilintr *intr;    /* interrupts */
+    uint16_t intrcount; /* number of interrupts */
+    dilintr *intr;      /* interrupts */
     int stacklen;
 };
 
@@ -630,14 +630,14 @@ public:
     void link(diltemplate *tmpl);
     void unlink();
 
-    ubit32 flags;   // Recall, copy, etc.
-    ubit16 varcrc;  // variable crc from compiler (saved)
-    ubit16 corecrc; // core crc from compiler (saved)
-    ubit16 nest;    // How many levels is the call nested
+    ubit32 flags;     // Recall, copy, etc.
+    uint16_t varcrc;  // variable crc from compiler (saved)
+    uint16_t corecrc; // core crc from compiler (saved)
+    uint16_t nest;    // How many levels is the call nested
 
-    ubit16 framesz;  /* stack size */
-    dilframe *fp;    /* stack and pointer */
-    dilframe *frame; /* stack frames, #0 saved */
+    uint16_t framesz; /* stack size */
+    dilframe *fp;     /* stack and pointer */
+    dilframe *frame;  /* stack frames, #0 saved */
 
     t_array<dilval> stack;
 

@@ -49,17 +49,17 @@ public:
     // The Read8 format drove me a little mad to read, trying this.
     uint8_t ReadU8(int *nError = nullptr);
     int8_t ReadS8(int *nError = nullptr);
-    ubit16 ReadU16(int *nError = nullptr);
+    uint16_t ReadU16(int *nError = nullptr);
     int16_t ReadS16(int *nError = nullptr);
     ubit32 ReadU32(int *nError = nullptr);
     sbit32 ReadS32(int *nError = nullptr);
 
-    [[deprecated("Replace with ReadU8")]] int Read8(uint8_t *pNum);   ///< @deprecated Replace with @ref ReadU8
-    [[deprecated("Replace with ReadU16")]] int Read16(ubit16 *pNum);  ///< @deprecated Replace with @ref ReadU16
-    [[deprecated("Replace with ReadU32")]] int Read32(ubit32 *pNum);  ///< @deprecated Replace with @ref ReadU32
-    [[deprecated("Replace with ReadS8")]] int Read8(int8_t *pNum);    ///< @deprecated Replace with @ref ReadS8
-    [[deprecated("Replace with ReadS16")]] int Read16(int16_t *pNum); ///< @deprecated Replace with @ref ReadS16
-    [[deprecated("Replace with ReadS32")]] int Read32(sbit32 *pNum);  ///< @deprecated Replace with @ref ReadS32
+    [[deprecated("Replace with ReadU8")]] int Read8(uint8_t *pNum);    ///< @deprecated Replace with @ref ReadU8
+    [[deprecated("Replace with ReadU16")]] int Read16(uint16_t *pNum); ///< @deprecated Replace with @ref ReadU16
+    [[deprecated("Replace with ReadU32")]] int Read32(ubit32 *pNum);   ///< @deprecated Replace with @ref ReadU32
+    [[deprecated("Replace with ReadS8")]] int Read8(int8_t *pNum);     ///< @deprecated Replace with @ref ReadS8
+    [[deprecated("Replace with ReadS16")]] int Read16(int16_t *pNum);  ///< @deprecated Replace with @ref ReadS16
+    [[deprecated("Replace with ReadS32")]] int Read32(sbit32 *pNum);   ///< @deprecated Replace with @ref ReadS32
     int ReadFloat(float *pFloat);
     int ReadStringAlloc(char **pStr);
     int ReadStringCopy(char *pStr, ubit32 nSize);
@@ -84,7 +84,7 @@ public:
     void AppendBlock(const uint8_t *pData, ubit32 nLen);
 
     void Append8(uint8_t i);
-    void Append16(ubit16 i);
+    void Append16(uint16_t i);
     void Append32(ubit32 i);
     void AppendFloat(float f);
     void AppendString(const char *pStr);
@@ -103,7 +103,7 @@ private:
 };
 
 uint8_t bread_ubit8(uint8_t **buf);
-ubit16 bread_ubit16(uint8_t **buf);
+uint16_t bread_ubit16(uint8_t **buf);
 ubit32 bread_ubit32(uint8_t **buf);
 float bread_float(uint8_t **buf);
 uint8_t *bread_data(uint8_t **b, ubit32 *len);
@@ -114,7 +114,7 @@ char *bread_str_skip(uint8_t **b);
 char **bread_nameblock(uint8_t **b, int bOld);
 
 void bwrite_ubit8(uint8_t **b, uint8_t i);
-void bwrite_ubit16(uint8_t **b, ubit16 i);
+void bwrite_ubit16(uint8_t **b, uint16_t i);
 void bwrite_ubit32(uint8_t **b, ubit32 i);
 void bwrite_float(uint8_t **b, float f);
 void bwrite_string(uint8_t **b, const char *str);

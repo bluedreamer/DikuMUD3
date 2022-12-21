@@ -84,7 +84,7 @@ void dil_typeerr(dilprg *p, const char *where);
 int dil_type_check(const char *f, dilprg *p, int tot, ...);
 
 void dil_intr_remove(dilprg *p, int idx);
-int dil_intr_insert(dilprg *p, uint8_t *lab, uint8_t *elab, ubit16 flags);
+int dil_intr_insert(dilprg *p, uint8_t *lab, uint8_t *elab, uint16_t flags);
 int run_dil(spec_arg *sarg);
 void dil_free_template(diltemplate *tmpl, int copy);
 void dil_function_table_setup();

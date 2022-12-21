@@ -89,18 +89,18 @@ public:
 
     [[nodiscard]] size_t getNumOfFileIndexes() const;
 
-    [[nodiscard]] ubit16 getZoneResetTime() const;
-    void setZoneResetTime(ubit16 value);
-    ubit16 *getZoneResetTimePtr();
+    [[nodiscard]] uint16_t getZoneResetTime() const;
+    void setZoneResetTime(uint16_t value);
+    uint16_t *getZoneResetTimePtr();
 
-    [[nodiscard]] ubit16 getNumOfRooms() const;
+    [[nodiscard]] uint16_t getNumOfRooms() const;
     void incrementNumOfRooms();
-    void setNumOfRooms(ubit16 value);
+    void setNumOfRooms(uint16_t value);
 
-    [[nodiscard]] ubit16 getNumOfObjects() const;
+    [[nodiscard]] uint16_t getNumOfObjects() const;
     void incrementNumOfObjects();
 
-    [[nodiscard]] ubit16 getNumOfNPCs() const;
+    [[nodiscard]] uint16_t getNumOfNPCs() const;
     void incrementNumOfNPCs();
 
     [[nodiscard]] uint8_t getResetMode() const;
@@ -208,10 +208,10 @@ private:
     zone_reset_cmd *m_zri{nullptr};           ///< List of Zone reset commands
     DILTemplateMap m_mmp_tmpl;                ///<
     uint8_t **m_spmatrix{nullptr};            ///< Shortest Path Matrix
-    ubit16 m_zone_time{0};                    ///< How often to reset zone
-    ubit16 m_no_rooms{0};                     ///< The number of rooms
-    ubit16 m_no_objs{0};                      ///<
-    ubit16 m_no_npcs{0};                      ///<
+    uint16_t m_zone_time{0};                  ///< How often to reset zone
+    uint16_t m_no_rooms{0};                   ///< The number of rooms
+    uint16_t m_no_objs{0};                    ///<
+    uint16_t m_no_npcs{0};                    ///<
     uint8_t m_reset_mode{0};                  ///< when/how to reset zone
     uint8_t m_access{255};                    ///< Access Level 0 = highest (root)
     uint8_t m_loadlevel{0};                   ///< Level required to load items

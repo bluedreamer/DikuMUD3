@@ -1699,7 +1699,7 @@ void dilfi_ass(dilprg *p)
                 case DILV_FAIL:
                     break;
                 case DILV_INT:
-                    *((ubit16 *)v1->ref) = v2->val.num;
+                    *((uint16_t *)v1->ref) = v2->val.num;
                     break;
                 default:
                     /* ERROR incompatible types */
@@ -1936,7 +1936,7 @@ void dilfi_set(dilprg *p)
                 *((uint8_t *)v1->ref) |= v2->val.num;
                 break;
             case DILV_UINT2R:
-                *((ubit16 *)v1->ref) |= v2->val.num;
+                *((uint16_t *)v1->ref) |= v2->val.num;
                 break;
             case DILV_UINT4R:
                 *((ubit32 *)v1->ref) |= v2->val.num;
@@ -1980,7 +1980,7 @@ void dilfi_uset(dilprg *p)
                 REMOVE_BIT(*((uint8_t *)v1->ref), v2->val.num);
                 break;
             case DILV_UINT2R:
-                REMOVE_BIT(*((ubit16 *)v1->ref), v2->val.num);
+                REMOVE_BIT(*((uint16_t *)v1->ref), v2->val.num);
                 break;
             case DILV_UINT4R:
                 REMOVE_BIT(*((ubit32 *)v1->ref), v2->val.num);
@@ -2588,7 +2588,7 @@ void dilfi_on(dilprg *p)
 {
     dilval *v1 = p->stack.pop();
     ubit32 adr = 0;
-    ubit16 maxlab = 0;
+    uint16_t maxlab = 0;
     uint8_t *brkptr = nullptr;
 
     p->waitcmd--;

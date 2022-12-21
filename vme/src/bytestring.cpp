@@ -184,11 +184,11 @@ int8_t CByteBuffer::ReadS8(int *nError)
     return n;
 }
 
-ubit16 CByteBuffer::ReadU16(int *nError)
+uint16_t CByteBuffer::ReadU16(int *nError)
 {
-    ubit16 n = 0;
+    uint16_t n = 0;
 
-    if (Read((uint8_t *)&n, sizeof(ubit16)))
+    if (Read((uint8_t *)&n, sizeof(uint16_t)))
     {
         if (nError)
         {
@@ -254,9 +254,9 @@ int CByteBuffer::Read8(int8_t *pNum)
     return Read((uint8_t *)pNum, sizeof(uint8_t));
 }
 
-int CByteBuffer::Read16(ubit16 *pNum)
+int CByteBuffer::Read16(uint16_t *pNum)
 {
-    return Read((uint8_t *)pNum, sizeof(ubit16));
+    return Read((uint8_t *)pNum, sizeof(uint16_t));
 }
 
 int CByteBuffer::Read16(int16_t *pNum)
@@ -427,7 +427,7 @@ int CByteBuffer::Skip8()
 
 int CByteBuffer::Skip16()
 {
-    return Skip(sizeof(ubit16));
+    return Skip(sizeof(uint16_t));
 }
 
 int CByteBuffer::Skip32()
@@ -518,7 +518,7 @@ void CByteBuffer::Append8(uint8_t i)
     Append(&i, sizeof(i));
 }
 
-void CByteBuffer::Append16(ubit16 i)
+void CByteBuffer::Append16(uint16_t i)
 {
     Append((uint8_t *)&i, sizeof(i));
 }
@@ -606,12 +606,12 @@ uint8_t bread_ubit8(uint8_t **b)
     return i;
 }
 
-ubit16 bread_ubit16(uint8_t **b)
+uint16_t bread_ubit16(uint8_t **b)
 {
-    ubit16 i = 0;
+    uint16_t i = 0;
 
-    memcpy((uint8_t *)&i, *b, sizeof(ubit16));
-    *b += sizeof(ubit16);
+    memcpy((uint8_t *)&i, *b, sizeof(uint16_t));
+    *b += sizeof(uint16_t);
 
     return i;
 }
@@ -760,10 +760,10 @@ void bwrite_ubit8(uint8_t **b, uint8_t i)
     *b += sizeof(uint8_t);
 }
 
-void bwrite_ubit16(uint8_t **b, ubit16 i)
+void bwrite_ubit16(uint8_t **b, uint16_t i)
 {
-    memcpy(*b, (uint8_t *)&i, sizeof(ubit16));
-    *b += sizeof(ubit16);
+    memcpy(*b, (uint8_t *)&i, sizeof(uint16_t));
+    *b += sizeof(uint16_t);
 }
 
 void bwrite_ubit32(uint8_t **b, ubit32 i)

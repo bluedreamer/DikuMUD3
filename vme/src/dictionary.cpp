@@ -34,7 +34,7 @@
         */
 struct alias_head
 {
-    ubit16 char_count;
+    uint16_t char_count;
     trie_type *trie;
     char owner[20];
 };
@@ -660,7 +660,7 @@ static int local_dictionary(spec_arg *sarg)
 {
     char *pcomm = nullptr;
     char *cmd_array[256];
-    ubit16 i = 0;
+    uint16_t i = 0;
     alias_t *al = nullptr;
     alias_head *alias_h = nullptr;
     extra_descr_data *exd = nullptr;

@@ -60,19 +60,19 @@ extern int dillinenum;
 char **var_names;       /* names of variables */
 uint8_t in_foreach = 0;   /* inside foreach */
 
-ubit16 label_no;         /* number of labels */
+uint16_t label_no;         /* number of labels */
 char **label_names;      /* names of labels */
 ubit32 *label_adr;       /* address of label */
 
-ubit16 label_use_no;     /* number of used labels */
+uint16_t label_use_no;     /* number of used labels */
 ubit32 *label_use_idx;   /* what label is used (label_adr) */
 ubit32 *label_use_adr;   /* where a label is used */
 ubit32 labelgen;         /* counter for label generation */
 
-ubit16 break_no;         /* size of break stack */
-ubit16 cont_no;          /* size of continue stack */
-ubit16 *break_idx;       /* break stack (label idx) */
-ubit16 *cont_idx;        /* continue stack (label idx) */
+uint16_t break_no;         /* size of break stack */
+uint16_t cont_no;          /* size of continue stack */
+uint16_t *break_idx;       /* break stack (label idx) */
+uint16_t *cont_idx;        /* continue stack (label idx) */
 int dilmyi;
 int dilerrcon = 0;
 int dilistemplate = 1;   /* is this a template program */
@@ -172,7 +172,7 @@ struct sSyms
 void add_ubit8(struct exptype *dest, uint8_t d);
 void add_ubit32(struct exptype *dest, ubit32 d);
 void add_sbit32(struct exptype *dest, sbit32 d);
-void add_ubit16(struct exptype *dest, ubit16 d);
+void add_ubit16(struct exptype *dest, uint16_t d);
 void add_string(struct exptype *dest, char *d);
 void cat_string(struct exptype *dest, char *d);
 void add_stringlist(struct exptype *dest, cNamelist *d);
@@ -6631,12 +6631,12 @@ pushbrk : /* naught */
         if (break_no)
         {
             /* reallocate break stack */
-            RECREATE(break_idx, ubit16, break_no + 1);
+            RECREATE(break_idx, uint16_t, break_no + 1);
         }
         else
         {
             /* allocate new break stack */
-            CREATE(break_idx, ubit16, break_no + 1);
+            CREATE(break_idx, uint16_t, break_no + 1);
         }
         break_idx[break_no++] = add_label(buf, SKIP);
     }
@@ -6692,12 +6692,12 @@ pushcnt  : /* naught */
         if (cont_no)
         {
             /* reallocate cont stack */
-            RECREATE(cont_idx, ubit16, cont_no + 1);
+            RECREATE(cont_idx, uint16_t, cont_no + 1);
         }
         else
         {
             /* allocate new cont stack */
-            CREATE(cont_idx, ubit16, cont_no + 1);
+            CREATE(cont_idx, uint16_t, cont_no + 1);
         }
         cont_idx[cont_no++] = add_label(buf, SKIP);
     }
@@ -7483,10 +7483,10 @@ void add_sbit32(struct exptype *dest, sbit32 d)
     bwrite_ubit32(&(dest->codep), (ubit32)d);
 }
 
-void add_ubit16(struct exptype *dest, ubit16 d)
+void add_ubit16(struct exptype *dest, uint16_t d)
 {
     /*   fprintf(stderr, "UBIT16\n");*/
-    if (dest->codep - dest->code + sizeof(ubit16) >= CODESIZE)
+    if (dest->codep - dest->code + sizeof(uint16_t) >= CODESIZE)
     {
         dilfatal("U16: Expression too large");
     }
@@ -7588,7 +7588,7 @@ void copy_code(struct exptype *dest, struct exptype *src)
     dest->num = src->num;
 }
 
-ubit16 UpdateCRC(uint8_t c, ubit16 crc)
+uint16_t UpdateCRC(uint8_t c, uint16_t crc)
 {
     /*
 
@@ -7638,7 +7638,7 @@ ubit16 UpdateCRC(uint8_t c, ubit16 crc)
 int dil_headercrc(char **name, DilVarType_e *type)
 {
     int i, j;
-    ubit16 crc = 0;
+    uint16_t crc = 0;
 
     for (i = 0; name[i]; i++)
     {
@@ -7656,7 +7656,7 @@ int dil_headercrc(char **name, DilVarType_e *type)
 int dil_corecrc(uint8_t *core, int len)
 {
     int i;
-    ubit16 crc = 0;
+    uint16_t crc = 0;
 
     for (i = 0; i < len; i++)
     {

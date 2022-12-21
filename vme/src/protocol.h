@@ -73,13 +73,13 @@ struct terminal_setup_type
 #define MULTI_MAX_MUDNAME 256
 
 void protocol_send_ping(cHook *Hook);
-void protocol_send_close(cHook *Hook, ubit16 id);
-void protocol_send_confirm(cHook *Hook, ubit16 id);
+void protocol_send_close(cHook *Hook, uint16_t id);
+void protocol_send_confirm(cHook *Hook, uint16_t id);
 void protocol_send_request(cHook *Hook);
-void protocol_send_text(cHook *Hook, const ubit16 id, const char *text, const uint8_t type);
-void protocol_send_setup(cHook *Hook, ubit16 id, terminal_setup_type *setup);
-void protocol_send_exchange(cHook *Hook, ubit16 id, const char *mudname);
-void protocol_send_color(cHook *Hook, ubit16 id, const char *color);
-void protocol_send_host(cHook *Hook, ubit16 id, const char *host, ubit16 nPort, uint8_t nLine);
-int protocol_parse_incoming(cHook *Hook, ubit16 *pid, ubit16 *plen, char **str, uint8_t *text_type);
+void protocol_send_text(cHook *Hook, const uint16_t id, const char *text, const uint8_t type);
+void protocol_send_setup(cHook *Hook, uint16_t id, terminal_setup_type *setup);
+void protocol_send_exchange(cHook *Hook, uint16_t id, const char *mudname);
+void protocol_send_color(cHook *Hook, uint16_t id, const char *color);
+void protocol_send_host(cHook *Hook, uint16_t id, const char *host, uint16_t nPort, uint8_t nLine);
+int protocol_parse_incoming(cHook *Hook, uint16_t *pid, uint16_t *plen, char **str, uint8_t *text_type);
 void protocol_send_mplex_info(cHook *Hook, uint8_t bWebsockets);

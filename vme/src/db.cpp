@@ -1701,8 +1701,8 @@ void read_all_zones_reset()
             exit(10);
         }
 
-        ubit16 temp{0};
-        if (fread(&temp, sizeof(ubit16), 1, f) != 1)
+        uint16_t temp{0};
+        if (fread(&temp, sizeof(uint16_t), 1, f) != 1)
         {
             error(HERE, "Failed to fread() zone->second->zone_time");
         }

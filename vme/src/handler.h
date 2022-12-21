@@ -21,8 +21,8 @@ extra_descr_data *quest_add(unit_data *ch, const char *name, const char *descr);
 void insert_in_unit_list(unit_data *u);
 void remove_from_unit_list(unit_data *unit);
 
-unit_fptr *find_fptr(unit_data *u, ubit16 index);
-unit_fptr *create_fptr(unit_data *u, ubit16 index, ubit16 priority, ubit16 beat, ubit16 flags, void *data);
+unit_fptr *find_fptr(unit_data *u, uint16_t index);
+unit_fptr *create_fptr(unit_data *u, uint16_t index, uint16_t priority, uint16_t beat, uint16_t flags, void *data);
 void destroy_fptr(unit_data *u, unit_fptr *f);
 
 void stop_following(unit_data *ch);

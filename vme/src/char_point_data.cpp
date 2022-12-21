@@ -73,17 +73,17 @@ void char_point_data::increasePlayerExperienceBy(sbit32 value)
     exp += value;
 }
 
-ubit16 char_point_data::getRace() const
+uint16_t char_point_data::getRace() const
 {
     return race;
 }
 
-ubit16 *char_point_data::getRacePtr()
+uint16_t *char_point_data::getRacePtr()
 {
     return &race;
 }
 
-void char_point_data::setRace(ubit16 value)
+void char_point_data::setRace(uint16_t value)
 {
     race = value;
 }

@@ -139,7 +139,7 @@ int char_dual_wield(unit_data *ch)
 }
 
 // returns true if obj is a slaying weapon against opponent_race
-bool is_obj_slaying(unit_data *obj, ubit16 opponent_race)
+bool is_obj_slaying(unit_data *obj, uint16_t opponent_race)
 {
     if (obj && obj->isObj() && (OBJ_TYPE(obj) == ITEM_WEAPON) && (OBJ_VALUE(obj, 3) != RACE_DO_NOT_USE))
     {
@@ -1313,7 +1313,7 @@ void damage(unit_data *ch,
                 {
                     if (!IS_SET(CHAR_FLAGS(victim), CHAR_OUTLAW) || IS_SET(CHAR_FLAGS(victim), CHAR_PROTECTED))
                     {
-                        log_crime(ch, victim, CRIME_MURDER);   // Used to be CRIME_PK but we dont really have code for it
+                        log_crime(ch, victim, CRIME_MURDER); // Used to be CRIME_PK but we dont really have code for it
                     }
                 }
                 else

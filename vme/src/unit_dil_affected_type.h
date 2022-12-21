@@ -11,9 +11,9 @@ public:
     unit_dil_affected_type() = delete;
 
 private:
-    ubit16 beat{0};
-    ubit16 duration{0};
-    ubit16 transfer{0};
+    uint16_t beat{0};
+    uint16_t duration{0};
+    uint16_t transfer{0};
     cNamelist data;
     char *apply{nullptr};  ///< Apply DIL
     char *remove{nullptr}; ///< Remove DIL

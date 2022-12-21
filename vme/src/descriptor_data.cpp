@@ -123,7 +123,7 @@ cMultiHook *descriptor_data::getMultiHookPtr()
     return multi;
 }
 
-ubit16 descriptor_data::getMultiHookID() const
+uint16_t descriptor_data::getMultiHookID() const
 {
     return id;
 }
@@ -168,12 +168,12 @@ void descriptor_data::setHostname(const char *value)
     host[sizeof(host) - 1] = 0;
 }
 
-ubit16 descriptor_data::getMplexPortNum() const
+uint16_t descriptor_data::getMplexPortNum() const
 {
     return nPort;
 }
 
-void descriptor_data::setMplexPortNum(ubit16 value)
+void descriptor_data::setMplexPortNum(uint16_t value)
 {
     nPort = value;
 }
@@ -198,12 +198,12 @@ void descriptor_data::setLoopWaitCounter(int value)
     wait = value;
 }
 
-ubit16 descriptor_data::getMinutesPlayerIdle() const
+uint16_t descriptor_data::getMinutesPlayerIdle() const
 {
     return timer;
 }
 
-void descriptor_data::setMinutesPlayerIdle(ubit16 value)
+void descriptor_data::setMinutesPlayerIdle(uint16_t value)
 {
     timer = value;
 }
