@@ -86,12 +86,12 @@ void type_validate_64()
     // If any of these checks fail, update the type-defs so that they match your
     // particular architecture.
     static_assert(sizeof(char) == 1);
-    static_assert(sizeof(ubit1) == 1);
+    static_assert(sizeof(bool) == 1);
     static_assert(sizeof(uint8_t) == 1);
     static_assert(sizeof(uint16_t) == 2);
     static_assert(sizeof(uint32_t) == 4);
     static_assert(sizeof(uint64_t) == 8);
-    static_assert(sizeof(ubit1) == 1);
+    static_assert(sizeof(bool) == 1);
     static_assert(sizeof(int8_t) == 1);
     static_assert(sizeof(int16_t) == 2);
     static_assert(sizeof(int32_t) == 4);

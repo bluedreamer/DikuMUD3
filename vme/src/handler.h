@@ -55,7 +55,7 @@ void extract_unit(unit_data *unit);
 void weight_change_unit(unit_data *unit, int weight);
 
 std::string unit_trace_up(unit_data *unit);
-void intern_unit_to_unit(unit_data *, unit_data *, ubit1);
+void intern_unit_to_unit(unit_data *, unit_data *, bool);
 void snoop(unit_data *ch, unit_data *victim);
 void switchbody(unit_data *ch, unit_data *victim);
 void unsnoop(unit_data *ch, int mode);

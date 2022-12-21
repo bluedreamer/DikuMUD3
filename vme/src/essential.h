@@ -150,8 +150,6 @@ template<typename T>
         fprintf(stderr, a);                                                                                                                \
     } while (0)
 
-using ubit1 = bool; /* Boolean */
-
 template<typename Type, typename Result>
 inline void create_memory(Result &&res, size_t num)
 {

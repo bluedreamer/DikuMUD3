@@ -110,7 +110,7 @@ trie_type *add_trienode(const char *s, trie_type *t)
     return t;
 }
 
-void set_triedata(const char *s, trie_type *t, void *p, ubit1 nonabbrev)
+void set_triedata(const char *s, trie_type *t, void *p, bool nonabbrev)
 {
     int i = 0;
 
@@ -199,7 +199,7 @@ void free_trie(trie_type *t, void (*free_data)(void *))
  *
  *  Overcommented due to non-trivialism :-)
  */
-ubit1 del_trie(char *s, trie_type **t, void (*free_data)(void *))
+bool del_trie(char *s, trie_type **t, void (*free_data)(void *))
 {
     /* Any more string of keyword to delete? */
     if (*s)

@@ -53,7 +53,7 @@ unit_data *get_follower(unit_data *u, int num)
 }
 
 /* Assumes UNIT_IN(room) == NULL */
-static ubit1 same_surroundings_room(const unit_data *room, const unit_data *u2)
+static bool same_surroundings_room(const unit_data *room, const unit_data *u2)
 {
     if (!u2->getUnitIn())
     {
@@ -73,7 +73,7 @@ static ubit1 same_surroundings_room(const unit_data *room, const unit_data *u2)
     return FALSE;
 }
 
-ubit1 same_surroundings(const unit_data *u1, const unit_data *u2)
+bool same_surroundings(const unit_data *u1, const unit_data *u2)
 {
     if (!u1->getUnitIn())
     {
@@ -584,7 +584,7 @@ find_unit_general(const unit_data *viewer, const unit_data *ch, char **arg, cons
     char name[MAX_INPUT_LENGTH * 2];
     char *c = nullptr;
     char *first_letter = nullptr;
-    ubit1 is_fillword = TRUE;
+    bool is_fillword = TRUE;
     unit_data *u = nullptr;
     unit_data *uu = nullptr;
 

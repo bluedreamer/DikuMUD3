@@ -397,7 +397,7 @@ void strip_trailing_spaces(char *str)
 }
 
 /* Returns true is arg is empty */
-ubit1 str_is_empty(const char *arg)
+bool str_is_empty(const char *arg)
 {
     if (arg == nullptr)
     {
@@ -408,7 +408,7 @@ ubit1 str_is_empty(const char *arg)
 }
 
 /* Check if the string contains nothing but numbers */
-ubit1 str_is_number(const char *str)
+bool str_is_number(const char *str)
 {
     if (!*str)
     {
@@ -430,7 +430,7 @@ ubit1 str_is_number(const char *str)
 }
 
 /* Check if the next word in str is a number */
-ubit1 next_word_is_number(const char *str)
+bool next_word_is_number(const char *str)
 {
     char tmp[MAX_STRING_LENGTH];
     str_next_word(str, tmp);
@@ -440,7 +440,7 @@ ubit1 next_word_is_number(const char *str)
 /* Block must end with null pointer, -1 if not found otherwise index */
 /* Warning, argument 1 is made into lowercase!                       */
 /* Warning, list of names must be in lowercase to match up! */
-int search_block(const char *oarg, const char **list, ubit1 exact)
+int search_block(const char *oarg, const char **list, bool exact)
 {
     char arg[4096];
     int i = 0;
@@ -485,7 +485,7 @@ int search_block(const char *oarg, const char **list, ubit1 exact)
 
 /* Block must end with null pointer                                  */
 /* Warning, argument 1 is made into lowercase!                       */
-int search_block_length(const char *oarg, int length, const char **list, ubit1 exact)
+int search_block_length(const char *oarg, int length, const char **list, bool exact)
 {
     char arg[4096];
     int i = 0;
@@ -599,7 +599,7 @@ char *one_argument(const char *argument, char *first_arg)
 }
 
 /* determine if 'arg1' is an abbreviation of 'arg2'. */
-ubit1 is_abbrev(const char *arg1, const char *arg2)
+bool is_abbrev(const char *arg1, const char *arg2)
 {
     if (!*arg1)
     {
@@ -619,7 +619,7 @@ ubit1 is_abbrev(const char *arg1, const char *arg2)
 
 /* determine if 'arg1' is an abbreviation of 'arg2'.          */
 /* The empty string is never an abbrevation of another string */
-ubit1 is_multi_abbrev(const char *arg1, const char *arg2)
+bool is_multi_abbrev(const char *arg1, const char *arg2)
 {
     if (!*arg1)
     {
@@ -1176,7 +1176,7 @@ void split_fi_ref(const char *str, char *zone, char *name)
 char *catnames(char *s, char **names)
 {
     char **nam = nullptr;
-    ubit1 ok = FALSE;
+    bool ok = FALSE;
 
     if (names)
     {

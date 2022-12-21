@@ -198,7 +198,7 @@ void enter_game(unit_data *ch, int dilway)
     UPC(ch)->gstate_togame(nullptr);
 }
 
-void set_descriptor_fptr(descriptor_data *d, void (*fptr)(descriptor_data *, char *), ubit1 call)
+void set_descriptor_fptr(descriptor_data *d, void (*fptr)(descriptor_data *, char *), bool call)
 {
     if (d->getFunctionPtr() == interpreter_string_add)
     {
@@ -522,7 +522,7 @@ void nanny_new_pwd(descriptor_data *d, char *arg)
 }
 
 /* Return TRUE when done... */
-ubit1 base_string_add(descriptor_data *d, char *str)
+bool base_string_add(descriptor_data *d, char *str)
 {
     char *scan = nullptr;
     int terminator = 0;

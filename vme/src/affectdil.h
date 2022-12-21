@@ -15,7 +15,7 @@ struct apply_function_type
 {
     char *descr;
 
-    ubit1 (*func)(unit_affected_type *af, unit_data *unit, ubit1 set);
+    bool (*func)(unit_affected_type *af, unit_data *unit, bool set);
 };
 
 /**

@@ -150,8 +150,8 @@ struct tree_type
 {
     int parent;
     uint8_t isleaf;
-    ubit1 bAutoTrain;
-    ubit1 bAutoTeacherNoAdd;
+    bool bAutoTrain;
+    bool bAutoTeacherNoAdd;
 };
 
 /* Tree has a pointer to parent for each node. 0 pointer from root */

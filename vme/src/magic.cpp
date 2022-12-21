@@ -104,7 +104,7 @@ int dil_effect(char *pStr, spell_args *sa)
 /* This procedure uses mana from a medium */
 /* returns TRUE if ok, and FALSE if there was not enough mana.  */
 /* wands and staffs uses one charge, no matter what 'mana' is. --HHS */
-ubit1 use_mana(unit_data *medium, int mana)
+bool use_mana(unit_data *medium, int mana)
 {
     if (medium->isChar())
     {
@@ -142,7 +142,7 @@ ubit1 use_mana(unit_data *medium, int mana)
 }
 
 /* Determines if healing combat mana should be cast?? */
-ubit1 cast_magic_now(unit_data *ch, int mana)
+bool cast_magic_now(unit_data *ch, int mana)
 {
     int hleft = 0;
     int sleft = 0;
@@ -200,7 +200,7 @@ int variation(int num, int d, int u)
 
 /* See if unit is allowed to be transferred away from its surroundings */
 /* i.e. if a player is allowed to transfer out of jail, etc.           */
-ubit1 may_teleport_away(unit_data *unit)
+bool may_teleport_away(unit_data *unit)
 {
     if (IS_SET(unit->getUnitFlags(), UNIT_FL_NO_TELEPORT))
     {
@@ -219,7 +219,7 @@ ubit1 may_teleport_away(unit_data *unit)
 }
 
 /* See if unit is allowed to be transferred to 'dest' */
-ubit1 may_teleport_to(unit_data *unit, unit_data *dest)
+bool may_teleport_to(unit_data *unit, unit_data *dest)
 {
     if (unit == dest || IS_SET(dest->getUnitFlags(), UNIT_FL_NO_TELEPORT) || unit_recursive(unit, dest) ||
         unit->getWeight() + dest->getWeight() > dest->getCapacity())
@@ -239,7 +239,7 @@ ubit1 may_teleport_to(unit_data *unit, unit_data *dest)
 }
 
 /* See if unit is allowed to be transferred to 'dest' */
-ubit1 may_teleport(unit_data *unit, unit_data *dest)
+bool may_teleport(unit_data *unit, unit_data *dest)
 {
     return may_teleport_away(unit) && may_teleport_to(unit, dest);
 }

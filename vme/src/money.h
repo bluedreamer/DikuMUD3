@@ -32,7 +32,7 @@ extern money_type g_money_types[];
 /**
  * Round amount down/up to nearest `types' number of coins
  */
-amount_t money_round(ubit1 up, amount_t amt, currency_t currency, int types);
+amount_t money_round(bool up, amount_t amt, currency_t currency, int types);
 
 inline amount_t money_round_up(amount_t a, currency_t c, int t)
 {
@@ -144,7 +144,7 @@ char *obj_money_string(unit_data *obj, amount_t amt);
  *
  * Impossible amounts are converted automagically
  */
-char *money_string(amount_t amt, currency_t currency, ubit1 verbose);
+char *money_string(amount_t amt, currency_t currency, bool verbose);
 
 /**
  * How many `coins' of given money-object can char carry, resp. unit contain
@@ -178,7 +178,7 @@ amount_t char_holds_amount(unit_data *ch, currency_t currency);
  *
  * Impossible amounts are converted automagically
  */
-ubit1 char_can_afford(unit_data *ch, amount_t amt, currency_t currency);
+bool char_can_afford(unit_data *ch, amount_t amt, currency_t currency);
 
 /**
  * Does unit contain any money of type?

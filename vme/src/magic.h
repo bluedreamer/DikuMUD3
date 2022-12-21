@@ -14,12 +14,12 @@
 
 int dil_effect(char *pStr, spell_args *sa);
 int object_power(unit_data *unit);
-ubit1 use_mana(unit_data *medium, int mana);
-ubit1 cast_magic_now(unit_data *ch, int mana);
+bool use_mana(unit_data *medium, int mana);
+bool cast_magic_now(unit_data *ch, int mana);
 
-ubit1 may_teleport_away(unit_data *unit);
-ubit1 may_teleport_to(unit_data *unit, unit_data *dest);
-ubit1 may_teleport(unit_data *unit, unit_data *dest);
+bool may_teleport_away(unit_data *unit);
+bool may_teleport_to(unit_data *unit, unit_data *dest);
+bool may_teleport(unit_data *unit, unit_data *dest);
 
 int spell_cast_check(unit_data *att, int spell);
 int spell_resistance(unit_data *att, unit_data *def, int spell);

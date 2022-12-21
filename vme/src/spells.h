@@ -18,8 +18,8 @@ int spell_perform(int spell_no,
                   char *pEffect = nullptr,
                   int bonus = 0);
 
-ubit1 spell_legal_type(int spl, int type);
-ubit1 spell_legal_target(int spl, unit_data *c, unit_data *t);
+bool spell_legal_type(int spl, int type);
+bool spell_legal_target(int spl, unit_data *c, unit_data *t);
 
 struct spell_args
 {

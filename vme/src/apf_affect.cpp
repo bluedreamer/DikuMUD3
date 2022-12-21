@@ -15,13 +15,13 @@
 #include "utils.h"
 #include "vmelimits.h"
 
-ubit1 raw_destruct_affect(unit_affected_type *af)
+bool raw_destruct_affect(unit_affected_type *af)
 {
     unlink_affect(af); /* registers and frees later */
     return FALSE;      /* CANCEL */
 }
 
-ubit1 skill_overflow(int skill, int change, ubit1 set)
+bool skill_overflow(int skill, int change, bool set)
 {
     if (set)
     {
@@ -37,7 +37,7 @@ ubit1 skill_overflow(int skill, int change, ubit1 set)
 /*                                                      */
 /* Data[0] Must contain bits to set in CHAR_FLAGS()     */
 /*                                                      */
-ubit1 apf_mod_char_flags(unit_affected_type *af, unit_data *unit, ubit1 set)
+bool apf_mod_char_flags(unit_affected_type *af, unit_data *unit, bool set)
 {
     unit_affected_type *taf = nullptr;
 
@@ -71,7 +71,7 @@ ubit1 apf_mod_char_flags(unit_affected_type *af, unit_data *unit, ubit1 set)
 /*                                                      */
 /* Data[0] Must contain bits to set in OBJ_FLAGS() */
 /*                                                      */
-ubit1 apf_mod_obj_flags(unit_affected_type *af, unit_data *unit, ubit1 set)
+bool apf_mod_obj_flags(unit_affected_type *af, unit_data *unit, bool set)
 {
     unit_affected_type *taf = nullptr;
 
@@ -108,7 +108,7 @@ ubit1 apf_mod_obj_flags(unit_affected_type *af, unit_data *unit, ubit1 set)
 /*                                                      */
 /* Data[0] Must contain bits to set in UNIT_FLAGS()     */
 /*                                                      */
-ubit1 apf_mod_unit_flags(unit_affected_type *af, unit_data *unit, ubit1 set)
+bool apf_mod_unit_flags(unit_affected_type *af, unit_data *unit, bool set)
 {
     unit_affected_type *taf = nullptr;
 
@@ -137,7 +137,7 @@ ubit1 apf_mod_unit_flags(unit_affected_type *af, unit_data *unit, ubit1 set)
     return TRUE;
 }
 
-ubit1 apf_weapon_adj(unit_affected_type *af, unit_data *unit, ubit1 set)
+bool apf_weapon_adj(unit_affected_type *af, unit_data *unit, bool set)
 {
     int modify = 0;
 
@@ -188,7 +188,7 @@ ubit1 apf_weapon_adj(unit_affected_type *af, unit_data *unit, ubit1 set)
 }
 
 /* NPC's are ignored, they don't have skills. */
-ubit1 apf_skill_adj(unit_affected_type *af, unit_data *unit, ubit1 set)
+bool apf_skill_adj(unit_affected_type *af, unit_data *unit, bool set)
 {
     if (!unit->isChar())
     {
@@ -222,7 +222,7 @@ ubit1 apf_skill_adj(unit_affected_type *af, unit_data *unit, ubit1 set)
 /* Data[1] must contain the amount to change              */
 /* Data[1] is added when set, and subtracted when not set */
 /* Unit can be CHAR                                       */
-ubit1 apf_spell_adj(unit_affected_type *af, unit_data *unit, ubit1 set)
+bool apf_spell_adj(unit_affected_type *af, unit_data *unit, bool set)
 {
     int modify = 0;
 
@@ -276,7 +276,7 @@ ubit1 apf_spell_adj(unit_affected_type *af, unit_data *unit, ubit1 set)
 /* Data[1] must contain the amount to change              */
 /* Data[1] is added when set, and subtracted when not set */
 /* Unit must be a CHAR!                                   */
-ubit1 apf_ability_adj(unit_affected_type *af, unit_data *unit, ubit1 set)
+bool apf_ability_adj(unit_affected_type *af, unit_data *unit, bool set)
 {
     assert(unit->isChar());
 
@@ -307,7 +307,7 @@ ubit1 apf_ability_adj(unit_affected_type *af, unit_data *unit, ubit1 set)
 }
 
 /* Data[0] = Amount of light sources */
-ubit1 apf_light(unit_affected_type *af, unit_data *unit, ubit1 set)
+bool apf_light(unit_affected_type *af, unit_data *unit, bool set)
 {
     if (!set)
     {
@@ -331,7 +331,7 @@ ubit1 apf_light(unit_affected_type *af, unit_data *unit, ubit1 set)
 
 /* Data[0] = The new armour-type */
 /* Data[1] = The original armour-type */
-ubit1 apf_natural_armour(unit_affected_type *af, unit_data *unit, ubit1 set)
+bool apf_natural_armour(unit_affected_type *af, unit_data *unit, bool set)
 {
     if (!unit->isChar())
     {
@@ -369,7 +369,7 @@ ubit1 apf_natural_armour(unit_affected_type *af, unit_data *unit, ubit1 set)
 }
 
 // Data[0] = The amount to modify speed by (-8 .. +8)
-ubit1 apf_speed(unit_affected_type *af, unit_data *unit, ubit1 set)
+bool apf_speed(unit_affected_type *af, unit_data *unit, bool set)
 {
     if (!unit->isChar())
     {

@@ -41,14 +41,14 @@ void set_spellargs(spell_args *sa, unit_data *caster, unit_data *medium, unit_da
 
 /* Check if type is proper compared to specifications in the spell list */
 /* above.                                                               */
-ubit1 spell_legal_type(int spl, int type)
+bool spell_legal_type(int spl, int type)
 {
     return IS_SET(g_spell_info[spl].media, type);
 }
 
 /* Check if target is proper compared to specifications in the spell list */
 /* above. Useable with for example wand checks to see if target is legal  */
-ubit1 spell_legal_target(int spl, unit_data *caster, unit_data *target)
+bool spell_legal_target(int spl, unit_data *caster, unit_data *target)
 {
     if (IS_SET(g_spell_info[spl].targets, TAR_IGNORE))
     {
@@ -256,7 +256,7 @@ void do_cast(unit_data *ch, char *argument, const command_info *cmd)
 {
     unit_data *unit = nullptr;
     int spl = 0;
-    ubit1 target_ok = 0;
+    bool target_ok = 0;
     char *orgarg = nullptr;
     char *c = nullptr;
 

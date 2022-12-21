@@ -18,7 +18,7 @@ public:
 
 private:
     virtual int destruct_classindex() = 0;
-    ubit1 m_bDestructed;
+    bool m_bDestructed;
 };
 
 void clear_destructed();

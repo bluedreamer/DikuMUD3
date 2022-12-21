@@ -48,7 +48,7 @@ long fsize(FILE *f)
 }
 
 /* check if a file exists */
-ubit1 file_exists(const char *name)
+bool file_exists(const char *name)
 {
     FILE *fp = nullptr;
 
@@ -61,7 +61,7 @@ ubit1 file_exists(const char *name)
     return TRUE;
 }
 
-ubit1 file_exists(const std::string &name)
+bool file_exists(const std::string &name)
 {
     return file_exists(name.c_str());
 }

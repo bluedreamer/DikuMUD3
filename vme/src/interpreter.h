@@ -71,10 +71,10 @@ struct unit_function_array_type
 };
 
 /** To check for commands by string */
-ubit1 is_command(const command_info *cmd, const char *str);
+bool is_command(const command_info *cmd, const char *str);
 
 /** Check to see if typed command is abbreviated */
-ubit1 cmd_is_abbrev(unit_data *ch, const command_info *cmd);
+bool cmd_is_abbrev(unit_data *ch, const command_info *cmd);
 
 /** Interpreter routines
  * @{

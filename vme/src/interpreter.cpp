@@ -531,13 +531,13 @@ void descriptor_interpreter(descriptor_data *d, char *arg)
 }
 
 /* Check to see if the full command was typed */
-ubit1 cmd_is_abbrev(unit_data *ch, const command_info *cmd)
+bool cmd_is_abbrev(unit_data *ch, const command_info *cmd)
 {
     return CHAR_DESCRIPTOR(ch) && str_ccmp(CHAR_DESCRIPTOR(ch)->getLastCommand(), cmd->cmd_str);
 }
 
 /* To check for commands by string */
-ubit1 is_command(const command_info *cmd, const char *str)
+bool is_command(const command_info *cmd, const char *str)
 {
     if ((cmd->no == CMD_AUTO_UNKNOWN))
     {

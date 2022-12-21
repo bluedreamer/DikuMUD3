@@ -23,8 +23,8 @@ struct trie_type
 };
 
 void *search_trie(const char *s, trie_type *t);
-void set_triedata(const char *s, trie_type *t, void *p, ubit1 verbose);
+void set_triedata(const char *s, trie_type *t, void *p, bool verbose);
 trie_type *add_trienode(const char *s, trie_type *t);
 void free_trie(trie_type *t, void (*free_data)(void *));
-ubit1 del_trie(char *s, trie_type **t, void (*)(void *));
+bool del_trie(char *s, trie_type **t, void (*)(void *));
 void qsort_triedata(trie_type *t);

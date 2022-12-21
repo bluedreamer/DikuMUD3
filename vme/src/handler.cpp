@@ -450,7 +450,7 @@ void die_follower(unit_data *ch)
     plus   Light if it is daylight (depends on time of day)
     plus   Lights of the unit it is inside
 
-ubit1 unit_islight(class unit_data *u)
+bool unit_islight(class unit_data *u)
 {
     if (!u)
         return 0;
@@ -728,7 +728,7 @@ unit_data *unit_room(unit_data *unit)
     return nullptr;
 }
 
-void intern_unit_up(unit_data *unit, ubit1 pile)
+void intern_unit_up(unit_data *unit, bool pile)
 {
     unit_data *u = nullptr;
     unit_data *in = nullptr;
@@ -819,7 +819,7 @@ void unit_from_unit(unit_data *unit)
     }
 }
 
-void intern_unit_down(unit_data *unit, unit_data *to, ubit1 pile)
+void intern_unit_down(unit_data *unit, unit_data *to, bool pile)
 {
     unit_data *u = nullptr;
     unit_data *in = nullptr;
@@ -898,7 +898,7 @@ void unit_down(unit_data *unit, unit_data *to)
     intern_unit_down(unit, to, TRUE);
 }
 
-void intern_unit_to_unit(unit_data *unit, unit_data *to, ubit1 pile)
+void intern_unit_to_unit(unit_data *unit, unit_data *to, bool pile)
 {
     assert(to);
     if (unit == to)

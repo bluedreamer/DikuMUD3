@@ -74,7 +74,7 @@ currency_t local_currency(unit_data *unit)
 /*  Print out an optimal representation of currency
  *  e.g.: (1230, DEF_CURRENCY) -> '10 copper coins and 3 iron coins'
  */
-char *money_string(amount_t amt, currency_t currency, ubit1 verbose)
+char *money_string(amount_t amt, currency_t currency, bool verbose)
 {
     static char buf[512];
     char tmp[256];
@@ -564,7 +564,7 @@ amount_t char_holds_amount(unit_data *ch, currency_t currency)
 /*  Checks if the character is able to pay the amount with the currency
  *  (Currently) based on what money he has in inventory.
  */
-ubit1 char_can_afford(unit_data *ch, amount_t amt, currency_t currency)
+bool char_can_afford(unit_data *ch, amount_t amt, currency_t currency)
 {
     unit_data *tmp = nullptr;
 
@@ -662,7 +662,7 @@ void pile_money(unit_data *money)
 
 /*  Round amount down/up to nearest `types' number of coins
  */
-amount_t money_round(ubit1 up, amount_t amt, currency_t currency, int types)
+amount_t money_round(bool up, amount_t amt, currency_t currency, int types)
 {
     money_type *money_tmp[MAX_MONEY + 1];
     int i = 0;
@@ -866,7 +866,7 @@ void boot_money()
     int idx = 0;
     int prev_idx = 0;
     currency_t cur = 0;
-    ubit1 currencies = TRUE;
+    bool currencies = TRUE;
     std::string myfile = "";
 
 #ifdef VMC_SRC
