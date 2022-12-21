@@ -481,52 +481,52 @@ void pc_data::incrementVirtualPlayerLevel()
     m_vlvl++;
 }
 
-sbit32 pc_data::getPlayerUID() const
+int32_t pc_data::getPlayerUID() const
 {
     return m_id;
 }
 
-void pc_data::setPlayerUID(sbit32 value)
+void pc_data::setPlayerUID(int32_t value)
 {
     m_id = value;
 }
 
-sbit32 pc_data::getSkillPoints() const
+int32_t pc_data::getSkillPoints() const
 {
     return m_skill_points;
 }
 
-sbit32 *pc_data::getSkillPointsPtr()
+int32_t *pc_data::getSkillPointsPtr()
 {
     return &m_skill_points;
 }
 
-void pc_data::setSkillPoints(sbit32 value)
+void pc_data::setSkillPoints(int32_t value)
 {
     m_skill_points = value;
 }
 
-void pc_data::increaseSkillPointsBy(sbit32 value)
+void pc_data::increaseSkillPointsBy(int32_t value)
 {
     m_skill_points += value;
 }
 
-sbit32 pc_data::getAbilityPoints() const
+int32_t pc_data::getAbilityPoints() const
 {
     return m_ability_points;
 }
 
-sbit32 *pc_data::getAbilityPointsPtr()
+int32_t *pc_data::getAbilityPointsPtr()
 {
     return &m_ability_points;
 }
 
-void pc_data::setAbilityPoints(sbit32 value)
+void pc_data::setAbilityPoints(int32_t value)
 {
     m_ability_points = value;
 }
 
-void pc_data::increaseAbilityPointsBy(sbit32 value)
+void pc_data::increaseAbilityPointsBy(int32_t value)
 {
     m_ability_points += value;
 }

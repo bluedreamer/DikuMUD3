@@ -33,7 +33,7 @@
 #define MINUTE_GRANULARITY (15)
 #define TIME_GRANULARITY ((24 * 60) / MINUTE_GRANULARITY)
 
-static sbit32 day_charge[7][TIME_GRANULARITY];
+static int32_t day_charge[7][TIME_GRANULARITY];
 
 static int next_crc = 0;
 
@@ -590,9 +590,9 @@ void account_withdraw(unit_data *god, unit_data *whom, ubit32 amount)
     account_log('W', god, whom, amount);
 }
 
-void account_flatrate_change(unit_data *god, unit_data *whom, sbit32 days)
+void account_flatrate_change(unit_data *god, unit_data *whom, int32_t days)
 {
-    sbit32 add = days * SECS_PER_REAL_DAY;
+    int32_t add = days * SECS_PER_REAL_DAY;
 
     time_t now = time(nullptr);
 
@@ -613,7 +613,7 @@ void account_flatrate_change(unit_data *god, unit_data *whom, sbit32 days)
     }
     else /* days < 0 */
     {
-        if ((sbit32)PC_ACCOUNT(whom).getFlatRateExpirationDate() + add < now)
+        if ((int32_t)PC_ACCOUNT(whom).getFlatRateExpirationDate() + add < now)
         {
             msg = "\n\rDisabling flatrate, enabling measure rate.\n\r\n\r";
             PC_ACCOUNT(whom).setFlatRateExpirationDate(0);

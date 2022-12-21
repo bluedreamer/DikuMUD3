@@ -203,15 +203,15 @@ public:
      * @name Weight related code
      * @{
      */
-    sbit32 getBaseWeight() const;
-    void setBaseWeight(sbit32 value);
+    int32_t getBaseWeight() const;
+    void setBaseWeight(int32_t value);
 
-    sbit32 getWeight() const;
-    void reduceWeightBy(sbit32 value);
-    void increaseWeightBy(sbit32 value);
-    void setWeight(sbit32 value);
+    int32_t getWeight() const;
+    void reduceWeightBy(int32_t value);
+    void increaseWeightBy(int32_t value);
+    void setWeight(int32_t value);
 
-    sbit32 getContainingWeight() const { return m_weight - m_base_weight; }
+    int32_t getContainingWeight() const { return m_weight - m_base_weight; }
     /// @}
 
     /**
@@ -289,14 +289,14 @@ public:
      * Code for Max and Current hitpoints
      * @{
      */
-    sbit32 getMaximumHitpoints() const;
-    sbit32 *getMaximumHitpointsPtr();
-    void setMaximumHitpoints(sbit32 value);
+    int32_t getMaximumHitpoints() const;
+    int32_t *getMaximumHitpointsPtr();
+    void setMaximumHitpoints(int32_t value);
 
-    sbit32 getCurrentHitpoints() const;
-    sbit32 *getCurrentHitpointsPtr();
-    void setCurrentHitpoints(sbit32 value);
-    void changeCurrentHitpointsBy(sbit32 value);
+    int32_t getCurrentHitpoints() const;
+    int32_t *getCurrentHitpointsPtr();
+    void setCurrentHitpoints(int32_t value);
+    void changeCurrentHitpointsBy(int32_t value);
     ///@}
 
     /**
@@ -380,8 +380,8 @@ private:
     unit_data *m_gprevious{nullptr};         ///< global l-list of objects, chars & rooms
     ubit32 m_manipulate{0};                  ///< WEAR_XXX macros
     uint16_t m_flags{0};                     ///< Invisible, can_bury, burried...
-    sbit32 m_base_weight{0};                 ///< The "empty" weight of a room/char/obj (lbs)
-    sbit32 m_weight{0};                      ///< Current weight of a room/obj/char
+    int32_t m_base_weight{0};                ///< The "empty" weight of a room/char/obj (lbs)
+    int32_t m_weight{0};                     ///< Current weight of a room/obj/char
     int16_t m_capacity{0};                   ///< Capacity of obj/char/room, -1 => any
     uint16_t m_size{0};                      ///< (cm) MOBs height, weapons size, ropes length
     uint8_t m_status{0};                     ///< IS_ROOM, IS_OBJ, IS_PC, IS_NPC
@@ -392,8 +392,8 @@ private:
     int16_t m_illum{0};                      ///< how much bright is by transparency
     uint8_t m_chars{0};                      ///< How many chars is inside the unit
     uint8_t m_minv{0};                       ///< Level of wizard invisible
-    sbit32 m_max_hp{0};                      ///< The maximum number of hitpoints
-    sbit32 m_hp{0};                          ///< The actual amount of hitpoints left
+    int32_t m_max_hp{0};                     ///< The maximum number of hitpoints
+    int32_t m_hp{0};                         ///< The actual amount of hitpoints left
     int16_t m_alignment{0};                  ///< +-1000 for alignments
     std::string m_title;                     ///< Room title, Char title, Obj "the barrel", NPC "the Beastly Fido"
     std::string m_out_descr;                 ///< The outside description of a unit

@@ -150,7 +150,7 @@ static char *parse_alias(char *src, char *arg)
             cnew++;
         }
 
-        if (cnew - buf >= (sbit32)sizeof(buf) / 2 - 1)
+        if (cnew - buf >= (int32_t)sizeof(buf) / 2 - 1)
         {
             return nullptr; /* we wrote too much, so abort */
         }

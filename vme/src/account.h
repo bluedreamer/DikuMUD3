@@ -44,7 +44,7 @@ public:
 void account_cclog(unit_data *ch, int amount);
 void account_closed(unit_data *ch);
 void account_defaults(unit_data *pc);
-void account_flatrate_change(unit_data *god, unit_data *whom, sbit32 days);
+void account_flatrate_change(unit_data *god, unit_data *whom, int32_t days);
 void account_global_stat(unit_data *ch);
 void account_insert(unit_data *god, unit_data *whom, ubit32 amount);
 int account_is_closed(unit_data *ch);

@@ -53,22 +53,22 @@ void char_point_data::toggleCharacterFlag(ubit32 value)
     flags ^= value;
 }
 
-sbit32 char_point_data::getPlayerExperience() const
+int32_t char_point_data::getPlayerExperience() const
 {
     return exp;
 }
 
-sbit32 *char_point_data::getPlayerExperiencePtr()
+int32_t *char_point_data::getPlayerExperiencePtr()
 {
     return &exp;
 }
 
-void char_point_data::setPlayerExperience(sbit32 value)
+void char_point_data::setPlayerExperience(int32_t value)
 {
     exp = value;
 }
 
-void char_point_data::increasePlayerExperienceBy(sbit32 value)
+void char_point_data::increasePlayerExperienceBy(int32_t value)
 {
     exp += value;
 }

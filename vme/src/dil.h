@@ -157,7 +157,7 @@ struct dilargstype
 #define DILE_VAR 40 /* variable (uint16_t) */
 #define DILE_FS 41  /* fixed string (char[]) */
 #define DILE_FSL 42 /* fixed stringlist (char[][]) */
-#define DILE_INT 43 /* fixed integer (sbit32) */
+#define DILE_INT 43 /* fixed integer (int32_t) */
 #define DILE_LEN 44 /* length(#) */
 
 /* DIL instructions */
@@ -484,7 +484,7 @@ struct dilvar
         unit_data *unitptr;
         zone_type *zoneptr;
         command_info *cmdptr;
-        sbit32 integer;
+        int32_t integer;
         extra_descr_data *extraptr;
         char *string;
         cNamelist *namelist;
@@ -517,8 +517,8 @@ public:
     uint8_t atyp;      /* allocation type */
     union
     {
-        void *ptr;  /* result pointer  */
-        sbit32 num; /* result integer  */
+        void *ptr;   /* result pointer  */
+        int32_t num; /* result integer  */
     } val;
     void *ref; /* result reference (NULL=Rexpr) */
 };
@@ -644,7 +644,7 @@ public:
     spec_arg *sarg;
     unit_data *owner;
 
-    sbit32 waitcmd; /* Command countdown */
+    int32_t waitcmd; /* Command countdown */
 
     dilprg *next; /* For global dilprg list (sendtoalldil) */
 

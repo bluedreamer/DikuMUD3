@@ -76,7 +76,7 @@ struct pc_train_values
 {
     int16_t *values;
     uint8_t *lvl;
-    sbit32 *practice_points;
+    int32_t *practice_points;
 };
 
 static int gold_cost(unit_data *ch, skill_teach_type *s, int level)

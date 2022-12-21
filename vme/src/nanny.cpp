@@ -172,7 +172,7 @@ void reset_char(unit_data *ch)
 
 void update_lasthost(unit_data *pc, ubit32 s_addr)
 {
-    if ((sbit32)s_addr == -1)
+    if ((int32_t)s_addr == -1)
     {
         return;
     }

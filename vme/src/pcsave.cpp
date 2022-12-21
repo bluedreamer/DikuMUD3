@@ -27,8 +27,8 @@
 #include <cstring>
 #include <ctime>
 
-// MS2020 sbit32 g_player_id = -1;
-sbit32 g_player_id = 1; // Looks to me like it needs to begin with 1 (crash on start)
+// MS2020 int32_t g_player_id = -1;
+int32_t g_player_id = 1; // Looks to me like it needs to begin with 1 (crash on start)
 
 void assign_player_file_index(unit_data *pc)
 {
@@ -95,10 +95,10 @@ int delete_player(const char *pName)
 }
 
 /* Given a name, return pointer to player-idx blk, or BLK_NULL if non exist */
-sbit32 find_player_id(char *pName)
+int32_t find_player_id(char *pName)
 {
     FILE *pFile = nullptr;
-    sbit32 id = 0;
+    int32_t id = 0;
 
     if (str_is_empty(pName))
     {
@@ -115,7 +115,7 @@ sbit32 find_player_id(char *pName)
 
     rewind(pFile);
 
-    if (fread(&id, sizeof(sbit32), 1, pFile) != 1)
+    if (fread(&id, sizeof(int32_t), 1, pFile) != 1)
     {
         error(HERE, "Unable to read ID for player: '%s'", pName);
     }
@@ -126,9 +126,9 @@ sbit32 find_player_id(char *pName)
 }
 
 /* Call to read current id from file*/
-sbit32 read_player_id()
+int32_t read_player_id()
 {
-    sbit32 tmp_sl = 0;
+    int32_t tmp_sl = 0;
     FILE *pFile = nullptr;
 
     /* By using r+ we are sure that we don't erase it accidentially
@@ -148,7 +148,7 @@ sbit32 read_player_id()
 }
 
 /* Call to generate new id */
-sbit32 new_player_id()
+int32_t new_player_id()
 {
     FILE *pFile = nullptr;
 
@@ -166,7 +166,7 @@ sbit32 new_player_id()
     return g_player_id++;
 }
 
-void save_player_disk(const char *pName, char *pPassword, sbit32 id, int nPlyLen, const uint8_t *pPlyBuf)
+void save_player_disk(const char *pName, char *pPassword, int32_t id, int nPlyLen, const uint8_t *pPlyBuf)
 {
     int n = 0;
     FILE *pPlayerFile = nullptr;
@@ -212,7 +212,7 @@ void save_player_disk(const char *pName, char *pPassword, sbit32 id, int nPlyLen
 void save_player_file(unit_data *pc)
 {
     static bool locked = FALSE;
-    sbit32 nPlyLen = 0;
+    int32_t nPlyLen = 0;
     int tmp_i = 0;
     unit_data *tmp_u = nullptr;
     unit_data *list = nullptr;
@@ -417,7 +417,7 @@ unit_data *load_player_file(FILE *pFile)
     unit_data *pc = nullptr;
     ubit32 nPlyLen = 0;
     ubit32 n = 0;
-    sbit32 id = 0;
+    int32_t id = 0;
     CByteBuffer *pBuf = nullptr;
 
     assert(pFile);
@@ -513,7 +513,7 @@ unit_data *load_player(const char *pName)
 void player_file_index()
 {
     FILE *pFile = nullptr;
-    sbit32 tmp_sl = 0;
+    int32_t tmp_sl = 0;
     int n = 0;
     std::string tmp_player_name = g_cServerConfig.getPlyDir() + "player.tmp";
 

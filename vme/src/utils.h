@@ -110,7 +110,7 @@ inline int ROOM_SC(const unit_data *unit) { return UROOM(unit)->getStrongCompone
 
 inline uint8_t OBJ_RESISTANCE(unit_data *obj) { return UOBJ(obj)->getMagicResistance(); }
 
-inline sbit32 OBJ_VALUE(const unit_data *unit, size_t index) { return UOBJ(unit)->getValueAtIndex(index); }
+inline int32_t OBJ_VALUE(const unit_data *unit, size_t index) { return UOBJ(unit)->getValueAtIndex(index); }
 
 inline ubit32 OBJ_PRICE(const unit_data *unit) { return UOBJ(unit)->getPriceInGP(); }
 
@@ -177,7 +177,7 @@ inline int16_t CHAR_MANA(const unit_data *ch) { return UCHAR(ch)->getMana(); }
 
 inline char *CHAR_MONEY(unit_data *ch) { return UCHAR(ch)->getMoney(); }
 
-inline sbit32 CHAR_EXP(const unit_data *ch) { return UCHAR(ch)->getPlayerExperience(); }
+inline int32_t CHAR_EXP(const unit_data *ch) { return UCHAR(ch)->getPlayerExperience(); }
 
 inline uint8_t CHAR_ATTACK_TYPE(const unit_data *ch) { return UCHAR(ch)->getAttackType(); }
 
@@ -277,9 +277,9 @@ inline extra_list &PC_QUEST(unit_data *pc) { return UPC(pc)->getQuestInformation
 
 inline int8_t PC_COND(unit_data *ch, size_t i) { return UPC(ch)->getConditionAtIndex(i); }
 
-inline sbit32 PC_ABILITY_POINTS(unit_data *ch) { return UPC(ch)->getAbilityPoints(); }
+inline int32_t PC_ABILITY_POINTS(unit_data *ch) { return UPC(ch)->getAbilityPoints(); }
 
-inline sbit32 PC_SKILL_POINTS(unit_data *ch) { return UPC(ch)->getSkillPoints(); }
+inline int32_t PC_SKILL_POINTS(unit_data *ch) { return UPC(ch)->getSkillPoints(); }
 
 inline uint8_t PC_ABI_LVL(unit_data *ch, size_t index) { return UPC(ch)->getAbilityLevelAtIndex(index); }
 
@@ -301,7 +301,7 @@ inline const char *PC_PWD(unit_data *unit) { return UPC(unit)->getPassword(); }
 
 inline const char *PC_FILENAME(unit_data *unit) { return UPC(unit)->getFilename(); }
 
-inline sbit32 PC_ID(unit_data *unit) { return UPC(unit)->getPlayerUID(); }
+inline int32_t PC_ID(unit_data *unit) { return UPC(unit)->getPlayerUID(); }
 
 inline const char *PC_BANK(const unit_data *unit) { return UPC(unit)->getBank(); }
 

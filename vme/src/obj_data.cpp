@@ -20,12 +20,12 @@ obj_data::~obj_data()
     g_world_noobjects--;
 }
 
-sbit32 obj_data::getValueAtIndex(size_t index) const
+int32_t obj_data::getValueAtIndex(size_t index) const
 {
     return m_value.at(index);
 }
 
-sbit32 *obj_data::getValueAtIndexPtr(size_t index)
+int32_t *obj_data::getValueAtIndexPtr(size_t index)
 {
     return &m_value.at(index);
 }
@@ -35,7 +35,7 @@ size_t obj_data::getValueArraySize() const
     return m_value.size();
 }
 
-void obj_data::setValueAtIndexTo(size_t index, sbit32 value)
+void obj_data::setValueAtIndexTo(size_t index, int32_t value)
 {
     m_value.at(index) = value;
 }

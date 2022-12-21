@@ -24,7 +24,7 @@ public:
     char *catnames();
     std::string json();
     int Value(int idx);
-    sbit32 *ValuePtr(int idx);
+    int32_t *ValuePtr(int idx);
     void Remove(int idx);
     void AppendBuffer(CByteBuffer *pBuf);
     int ReadBuffer(CByteBuffer *pBuf);
@@ -32,9 +32,9 @@ public:
     void Prepend(int val);
     void Insert(int val, int loc);
     void bread(uint8_t **b);
-    inline sbit32 Length() { return length; }
+    inline int32_t Length() { return length; }
 
 private:
     int *intlist;
-    sbit32 length;
+    int32_t length;
 };

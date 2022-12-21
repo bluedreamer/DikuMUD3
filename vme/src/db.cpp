@@ -183,7 +183,7 @@ diltemplate *generate_datafile_diltemplates(FILE *f, zone_type *zone, bool do_re
 {
     diltemplate *tmpllist = nullptr;
     CByteBuffer Buf;
-    sbit32 tmplsize = 0;
+    int32_t tmplsize = 0;
     char nBuf[256];
     char zBuf[256];
 
@@ -274,7 +274,7 @@ int generate_datafile_file_indexes(FILE *f, zone_type *zone, bool do_reindex)
         auto temp_index = std::make_unique<file_index_type>(zone, (const char *)cBuf.GetData(), temp_8);
 
         // get Length
-        sbit32 temp_32{};
+        int32_t temp_32{};
         if (fread(&temp_32, sizeof(ubit32), 1, f) != 1)
         {
             error(HERE, "Failed to fread() temp_index->length");

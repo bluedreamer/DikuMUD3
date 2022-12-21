@@ -20,34 +20,34 @@ cintlist::cintlist()
 
 void cintlist::operator=(cintlist *cn)
 {
-    for (sbit32 i = 0; i < cn->Length(); i++)
+    for (int32_t i = 0; i < cn->Length(); i++)
     {
-        Append((sbit32)cn->Value(i));
+        Append((int32_t)cn->Value(i));
     }
 }
 
 void cintlist::CopyList(cintlist *cn)
 {
-    for (sbit32 i = 0; i < cn->Length(); i++)
+    for (int32_t i = 0; i < cn->Length(); i++)
     {
-        Append((sbit32)cn->Value(i));
+        Append((int32_t)cn->Value(i));
     }
 }
 
 void cintlist::AppendBuffer(CByteBuffer *pBuf)
 {
     pBuf->Append32(Length());
-    for (sbit32 i = 0; i < length; i++)
+    for (int32_t i = 0; i < length; i++)
     {
-        pBuf->Append32((sbit32)Value(i));
+        pBuf->Append32((int32_t)Value(i));
     }
 }
 
 int cintlist::ReadBuffer(CByteBuffer *pBuf)
 {
-    sbit32 len = 0;
-    sbit32 i = 0;
-    sbit32 c = 0;
+    int32_t len = 0;
+    int32_t i = 0;
+    int32_t c = 0;
     int corrupt = 0;
 
     len = pBuf->ReadS32(&corrupt);
@@ -67,8 +67,8 @@ int cintlist::ReadBuffer(CByteBuffer *pBuf)
 
 void cintlist::bread(uint8_t **b)
 {
-    sbit32 len = 0;
-    sbit32 i = 0;
+    int32_t len = 0;
+    int32_t i = 0;
     int c = 0;
     len = bread_ubit32(b);
 
@@ -81,7 +81,7 @@ void cintlist::bread(uint8_t **b)
 
 char *cintlist::catnames()
 {
-    sbit32 i = 0;
+    int32_t i = 0;
     char *s = nullptr;
     unsigned int strsize = 0;
     strsize = (Length() * 3) + 3;
@@ -112,7 +112,7 @@ std::string cintlist::json()
 
     s = "\"intlist\": [";
 
-    for (sbit32 i = 0; i < Length(); i++)
+    for (int32_t i = 0; i < Length(); i++)
     {
         s.append(itoa(Value(i)));
         if (i < Length() - 1)
@@ -152,7 +152,7 @@ void cintlist::Replace(int idx, int val)
     }
 }
 
-sbit32 cintlist::Value(int idx)
+int32_t cintlist::Value(int idx)
 {
     if ((idx >= 0) && (idx < length))
     {
@@ -162,7 +162,7 @@ sbit32 cintlist::Value(int idx)
     return 0;
 }
 
-sbit32 *cintlist::ValuePtr(int idx)
+int32_t *cintlist::ValuePtr(int idx)
 {
     if ((idx >= 0) && (idx < length))
     {
@@ -255,7 +255,7 @@ void cintlist::Insert(int val, int idx)
 cintlist *cintlist::Duplicate()
 {
     cintlist *pNl = new cintlist;
-    sbit32 i = 0;
+    int32_t i = 0;
 
     for (i = 0; i < length; i++)
     {

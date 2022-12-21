@@ -121,28 +121,28 @@ public:
      * @name UID for players
      * @{
      */
-    sbit32 getPlayerUID() const;
-    void setPlayerUID(sbit32 value);
+    int32_t getPlayerUID() const;
+    void setPlayerUID(int32_t value);
     /// @}
 
     /**
      * @name Skill points
      * @{
      */
-    sbit32 getSkillPoints() const;
-    sbit32 *getSkillPointsPtr();
-    void setSkillPoints(sbit32 value);
-    void increaseSkillPointsBy(sbit32 value);
+    int32_t getSkillPoints() const;
+    int32_t *getSkillPointsPtr();
+    void setSkillPoints(int32_t value);
+    void increaseSkillPointsBy(int32_t value);
     /// @}
 
     /**
      * @name Ability Points
      * @{
      */
-    sbit32 getAbilityPoints() const;
-    sbit32 *getAbilityPointsPtr();
-    void setAbilityPoints(sbit32 value);
-    void increaseAbilityPointsBy(sbit32 value);
+    int32_t getAbilityPoints() const;
+    int32_t *getAbilityPointsPtr();
+    void setAbilityPoints(int32_t value);
+    void increaseAbilityPointsBy(int32_t value);
     /// @}
 
     /**
@@ -335,9 +335,9 @@ private:
     extra_list m_quest;                                  ///< For saving QUEST information
     int8_t m_profession{-1};                             ///< The player's chosen profession, -1 means unknown
     uint16_t m_vlvl{0};                                  ///< Virtual Level for player
-    sbit32 m_id{-1};                                     ///< Unique identifier for each player (-1 guest)
-    sbit32 m_skill_points{0};                            ///< No of practice points left
-    sbit32 m_ability_points{0};                          ///< No of practice points left
+    int32_t m_id{-1};                                    ///< Unique identifier for each player (-1 guest)
+    int32_t m_skill_points{0};                           ///< No of practice points left
+    int32_t m_ability_points{0};                         ///< No of practice points left
     uint16_t m_flags{0};                                 ///< flags for PC setup (brief, noshout...)
     uint16_t m_nr_of_crimes{0};                          ///< Number of crimes committed
     uint16_t m_crack_attempts{0};                        ///< Number of wrong passwords entered

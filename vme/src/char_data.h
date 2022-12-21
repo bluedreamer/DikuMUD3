@@ -67,10 +67,10 @@ public:
     void removeCharacterFlag(ubit32 value);
     void toggleCharacterFlag(ubit32 value);
 
-    sbit32 getPlayerExperience() const;
-    sbit32 *getPlayerExperiencePtr();
-    void setPlayerExperience(sbit32 value);
-    void increasePlayerExperienceBy(sbit32 value);
+    int32_t getPlayerExperience() const;
+    int32_t *getPlayerExperiencePtr();
+    void setPlayerExperience(int32_t value);
+    void increasePlayerExperienceBy(int32_t value);
 
     uint16_t getRace() const;
     uint16_t *getRacePtr();

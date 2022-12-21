@@ -101,7 +101,7 @@ void dilfe_fld(dilprg *p)
 
             if (v->type == DILV_INT)
             {
-                if (((sbit32)v2->val.num < ((cintlist *)v1->val.ptr)->Length()) && (v2->val.num >= 0))
+                if (((int32_t)v2->val.num < ((cintlist *)v1->val.ptr)->Length()) && (v2->val.num >= 0))
                 {
                     v->atyp = DILA_NONE; // Dont dealloc!
                     v->type = DILV_SINT4R;
@@ -1857,7 +1857,7 @@ void dilfe_fld(dilprg *p)
                     auto *unit = reinterpret_cast<unit_data *>(v1->val.ptr);
                     if (unit)
                     {
-                        /* sbit32 hp; */
+                        /* int32_t hp; */
                         v->atyp = DILA_NONE;
                         v->type = DILV_SINT4R;
                         v->ref = unit->getCurrentHitpointsPtr();
@@ -2336,7 +2336,7 @@ void dilfe_fld(dilprg *p)
             if (v->type == DILV_UINT4R)
             {
                 auto *object = reinterpret_cast<obj_data *>(v1->val.ptr);
-                if (object && object->isObj() && (v2->val.num >= 0 && v2->val.num < static_cast<sbit32>(object->getValueArraySize())))
+                if (object && object->isObj() && (v2->val.num >= 0 && v2->val.num < static_cast<int32_t>(object->getValueArraySize())))
                 {
                     v->atyp = DILA_NONE;
                     v->ref = object->getValueAtIndexPtr(v2->val.num);

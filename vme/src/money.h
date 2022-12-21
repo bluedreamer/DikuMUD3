@@ -9,7 +9,7 @@
 #include "utils.h"
 
 typedef int16_t currency_t;
-typedef sbit32 amount_t;
+typedef int32_t amount_t;
 
 struct money_type
 {
@@ -18,8 +18,8 @@ struct money_type
     char *tails;               ///< What to print on the dark side of the coin
     char *abbrev;              ///< Small string for lists
     uint16_t pl_idx;           ///< The index in above to first plural string
-    sbit32 relative_value;     ///< Relative to the internal value
-    sbit32 min_value;          ///< Minimum internal value of the currency
+    int32_t relative_value;    ///< Relative to the internal value
+    int32_t min_value;         ///< Minimum internal value of the currency
     uint16_t coins_per_weight; ///< How many coins per weight unit
     file_index_type *fi;       ///< Where is coin object in file
 };
@@ -50,7 +50,7 @@ inline char *money_pluralis_type(size_t type)
 }
 
 /** Index into money-array */
-inline sbit32 MONEY_TYPE(const unit_data *obj)
+inline int32_t MONEY_TYPE(const unit_data *obj)
 {
     return OBJ_VALUE(obj, 0);
 }
@@ -103,12 +103,12 @@ inline currency_t MONEY_CURRENCY(const unit_data *obj)
     return g_money_types[MONEY_TYPE(obj)].currency;
 }
 
-inline sbit32 MONEY_RELATIVE(const unit_data *obj)
+inline int32_t MONEY_RELATIVE(const unit_data *obj)
 {
     return g_money_types[MONEY_TYPE(obj)].relative_value;
 }
 
-[[maybe_unused]] inline sbit32 MONEY_MIN_VALUE(const unit_data *obj)
+[[maybe_unused]] inline int32_t MONEY_MIN_VALUE(const unit_data *obj)
 {
     return g_money_types[MONEY_TYPE(obj)].min_value;
 }
@@ -118,12 +118,12 @@ inline uint16_t MONEY_WEIGHT(const unit_data *obj)
     return g_money_types[MONEY_TYPE(obj)].coins_per_weight;
 }
 
-inline sbit32 MONEY_VALUE(const unit_data *obj)
+inline int32_t MONEY_VALUE(const unit_data *obj)
 {
     return MONEY_AMOUNT(obj) * MONEY_RELATIVE(obj);
 }
 
-[[maybe_unused]] inline sbit32 MONEY_WEIGHT_SUM(const unit_data *obj1, const unit_data *obj2)
+[[maybe_unused]] inline int32_t MONEY_WEIGHT_SUM(const unit_data *obj1, const unit_data *obj2)
 {
     return (MONEY_AMOUNT(obj1) + MONEY_AMOUNT(obj2)) / MONEY_WEIGHT(obj1);
 }

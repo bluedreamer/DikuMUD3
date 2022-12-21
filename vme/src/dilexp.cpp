@@ -6757,7 +6757,7 @@ void dilfe_powe(dilprg *p)
 
     if (p->sarg->pInt)
     {
-        v->ref = (sbit32 *)p->sarg->pInt;
+        v->ref = (int32_t *)p->sarg->pInt;
     }
     else
     {
@@ -6863,7 +6863,7 @@ void dilfe_int(dilprg *p)
 
     v->type = DILV_INT;
     v->atyp = DILA_NONE;
-    v->val.num = (sbit32)bread_ubit32(&(p->fp->pc));
+    v->val.num = (int32_t)bread_ubit32(&(p->fp->pc));
     p->stack.push(v);
 }
 

@@ -62,7 +62,7 @@ private:
     int16_t id{0};                          ///<
     uint16_t beat{0};                       ///< Beat in 1/4 of secs, 0 = None
     int16_t duration{0};                    ///< How many beats until end
-    sbit32 data[3]{0};                      ///<
+    int32_t data[3]{0};                     ///<
     int16_t firstf_i{0};                    ///<
     int16_t tickf_i{0};                     ///<
     int16_t lastf_i{0};                     ///<

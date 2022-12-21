@@ -23,7 +23,7 @@ struct exptype
     DilVarType_e typ;  ///< static/dynamic/lvalue, type, req type
     DilVarType_e rtyp; ///< static/dynamic/lvalue, type, req type
     uint8_t boolean;   ///< if expression contains boolean op
-    sbit32 num;        ///< static value INT or field type
+    int32_t num;       ///< static value INT or field type
     uint8_t *code;     ///< code / static value SP
     uint8_t *codep;    ///< code write pointer
 };

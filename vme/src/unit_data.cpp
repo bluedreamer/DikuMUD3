@@ -574,32 +574,32 @@ void unit_data::removeUnitFlag(uint16_t value)
     m_flags &= ~value;
 }
 
-sbit32 unit_data::getBaseWeight() const
+int32_t unit_data::getBaseWeight() const
 {
     return m_base_weight;
 }
 
-void unit_data::setBaseWeight(sbit32 value)
+void unit_data::setBaseWeight(int32_t value)
 {
     m_base_weight = value;
 }
 
-sbit32 unit_data::getWeight() const
+int32_t unit_data::getWeight() const
 {
     return m_weight;
 }
 
-void unit_data::reduceWeightBy(sbit32 value)
+void unit_data::reduceWeightBy(int32_t value)
 {
     m_weight -= value;
 }
 
-void unit_data::increaseWeightBy(sbit32 value)
+void unit_data::increaseWeightBy(int32_t value)
 {
     m_weight += value;
 }
 
-void unit_data::setWeight(sbit32 value)
+void unit_data::setWeight(int32_t value)
 {
     m_weight = value;
 }
@@ -759,37 +759,37 @@ void unit_data::setLevelOfWizardInvisibility(uint8_t value)
     m_minv = value;
 }
 
-sbit32 unit_data::getMaximumHitpoints() const
+int32_t unit_data::getMaximumHitpoints() const
 {
     return m_max_hp;
 }
 
-sbit32 *unit_data::getMaximumHitpointsPtr()
+int32_t *unit_data::getMaximumHitpointsPtr()
 {
     return &m_max_hp;
 }
 
-void unit_data::setMaximumHitpoints(sbit32 value)
+void unit_data::setMaximumHitpoints(int32_t value)
 {
     m_max_hp = value;
 }
 
-sbit32 unit_data::getCurrentHitpoints() const
+int32_t unit_data::getCurrentHitpoints() const
 {
     return m_hp;
 }
 
-sbit32 *unit_data::getCurrentHitpointsPtr()
+int32_t *unit_data::getCurrentHitpointsPtr()
 {
     return &m_hp;
 }
 
-void unit_data::setCurrentHitpoints(sbit32 value)
+void unit_data::setCurrentHitpoints(int32_t value)
 {
     m_hp = value;
 }
 
-void unit_data::changeCurrentHitpointsBy(sbit32 value)
+void unit_data::changeCurrentHitpointsBy(int32_t value)
 {
     m_hp += value;
 }

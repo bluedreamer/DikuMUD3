@@ -229,11 +229,11 @@ ubit32 CByteBuffer::ReadU32(int *nError)
     return n;
 }
 
-sbit32 CByteBuffer::ReadS32(int *nError)
+int32_t CByteBuffer::ReadS32(int *nError)
 {
-    sbit32 n = 0;
+    int32_t n = 0;
 
-    if (Read((uint8_t *)&n, sizeof(sbit32)))
+    if (Read((uint8_t *)&n, sizeof(int32_t)))
     {
         if (nError)
         {
@@ -269,9 +269,9 @@ int CByteBuffer::Read32(ubit32 *pNum)
     return Read((uint8_t *)pNum, sizeof(ubit32));
 }
 
-int CByteBuffer::Read32(sbit32 *pNum)
+int CByteBuffer::Read32(int32_t *pNum)
 {
-    return Read((uint8_t *)pNum, sizeof(sbit32));
+    return Read((uint8_t *)pNum, sizeof(int32_t));
 }
 
 int CByteBuffer::ReadFloat(float *pFloat)
@@ -357,7 +357,7 @@ int CByteBuffer::ReadNames(char ***pppStr, int bOld)
 
 int CByteBuffer::ReadIntList(int **ilist)
 {
-    sbit32 len = 0;
+    int32_t len = 0;
     int corrupt = 0;
     int c = 0;
     int i = 0;
@@ -772,13 +772,13 @@ void bwrite_ubit32(uint8_t **b, ubit32 i)
     *b += sizeof(ubit32);
 }
 
-void bwrite_sbit32(uint8_t **b, sbit32 i)
+void bwrite_sbit32(uint8_t **b, int32_t i)
 {
     int x = 0;
     x = i;
-    memcpy(*b, (uint8_t *)&x, sizeof(sbit32));
+    memcpy(*b, (uint8_t *)&x, sizeof(int32_t));
     fprintf(stderr, "Sbit32 out %d\n", x);
-    *b += sizeof(sbit32);
+    *b += sizeof(int32_t);
 }
 
 void bwrite_float(uint8_t **b, float f)
@@ -885,8 +885,8 @@ void bwrite_intblock(uint8_t **b, int *ib)
     i = ib[0];
     if (i > 0)
     {
-        memcpy(*b, ib, i * sizeof(sbit32));
-        *b += i * sizeof(sbit32);
+        memcpy(*b, ib, i * sizeof(int32_t));
+        *b += i * sizeof(int32_t);
     }
     else
     {

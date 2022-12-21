@@ -50,14 +50,14 @@ public:
      * @param index
      * @return Bonus/Value at index
      */
-    sbit32 getValueAtIndex(size_t index) const;
+    int32_t getValueAtIndex(size_t index) const;
 
     /**
      * @throws std::out_of_range if index is greater than array size
      * @param index Array index see getValueAtIndex() for index values
      * @return Pointer to value at index - its a DIL thing
      */
-    sbit32 *getValueAtIndexPtr(size_t index);
+    int32_t *getValueAtIndexPtr(size_t index);
 
     /**
      * @return Upper bound of array size (5)
@@ -69,7 +69,7 @@ public:
      * @param index Array index see getValueAtIndex() for index values
      * @param value Value to set
      */
-    void setValueAtIndexTo(size_t index, sbit32 value);
+    void setValueAtIndexTo(size_t index, int32_t value);
     /// @}
 
     /**
@@ -191,11 +191,11 @@ public:
     void setMagicResistance(uint8_t value);
     /// @}
 private:
-    std::array<sbit32, 5> m_value{0}; ///< Values of the item (see list)
-    ubit32 m_cost{0};                 ///< Value when sold (gp.)
-    ubit32 m_cost_per_day{0};         ///< Cost to keep pr. real day
-    uint8_t m_flags{0};               ///< Various special object flags
-    uint8_t m_type{ITEM_TRASH};       ///< Type of item (ITEM_XXX)
-    uint8_t m_equip_pos{0};           ///< 0 or position of item in equipment
-    uint8_t m_resistance{0};          ///< Magic resistance
+    std::array<int32_t, 5> m_value{0}; ///< Values of the item (see list)
+    ubit32 m_cost{0};                  ///< Value when sold (gp.)
+    ubit32 m_cost_per_day{0};          ///< Cost to keep pr. real day
+    uint8_t m_flags{0};                ///< Various special object flags
+    uint8_t m_type{ITEM_TRASH};        ///< Type of item (ITEM_XXX)
+    uint8_t m_equip_pos{0};            ///< 0 or position of item in equipment
+    uint8_t m_resistance{0};           ///< Magic resistance
 };

@@ -29,10 +29,10 @@ public:
     void removeCharacterFlag(ubit32 value);
     void toggleCharacterFlag(ubit32 value);
 
-    sbit32 getPlayerExperience() const;
-    sbit32 *getPlayerExperiencePtr();
-    void setPlayerExperience(sbit32 value);
-    void increasePlayerExperienceBy(sbit32 value);
+    int32_t getPlayerExperience() const;
+    int32_t *getPlayerExperiencePtr();
+    void setPlayerExperience(int32_t value);
+    void increasePlayerExperienceBy(int32_t value);
 
     uint16_t getRace() const;
     uint16_t *getRacePtr();
@@ -112,7 +112,7 @@ public:
 
 private:
     ubit32 flags{0};                                 ///< Char flags
-    sbit32 exp{0};                                   ///< The experience of the player
+    int32_t exp{0};                                  ///< The experience of the player
     uint16_t race{0};                                ///< PC/NPC race, Humanoid, Animal, etc.
     int16_t mana{0};                                 ///< How many mana points are left?
     int16_t endurance{0};                            ///< How many endurance points are left?

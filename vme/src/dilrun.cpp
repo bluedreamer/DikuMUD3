@@ -541,7 +541,7 @@ char dil_getbool(dilval *v, dilprg *prg)
             return (*((int16_t *)v->ref) != 0); /* return Lvalue */
 
         case DilVarType_e::DILV_SINT4R:
-            return (*((sbit32 *)v->ref) != 0); /* return Lvalue */
+            return (*((int32_t *)v->ref) != 0); /* return Lvalue */
 
         case DilVarType_e::DILV_UINT1R:
             return (*((uint8_t *)v->ref) != 0); /* return Lvalue */
@@ -618,7 +618,7 @@ int dil_getval(dilval *v)
             v->val.num = *((int16_t *)v->ref);
             break;
         case DilVarType_e::DILV_SINT4R:
-            v->val.num = *((sbit32 *)v->ref);
+            v->val.num = *((int32_t *)v->ref);
             break;
         case DilVarType_e::DILV_UINT1R:
             v->val.num = *((uint8_t *)v->ref);
@@ -1126,7 +1126,7 @@ void dil_function_table_setup()
         {DILE_VAR, dilfe_var}, /* variable (uint16_t) */
         {DILE_FS, dilfe_fs},   /* fixed string (char[]) */
         {DILE_FSL, dilfe_fsl}, /* fixed stringlist (char[][]) */
-        {DILE_INT, dilfe_int}, /* fixed integer (sbit32) */
+        {DILE_INT, dilfe_int}, /* fixed integer (int32_t) */
         {DILE_LEN, dilfe_len}, /* length(#) */
 
         /* DIL instructions */

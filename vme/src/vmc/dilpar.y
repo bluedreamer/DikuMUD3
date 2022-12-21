@@ -152,11 +152,11 @@ struct sSyms
 %}
 
 %union {
-    sbit32 num;
+    int32_t num;
     char *str;
     char dilsym[SYMSIZE + 1];
     cNamelist *dilstr_list;
-    sbit32 *dilint_list;
+    int32_t *dilint_list;
     struct exptype exp;
     struct
     {
@@ -171,7 +171,7 @@ struct sSyms
 %{
 void add_ubit8(struct exptype *dest, uint8_t d);
 void add_ubit32(struct exptype *dest, ubit32 d);
-void add_sbit32(struct exptype *dest, sbit32 d);
+void add_sbit32(struct exptype *dest, int32_t d);
 void add_ubit16(struct exptype *dest, uint16_t d);
 void add_string(struct exptype *dest, char *d);
 void cat_string(struct exptype *dest, char *d);
@@ -7473,10 +7473,10 @@ void add_ubit32(struct exptype *dest, ubit32 d)
     bwrite_ubit32(&(dest->codep), d);
 }
 
-void add_sbit32(struct exptype *dest, sbit32 d)
+void add_sbit32(struct exptype *dest, int32_t d)
 {
     /*   fprintf(stderr, "SBIT32\n");*/
-    if (dest->codep - dest->code + sizeof(sbit32) >= CODESIZE)
+    if (dest->codep - dest->code + sizeof(int32_t) >= CODESIZE)
     {
         dilfatal("S32: Expression too large");
     }
@@ -7560,7 +7560,7 @@ void add_intlist(struct exptype *dest, int *d)
 
 void add_code(struct exptype *dest, struct exptype *src)
 {
-    sbit32 len = src->codep - src->code;
+    int32_t len = src->codep - src->code;
 
     /*   fprintf(stderr, "ADD CODE\n");*/
 
@@ -7575,7 +7575,7 @@ void add_code(struct exptype *dest, struct exptype *src)
 
 void copy_code(struct exptype *dest, struct exptype *src)
 {
-    sbit32 len = src->codep - src->code;
+    int32_t len = src->codep - src->code;
 
     /*   fprintf(stderr, "COPY CODE %d\n", len);*/
 

@@ -38,7 +38,7 @@ struct command_info
 
     char *cmd_str;
 
-    sbit32 no;
+    int32_t no;
 
     uint8_t minimum_position;
 

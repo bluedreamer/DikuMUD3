@@ -71,11 +71,11 @@ BOOST_AUTO_TEST_CASE(all_nulls_test)
  */
 BOOST_AUTO_TEST_CASE(days_gt_zero_flatrate_gt_now)
 {
-    sbit32 days = 20;
+    int32_t days = 20;
     time_t now = time(nullptr);
     whom->getPCAccountData().setFlatRateExpirationDate(now + 10000);
 
-    const sbit32 expected_flatrate = whom->getPCAccountData().getFlatRateExpirationDate() + (days * SECS_PER_REAL_DAY);
+    const int32_t expected_flatrate = whom->getPCAccountData().getFlatRateExpirationDate() + (days * SECS_PER_REAL_DAY);
 
     ////////////////////////// Test Subject //////////////////////////////
     account_flatrate_change(god.get(), whom.get(), days);
@@ -103,10 +103,10 @@ BOOST_AUTO_TEST_CASE(days_gt_zero_flatrate_gt_now)
  */
 BOOST_AUTO_TEST_CASE(days_gt_zero_flatrate_lt_now_plus_add)
 {
-    sbit32 days = 20;
+    int32_t days = 20;
     time_t now = time(nullptr);
     whom->getPCAccountData().setFlatRateExpirationDate(now - 10000);
-    const sbit32 expected_flatrate = now + (days * SECS_PER_REAL_DAY);
+    const int32_t expected_flatrate = now + (days * SECS_PER_REAL_DAY);
 
     ////////////////////////// Test Subject //////////////////////////////
     account_flatrate_change(god.get(), whom.get(), days);
@@ -134,10 +134,10 @@ BOOST_AUTO_TEST_CASE(days_gt_zero_flatrate_lt_now_plus_add)
  */
 BOOST_AUTO_TEST_CASE(days_eq_zero_flatrate_gt_now)
 {
-    sbit32 days = 0;
+    int32_t days = 0;
     time_t now = time(nullptr);
     whom->getPCAccountData().setFlatRateExpirationDate(now + 10000);
-    const sbit32 expected_flatrate = whom->getPCAccountData().getFlatRateExpirationDate() + (days * SECS_PER_REAL_DAY);
+    const int32_t expected_flatrate = whom->getPCAccountData().getFlatRateExpirationDate() + (days * SECS_PER_REAL_DAY);
 
     ////////////////////////// Test Subject //////////////////////////////
     account_flatrate_change(god.get(), whom.get(), days);
@@ -165,10 +165,10 @@ BOOST_AUTO_TEST_CASE(days_eq_zero_flatrate_gt_now)
  */
 BOOST_AUTO_TEST_CASE(days_eq_zero_flatrate_lt_now)
 {
-    sbit32 days = 0;
+    int32_t days = 0;
     time_t now = time(nullptr);
     whom->getPCAccountData().setFlatRateExpirationDate(now - 10000);
-    const sbit32 expected_flatrate = 0;
+    const int32_t expected_flatrate = 0;
 
     ////////////////////////// Test Subject //////////////////////////////
     account_flatrate_change(god.get(), whom.get(), days);
@@ -196,10 +196,10 @@ BOOST_AUTO_TEST_CASE(days_eq_zero_flatrate_lt_now)
  */
 BOOST_AUTO_TEST_CASE(days_lt_zero_flatrate_gt_now)
 {
-    sbit32 days = -7;
+    int32_t days = -7;
     time_t now = time(nullptr);
     whom->getPCAccountData().setFlatRateExpirationDate(now + 10000);
-    const sbit32 expected_flatrate = 0;
+    const int32_t expected_flatrate = 0;
 
     ////////////////////////// Test Subject //////////////////////////////
     account_flatrate_change(god.get(), whom.get(), days);
@@ -226,10 +226,10 @@ BOOST_AUTO_TEST_CASE(days_lt_zero_flatrate_gt_now)
  */
 BOOST_AUTO_TEST_CASE(days_lt_zero_flatrate_lt_now)
 {
-    sbit32 days = -7;
+    int32_t days = -7;
     time_t now = time(nullptr);
     whom->getPCAccountData().setFlatRateExpirationDate(now + ((days * -1) + 1) * SECS_PER_REAL_DAY);
-    const sbit32 expected_flatrate = whom->getPCAccountData().getFlatRateExpirationDate() + (days * SECS_PER_REAL_DAY);
+    const int32_t expected_flatrate = whom->getPCAccountData().getFlatRateExpirationDate() + (days * SECS_PER_REAL_DAY);
 
     ////////////////////////// Test Subject //////////////////////////////
     account_flatrate_change(god.get(), whom.get(), days);

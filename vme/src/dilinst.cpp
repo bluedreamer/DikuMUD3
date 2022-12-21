@@ -1667,7 +1667,7 @@ void dilfi_ass(dilprg *p)
                 case DILV_FAIL:
                     break;
                 case DILV_INT:
-                    *((sbit32 *)v1->ref) = v2->val.num;
+                    *((int32_t *)v1->ref) = v2->val.num;
                     break;
                 default:
                     /* ERROR incompatible types */
@@ -1869,7 +1869,7 @@ void dilfi_exp(dilprg *p)
 {
     dilval *v2 = p->stack.pop();
     dilval *v1 = p->stack.pop();
-    sbit32 value = 0;
+    int32_t value = 0;
 
     p->waitcmd--;
 
@@ -1930,7 +1930,7 @@ void dilfi_set(dilprg *p)
                 *((int16_t *)v1->ref) |= v2->val.num;
                 break;
             case DILV_SINT4R:
-                *((sbit32 *)v1->ref) |= v2->val.num;
+                *((int32_t *)v1->ref) |= v2->val.num;
                 break;
             case DILV_UINT1R:
                 *((uint8_t *)v1->ref) |= v2->val.num;
@@ -1974,7 +1974,7 @@ void dilfi_uset(dilprg *p)
                 REMOVE_BIT(*((int16_t *)v1->ref), v2->val.num);
                 break;
             case DILV_SINT4R:
-                REMOVE_BIT(*((sbit32 *)v1->ref), v2->val.num);
+                REMOVE_BIT(*((int32_t *)v1->ref), v2->val.num);
                 break;
             case DILV_UINT1R:
                 REMOVE_BIT(*((uint8_t *)v1->ref), v2->val.num);
@@ -2065,13 +2065,13 @@ void dilfi_inslst(dilprg *p)
                 {
                     if (dil_getval(v3) == DILV_INT)
                     {
-                        ((cintlist *)v1->ref)->Insert(v3->val.num, (sbit32)v2->val.num);
+                        ((cintlist *)v1->ref)->Insert(v3->val.num, (int32_t)v2->val.num);
                     }
                     else
                     {
                         if (v3->val.ptr)
                         {
-                            ((cintlist *)v1->ref)->Insert(atoi(skip_spaces((char *)v3->val.ptr)), (sbit32)v2->val.num);
+                            ((cintlist *)v1->ref)->Insert(atoi(skip_spaces((char *)v3->val.ptr)), (int32_t)v2->val.num);
                         }
                     }
                 }

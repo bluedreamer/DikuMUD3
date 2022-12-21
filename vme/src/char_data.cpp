@@ -140,22 +140,22 @@ void char_data::toggleCharacterFlag(ubit32 value)
     m_points.toggleCharacterFlag(value);
 }
 
-sbit32 char_data::getPlayerExperience() const
+int32_t char_data::getPlayerExperience() const
 {
     return m_points.getPlayerExperience();
 }
 
-sbit32 *char_data::getPlayerExperiencePtr()
+int32_t *char_data::getPlayerExperiencePtr()
 {
     return m_points.getPlayerExperiencePtr();
 }
 
-void char_data::setPlayerExperience(sbit32 value)
+void char_data::setPlayerExperience(int32_t value)
 {
     m_points.setPlayerExperience(value);
 }
 
-void char_data::increasePlayerExperienceBy(sbit32 value)
+void char_data::increasePlayerExperienceBy(int32_t value)
 {
     m_points.increasePlayerExperienceBy(value);
 }
