@@ -446,17 +446,17 @@ extra_list &pc_data::getQuestInformation()
     return m_quest;
 }
 
-sbit8 pc_data::getProfession() const
+int8_t pc_data::getProfession() const
 {
     return m_profession;
 }
 
-sbit8 *pc_data::getProfessionPtr()
+int8_t *pc_data::getProfessionPtr()
 {
     return &m_profession;
 }
 
-void pc_data::setProfession(sbit8 value)
+void pc_data::setProfession(int8_t value)
 {
     m_profession = value;
 }
@@ -776,27 +776,27 @@ void pc_data::setAbilityLevelAtIndexTo(size_t index, ubit8 value)
     m_ability_lvl[index] = value;
 }
 
-sbit8 pc_data::getConditionAtIndex(size_t index) const
+int8_t pc_data::getConditionAtIndex(size_t index) const
 {
     return m_conditions[index];
 }
 
-sbit8 *pc_data::getConditionAtIndexPtr(size_t index)
+int8_t *pc_data::getConditionAtIndexPtr(size_t index)
 {
     return &m_conditions[index];
 }
 
-void pc_data::setConditionAtIndexTo(size_t index, sbit8 value)
+void pc_data::setConditionAtIndexTo(size_t index, int8_t value)
 {
     m_conditions[index] = value;
 }
 
-void pc_data::increaseConditionAtIndexBy(size_t index, sbit8 value)
+void pc_data::increaseConditionAtIndexBy(size_t index, int8_t value)
 {
     m_conditions[index] += value;
 }
 
-void pc_data::decreaseConditionAtIndexBy(size_t index, sbit8 value)
+void pc_data::decreaseConditionAtIndexBy(size_t index, int8_t value)
 {
     m_conditions[index] -= value;
 }

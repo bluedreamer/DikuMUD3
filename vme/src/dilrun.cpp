@@ -110,19 +110,19 @@
  *
  * *********************************************************************** */
 
-diltemplate *g_dil_change        = nullptr;
-diltemplate *g_dil_death         = nullptr;
-diltemplate *g_dil_regen         = nullptr;
-diltemplate *g_dil_follow        = nullptr;
-diltemplate *g_dil_set_witness   = nullptr;
-diltemplate *g_dil_worms         = nullptr;
-diltemplate *g_dil_on_connect    = nullptr;
-diltemplate *g_dil_dispatcher    = nullptr;
-diltemplate *g_dil_playerinit    = nullptr;
-diltemplate *g_dil_nanny_dil     = nullptr;
-diltemplate *g_dil_link_dead     = nullptr;
+diltemplate *g_dil_change = nullptr;
+diltemplate *g_dil_death = nullptr;
+diltemplate *g_dil_regen = nullptr;
+diltemplate *g_dil_follow = nullptr;
+diltemplate *g_dil_set_witness = nullptr;
+diltemplate *g_dil_worms = nullptr;
+diltemplate *g_dil_on_connect = nullptr;
+diltemplate *g_dil_dispatcher = nullptr;
+diltemplate *g_dil_playerinit = nullptr;
+diltemplate *g_dil_nanny_dil = nullptr;
+diltemplate *g_dil_link_dead = nullptr;
 diltemplate *g_dil_advance_level = nullptr;
-diltemplate *g_dil_initial_prg   = nullptr;  // The first DIL program that runs just before first zone reset
+diltemplate *g_dil_initial_prg = nullptr; // The first DIL program that runs just before first zone reset
 
 static std::map<std::string, dilvar *> g_global_dilvars;
 
@@ -130,130 +130,128 @@ static std::map<std::string, dilvar *> g_global_dilvars;
 //
 void boot_global_dil(void)
 {
-   slog(LOG_OFF, 0, "Booting required global DIL programs.");
+    slog(LOG_OFF, 0, "Booting required global DIL programs.");
 
-   g_dil_change = find_dil_template("do_change@commands");
-   if (g_dil_change == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing do_change@commands.");
-      exit(1);
-   }
+    g_dil_change = find_dil_template("do_change@commands");
+    if (g_dil_change == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing do_change@commands.");
+        exit(1);
+    }
 
-   g_dil_death = find_dil_template("death@death");
-   if (g_dil_death == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing death@death.");
-      exit(1);
-   }
+    g_dil_death = find_dil_template("death@death");
+    if (g_dil_death == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing death@death.");
+        exit(1);
+    }
 
-   g_dil_regen = find_dil_template("regenerate@update");
-   if (g_dil_regen == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing regenerate@update.");
-      exit(1);
-   }
+    g_dil_regen = find_dil_template("regenerate@update");
+    if (g_dil_regen == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing regenerate@update.");
+        exit(1);
+    }
 
-   g_dil_follow = find_dil_template("dilfollow@basemove");
-   if (g_dil_follow == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing dilfollow@basemove.");
-      exit(1);
-   }
+    g_dil_follow = find_dil_template("dilfollow@basemove");
+    if (g_dil_follow == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing dilfollow@basemove.");
+        exit(1);
+    }
 
-   g_dil_set_witness = find_dil_template("set_witness@justice");
-   if (g_dil_set_witness == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing set_witness@justice.");
-      exit(1);
-   }
+    g_dil_set_witness = find_dil_template("set_witness@justice");
+    if (g_dil_set_witness == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing set_witness@justice.");
+        exit(1);
+    }
 
-   g_dil_dispatcher = find_dil_template("dispatcher@comm");
-   if (g_dil_dispatcher == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing dispatcher@comm.");
-      exit(1);
-   }
+    g_dil_dispatcher = find_dil_template("dispatcher@comm");
+    if (g_dil_dispatcher == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing dispatcher@comm.");
+        exit(1);
+    }
 
-   g_dil_worms     = find_dil_template("worms@basis");
-   if (g_dil_worms == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing worms@basis.");
-      exit(1);
-   }
+    g_dil_worms = find_dil_template("worms@basis");
+    if (g_dil_worms == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing worms@basis.");
+        exit(1);
+    }
 
-   g_dil_on_connect = find_dil_template("on_connect@basis");
-   if (g_dil_on_connect == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing on_connect@basis.");
-      exit(1);
-   }
+    g_dil_on_connect = find_dil_template("on_connect@basis");
+    if (g_dil_on_connect == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing on_connect@basis.");
+        exit(1);
+    }
 
-   g_dil_playerinit = find_dil_template("playerinit@basis");
-   if (g_dil_playerinit == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing playerinit@basis.");
-      exit(1);
-   }
-   if (g_dil_playerinit->argc != 0)
-   {
-      slog(LOG_ALL, 0, "playerinit@basis(); not defined correctly.");
-      exit(1);
-   }
+    g_dil_playerinit = find_dil_template("playerinit@basis");
+    if (g_dil_playerinit == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing playerinit@basis.");
+        exit(1);
+    }
+    if (g_dil_playerinit->argc != 0)
+    {
+        slog(LOG_ALL, 0, "playerinit@basis(); not defined correctly.");
+        exit(1);
+    }
 
-   g_dil_nanny_dil = find_dil_template("nanny@basis");
-   if (g_dil_nanny_dil == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing nanny@basis.");
-      exit(1);
-   }
-   if ((g_dil_nanny_dil->argc != 1) || (g_dil_nanny_dil->argt[0] != DILV_SP))
-   {
-      slog(LOG_ALL, 0, "nanny@basis(string); not defined correctly.");
-      exit(1);
-   }
+    g_dil_nanny_dil = find_dil_template("nanny@basis");
+    if (g_dil_nanny_dil == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing nanny@basis.");
+        exit(1);
+    }
+    if ((g_dil_nanny_dil->argc != 1) || (g_dil_nanny_dil->argt[0] != DILV_SP))
+    {
+        slog(LOG_ALL, 0, "nanny@basis(string); not defined correctly.");
+        exit(1);
+    }
 
-   g_dil_link_dead = find_dil_template("link_dead@basis");
-   if (g_dil_link_dead == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing link_dead@basis.");
-      exit(1);
-   }
+    g_dil_link_dead = find_dil_template("link_dead@basis");
+    if (g_dil_link_dead == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing link_dead@basis.");
+        exit(1);
+    }
 
-   g_dil_advance_level = find_dil_template("advance_level@basis");
-   if (g_dil_advance_level == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing advance_level@basis.");
-      exit(1);
-   }
+    g_dil_advance_level = find_dil_template("advance_level@basis");
+    if (g_dil_advance_level == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing advance_level@basis.");
+        exit(1);
+    }
 
-   g_dil_initial_prg = find_dil_template("initial_prg@basis");
-   if (g_dil_initial_prg == nullptr)
-   {
-      slog(LOG_ALL, 0, "DIL boot - missing initial_prg@basis.");
-      exit(1);
-   }
-   if (g_dil_initial_prg->argc != 0)
-   {
-      slog(LOG_ALL, 0, "initial_prg@basis(); zero arguments expected.");
-      exit(1);
-   }
+    g_dil_initial_prg = find_dil_template("initial_prg@basis");
+    if (g_dil_initial_prg == nullptr)
+    {
+        slog(LOG_ALL, 0, "DIL boot - missing initial_prg@basis.");
+        exit(1);
+    }
+    if (g_dil_initial_prg->argc != 0)
+    {
+        slog(LOG_ALL, 0, "initial_prg@basis(); zero arguments expected.");
+        exit(1);
+    }
 
     // Boot the initial_prg DIL
     //
     unit_data *u = find_symbolic("basis", "void");
     if (u == nullptr)
     {
-      slog(LOG_ALL, 0, "Unable to find void@basis.");
-      exit(1);
+        slog(LOG_ALL, 0, "Unable to find void@basis.");
+        exit(1);
     }
 
     dilprg *prg = dil_copy_template(g_dil_initial_prg, u, nullptr);
     assert(prg);
     prg->waitcmd = WAITCMD_MAXINST - 1; // The usual hack, see db_file
     dil_activate(prg);
-
 }
-
 
 dilvar *getDilGlobalDilVar(const char *name, DilVarType_e type)
 {
@@ -295,14 +293,16 @@ dilvar *getDilGlobalDilVar(const char *name, DilVarType_e type)
 
         if (v->type != type)
         {
-            slog(LOG_ALL, 0, "DIL ERROR: getDilGlobalDilVar() type error for global DIL var %s (one is stringlist and the other is intlist).", name);
+            slog(LOG_ALL,
+                 0,
+                 "DIL ERROR: getDilGlobalDilVar() type error for global DIL var %s (one is stringlist and the other is intlist).",
+                 name);
             v = nullptr;
         }
     }
 
     return v;
 }
-
 
 void dil_edit_done(descriptor_data *d)
 {
@@ -351,7 +351,6 @@ int dil_intr_insert(dilprg *p, ubit8 *lab, ubit8 *elab, ubit16 flags)
 
     return intnum;
 }
-
 
 void dil_free_var(dilvar *v)
 {
@@ -456,7 +455,7 @@ void dil_free_template(diltemplate *tmpl, int copy)
 
         if (tmpl->varg)
         {
-            for (int i=0; i < tmpl->varc; i++)
+            for (int i = 0; i < tmpl->varc; i++)
             {
                 if (tmpl->varg[i] != nullptr)
                     FREE(tmpl->varg[i]);
@@ -489,7 +488,6 @@ void dil_free_template(diltemplate *tmpl, int copy)
         FREE(tmpl);
     }
 }
-
 
 /* returns boolean value of DIL value */
 char dil_getbool(dilval *v, dilprg *prg)
@@ -537,7 +535,7 @@ char dil_getbool(dilval *v, dilprg *prg)
             return (v->val.num != 0); /* return Rvalue */
 
         case DilVarType_e::DILV_SINT1R:
-            return (*((sbit8 *)v->ref) != 0); /* return Lvalue */
+            return (*((int8_t *)v->ref) != 0); /* return Lvalue */
 
         case DilVarType_e::DILV_SINT2R:
             return (*((sbit16 *)v->ref) != 0); /* return Lvalue */
@@ -569,9 +567,14 @@ int dil_getval(dilval *v)
 {
     /* original type */
     static int orig_type[DILV_MAX + 1] = {
-        DilVarType_e::DILV_ERR, DilVarType_e::DILV_UP,  DilVarType_e::DILV_SP,  DilVarType_e::DILV_SLP, DilVarType_e::DILV_EDP,  DilVarType_e::DILV_INT,  DilVarType_e::DILV_UP,  DilVarType_e::DILV_SP,  DilVarType_e::DILV_SLP, DilVarType_e::DILV_EDP, DilVarType_e::DILV_INT, DilVarType_e::DILV_INT, DilVarType_e::DILV_INT,
-        DilVarType_e::DILV_INT, DilVarType_e::DILV_INT, DilVarType_e::DILV_INT, DilVarType_e::DILV_ERR, DilVarType_e::DILV_NULL, DilVarType_e::DILV_FAIL, DilVarType_e::DILV_ERR, DilVarType_e::DILV_ERR, DilVarType_e::DILV_ERR, DilVarType_e::DILV_SP,  DilVarType_e::DILV_ZP,  DilVarType_e::DILV_ZP,  DilVarType_e::DILV_ERR,
-        DilVarType_e::DILV_ERR, DilVarType_e::DILV_ERR, DilVarType_e::DILV_ERR, DilVarType_e::DILV_CP,  DilVarType_e::DILV_CP,   DilVarType_e::DILV_ERR,  DilVarType_e::DILV_ERR, DilVarType_e::DILV_ERR, DilVarType_e::DILV_ILP, DilVarType_e::DILV_ILP, DilVarType_e::DILV_ERR};
+        DilVarType_e::DILV_ERR, DilVarType_e::DILV_UP,  DilVarType_e::DILV_SP,   DilVarType_e::DILV_SLP,  DilVarType_e::DILV_EDP,
+        DilVarType_e::DILV_INT, DilVarType_e::DILV_UP,  DilVarType_e::DILV_SP,   DilVarType_e::DILV_SLP,  DilVarType_e::DILV_EDP,
+        DilVarType_e::DILV_INT, DilVarType_e::DILV_INT, DilVarType_e::DILV_INT,  DilVarType_e::DILV_INT,  DilVarType_e::DILV_INT,
+        DilVarType_e::DILV_INT, DilVarType_e::DILV_ERR, DilVarType_e::DILV_NULL, DilVarType_e::DILV_FAIL, DilVarType_e::DILV_ERR,
+        DilVarType_e::DILV_ERR, DilVarType_e::DILV_ERR, DilVarType_e::DILV_SP,   DilVarType_e::DILV_ZP,   DilVarType_e::DILV_ZP,
+        DilVarType_e::DILV_ERR, DilVarType_e::DILV_ERR, DilVarType_e::DILV_ERR,  DilVarType_e::DILV_ERR,  DilVarType_e::DILV_CP,
+        DilVarType_e::DILV_CP,  DilVarType_e::DILV_ERR, DilVarType_e::DILV_ERR,  DilVarType_e::DILV_ERR,  DilVarType_e::DILV_ILP,
+        DilVarType_e::DILV_ILP, DilVarType_e::DILV_ERR};
 
     switch (v->type)
     {
@@ -609,7 +612,7 @@ int dil_getval(dilval *v)
             break;
 
         case DilVarType_e::DILV_SINT1R:
-            v->val.num = *((sbit8 *)v->ref);
+            v->val.num = *((int8_t *)v->ref);
             break;
         case DilVarType_e::DILV_SINT2R:
             v->val.num = *((sbit16 *)v->ref);
@@ -664,7 +667,6 @@ void dil_add_secure(dilprg *prg, unit_data *sup, ubit8 *lab)
 
     prg->fp->securecount++;
 }
-
 
 // 'frm' is the DIL frame to remove a secure from.
 // 'sup' is the unitptr to remove
@@ -858,7 +860,6 @@ void dil_clear_lost_reference(dilframe *frm, void *ptr)
 
 */
 
-
 // MS2022:
 //   If the unit 'u' has been destroyed then it triggers the secure().
 //   Called after "destroy()" on the unit destroyed and on owner after "exec()"
@@ -906,7 +907,6 @@ bool dil_test_secure_unit_destroyed(dilprg *prg, unit_data *u)
 
     return bGoto;
 }
-
 
 // MS2022:
 //   Testing the current frame only for secure violations.
@@ -1130,39 +1130,39 @@ void dil_function_table_setup()
         {DILE_LEN, dilfe_len}, /* length(#) */
 
         /* DIL instructions */
-        {DILI_ASS, dilfi_ass},       /* # = # */
-        {DILI_LNK, dilfi_lnk},       /* link(#,#) */
-        {DILI_EXP, dilfi_exp},       /* experience(#) */
-        {DILI_CAST, dilfi_cast},     /* cast_spell */
-        {DILI_IF, dilfi_if},         /* if */
-        {DILI_SET, dilfi_set},       /* set (#,#) */
-        {DILI_USET, dilfi_uset},     /* unset (#,#) */
-        {DILI_ADL, dilfi_adl},       /* addlist (#,#) */
-        {DILI_SUL, dilfi_sul},       /* sublist (#,#) */
-        {DILI_ADE, dilfi_ade},       /* addextra (#,#,#) */
-        {DILI_SUE, dilfi_sue},       /* subextra (#,#) */
-        {DILI_DST, dilfi_dst},       /* destroy (#) */
-        {DILI_POPSTK, dilfi_popstk}, /* pop the stack and thow it away*/
-        {DILI_EXEC, dilfi_exec},     /* exec (#,#) */
-        {DILI_WAITNOOP, dilfi_waitnoop},     /* waitnoop () */
-        {DILI_WIT, dilfi_wit},       /* wait (#,#) */
-        {DILI_ACT, dilfi_act},       /* act (#,#,#,#,#,#) */
-        {DILI_GOTO, dilfi_goto},     /* goto label */
-        {DILI_SUA, dilfi_sua},       /* subaff (#,#) */
-        {DILI_ADA, dilfi_ada},       /* addaff (#,#,#) */
-        {DILI_PRI, dilfi_pri},       /* priority */
-        {DILI_NPR, dilfi_npr},       /* nopriority */
-        {DILI_SND, dilfi_snd},       /* send (#) */
-        {DILI_SNT, dilfi_snt},       /* sendto (#,#) */
-        {DILI_SEC, dilfi_sec},       /* secure (#,@) */
-        {DILI_USE, dilfi_use},       /* unsecure (#) */
-        {DILI_FOE, dilfi_foe},       /* foreach - clear / build list */
-        {DILI_FON, dilfi_fon},       /* foreach - get next in environment */
-        {DILI_EQP, dilfi_eqp},       /* addequip (#,#) */
-        {DILI_UEQ, dilfi_ueq},       /* unequip (#) */
-        {DILE_WEAT, dilfe_weat},     /* weather */
-        {DILE_OPPO, dilfe_oppo},     /* opponent(#,#) */
-        {DILI_QUIT, dilfi_quit},     /* quit */
+        {DILI_ASS, dilfi_ass},           /* # = # */
+        {DILI_LNK, dilfi_lnk},           /* link(#,#) */
+        {DILI_EXP, dilfi_exp},           /* experience(#) */
+        {DILI_CAST, dilfi_cast},         /* cast_spell */
+        {DILI_IF, dilfi_if},             /* if */
+        {DILI_SET, dilfi_set},           /* set (#,#) */
+        {DILI_USET, dilfi_uset},         /* unset (#,#) */
+        {DILI_ADL, dilfi_adl},           /* addlist (#,#) */
+        {DILI_SUL, dilfi_sul},           /* sublist (#,#) */
+        {DILI_ADE, dilfi_ade},           /* addextra (#,#,#) */
+        {DILI_SUE, dilfi_sue},           /* subextra (#,#) */
+        {DILI_DST, dilfi_dst},           /* destroy (#) */
+        {DILI_POPSTK, dilfi_popstk},     /* pop the stack and thow it away*/
+        {DILI_EXEC, dilfi_exec},         /* exec (#,#) */
+        {DILI_WAITNOOP, dilfi_waitnoop}, /* waitnoop () */
+        {DILI_WIT, dilfi_wit},           /* wait (#,#) */
+        {DILI_ACT, dilfi_act},           /* act (#,#,#,#,#,#) */
+        {DILI_GOTO, dilfi_goto},         /* goto label */
+        {DILI_SUA, dilfi_sua},           /* subaff (#,#) */
+        {DILI_ADA, dilfi_ada},           /* addaff (#,#,#) */
+        {DILI_PRI, dilfi_pri},           /* priority */
+        {DILI_NPR, dilfi_npr},           /* nopriority */
+        {DILI_SND, dilfi_snd},           /* send (#) */
+        {DILI_SNT, dilfi_snt},           /* sendto (#,#) */
+        {DILI_SEC, dilfi_sec},           /* secure (#,@) */
+        {DILI_USE, dilfi_use},           /* unsecure (#) */
+        {DILI_FOE, dilfi_foe},           /* foreach - clear / build list */
+        {DILI_FON, dilfi_fon},           /* foreach - get next in environment */
+        {DILI_EQP, dilfi_eqp},           /* addequip (#,#) */
+        {DILI_UEQ, dilfi_ueq},           /* unequip (#) */
+        {DILE_WEAT, dilfe_weat},         /* weather */
+        {DILE_OPPO, dilfe_oppo},         /* opponent(#,#) */
+        {DILI_QUIT, dilfi_quit},         /* quit */
 
         {DILI_BLK, dilfi_blk}, /* block */
         {DILI_PUP, dilfi_pup}, /* position_update */
@@ -1734,13 +1734,12 @@ int run_dil(spec_arg *sarg)
 
         if (prg->nest <= 0)
         {
-            void ResetFptrTimerNoop(unit_data *u, unit_fptr *fptr);
+            void ResetFptrTimerNoop(unit_data * u, unit_fptr * fptr);
 
             ResetFptrTimerNoop(sarg->owner, sarg->fptr);
             REMOVE_BIT(prg->flags, DILFL_EXECUTING);
             prg->waitcmd = WAITCMD_MAXINST;
         }
-
     }
 
     membug_verify(prg);
@@ -1960,7 +1959,7 @@ void dil_init_vars(int varc, dilframe *frm)
                 frm->vars[i].val = v->val;
                 continue;
             }
-            
+
             // Error, set it as invalid and fall through
             frm->vars[i].type = DilVarType_e::DILV_INVALID;
         }

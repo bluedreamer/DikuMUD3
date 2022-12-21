@@ -74,7 +74,7 @@ public:
     bool isLight() const { return getTotalLightValue() >= 0; }
     ///@}
 
-    sbit8 getOutsideLight() const { return !isUnitFlagSet(UNIT_FL_INDOORS) ? g_time_light[g_sunlight] : 0; }
+    int8_t getOutsideLight() const { return !isUnitFlagSet(UNIT_FL_INDOORS) ? g_time_light[g_sunlight] : 0; }
     int getTotalLightValue() const { return m_light + getOutsideLight() + (m_outside ? m_outside->m_light : 0); }
 
     unit_data *inRoom();

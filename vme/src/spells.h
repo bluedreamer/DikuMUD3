@@ -41,7 +41,7 @@ struct spell_info_type
     void (*spell_pointer)(spell_args *sa);
     ubit8 minimum_position; ///< Position for caster
     sbit16 usesmana;        ///< Amount of mana used by a spell
-    sbit8 beats;            ///< Heartbeats until ready for next
+    int8_t beats;           ///< Heartbeats until ready for next
     ubit16 targets;         ///< See below for use with TAR_XXX
     ubit8 media;            ///< found in spells/potions/...
     ubit8 cast_type;        ///< Resist, self check, etc?

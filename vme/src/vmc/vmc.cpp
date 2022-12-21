@@ -35,7 +35,7 @@
 #define BUFS 30
 
 int g_sunlight = 0;
-const sbit8 g_time_light[4] = {-1, 0, 1, 0};
+const int8_t g_time_light[4] = {-1, 0, 1, 0};
 
 zone_info g_zone;
 char g_cur_filename[256], top_filename[256];
@@ -450,10 +450,10 @@ void dump_zone(char *prefix)
     //
     // Begin writing the data
     //
-    //#ifdef WRITE_TEST
+    // #ifdef WRITE_TEST
     // write_unit(fl, zone.z_rooms, UNIT_IDENT(zone.z_rooms));
     // exit(10);
-    //#endif
+    // #endif
     fwrite(g_zone.z_zone.name, sizeof(char), strlen(g_zone.z_zone.name) + 1, fl);
     fwrite(&g_zone.z_zone.weather, sizeof(int), 1, fl);
     /* More data inserted here */

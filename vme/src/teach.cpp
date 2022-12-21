@@ -27,7 +27,7 @@
 #include <cstdio>
 #include <cstdlib>
 
-#define PRACTICE_COST_LEVEL (25)  // At what player level does it cost gold to train
+#define PRACTICE_COST_LEVEL (25) // At what player level does it cost gold to train
 
 #define TEACH_ABILITIES 0
 #define TEACH_SPELLS 1
@@ -133,8 +133,6 @@ int practice_skill_gain(int skill)
     }
 }
 
-
-
 //
 // Given a profession's profession and race cost, return the modification to the  potential of the ability / skill / spell / weapon
 // I.e. 100 + mod is the potential
@@ -206,7 +204,6 @@ int max_skill_limit(int professionBonus, int raceBonus)
     return 100 + max_skill_mod(professionBonus, raceBonus);
 }
 
-
 // cost: is the profession cost for this skill/ability, e.g. +2.
 // racemodifier: is the race modifier for this skill/ability, e.g. +3
 // level: 0 = 1st practice this char level, 1 = 2nd practice this char level, etc.
@@ -222,7 +219,7 @@ int max_skill_limit(int professionBonus, int raceBonus)
 // Returning zero means you can't learn more at this level.
 // Otherwise returns the cost of training.
 //
-int actual_cost(int cost, sbit8 racemodifier, int level, int virtual_level)
+int actual_cost(int cost, int8_t racemodifier, int level, int virtual_level)
 {
     int mod = 0;
     int pct = 0;
@@ -425,12 +422,14 @@ void info_show_one(unit_data *teacher,
 
         if (current_points >= teaches_skills[teachesSkillsIndex].max_skill)
         {
-            auto str =
-                diku::format_to_str("<div class='ca'>%s%3d%% %-20s [Teacher at max (%d%%). You are at %d%% of your potential %d%%]</div><br/>",
-                                    spc(4 * indent), current_points, text, 
-                                    teaches_skills[teachesSkillsIndex].max_skill,
-                                    current_points,
-                                    maxPersonalPotential);
+            auto str = diku::format_to_str(
+                "<div class='ca'>%s%3d%% %-20s [Teacher at max (%d%%). You are at %d%% of your potential %d%%]</div><br/>",
+                spc(4 * indent),
+                current_points,
+                text,
+                teaches_skills[teachesSkillsIndex].max_skill,
+                current_points,
+                maxPersonalPotential);
             vect.push_back(std::make_pair(1002, str));
             return;
         }
@@ -503,15 +502,7 @@ void info_show_roots(unit_data *teacher,
         if ((!TREE_ISROOT(pColl->tree, teaches_skills[i].node) && !TREE_ISLEAF(pColl->tree, teaches_skills[i].node)) ||
             ((TREE_ISROOT(pColl->tree, teaches_skills[i].node) && TREE_ISLEAF(pColl->tree, teaches_skills[i].node))))
         {
-            info_show_one(teacher,
-                          pupil,
-                          teaches_skills,
-                          i,
-                          pTrainValues,
-                          pColl,
-                          0,
-                          vect,
-                          pGuildName);
+            info_show_one(teacher, pupil, teaches_skills, i, pTrainValues, pColl, 0, vect, pGuildName);
         }
     }
 
@@ -547,15 +538,7 @@ void info_show_leaves(unit_data *teacher,
     {
         if (TREE_ISLEAF(pColl->tree, teaches_skills[i].node))
         {
-            info_show_one(teacher,
-                          pupil,
-                          teaches_skills,
-                          i,
-                          pTrainValues,
-                          pColl,
-                          0,
-                          vect,
-                          pGuildName);
+            info_show_one(teacher, pupil, teaches_skills, i, pTrainValues, pColl, 0, vect, pGuildName);
         }
     }
 
@@ -615,15 +598,7 @@ void info_one_skill(unit_data *teacher,
     if (!TREE_ISLEAF(pColl->tree, teaches_skills[teach_index].node))
     {
         i = teaches_skills[teach_index].node;
-        info_show_one(teacher,
-                      pupil,
-                      teaches_skills,
-                      teach_index,
-                      pTrainValues,
-                      pColl,
-                      indent++,
-                      vect,
-                      pGuildName);
+        info_show_one(teacher, pupil, teaches_skills, teach_index, pTrainValues, pColl, indent++, vect, pGuildName);
 
         /* Show children of teach_index category */
         for (j = 0; teaches_skills[j].node != -1; j++)
@@ -633,15 +608,7 @@ void info_one_skill(unit_data *teacher,
             {
                 /* It is a child */
                 i = teaches_skills[j].node;
-                info_show_one(teacher,
-                              pupil,
-                              teaches_skills,
-                              j,
-                              pTrainValues,
-                              pColl,
-                              indent,
-                              vect,
-                              pGuildName);
+                info_show_one(teacher, pupil, teaches_skills, j, pTrainValues, pColl, indent, vect, pGuildName);
             }
         }
     }
@@ -654,15 +621,7 @@ void info_one_skill(unit_data *teacher,
             {
                 /* It is a child */
                 i = teaches_skills[j].node;
-                info_show_one(teacher,
-                              pupil,
-                              teaches_skills,
-                              j,
-                              pTrainValues,
-                              pColl,
-                              indent,
-                              vect,
-                              pGuildName);
+                info_show_one(teacher, pupil, teaches_skills, j, pTrainValues, pColl, indent, vect, pGuildName);
             }
         }
     }
@@ -821,7 +780,7 @@ int practice(unit_data *teacher,
         return TRUE;
     }
 
-    // 
+    //
     // Calculate the character's personal potential as a function of race & profession
     //
     int ms = pColl->max_skill_limit(pupil, pckt->teaches[teach_index].node);
@@ -1495,7 +1454,8 @@ int teach_init(spec_arg *sarg)
                         a_skill.max_skill = max_skill_limit(g_AbiColl.prof_table[n].getProfessionBonus(nProfession), 0);
                         a_skill.node = n;
                         a_skill.min_cost_per_point = 10;
-                        a_skill.max_cost_per_point = 10000 + -1000 * max_skill_mod(g_AbiColl.prof_table[n].getProfessionBonus(nProfession), 0);
+                        a_skill.max_cost_per_point =
+                            10000 + -1000 * max_skill_mod(g_AbiColl.prof_table[n].getProfessionBonus(nProfession), 0);
                         packet->teaches[count - 1] = a_skill;
 
                         count++;
@@ -1523,7 +1483,8 @@ int teach_init(spec_arg *sarg)
                         a_skill.max_skill = max_skill_limit(g_SkiColl.prof_table[n].getProfessionBonus(nProfession), 0);
                         a_skill.node = n;
                         a_skill.min_cost_per_point = 10;
-                        a_skill.max_cost_per_point = 10000 + -1000 * max_skill_mod(g_SkiColl.prof_table[n].getProfessionBonus(nProfession), 0);
+                        a_skill.max_cost_per_point =
+                            10000 + -1000 * max_skill_mod(g_SkiColl.prof_table[n].getProfessionBonus(nProfession), 0);
                         packet->teaches[count - 1] = a_skill;
 
                         count++;
@@ -1551,7 +1512,8 @@ int teach_init(spec_arg *sarg)
                         a_skill.max_skill = max_skill_limit(g_SplColl.prof_table[n].getProfessionBonus(nProfession), 0);
                         a_skill.node = n;
                         a_skill.min_cost_per_point = 10;
-                        a_skill.max_cost_per_point = 10000 + -1000 * max_skill_mod(g_SplColl.prof_table[n].getProfessionBonus(nProfession), 0);
+                        a_skill.max_cost_per_point =
+                            10000 + -1000 * max_skill_mod(g_SplColl.prof_table[n].getProfessionBonus(nProfession), 0);
                         packet->teaches[count - 1] = a_skill;
 
                         count++;

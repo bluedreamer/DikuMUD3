@@ -271,11 +271,11 @@ inline const char *PC_GUILD(unit_data *pc) { return UPC(pc)->getGuild(); }
 
 [[maybe_unused]] inline const char *PC_PROMPTSTR(unit_data *pc) { return UPC(pc)->getPromptString(); }
 
-inline sbit8 PC_PROFESSION(unit_data *pc) { return UPC(pc)->getProfession(); }
+inline int8_t PC_PROFESSION(unit_data *pc) { return UPC(pc)->getProfession(); }
 
 inline extra_list &PC_QUEST(unit_data *pc) { return UPC(pc)->getQuestInformation(); }
 
-inline sbit8 PC_COND(unit_data *ch, size_t i) { return UPC(ch)->getConditionAtIndex(i); }
+inline int8_t PC_COND(unit_data *ch, size_t i) { return UPC(ch)->getConditionAtIndex(i); }
 
 inline sbit32 PC_ABILITY_POINTS(unit_data *ch) { return UPC(ch)->getAbilityPoints(); }
 

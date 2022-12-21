@@ -169,11 +169,11 @@ ubit8 CByteBuffer::ReadU8(int *nError)
     return n;
 }
 
-sbit8 CByteBuffer::ReadS8(int *nError)
+int8_t CByteBuffer::ReadS8(int *nError)
 {
-    sbit8 n = 0;
+    int8_t n = 0;
 
-    if (Read((ubit8 *)&n, sizeof(sbit8)))
+    if (Read((ubit8 *)&n, sizeof(int8_t)))
     {
         if (nError)
         {
@@ -249,7 +249,7 @@ int CByteBuffer::Read8(ubit8 *pNum)
     return Read(pNum, sizeof(ubit8));
 }
 
-int CByteBuffer::Read8(sbit8 *pNum)
+int CByteBuffer::Read8(int8_t *pNum)
 {
     return Read((ubit8 *)pNum, sizeof(ubit8));
 }

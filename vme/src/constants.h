@@ -22,7 +22,7 @@ extern const char *g_room_landscape[];
 extern const int g_movement_loss[];
 extern const char *g_weekdays[];
 extern const char *g_month_name[];
-extern const sbit8 g_time_light[SUN_SET + 1];
+extern const int8_t g_time_light[SUN_SET + 1];
 extern const char *g_fullness[];
 extern const char *g_arm_text[];
 extern const char *g_shi_text[];

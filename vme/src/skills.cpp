@@ -86,10 +86,9 @@ wpn_info_type g_wpn_info[WPN_TREE_MAX];
 // class skill_collection g_SkiColl(SKI_TREE_MAX + 1);
 // class skill_collection g_SplColl(SPL_TREE_MAX + 1);
 
-
 int profession_cost::getProfessionBonus(int professionIndex)
 {
-    if (!is_in(professionIndex, 0, PROFESSION_MAX-1))
+    if (!is_in(professionIndex, 0, PROFESSION_MAX - 1))
     {
         slog(LOG_ALL, 0, "Error: getProfessionBonus non valid profession");
         return 0;
@@ -113,10 +112,10 @@ int getPlayerProfessionByIndex(unit_data *pc, int index)
     if (exdp == nullptr)
         return -1;
 
-    if (exdp->vals.Length() <= index+1)
+    if (exdp->vals.Length() <= index + 1)
         return -1;
 
-    return exdp->vals.Value(index+1);
+    return exdp->vals.Value(index + 1);
 }
 
 int profession_cost::getProfessionBonus(unit_data *pc, ubit8 teachtype)
@@ -174,10 +173,9 @@ int profession_cost::getProfessionBonus(unit_data *pc, ubit8 teachtype)
     // return getProfessionBonus(PC_PROFESSION(pc));
 }
 
-
-void profession_cost::setProfessionBonus(int professionIndex, sbit8 value)
+void profession_cost::setProfessionBonus(int professionIndex, int8_t value)
 {
-    if (!is_in(professionIndex, 0, PROFESSION_MAX-1))
+    if (!is_in(professionIndex, 0, PROFESSION_MAX - 1))
     {
         slog(LOG_ALL, 0, "Error: getProfessionBonus non valid profession");
         return;
@@ -197,14 +195,13 @@ skill_collection::skill_collection(int nSize, ubit8 tt)
     CREATE(tree, tree_type, nSize);
 
     for (int i = 0; i < PC_RACE_MAX; i++)
-        CREATE(racial[i], sbit8, nSize);
+        CREATE(racial[i], int8_t, nSize);
 }
 
 const char **skill_collection::gettext()
 {
     return this->text;
 }
-
 
 int skill_collection::max_skill_limit(unit_data *pupil, int node)
 {
@@ -726,7 +723,7 @@ static void profession_read()
         if ((pCh = strchr(pTmp, '=')))
         {
             *pCh = 0;
-            pCh = (char *) skip_blanks(pCh + 1);
+            pCh = (char *)skip_blanks(pCh + 1);
             strip_trailing_blanks(pCh);
             str_lower(pTmp);
         }
@@ -805,7 +802,7 @@ static void race_read()
         if ((pCh = strchr(pTmp, '=')))
         {
             *pCh = 0;
-            pCh = (char *) skip_blanks(pCh + 1);
+            pCh = (char *)skip_blanks(pCh + 1);
             strip_trailing_blanks(pCh);
             str_lower(pTmp);
         }
@@ -991,7 +988,7 @@ static void ability_read()
         if ((pCh = strchr(pTmp, '=')))
         {
             *pCh = 0;
-            pCh = (char *) skip_blanks(pCh + 1);
+            pCh = (char *)skip_blanks(pCh + 1);
             strip_trailing_blanks(pCh);
         }
 
@@ -1294,7 +1291,7 @@ static void weapon_read()
         }
 
         *pCh = 0;
-        pCh = (char *) skip_blanks(pCh + 1);
+        pCh = (char *)skip_blanks(pCh + 1);
         strip_trailing_blanks(pCh);
 
         str_lower(pTmp);

@@ -734,8 +734,8 @@ void intern_unit_up(unit_data *unit, ubit1 pile)
     unit_data *in = nullptr;
     unit_data *toin = nullptr;
     unit_data *extin = nullptr;
-    sbit8 bright = 0;
-    sbit8 selfb = 0;
+    int8_t bright = 0;
+    int8_t selfb = 0;
 
     assert(unit->getUnitIn());
 
@@ -824,8 +824,8 @@ void intern_unit_down(unit_data *unit, unit_data *to, ubit1 pile)
     unit_data *u = nullptr;
     unit_data *in = nullptr;
     unit_data *extin = nullptr;
-    sbit8 bright = 0;
-    sbit8 selfb = 0;
+    int8_t bright = 0;
+    int8_t selfb = 0;
 
     assert(unit->getUnitIn() == to->getUnitIn());
     assert(unit != to);

@@ -150,7 +150,6 @@ template<typename T>
         fprintf(stderr, a);                                                                                                                \
     } while (0)
 
-using sbit8 = int8_t;
 using ubit8 = uint8_t;
 using sbit16 = int16_t;
 using ubit16 = uint16_t;

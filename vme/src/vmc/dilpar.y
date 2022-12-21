@@ -38,7 +38,7 @@ int dillex(void);
  */
 
 int dilsunlight = 0;
-const sbit8 diltime_light[4] = {-1, 0, 1, 0};
+const int8_t diltime_light[4] = {-1, 0, 1, 0};
 
 #define dilerror(dum) dilsyntax(dum)
 

@@ -79,9 +79,9 @@ char *money_string(amount_t amt, currency_t currency, ubit1 verbose)
     static char buf[512];
     char tmp[256];
     money_type *money_tmp[MAX_MONEY + 1];
-    sbit8 i = 0;
-    sbit8 nr = 0;
-    sbit8 count = 0;
+    int8_t i = 0;
+    int8_t nr = 0;
+    int8_t count = 0;
     amount_t times = 0;
 
     /* Get an array of all types in this currency */
@@ -273,7 +273,6 @@ unit_data *set_money(unit_data *money, amount_t amt)
     return money;
 }
 
-
 // Create a money object (not in any unit)
 static unit_data *make_money(file_index_type *fi, amount_t amt)
 {
@@ -282,7 +281,7 @@ static unit_data *make_money(file_index_type *fi, amount_t amt)
     assert(money->isObj());
 
     money->setBaseWeight(0); // Init money-weight
-    money->setWeight(0); // Init money-weight
+    money->setWeight(0);     // Init money-weight
 
     auto str = diku::format_to_str(cur_strings[MONEY_CURRENCY(money)], g_money_types[MONEY_TYPE(money)].tails);
 
@@ -290,7 +289,6 @@ static unit_data *make_money(file_index_type *fi, amount_t amt)
 
     return set_money(money, amt);
 }
-
 
 /*  This is the most non-trivial part of this module, and has certainly caused
  *  me a bit of head-scratching from its conception in '92 'til its completion

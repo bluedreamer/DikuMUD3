@@ -102,9 +102,9 @@ public:
      * @name Profession related code
      * @{
      */
-    sbit8 getProfession() const;
-    sbit8 *getProfessionPtr();
-    void setProfession(sbit8 value);
+    int8_t getProfession() const;
+    int8_t *getProfessionPtr();
+    void setProfession(int8_t value);
     /// @}
 
     /**
@@ -272,11 +272,11 @@ public:
      * @todo Add range checking to indexes
      * @{
      */
-    sbit8 getConditionAtIndex(size_t index) const;
-    sbit8 *getConditionAtIndexPtr(size_t index);
-    void setConditionAtIndexTo(size_t index, sbit8 value);
-    void increaseConditionAtIndexBy(size_t index, sbit8 value);
-    void decreaseConditionAtIndexBy(size_t index, sbit8 value);
+    int8_t getConditionAtIndex(size_t index) const;
+    int8_t *getConditionAtIndexPtr(size_t index);
+    void setConditionAtIndexTo(size_t index, int8_t value);
+    void increaseConditionAtIndexBy(size_t index, int8_t value);
+    void decreaseConditionAtIndexBy(size_t index, int8_t value);
     /// @}
 
     /**
@@ -333,7 +333,7 @@ private:
     char *m_promptstr{nullptr};                          ///< A PC's Prompt
     extra_list m_info;                                   ///< For saving Admin information
     extra_list m_quest;                                  ///< For saving QUEST information
-    sbit8 m_profession{-1};                              ///< The player's chosen profession, -1 means unknown
+    int8_t m_profession{-1};                             ///< The player's chosen profession, -1 means unknown
     ubit16 m_vlvl{0};                                    ///< Virtual Level for player
     sbit32 m_id{-1};                                     ///< Unique identifier for each player (-1 guest)
     sbit32 m_skill_points{0};                            ///< No of practice points left
@@ -349,7 +349,7 @@ private:
     sbit16 m_weapons[WPN_TREE_MAX]{0};                   ///< The weapons learned
     ubit8 m_weapon_lvl[WPN_TREE_MAX]{0};                 ///< The weapons learned
     ubit8 m_ability_lvl[ABIL_TREE_MAX]{0};               ///< The abilities learned
-    sbit8 m_conditions[3]{0};                            ///< Drunk full etc.
+    int8_t m_conditions[3]{0};                           ///< Drunk full etc.
     ubit8 m_nAccessLevel{0};                             ///< Access Level for BBS use
     char m_pwd[PC_MAX_PASSWORD]{0};                      ///< Needed when loaded w/o descriptor
     char m_filename[PC_MAX_NAME]{0};                     ///< The name on disk...

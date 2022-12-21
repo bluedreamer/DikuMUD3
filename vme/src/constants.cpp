@@ -97,7 +97,7 @@ const char *g_month_name[MUD_YEAR] = {
     "Month of the Ancient Darkness" /* Fall   8 */
 };
 
-const sbit8 g_time_light[SUN_SET + 1] = {
+const int8_t g_time_light[SUN_SET + 1] = {
     -1, /* SUN_DARK  */
     0,  /* SUN_RISE  */
     1,  /* SUN_LIGHT */
@@ -299,7 +299,7 @@ const char *g_room_flags[] = {"save",
 const char *g_char_flags[] = {
     "law-protected",     "legal-target",     "outlaw",       "group",         "blind",         "hide",         "mute",        "sneak",
     "detect-alignments", "detect-invisible", "detect-magic", "detect-poison", "detect-undead", "detect-curse", "detect-life", "wimpy",
-    "not-used",          "self-defence",     "peaceful",     "kill-self", nullptr};
+    "not-used",          "self-defence",     "peaceful",     "kill-self",     nullptr};
 
 /* PC_FLAGS */
 const char *g_pc_flags[] = {"brief",

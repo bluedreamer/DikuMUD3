@@ -928,7 +928,7 @@ void dilfi_rtf(dilprg *p)
     {
         // The 'return' statement has placed a variable on the stack, so
         // let's get it and make it a copy on the stack
-        if (p->stack.length() != p->fp->stacklen + 1)  // +1 for the return statement variable
+        if (p->stack.length() != p->fp->stacklen + 1) // +1 for the return statement variable
         {
             slog(LOG_ALL,
                  0,
@@ -1032,7 +1032,7 @@ void dilfi_rtf(dilprg *p)
             // We changed the point of execution. This could be in the middle of an assignment.
             // If it was in an assignment for example, then the stack will be wrong with two
             // stack entries. If for example a function call without assignment, stack will be
-            // wrong with 1 stack entry. This will fix the stack according to the secure 
+            // wrong with 1 stack entry. This will fix the stack according to the secure
             // changing point of execution
             //
             while (p->stack.length() != p->fp->stacklen)
@@ -1044,7 +1044,7 @@ void dilfi_rtf(dilprg *p)
                     return;
                 }
 
-                delete(p->stack.pop());
+                delete (p->stack.pop());
             }
         }
     }
@@ -1113,7 +1113,6 @@ void dil_push_frame(dilprg *p, diltemplate *rtmpl)
             }
 
             frm->vars[i].itype = DilIType_e::Regular;
-
 
             if (i >= rtmpl->argc)
             {
@@ -1378,8 +1377,8 @@ void dilfi_rsfunc(dilprg *p)
 /* Assignment of value to reference */
 void dilfi_ass(dilprg *p)
 {
-    dilval *v2 = p->stack.pop();  // Pop the result
-    dilval *v1 = p->stack.pop();  // Pop the variable to assign it to
+    dilval *v2 = p->stack.pop(); // Pop the result
+    dilval *v1 = p->stack.pop(); // Pop the variable to assign it to
 
     p->waitcmd--;
 
@@ -1636,7 +1635,7 @@ void dilfi_ass(dilprg *p)
                 case DILV_FAIL:
                     break;
                 case DILV_INT:
-                    *((sbit8 *)v1->ref) = v2->val.num;
+                    *((int8_t *)v1->ref) = v2->val.num;
                     break;
                 default:
                     /* ERROR incompatible types */
@@ -1925,7 +1924,7 @@ void dilfi_set(dilprg *p)
         switch (v1->type)
         {
             case DILV_SINT1R:
-                *((sbit8 *)v1->ref) |= v2->val.num;
+                *((int8_t *)v1->ref) |= v2->val.num;
                 break;
             case DILV_SINT2R:
                 *((sbit16 *)v1->ref) |= v2->val.num;
@@ -1969,7 +1968,7 @@ void dilfi_uset(dilprg *p)
             case DILV_FAIL:
                 break;
             case DILV_SINT1R:
-                REMOVE_BIT(*((sbit8 *)v1->ref), v2->val.num);
+                REMOVE_BIT(*((int8_t *)v1->ref), v2->val.num);
                 break;
             case DILV_SINT2R:
                 REMOVE_BIT(*((sbit16 *)v1->ref), v2->val.num);
@@ -3136,7 +3135,6 @@ void dilfi_blk(dilprg *p)
     SET_BIT(p->flags, DILFL_CMDBLOCK);
 }
 
-
 // position_update()
 void dilfi_pup(dilprg *p)
 {
@@ -3150,14 +3148,13 @@ void dilfi_pup(dilprg *p)
             update_pos((unit_data *)v1->val.ptr);
             if (CHAR_POS((unit_data *)v1->val.ptr) == POSITION_DEAD)
             {
-                die((unit_data *) v1->val.ptr);
+                die((unit_data *)v1->val.ptr);
                 dil_test_secure(p); // Should this be only a dil_test_secure_unit_destroyed?
             }
         }
     }
     delete v1;
 }
-
 
 void dilfi_cast(dilprg *p)
 {
