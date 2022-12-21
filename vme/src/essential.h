@@ -150,8 +150,7 @@ template<typename T>
         fprintf(stderr, a);                                                                                                                \
     } while (0)
 
-using ubit64 = uint64_t; // MS2020
-using ubit1 = bool;      /* Boolean */
+using ubit1 = bool; /* Boolean */
 
 template<typename Type, typename Result>
 inline void create_memory(Result &&res, size_t num)

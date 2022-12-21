@@ -368,7 +368,7 @@ static void stat_global_dil(unit_data *ch, uint32_t nCount)
 
     msg += "<div class='twocol'>";
 
-    ubit64 instructionSum = 0;
+    uint64_t instructionSum = 0;
 
     for (auto z = g_zone_info.mmp.begin(); z != g_zone_info.mmp.end(); z++)
     {

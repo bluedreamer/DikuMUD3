@@ -1847,7 +1847,7 @@ std::string str_json_encode_quote(const char *str)
     return s;
 }
 
-std::string str_json(const char *lbl, ubit64 nInt)
+std::string str_json(const char *lbl, uint64_t nInt)
 {
     std::string s;
 

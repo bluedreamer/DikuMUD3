@@ -413,7 +413,7 @@ std::string zone_type::getStatDIL() const
     return msg;
 }
 
-std::string zone_type::getStatGlobalDIL(uint32_t nCount, ubit64 &instructionSum) const
+std::string zone_type::getStatGlobalDIL(uint32_t nCount, uint64_t &instructionSum) const
 {
     std::string msg;
     for (auto &[name, dil_template] : m_mmp_tmpl)

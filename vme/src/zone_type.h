@@ -172,7 +172,7 @@ public:
      * @param instructionSum Running total of all instructions
      * @return std::string Formatted message
      */
-    [[nodiscard]] std::string getStatGlobalDIL(uint32_t nCount, ubit64 &instructionSum) const;
+    [[nodiscard]] std::string getStatGlobalDIL(uint32_t nCount, uint64_t &instructionSum) const;
 
     /**
      * Extracted from resolve_templates()
