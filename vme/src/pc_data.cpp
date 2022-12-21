@@ -636,22 +636,22 @@ void pc_data::decreaseSpellSkillAtIndexBy(size_t index, sbit16 value)
     m_spells[index] -= value;
 }
 
-ubit8 pc_data::getSpellLevelAtIndex(size_t index) const
+uint8_t pc_data::getSpellLevelAtIndex(size_t index) const
 {
     return m_spell_lvl[index];
 }
 
-ubit8 *pc_data::getSpellLevelAtIndexPtr(size_t index)
+uint8_t *pc_data::getSpellLevelAtIndexPtr(size_t index)
 {
     return &m_spell_lvl[index];
 }
 
-ubit8 *pc_data::getSpellLevelArrayPtr()
+uint8_t *pc_data::getSpellLevelArrayPtr()
 {
     return &m_spell_lvl[0];
 }
 
-void pc_data::setSpellLevelAtIndexTo(size_t index, ubit8 value)
+void pc_data::setSpellLevelAtIndexTo(size_t index, uint8_t value)
 {
     m_spell_lvl[index] = value;
 }
@@ -686,22 +686,22 @@ void pc_data::decreaseSkillAtIndexBy(size_t index, sbit16 value)
     m_skills[index] -= value;
 }
 
-ubit8 pc_data::getSkillLevelAtIndex(size_t index) const
+uint8_t pc_data::getSkillLevelAtIndex(size_t index) const
 {
     return m_skill_lvl[index];
 }
 
-ubit8 *pc_data::getSkillLevelAtIndexPtr(size_t index)
+uint8_t *pc_data::getSkillLevelAtIndexPtr(size_t index)
 {
     return &m_skill_lvl[index];
 }
 
-ubit8 *pc_data::getSkillLevelArrayPtr()
+uint8_t *pc_data::getSkillLevelArrayPtr()
 {
     return &m_skill_lvl[0];
 }
 
-void pc_data::setSkillLevelAtIndexTo(size_t index, ubit8 value)
+void pc_data::setSkillLevelAtIndexTo(size_t index, uint8_t value)
 {
     m_skill_lvl[index] = value;
 }
@@ -736,42 +736,42 @@ void pc_data::decreaseWeaponSkillAtIndexBy(size_t index, sbit16 value)
     m_weapons[index] -= value;
 }
 
-ubit8 pc_data::getWeaponSkillLevelAtIndex(size_t index) const
+uint8_t pc_data::getWeaponSkillLevelAtIndex(size_t index) const
 {
     return m_weapon_lvl[index];
 }
 
-ubit8 *pc_data::getWeaponSkillLevelAtIndexPtr(size_t index)
+uint8_t *pc_data::getWeaponSkillLevelAtIndexPtr(size_t index)
 {
     return &m_weapon_lvl[index];
 }
 
-ubit8 *pc_data::getWeaponSkillLevelArrayPtr()
+uint8_t *pc_data::getWeaponSkillLevelArrayPtr()
 {
     return &m_weapon_lvl[0];
 }
 
-void pc_data::setWeaponSkillLevelAtIndexTo(size_t index, ubit8 value)
+void pc_data::setWeaponSkillLevelAtIndexTo(size_t index, uint8_t value)
 {
     m_weapon_lvl[index] = value;
 }
 
-ubit8 pc_data::getAbilityLevelAtIndex(size_t index) const
+uint8_t pc_data::getAbilityLevelAtIndex(size_t index) const
 {
     return m_ability_lvl[index];
 }
 
-ubit8 *pc_data::getAbilityLevelAtIndexPtr(size_t index)
+uint8_t *pc_data::getAbilityLevelAtIndexPtr(size_t index)
 {
     return &m_ability_lvl[index];
 }
 
-ubit8 *pc_data::getAbilityLevelArrayPtr()
+uint8_t *pc_data::getAbilityLevelArrayPtr()
 {
     return &m_ability_lvl[0];
 }
 
-void pc_data::setAbilityLevelAtIndexTo(size_t index, ubit8 value)
+void pc_data::setAbilityLevelAtIndexTo(size_t index, uint8_t value)
 {
     m_ability_lvl[index] = value;
 }
@@ -801,12 +801,12 @@ void pc_data::decreaseConditionAtIndexBy(size_t index, int8_t value)
     m_conditions[index] -= value;
 }
 
-ubit8 pc_data::getAccessLevel() const
+uint8_t pc_data::getAccessLevel() const
 {
     return m_nAccessLevel;
 }
 
-void pc_data::setAccessLevel(ubit8 value)
+void pc_data::setAccessLevel(uint8_t value)
 {
     m_nAccessLevel = value;
 }

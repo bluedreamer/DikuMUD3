@@ -31,7 +31,7 @@ public:
     void Append(int val);
     void Prepend(int val);
     void Insert(int val, int loc);
-    void bread(ubit8 **b);
+    void bread(uint8_t **b);
     inline sbit32 Length() { return length; }
 
 private:

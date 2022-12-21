@@ -320,7 +320,7 @@ void dil_intr_remove(dilprg *p, int idx)
     }
 }
 
-int dil_intr_insert(dilprg *p, ubit8 *lab, ubit8 *elab, ubit16 flags)
+int dil_intr_insert(dilprg *p, uint8_t *lab, uint8_t *elab, ubit16 flags)
 {
     int intnum = 0;
 
@@ -544,7 +544,7 @@ char dil_getbool(dilval *v, dilprg *prg)
             return (*((sbit32 *)v->ref) != 0); /* return Lvalue */
 
         case DilVarType_e::DILV_UINT1R:
-            return (*((ubit8 *)v->ref) != 0); /* return Lvalue */
+            return (*((uint8_t *)v->ref) != 0); /* return Lvalue */
 
         case DilVarType_e::DILV_UINT2R:
             return (*((ubit16 *)v->ref) != 0); /* return Lvalue */
@@ -621,7 +621,7 @@ int dil_getval(dilval *v)
             v->val.num = *((sbit32 *)v->ref);
             break;
         case DilVarType_e::DILV_UINT1R:
-            v->val.num = *((ubit8 *)v->ref);
+            v->val.num = *((uint8_t *)v->ref);
             break;
         case DilVarType_e::DILV_UINT2R:
             v->val.num = *((ubit16 *)v->ref);
@@ -647,7 +647,7 @@ int dil_getval(dilval *v)
 // secures 'ups' for the current frame of DIL program 'prg'
 // If label 'lab' is null, then it is a "for each" secure.
 //
-void dil_add_secure(dilprg *prg, unit_data *sup, ubit8 *lab)
+void dil_add_secure(dilprg *prg, unit_data *sup, uint8_t *lab)
 {
     if (sup == nullptr)
     {
@@ -1099,7 +1099,7 @@ void dil_function_table_setup()
         {DILE_NULL, dilfe_null},  /* null */
 
         /* DIL functions */
-        {DILE_FLD, dilfe_fld},   /* get field + ubit8 DILF_? */
+        {DILE_FLD, dilfe_fld},   /* get field + uint8_t DILF_? */
         {DILE_ATOI, dilfe_atoi}, /* atoi(#) */
         {DILE_ITOA, dilfe_itoa}, /* itoa(#) */
         {DILE_RND, dilfe_rnd},   /* rnd(#,#) */
@@ -1339,7 +1339,7 @@ static int check_interrupt(dilprg *prg)
         {
             ubit32 adr = 0;
             int oldwaitcmd = prg->waitcmd;
-            ubit8 *oldpc = prg->fp->pc;
+            uint8_t *oldpc = prg->fp->pc;
 
             prg->fp->pc = prg->fp->intr[i].lab;
             prg->fp->stacklen = prg->stack.length();

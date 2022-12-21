@@ -103,7 +103,7 @@ int ability_point_gain(unit_data *ch)
     }
     else
     {
-        if (PC_VIRTUAL_LEVEL(ch) <= 114)  // 114 means player receives the points for 113 level-ups, aka 40*113 = 4,520 total (+10)
+        if (PC_VIRTUAL_LEVEL(ch) <= 114) // 114 means player receives the points for 113 level-ups, aka 40*113 = 4,520 total (+10)
         {
             return AVERAGE_SKILL_COST * ABILITY_POINT_FACTOR;
         }
@@ -215,7 +215,7 @@ int buy_points(int points, int level, int *error)
  * must add up to 100%.
  * @returns true if error
  */
-int distribute_points(ubit8 *skills, int max, int points, int level)
+int distribute_points(uint8_t *skills, int max, int points, int level)
 {
     int i = 0;
     int error = 0;

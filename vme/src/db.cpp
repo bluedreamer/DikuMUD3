@@ -246,7 +246,7 @@ diltemplate *generate_datafile_diltemplates(FILE *f, zone_type *zone, bool do_re
 
 /**
  * Generate index's for each unit in the '.data' file 'f', zone 'zone'
- * Format is: string(name), ubit32(filecrc), ubit8(unit type), ubit32(unit string data length), ubit32(datacrc)
+ * Format is: string(name), ubit32(filecrc), uint8_t(unit type), ubit32(unit string data length), ubit32(datacrc)
  * Returns number of rooms read.
  */
 int generate_datafile_file_indexes(FILE *f, zone_type *zone, bool do_reindex)
@@ -257,21 +257,21 @@ int generate_datafile_file_indexes(FILE *f, zone_type *zone, bool do_reindex)
 
     for (;;)
     {
-        fstrcpy(&cBuf, f); //get fname
+        fstrcpy(&cBuf, f); // get fname
 
         if (feof(f))
         {
             break;
         }
 
-        ubit8 temp_8{};  // get Type
-        if (fread(&temp_8, sizeof(ubit8), 1, f) != 1)
+        uint8_t temp_8{}; // get Type
+        if (fread(&temp_8, sizeof(uint8_t), 1, f) != 1)
         {
             error(HERE, "Failed to fread() unit type");
         }
 
         // Maybe the file_index constructor should require a name and a zone.
-        auto temp_index = std::make_unique<file_index_type>(zone, (const char *) cBuf.GetData(), temp_8);
+        auto temp_index = std::make_unique<file_index_type>(zone, (const char *)cBuf.GetData(), temp_8);
 
         // get Length
         sbit32 temp_32{};
@@ -318,8 +318,7 @@ int generate_datafile_file_indexes(FILE *f, zone_type *zone, bool do_reindex)
     return room_number;
 }
 
-
-// Parses zone.data binary file on disk. 
+// Parses zone.data binary file on disk.
 // Returns true if successful, false otherwise
 //
 bool parse_datafile(zone_type *zone, bool do_reindex)
@@ -388,7 +387,7 @@ bool parse_datafile(zone_type *zone, bool do_reindex)
         zone->setTitle(str_dup(""));
     }
 
-    generate_datafile_diltemplates(f, zone, do_reindex);  // Read DIL templates
+    generate_datafile_diltemplates(f, zone, do_reindex); // Read DIL templates
     int room_count = generate_datafile_file_indexes(f, zone, do_reindex);
 
     zone->setNumOfRooms(room_count); /* Number of rooms in the zone */
@@ -397,7 +396,6 @@ bool parse_datafile(zone_type *zone, bool do_reindex)
 
     return true;
 }
-
 
 /**
  * Call this routine at boot time, to index all zones
@@ -411,9 +409,9 @@ void generate_zone_indexes()
     CByteBuffer cBuf(MAX_STRING_LENGTH);
     FILE *zone_file = nullptr;
     char *c = nullptr;
-    ubit8 access = 0;
-    ubit8 loadlevel = 0;
-    ubit8 payonly = 0;
+    uint8_t access = 0;
+    uint8_t loadlevel = 0;
+    uint8_t payonly = 0;
 
     g_zone_info.no_of_zones = 0;
 
@@ -539,7 +537,7 @@ void generate_zone_indexes()
 
     /* Allocate memory for the largest possible file-buffer */
     /* filbuffer_length = MAX(filbuffer_length + 1, 16384); */
-    // CREATE(filbuffer, ubit8, filbuffer_length + 1);
+    // CREATE(filbuffer, uint8_t, filbuffer_length + 1);
     // slog(LOG_OFF, 0, "Max length for filebuffer is %d bytes.", filbuffer_length);
 }
 
@@ -561,7 +559,7 @@ void generate_zone_indexes()
  *  other units. If the affect should also have an actual effect, then it
  *  must be followed by the function call 'apply_affects'.
  */
-int bread_affect(CByteBuffer *pBuf, unit_data *u, ubit8 nVersion)
+int bread_affect(CByteBuffer *pBuf, unit_data *u, uint8_t nVersion)
 {
     unit_affected_type af;
     int i = 0;
@@ -637,7 +635,7 @@ unit_data *read_unit_string(CByteBuffer *pBuf, int type, int len, const char *wh
     char name[FI_MAX_UNITNAME + 1];
     int i = 0;
     int j = 0;
-    ubit8 unit_version = 0;
+    uint8_t unit_version = 0;
     ubit32 nStart = 0;
     char tmpbuf[2 * MAX_STRING_LENGTH];
 
@@ -650,7 +648,7 @@ unit_data *read_unit_string(CByteBuffer *pBuf, int type, int len, const char *wh
     }
 
     // u = new EMPLACE(unit_data) unit_data(type);
-    u = new_unit_data(type, nullptr); // Would be preferable to have a file_index_type passed here 
+    u = new_unit_data(type, nullptr); // Would be preferable to have a file_index_type passed here
 
     nStart = pBuf->GetReadPosition();
     unit_version = pBuf->ReadU8(&g_nCorrupt);
@@ -1147,10 +1145,15 @@ unit_data *read_unit_string(CByteBuffer *pBuf, int type, int len, const char *wh
                 // Upgrade in ability points from 4,000 to 4,500
                 if (PC_VIRTUAL_LEVEL(u) > 100)
                 {
-                    // So players above level 100, gain up to 500 
+                    // So players above level 100, gain up to 500
                     int additional = MIN(13, PC_VIRTUAL_LEVEL(u) - 100) * 40;
                     UPC(u)->increaseAbilityPointsBy(additional);
-                    slog(LOG_ALL, 0, "ADJUST: Player %s (VL %d) ability points increased with %d", u->getNames().Name(), PC_VIRTUAL_LEVEL(u), additional);
+                    slog(LOG_ALL,
+                         0,
+                         "ADJUST: Player %s (VL %d) ability points increased with %d",
+                         u->getNames().Name(),
+                         PC_VIRTUAL_LEVEL(u),
+                         additional);
                 }
             }
         }
@@ -1344,7 +1347,7 @@ void read_unit_datafile(file_index_type *org_fi, CByteBuffer *pBuf)
 
     int len = pBuf->FileRead(f, org_fi->getFilepos(), org_fi->getLength() + sizeof(ubit32)); // data length + the filecrc
 
-    if (len != (int) (org_fi->getLength() + sizeof(ubit32)))
+    if (len != (int)(org_fi->getLength() + sizeof(ubit32)))
     {
         error(HERE, "Unable to read specified number of bytes in .data file %s", buf);
     }
@@ -1382,7 +1385,6 @@ void bonus_setup(unit_data *u)
     }
 }
 
-
 /**
  * Room directions points to file_indexes instead of units
  * after a room has been read, due to initialization considerations
@@ -1396,7 +1398,7 @@ unit_data *read_unit(file_index_type *org_fi, int ins_list)
         return nullptr;
     }
 
-    if (org_fi->getFilepos() < 1)  // This would happen for players in papi@_players
+    if (org_fi->getFilepos() < 1) // This would happen for players in papi@_players
     {
         return nullptr;
     }
@@ -1531,15 +1533,15 @@ zone_reset_cmd *read_zone_reset(FILE *f, zone_reset_cmd *cmd_list)
     zone_reset_cmd *cmd = nullptr;
     zone_reset_cmd *tmp_cmd = nullptr;
     file_index_type *fi = nullptr;
-    ubit8 cmdno = 0;
-    ubit8 direction = 0;
+    uint8_t cmdno = 0;
+    uint8_t direction = 0;
     char zonename[FI_MAX_ZONENAME + 1];
     char name[FI_MAX_UNITNAME + 1];
     CByteBuffer cBuf(100);
 
     tmp_cmd = cmd_list;
 
-    while (((cmdno = (ubit8)fgetc(f)) != 255) && !feof(f))
+    while (((cmdno = (uint8_t)fgetc(f)) != 255) && !feof(f))
     {
         cmd = new zone_reset_cmd();
         cmd->setCommandNum(cmdno);
@@ -1633,7 +1635,7 @@ zone_reset_cmd *read_zone_reset(FILE *f, zone_reset_cmd *cmd_list)
         }
         cmd->setNum(2, temp);
 
-        ubit8 temp2{};
+        uint8_t temp2{};
         if (fread(&temp2, sizeof(temp2), 1, f) != 1)
         {
             error(HERE, "Failed to fread() cmd->cmpl");
@@ -1652,7 +1654,7 @@ zone_reset_cmd *read_zone_reset(FILE *f, zone_reset_cmd *cmd_list)
             tmp_cmd = cmd;
         }
 
-        direction = (ubit8)fgetc(f);
+        direction = (uint8_t)fgetc(f);
 
         switch (direction)
         {
@@ -1675,7 +1677,6 @@ zone_reset_cmd *read_zone_reset(FILE *f, zone_reset_cmd *cmd_list)
 
     return cmd_list;
 }
-
 
 // Reads .reset file from a zone
 //
@@ -1707,8 +1708,8 @@ void read_all_zones_reset()
         }
         zone->second->setZoneResetTime(temp);
 
-        ubit8 temp2{0};
-        if (fread(&temp2, sizeof(ubit8), 1, f) != 1)
+        uint8_t temp2{0};
+        if (fread(&temp2, sizeof(uint8_t), 1, f) != 1)
         {
             error(HERE, "Failed to fread() zone->second->reset_mode");
         }

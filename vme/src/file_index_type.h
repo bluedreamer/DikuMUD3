@@ -12,7 +12,7 @@ class zone_type;
 class file_index_type
 {
 public:
-    file_index_type(zone_type *zone, const char *name, ubit8 type);
+    file_index_type(zone_type *zone, const char *name, uint8_t type);
     ~file_index_type() = default;                                 ///< Default dtor
     file_index_type(const file_index_type &) = delete;            ///< Delete copy ctor
     file_index_type &operator=(const file_index_type &) = delete; ///< Delete assignment
@@ -30,7 +30,7 @@ public:
     [[nodiscard]] sbit16 getNumInZone() const;
     [[nodiscard]] ubit16 getNumInMem() const;
     [[nodiscard]] ubit16 getRoomNum() const;
-    [[nodiscard]] ubit8 getType() const;
+    [[nodiscard]] uint8_t getType() const;
 
     [[nodiscard]] bool Empty() const;
     [[nodiscard]] unit_data *Front() const;
@@ -64,5 +64,5 @@ private:
     sbit16 m_no_in_zone{0};                        ///< Updated in zone reset for reset
     ubit16 m_no_in_mem{0};                         ///< Number of these in the game
     ubit16 m_room_no{0};                           ///< The number of the room
-    ubit8 m_type{0};                               ///< Room/Obj/Char or other?
+    uint8_t m_type{0};                             ///< Room/Obj/Char or other?
 };

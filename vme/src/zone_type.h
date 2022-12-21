@@ -103,20 +103,20 @@ public:
     [[nodiscard]] ubit16 getNumOfNPCs() const;
     void incrementNumOfNPCs();
 
-    [[nodiscard]] ubit8 getResetMode() const;
-    ubit8 *getResetModePtr();
-    void setResetMode(ubit8 value);
+    [[nodiscard]] uint8_t getResetMode() const;
+    uint8_t *getResetModePtr();
+    void setResetMode(uint8_t value);
 
-    [[nodiscard]] ubit8 getAccessLevel() const;
-    void setAccessLevel(ubit8 value);
+    [[nodiscard]] uint8_t getAccessLevel() const;
+    void setAccessLevel(uint8_t value);
 
-    [[nodiscard]] ubit8 getLevelRequiredToLoadItems() const;
-    ubit8 *getLevelRequiredToLoadItemsPtr();
-    void setLevelRequiredToLoadItems(ubit8 value);
+    [[nodiscard]] uint8_t getLevelRequiredToLoadItems() const;
+    uint8_t *getLevelRequiredToLoadItemsPtr();
+    void setLevelRequiredToLoadItems(uint8_t value);
 
-    [[nodiscard]] ubit8 getPayOnly() const;
-    ubit8 *getPayOnlyPtr();
-    void setPayOnly(ubit8 value);
+    [[nodiscard]] uint8_t getPayOnly() const;
+    uint8_t *getPayOnlyPtr();
+    void setPayOnly(uint8_t value);
 
     [[nodiscard]] const std::optional<std::string> &getDILFilePath() const;
     void setDILFilePath(std::string value);
@@ -207,15 +207,15 @@ private:
     FileIndexMap m_mmp_fi;                    ///<
     zone_reset_cmd *m_zri{nullptr};           ///< List of Zone reset commands
     DILTemplateMap m_mmp_tmpl;                ///<
-    ubit8 **m_spmatrix{nullptr};              ///< Shortest Path Matrix
+    uint8_t **m_spmatrix{nullptr};            ///< Shortest Path Matrix
     ubit16 m_zone_time{0};                    ///< How often to reset zone
     ubit16 m_no_rooms{0};                     ///< The number of rooms
     ubit16 m_no_objs{0};                      ///<
     ubit16 m_no_npcs{0};                      ///<
-    ubit8 m_reset_mode{0};                    ///< when/how to reset zone
-    ubit8 m_access{255};                      ///< Access Level 0 = highest (root)
-    ubit8 m_loadlevel{0};                     ///< Level required to load items
-    ubit8 m_payonly{0};                       ///< TRUE when only 4 paying players
+    uint8_t m_reset_mode{0};                  ///< when/how to reset zone
+    uint8_t m_access{255};                    ///< Access Level 0 = highest (root)
+    uint8_t m_loadlevel{0};                   ///< Level required to load items
+    uint8_t m_payonly{0};                     ///< TRUE when only 4 paying players
     ubit32 m_crc{0};                          ///< The CRC for the zone (a timestamp, used to detect file changes mid game)
     std::optional<std::string> m_dilfilepath; ///<
     Weather m_weather;                        ///<

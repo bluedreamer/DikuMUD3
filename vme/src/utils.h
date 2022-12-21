@@ -21,7 +21,7 @@
 // clang-format off
 /* ..................................................................... */
 // Forward declarations
-inline ubit8 CHAR_LEVEL(const unit_data *ch);
+inline uint8_t CHAR_LEVEL(const unit_data *ch);
 inline bool CHAR_AWAKE(const unit_data *ch);
 
 #define PK_RELAXED 0
@@ -89,11 +89,11 @@ inline room_data *UROOM(const unit_data *u)
 
 /* ..................................................................... */
 
-inline ubit8 ROOM_RESISTANCE(unit_data *room) { return UROOM(room)->getRoomMagicalResistance(); }
+inline uint8_t ROOM_RESISTANCE(unit_data *room) { return UROOM(room)->getRoomMagicalResistance(); }
 
-inline ubit8 ROOM_LANDSCAPE(const unit_data *unit) { return UROOM(unit)->getLandscapeTerrain(); }
+inline uint8_t ROOM_LANDSCAPE(const unit_data *unit) { return UROOM(unit)->getLandscapeTerrain(); }
 
-inline ubit8 ROOM_FLAGS(const unit_data *unit) { return UROOM(unit)->getRoomFlags(); }
+inline uint8_t ROOM_FLAGS(const unit_data *unit) { return UROOM(unit)->getRoomFlags(); }
 
 inline room_direction_data *ROOM_EXIT(unit_data *unit, size_t exit) { return UROOM(unit)->getRoomDirectionDataForExit(exit); }
 
@@ -108,7 +108,7 @@ inline int ROOM_SC(const unit_data *unit) { return UROOM(unit)->getStrongCompone
 
 /* ..................................................................... */
 
-inline ubit8 OBJ_RESISTANCE(unit_data *obj) { return UOBJ(obj)->getMagicResistance(); }
+inline uint8_t OBJ_RESISTANCE(unit_data *obj) { return UOBJ(obj)->getMagicResistance(); }
 
 inline sbit32 OBJ_VALUE(const unit_data *unit, size_t index) { return UOBJ(unit)->getValueAtIndex(index); }
 
@@ -116,11 +116,11 @@ inline ubit32 OBJ_PRICE(const unit_data *unit) { return UOBJ(unit)->getPriceInGP
 
 inline ubit32 OBJ_PRICE_DAY(unit_data *unit) { return UOBJ(unit)->getPricePerDay(); }
 
-inline ubit8 OBJ_TYPE(const unit_data *unit) { return UOBJ(unit)->getObjectItemType(); }
+inline uint8_t OBJ_TYPE(const unit_data *unit) { return UOBJ(unit)->getObjectItemType(); }
 
-inline ubit8 OBJ_EQP_POS(unit_data *unit) { return UOBJ(unit)->getEquipmentPosition(); }
+inline uint8_t OBJ_EQP_POS(unit_data *unit) { return UOBJ(unit)->getEquipmentPosition(); }
 
-inline ubit8 OBJ_FLAGS(unit_data *obj) { return UOBJ(obj)->getObjectFlags(); }
+inline uint8_t OBJ_FLAGS(unit_data *obj) { return UOBJ(obj)->getObjectFlags(); }
 
 /* ...........................OBJECT SUPERSTRUCTURES..................... */
 
@@ -142,11 +142,11 @@ inline unit_data *CHAR_LAST_ROOM(unit_data *unit) { return UCHAR(unit)->getLastL
 
 inline const char *CHAR_LAST_ATTACKER(const unit_data *unit) { return UCHAR(unit)->getLastAttacker(); }
 
-inline ubit8 CHAR_LAST_ATTACKER_TYPE(const unit_data *unit) { return UCHAR(unit)->getLastAttackerType(); }
+inline uint8_t CHAR_LAST_ATTACKER_TYPE(const unit_data *unit) { return UCHAR(unit)->getLastAttackerType(); }
 
-inline ubit8 CHAR_POS(const unit_data *ch) { return UCHAR(ch)->getPosition(); }
+inline uint8_t CHAR_POS(const unit_data *ch) { return UCHAR(ch)->getPosition(); }
 
-inline ubit8 CHAR_LEVEL(const unit_data *ch) { return UCHAR(ch)->getLevel(); }
+inline uint8_t CHAR_LEVEL(const unit_data *ch) { return UCHAR(ch)->getLevel(); }
 
 inline ubit16 CHAR_RACE(const unit_data *ch) { return UCHAR(ch)->getRace(); }
 
@@ -179,9 +179,9 @@ inline char *CHAR_MONEY(unit_data *ch) { return UCHAR(ch)->getMoney(); }
 
 inline sbit32 CHAR_EXP(const unit_data *ch) { return UCHAR(ch)->getPlayerExperience(); }
 
-inline ubit8 CHAR_ATTACK_TYPE(const unit_data *ch) { return UCHAR(ch)->getAttackType(); }
+inline uint8_t CHAR_ATTACK_TYPE(const unit_data *ch) { return UCHAR(ch)->getAttackType(); }
 
-inline ubit8 CHAR_NATURAL_ARMOUR(const unit_data *ch) { return UCHAR(ch)->getNaturalArmor(); }
+inline uint8_t CHAR_NATURAL_ARMOUR(const unit_data *ch) { return UCHAR(ch)->getNaturalArmor(); }
 
 inline sbit16 CHAR_SPEED(const unit_data *ch) { return UCHAR(ch)->getSpeed(); }
 
@@ -237,7 +237,7 @@ inline bool CHAR_CAN_SEE(unit_data *ch, unit_data *unit)
 
 /* ..................................................................... */
 
-inline ubit8 PC_ACCESS_LEVEL(unit_data *pc) { return UPC(pc)->getAccessLevel(); }
+inline uint8_t PC_ACCESS_LEVEL(unit_data *pc) { return UPC(pc)->getAccessLevel(); }
 
 inline ubit16 PC_CRACK_ATTEMPTS(unit_data *pc) { return UPC(pc)->getNumberOfCrackAttempts(); }
 
@@ -253,19 +253,19 @@ inline ubit16 PC_VIRTUAL_LEVEL(unit_data *pc) { return UPC(pc)->getVirtualPlayer
 
 inline extra_list &PC_INFO(unit_data *pc) { return UPC(pc)->getAdministrationInformation(); }
 
-inline ubit8 PC_SETUP_ECHO(unit_data *pc) { return UPC(pc)->getTerminalSetupType().echo; }
+inline uint8_t PC_SETUP_ECHO(unit_data *pc) { return UPC(pc)->getTerminalSetupType().echo; }
 
-inline ubit8 PC_SETUP_REDRAW(unit_data *pc) { return UPC(pc)->getTerminalSetupType().redraw; }
+inline uint8_t PC_SETUP_REDRAW(unit_data *pc) { return UPC(pc)->getTerminalSetupType().redraw; }
 
-inline ubit8 PC_SETUP_WIDTH(unit_data *pc) { return UPC(pc)->getTerminalSetupType().width; }
+inline uint8_t PC_SETUP_WIDTH(unit_data *pc) { return UPC(pc)->getTerminalSetupType().width; }
 
-inline ubit8 PC_SETUP_HEIGHT(unit_data *pc) { return UPC(pc)->getTerminalSetupType().height; }
+inline uint8_t PC_SETUP_HEIGHT(unit_data *pc) { return UPC(pc)->getTerminalSetupType().height; }
 
-inline ubit8 PC_SETUP_TELNET(unit_data *pc) { return UPC(pc)->getTerminalSetupType().telnet; }
+inline uint8_t PC_SETUP_TELNET(unit_data *pc) { return UPC(pc)->getTerminalSetupType().telnet; }
 
-inline ubit8 PC_SETUP_EMULATION(unit_data *pc) { return UPC(pc)->getTerminalSetupType().emulation; }
+inline uint8_t PC_SETUP_EMULATION(unit_data *pc) { return UPC(pc)->getTerminalSetupType().emulation; }
 
-inline ubit8 PC_SETUP_COLOUR(unit_data *pc) { return UPC(pc)->getTerminalSetupType().colour_convert; }
+inline uint8_t PC_SETUP_COLOUR(unit_data *pc) { return UPC(pc)->getTerminalSetupType().colour_convert; }
 
 inline const char *PC_GUILD(unit_data *pc) { return UPC(pc)->getGuild(); }
 
@@ -281,17 +281,17 @@ inline sbit32 PC_ABILITY_POINTS(unit_data *ch) { return UPC(ch)->getAbilityPoint
 
 inline sbit32 PC_SKILL_POINTS(unit_data *ch) { return UPC(ch)->getSkillPoints(); }
 
-inline ubit8 PC_ABI_LVL(unit_data *ch, size_t index) { return UPC(ch)->getAbilityLevelAtIndex(index); }
+inline uint8_t PC_ABI_LVL(unit_data *ch, size_t index) { return UPC(ch)->getAbilityLevelAtIndex(index); }
 
 inline sbit16 PC_SKI_SKILL(unit_data *ch, size_t index) { return UPC(ch)->getSkillAtIndex(index); }
 
-inline ubit8 PC_SKI_LVL(unit_data *ch, size_t index) { return UPC(ch)->getSpellSkillAtIndex(index); }
+inline uint8_t PC_SKI_LVL(unit_data *ch, size_t index) { return UPC(ch)->getSpellSkillAtIndex(index); }
 
-inline ubit8 PC_WPN_LVL(unit_data *ch, size_t index) { return UPC(ch)->getWeaponSkillLevelAtIndex(index); }
+inline uint8_t PC_WPN_LVL(unit_data *ch, size_t index) { return UPC(ch)->getWeaponSkillLevelAtIndex(index); }
 
 inline sbit16 PC_WPN_SKILL(unit_data *ch, size_t index) { return UPC(ch)->getWeaponSkillAtIndex(index); }
 
-inline ubit8 PC_SPL_LVL(unit_data *ch, size_t index) { return UPC(ch)->getSpellLevelAtIndex(index); }
+inline uint8_t PC_SPL_LVL(unit_data *ch, size_t index) { return UPC(ch)->getSpellLevelAtIndex(index); }
 
 inline sbit16 PC_SPL_SKILL(unit_data *ch, size_t index) { return UPC(ch)->getSpellSkillAtIndex(index); }
 
@@ -330,12 +330,12 @@ inline sbit16 NPC_SPL_SKILL(unit_data *ch, size_t index)
     return UNPC(ch)->getSpellSkillAtIndex(index);
 }
 
-inline ubit8 NPC_DEFAULT(unit_data *unit)
+inline uint8_t NPC_DEFAULT(unit_data *unit)
 {
     return UNPC(unit)->getDefaultPosition();
 }
 
-inline ubit8 NPC_FLAGS(unit_data *unit)
+inline uint8_t NPC_FLAGS(unit_data *unit)
 {
     return UNPC(unit)->getAllNPCFlags();
 }

@@ -87,32 +87,32 @@ void npc_data::decreaseSpellSkillAtIndexBy(size_t index, sbit16 value)
     m_spells[index] += value;
 }
 
-ubit8 npc_data::getDefaultPosition() const
+uint8_t npc_data::getDefaultPosition() const
 {
     return m_default_pos;
 }
 
-ubit8 *npc_data::getDefaultPositionPtr()
+uint8_t *npc_data::getDefaultPositionPtr()
 {
     return &m_default_pos;
 }
 
-void npc_data::setDefaultPosition(ubit8 value)
+void npc_data::setDefaultPosition(uint8_t value)
 {
     m_default_pos = value;
 }
 
-ubit8 npc_data::getAllNPCFlags() const
+uint8_t npc_data::getAllNPCFlags() const
 {
     return m_flags;
 }
 
-ubit8 *npc_data::getAllNPCFlagsPtr()
+uint8_t *npc_data::getAllNPCFlagsPtr()
 {
     return &m_flags;
 }
 
-void npc_data::setAllNPCFlags(ubit8 value)
+void npc_data::setAllNPCFlags(uint8_t value)
 {
     m_flags = value;
 }

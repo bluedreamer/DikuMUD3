@@ -15,6 +15,6 @@
 #define CRIME_REWARD 64 /* Person will be wanted dead for reward.      */
 
 void offend_legal_state(unit_data *ch, unit_data *victim);
-void log_crime(unit_data *criminal, unit_data *victim, ubit8 crime_type, int active = TRUE);
+void log_crime(unit_data *criminal, unit_data *victim, uint8_t crime_type, int active = TRUE);
 int new_crime_serial_no();
 int reward_give(spec_arg *sarg);

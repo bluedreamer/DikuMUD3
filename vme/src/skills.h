@@ -32,14 +32,14 @@ class skill_collection
 {
 public:
     const char **gettext();
-    skill_collection(int nSize, ubit8 teachtype);
+    skill_collection(int nSize, uint8_t teachtype);
     int max_skill_limit(unit_data *pupil, int node);
 
     std::unique_ptr<profession_cost[]> prof_table;
     const char **text;
     tree_type *tree;
     int8_t *racial[PC_RACE_MAX];
-    ubit8 teachtype;
+    uint8_t teachtype;
 };
 
 class profession_cost
@@ -47,11 +47,11 @@ class profession_cost
 public:
     void setProfessionBonus(int professionIndex, int8_t value);
     int getProfessionBonus(int professionIndex);
-    int getProfessionBonus(unit_data *pc, ubit8 teachtype);
+    int getProfessionBonus(unit_data *pc, uint8_t teachtype);
 
     ubit16 sanity; ///< Used for sanity check
-    ubit8 min_level;
-    ubit8 min_abil[ABIL_TREE_MAX];
+    uint8_t min_level;
+    uint8_t min_abil[ABIL_TREE_MAX];
 
 private:
     int8_t profession_bonus[PROFESSION_MAX]{}; ///< 0 is middle, +1 easier to learn, -1 more dificult, etc.
@@ -149,7 +149,7 @@ struct damage_chart_type
 struct tree_type
 {
     int parent;
-    ubit8 isleaf;
+    uint8_t isleaf;
     ubit1 bAutoTrain;
     ubit1 bAutoTeacherNoAdd;
 };
@@ -157,11 +157,11 @@ struct tree_type
 /* Tree has a pointer to parent for each node. 0 pointer from root */
 struct wpn_info_type
 {
-    int hands;        ///< 0=N/A, 1 = 1, 2 = 1.5, 3 = 2
-    int speed;        ///< Speed modification by weapon 0..
-    int type;         ///< Is the weapon slashing/piercing...
-    ubit8 ability[3]; ///< Primary abilities, e.g. [0]=ABIL_STR, [1]=ABIL_STR, [2]=ABIL_DEX
-    ubit8 shield;     ///< Shield method SHIELD_M_XXX
+    int hands;          ///< 0=N/A, 1 = 1, 2 = 1.5, 3 = 2
+    int speed;          ///< Speed modification by weapon 0..
+    int type;           ///< Is the weapon slashing/piercing...
+    uint8_t ability[3]; ///< Primary abilities, e.g. [0]=ABIL_STR, [1]=ABIL_STR, [2]=ABIL_DEX
+    uint8_t shield;     ///< Shield method SHIELD_M_XXX
 };
 
 #define DEMIGOD_LEVEL_XP (40000000)

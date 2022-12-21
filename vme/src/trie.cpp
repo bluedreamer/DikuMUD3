@@ -165,7 +165,7 @@ void *search_trie(const char *s, trie_type *t)
 /* Free an entire trie */
 void free_trie(trie_type *t, void (*free_data)(void *))
 {
-    ubit8 i = 0;
+    uint8_t i = 0;
 
     /* If there's any data at this node, let the supplied method free it */
     if (t->data)

@@ -12,7 +12,7 @@ public:
     static size_t g_world_nochars; // number of chars in the world
 
 public:
-    explicit char_data(ubit8 unit_type, file_index_type *fi);
+    explicit char_data(uint8_t unit_type, file_index_type *fi);
     virtual ~char_data();
 
     /**
@@ -58,7 +58,7 @@ public:
      * @todo This is basically char_point_data's public interface - so in future char_point_data can be just removed
      * @{
      */
-    void readFrom(CByteBuffer &buf, ubit8 unit_version, unit_data *unit, int &error);
+    void readFrom(CByteBuffer &buf, uint8_t unit_version, unit_data *unit, int &error);
 
     ubit32 *getCharacterFlagsPtr();
     ubit32 getCharacterFlags() const;
@@ -105,26 +105,26 @@ public:
      */
     int getSpeedPercentage();
 
-    ubit8 getNaturalArmor() const;
-    void setNaturalArmor(ubit8 value);
-    ubit8 *getNaturalArmorPtr();
+    uint8_t getNaturalArmor() const;
+    void setNaturalArmor(uint8_t value);
+    uint8_t *getNaturalArmorPtr();
 
-    ubit8 getAttackType() const;
-    void setAttackType(ubit8 value);
-    ubit8 *getAttackTypePtr();
+    uint8_t getAttackType() const;
+    void setAttackType(uint8_t value);
+    uint8_t *getAttackTypePtr();
 
-    virtual ubit8 getSex() const;
-    void setSex(ubit8 value);
-    ubit8 *getSexPtr();
+    virtual uint8_t getSex() const;
+    void setSex(uint8_t value);
+    uint8_t *getSexPtr();
 
-    ubit8 getLevel() const;
-    void setLevel(ubit8 value);
-    ubit8 *getLevelPtr();
+    uint8_t getLevel() const;
+    void setLevel(uint8_t value);
+    uint8_t *getLevelPtr();
     void incrementLevel();
 
-    ubit8 getPosition() const;
-    void setPosition(ubit8 value);
-    ubit8 *getPositionPtr();
+    uint8_t getPosition() const;
+    void setPosition(uint8_t value);
+    uint8_t *getPositionPtr();
 
     sbit16 getAbilityAtIndex(size_t index) const;
     sbit16 *getAbilityAtIndexPtr(size_t index);
@@ -183,8 +183,8 @@ public:
      * @name Last Attacker type functions
      * @{
      */
-    ubit8 getLastAttackerType() const;
-    void setLastAttackerType(ubit8 value);
+    uint8_t getLastAttackerType() const;
+    void setLastAttackerType(uint8_t value);
     ///@}
 private:
     descriptor_data *m_descriptor{nullptr}; ///<
@@ -195,5 +195,5 @@ private:
     char_follow_type *m_followers{nullptr}; ///<
     char *m_last_attacker{nullptr};         ///< Last attacker of character
     char *m_money{nullptr};                 ///<  Money transfer from db-files.
-    ubit8 m_last_attacker_type{0};          ///< Last attacker type of character
+    uint8_t m_last_attacker_type{0};        ///< Last attacker type of character
 };

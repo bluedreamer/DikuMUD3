@@ -14,7 +14,7 @@ void OutputCapture::EnableOutputCapture()
     m_instance = std::unique_ptr<OutputCapture>(new OutputCapture);
 }
 
-void OutputCapture::slog(log_level level, ubit8 wizinv_level, const std::string &fmt, const std::string &msg)
+void OutputCapture::slog(log_level level, uint8_t wizinv_level, const std::string &fmt, const std::string &msg)
 {
     if (m_instance)
     {

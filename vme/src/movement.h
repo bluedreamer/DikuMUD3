@@ -26,9 +26,9 @@ struct door_data
     unit_data *room;
     unit_data *reverse; ///< Reverse Room or Inside thing
     char *key;
-    ubit8 direction; ///< For rooms, which direction was picked?
-    ubit8 *flags;
-    ubit8 *rev_flags;
+    uint8_t direction; ///< For rooms, which direction was picked?
+    uint8_t *flags;
+    uint8_t *rev_flags;
     const char *name;
 };
 

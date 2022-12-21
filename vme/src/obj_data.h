@@ -117,21 +117,21 @@ public:
     /**
      * @return All object flags
      */
-    ubit8 getObjectFlags() const;
+    uint8_t getObjectFlags() const;
     /**
      * @return pointer to object flags for DIL
      */
-    ubit8 *getObjectFlagsPtr();
+    uint8_t *getObjectFlagsPtr();
     /**
      * @todo Find out why a 32bit value is being passed to this function and the flags are 8bit
      * @param value Sets bits from value in object flags
      */
-    void setObjectFlag(ubit8 value);
+    void setObjectFlag(uint8_t value);
     /**
      * @todo Find out why a 32bit value is being passed to this function and the flags are 8bit
      * @param value Unsets bit from value in object flags
      */
-    void removeObjectFlag(ubit8 value);
+    void removeObjectFlag(uint8_t value);
     /**
      * @todo Find out why a 32bit value is being passed to this function and the flags are 8bit
      * @param value Overwrites all flags with value
@@ -148,15 +148,15 @@ public:
     /**
      * @return the ITEM_* type
      */
-    ubit8 getObjectItemType() const;
+    uint8_t getObjectItemType() const;
     /**
      * @return pointer to the item type
      */
-    ubit8 *getObjectItemTypePtr();
+    uint8_t *getObjectItemTypePtr();
     /**
      * @param value ITEM_* value (see vme.h)
      */
-    void setObjectItemType(ubit8 value);
+    void setObjectItemType(uint8_t value);
     /// @}
 
     /**
@@ -166,11 +166,11 @@ public:
     /**
      * @return 0 or position of item in equipment
      */
-    ubit8 getEquipmentPosition() const;
+    uint8_t getEquipmentPosition() const;
     /**
      * @param value 0 or position of item in equipment
      */
-    void setEquipmentPosition(ubit8 value);
+    void setEquipmentPosition(uint8_t value);
     /// @}
     /**
      * @name Magic Resistance related functions
@@ -180,22 +180,22 @@ public:
     /**
      * @return magic resistance
      */
-    ubit8 getMagicResistance() const;
+    uint8_t getMagicResistance() const;
     /**
      * @return pointer to magic resistance
      */
-    ubit8 *getMagicResistancePtr();
+    uint8_t *getMagicResistancePtr();
     /**
      * @param value Set magic resistance to
      */
-    void setMagicResistance(ubit8 value);
+    void setMagicResistance(uint8_t value);
     /// @}
 private:
     std::array<sbit32, 5> m_value{0}; ///< Values of the item (see list)
     ubit32 m_cost{0};                 ///< Value when sold (gp.)
     ubit32 m_cost_per_day{0};         ///< Cost to keep pr. real day
-    ubit8 m_flags{0};                 ///< Various special object flags
-    ubit8 m_type{ITEM_TRASH};         ///< Type of item (ITEM_XXX)
-    ubit8 m_equip_pos{0};             ///< 0 or position of item in equipment
-    ubit8 m_resistance{0};            ///< Magic resistance
+    uint8_t m_flags{0};               ///< Various special object flags
+    uint8_t m_type{ITEM_TRASH};       ///< Type of item (ITEM_XXX)
+    uint8_t m_equip_pos{0};           ///< 0 or position of item in equipment
+    uint8_t m_resistance{0};          ///< Magic resistance
 };

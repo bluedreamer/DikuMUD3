@@ -21,20 +21,20 @@ public:
     unit_data *getToRoom();
     void setToRoom(unit_data *value);
 
-    ubit8 getSkillDifficulty() const;
-    ubit8 *getSkillDifficultyPtr();
-    void setSkillDifficulty(ubit8 value);
+    uint8_t getSkillDifficulty() const;
+    uint8_t *getSkillDifficultyPtr();
+    void setSkillDifficulty(uint8_t value);
 
-    ubit8 getDoorFlags() const;
-    bool isDoorFlagSet(ubit8 value) const;
-    void setDoorFlags(ubit8 value);
-    ubit8 *getDoorFlagsPtr();
+    uint8_t getDoorFlags() const;
+    bool isDoorFlagSet(uint8_t value) const;
+    void setDoorFlags(uint8_t value);
+    uint8_t *getDoorFlagsPtr();
 
 private:
     cNamelist open_name;         ///< For Open & Enter
     char *key{nullptr};          ///<
     unit_data *to_room{nullptr}; ///<
-    ubit8 difficulty{0};         ///< Skill needed for swim, climb, search, pick-lock
+    uint8_t difficulty{0};       ///< Skill needed for swim, climb, search, pick-lock
     int weight{0};               ///< Used for shortest path algorithm
-    ubit8 exit_info{0};          ///< Door info flags
+    uint8_t exit_info{0};        ///< Door info flags
 };

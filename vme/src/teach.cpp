@@ -43,7 +43,7 @@
 /* Use -1 in node to indicate end of teach_type */
 struct skill_teach_type
 {
-    ubit8 max_skill;        // Maximum skill that can be taught
+    uint8_t max_skill;      // Maximum skill that can be taught
     ubit16 min_glevel;      // What **guild** level do you have to be to learn this?
     int node;               // A node in a tree, e.g. index in skl_text[]
     int min_cost_per_point; // The gold point cost per point
@@ -64,7 +64,7 @@ struct teacher_msg
 struct teach_packet
 {
     unit_data *teacher;     // Points to the teacher
-    ubit8 type;             /* Ability, spell, skill, weapon */
+    uint8_t type;           /* Ability, spell, skill, weapon */
     const char *pGuildName; // Empty or set to the name of the guild
     teacher_msg msgs;
     skill_teach_type *teaches; /* Array of skills */
@@ -75,7 +75,7 @@ struct teach_packet
 struct pc_train_values
 {
     sbit16 *values;
-    ubit8 *lvl;
+    uint8_t *lvl;
     sbit32 *practice_points;
 };
 
@@ -400,7 +400,7 @@ void info_show_one(unit_data *teacher,
     int lvl = pTrainValues->lvl[teaches_skills[teachesSkillsIndex].node];
     const char *text = pColl->text[teaches_skills[teachesSkillsIndex].node];
     profession_cost *cost_entry = &pColl->prof_table[teaches_skills[teachesSkillsIndex].node];
-    ubit8 isleaf = TREE_ISLEAF(pColl->tree, teaches_skills[teachesSkillsIndex].node);
+    uint8_t isleaf = TREE_ISLEAF(pColl->tree, teaches_skills[teachesSkillsIndex].node);
     int gold = gold_cost(pupil, &teaches_skills[teachesSkillsIndex], pTrainValues->values[teaches_skills[teachesSkillsIndex].node]);
     int next_point = actual_cost(pColl->prof_table[teaches_skills[teachesSkillsIndex].node].getProfessionBonus(pupil, pColl->teachtype),
                                  pColl->racial[CHAR_RACE(pupil)][teaches_skills[teachesSkillsIndex].node],

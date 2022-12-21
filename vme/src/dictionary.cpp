@@ -175,7 +175,7 @@ static int push_alias(char *s, char *arg, trie_type *t, unit_data *ch, bool firs
     char *c = nullptr;
     alias_t *al = nullptr;
 
-    static ubit8 check_count = 0;
+    static uint8_t check_count = 0;
 
     if (first)
     {
@@ -317,14 +317,14 @@ static bool del_alias(alias_head *ah, char *key)
  *  check_count makes sure that the user doesn't make nasty (!) computationally
  *  heavy (!!!) aliases that will bog the mud enormously.
  */
-static ubit8 circle_alias(char *key, char *val, trie_type *t, bool first)
+static uint8_t circle_alias(char *key, char *val, trie_type *t, bool first)
 {
     char *tmp = nullptr;
     char *sc = nullptr;
     char comm[MAX_INPUT_LENGTH + 2];
     alias_t *tmp_al = nullptr;
-    ubit8 res = 0;
-    static ubit8 check_count = 0;
+    uint8_t res = 0;
+    static uint8_t check_count = 0;
 
     if (first)
     {
@@ -547,7 +547,7 @@ static alias_head *str_to_alias(const char *str)
             tmp = get_next_word(str, cmd); /* Get alias-name */
 
             /* Add alias, but don't sort the trie yet */
-            add_alias(ah, cmd, (char *) skip_spaces(tmp), FALSE);
+            add_alias(ah, cmd, (char *)skip_spaces(tmp), FALSE);
             *tilde = '~';
             str = tilde + 1;
         }
@@ -602,7 +602,7 @@ static void cmd_alias(unit_data *ch, char *arg, alias_head *alias_h)
     }
 
     /* There's a new alias to re/define */
-    arg = (char *) skip_spaces(arg);
+    arg = (char *)skip_spaces(arg);
 
     if (alias_is_ok(alias_h, comm, arg, ch))
     {

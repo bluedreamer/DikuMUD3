@@ -6,8 +6,8 @@
  */
 #pragma once
 
-#include "essential.h"
 #include "dil.h"
+#include "essential.h"
 
 #define DIL_VERSION "v5.10"
 
@@ -19,21 +19,21 @@
 
 struct exptype
 {
-    ubit8 dsl; ///< static/dynamic/lvalue, type, req type
-    DilVarType_e typ; ///< static/dynamic/lvalue, type, req type
+    uint8_t dsl;       ///< static/dynamic/lvalue, type, req type
+    DilVarType_e typ;  ///< static/dynamic/lvalue, type, req type
     DilVarType_e rtyp; ///< static/dynamic/lvalue, type, req type
-    ubit8 boolean;        ///< if expression contains boolean op
-    sbit32 num;           ///< static value INT or field type
-    ubit8 *code;          ///< code / static value SP
-    ubit8 *codep;         ///< code write pointer
+    uint8_t boolean;   ///< if expression contains boolean op
+    sbit32 num;        ///< static value INT or field type
+    uint8_t *code;     ///< code / static value SP
+    uint8_t *codep;    ///< code write pointer
 };
 
 struct dilref
 {
-    char *zname; ///< func/proc name
-    char *name;  ///< zone name
+    char *zname;        ///< func/proc name
+    char *name;         ///< zone name
     DilVarType_e rtnt;  ///< return type
-    ubit8 argc;  ///< number of arguments (min 1)
+    uint8_t argc;       ///< number of arguments (min 1)
     DilVarType_e *argt; ///< argument types
-    char **argv; ///< argument names
+    char **argv;        ///< argument names
 };

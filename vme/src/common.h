@@ -18,9 +18,10 @@
 #define SKILL_MAX 500 /* Maximum of any skill / ability */
 #define AVERAGE_SKILL_COST 10
 #define HITPOINTS_BASE 125
-#define ABILITY_POINT_FACTOR (4) // Abilitypoints multiplied by this, for a total of 4,500 ability points at level 126
-                                 // A more forgiving approach might be giving 5,000 ability points at level 100, see excel.
-#define SKILL_POINT_FACTOR (8)   // Skillpoints   multiplied by this
+#define ABILITY_POINT_FACTOR                                                                                                               \
+    (4)                        // Abilitypoints multiplied by this, for a total of 4,500 ability points at level 126
+                               // A more forgiving approach might be giving 5,000 ability points at level 100, see excel.
+#define SKILL_POINT_FACTOR (8) // Skillpoints   multiplied by this
 
 /* ..................................................................... */
 /*                           A R M O U R S                               */
@@ -76,7 +77,7 @@ int distribute_points(std::array<T, MAX_ARRAY> &skills, int max, int points, int
 
     return sumerror;
 }
-int distribute_points(ubit8 *skills, int max, int points, int level);
+int distribute_points(uint8_t *skills, int max, int points, int level);
 void set_weapon(unit_data *o);
 void set_shield(unit_data *o);
 void set_armour(unit_data *o);

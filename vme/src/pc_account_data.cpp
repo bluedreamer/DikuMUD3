@@ -1,6 +1,6 @@
 #include "pc_account_data.h"
 
-void pc_account_data::readFrom(CByteBuffer &buf, ubit8 unit_version, int &error)
+void pc_account_data::readFrom(CByteBuffer &buf, uint8_t unit_version, int &error)
 {
     error += buf.ReadFloat(&credit);
     credit_limit = buf.ReadU32(&error);
@@ -113,22 +113,22 @@ void pc_account_data::setLastFourDigitsofCreditCard(sbit16 value)
     last4 = value;
 }
 
-ubit8 pc_account_data::getCrackAttempts() const
+uint8_t pc_account_data::getCrackAttempts() const
 {
     return cracks;
 }
 
-void pc_account_data::setCrackAttempts(ubit8 value)
+void pc_account_data::setCrackAttempts(uint8_t value)
 {
     cracks = value;
 }
 
-ubit8 pc_account_data::getDiscountPercentage() const
+uint8_t pc_account_data::getDiscountPercentage() const
 {
     return discount;
 }
 
-void pc_account_data::setDiscountPercentage(ubit8 value)
+void pc_account_data::setDiscountPercentage(uint8_t value)
 {
     discount = value;
 }

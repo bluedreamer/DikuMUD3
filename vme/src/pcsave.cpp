@@ -166,7 +166,7 @@ sbit32 new_player_id()
     return g_player_id++;
 }
 
-void save_player_disk(const char *pName, char *pPassword, sbit32 id, int nPlyLen, const ubit8 *pPlyBuf)
+void save_player_disk(const char *pName, char *pPassword, sbit32 id, int nPlyLen, const uint8_t *pPlyBuf)
 {
     int n = 0;
     FILE *pPlayerFile = nullptr;
@@ -183,7 +183,7 @@ void save_player_disk(const char *pName, char *pPassword, sbit32 id, int nPlyLen
     n = fwrite(&nPlyLen, sizeof(nPlyLen), 1, pPlayerFile);
     assert(n == 1);
 
-    n = fwrite(pPlyBuf, sizeof(ubit8), nPlyLen, pPlayerFile);
+    n = fwrite(pPlyBuf, sizeof(uint8_t), nPlyLen, pPlayerFile);
     assert(n == nPlyLen);
 
     /* This is a small test to see if the file was actually written to the

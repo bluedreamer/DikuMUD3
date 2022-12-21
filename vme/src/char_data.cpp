@@ -2,7 +2,7 @@
 
 size_t char_data::g_world_nochars = 0;
 
-char_data::char_data(ubit8 unit_type, file_index_type *fi)
+char_data::char_data(uint8_t unit_type, file_index_type *fi)
     : unit_data(unit_type, fi)
     , m_descriptor{nullptr}
     , m_combat{nullptr}
@@ -105,7 +105,7 @@ void char_data::setLastLocation(unit_data *value)
     m_last_room = value;
 }
 
-void char_data::readFrom(CByteBuffer &buf, ubit8 unit_version, unit_data *unit, int &error)
+void char_data::readFrom(CByteBuffer &buf, uint8_t unit_version, unit_data *unit, int &error)
 {
     return m_points.readFrom(buf, unit_version, unit, error);
 }
@@ -286,62 +286,62 @@ int char_data::getSpeedPercentage()
     return std::max(std::min(300, (100 * SPEED_DEFAULT) / s), 25);
 }
 
-ubit8 char_data::getNaturalArmor() const
+uint8_t char_data::getNaturalArmor() const
 {
     return m_points.getNaturalArmor();
 }
 
-void char_data::setNaturalArmor(ubit8 value)
+void char_data::setNaturalArmor(uint8_t value)
 {
     m_points.setNaturalArmor(value);
 }
 
-ubit8 *char_data::getNaturalArmorPtr()
+uint8_t *char_data::getNaturalArmorPtr()
 {
     return m_points.getNaturalArmorPtr();
 }
 
-ubit8 char_data::getAttackType() const
+uint8_t char_data::getAttackType() const
 {
     return m_points.getAttackType();
 }
 
-void char_data::setAttackType(ubit8 value)
+void char_data::setAttackType(uint8_t value)
 {
     m_points.setAttackType(value);
 }
 
-ubit8 *char_data::getAttackTypePtr()
+uint8_t *char_data::getAttackTypePtr()
 {
     return m_points.getAttackTypePtr();
 }
 
-ubit8 char_data::getSex() const
+uint8_t char_data::getSex() const
 {
     return m_points.getSex();
 }
 
-void char_data::setSex(ubit8 value)
+void char_data::setSex(uint8_t value)
 {
     m_points.setSex(value);
 }
 
-ubit8 *char_data::getSexPtr()
+uint8_t *char_data::getSexPtr()
 {
     return m_points.getSexPtr();
 }
 
-ubit8 char_data::getLevel() const
+uint8_t char_data::getLevel() const
 {
     return m_points.getLevel();
 }
 
-void char_data::setLevel(ubit8 value)
+void char_data::setLevel(uint8_t value)
 {
     m_points.setLevel(value);
 }
 
-ubit8 *char_data::getLevelPtr()
+uint8_t *char_data::getLevelPtr()
 {
     return m_points.getLevelPtr();
 }
@@ -351,17 +351,17 @@ void char_data::incrementLevel()
     m_points.incrementLevel();
 }
 
-ubit8 char_data::getPosition() const
+uint8_t char_data::getPosition() const
 {
     return m_points.getPosition();
 }
 
-void char_data::setPosition(ubit8 value)
+void char_data::setPosition(uint8_t value)
 {
     m_points.setPosition(value);
 }
 
-ubit8 *char_data::getPositionPtr()
+uint8_t *char_data::getPositionPtr()
 {
     return m_points.getPositionPtr();
 }
@@ -534,12 +534,12 @@ void char_data::setMoney(char *value)
     m_money = value;
 }
 
-ubit8 char_data::getLastAttackerType() const
+uint8_t char_data::getLastAttackerType() const
 {
     return m_last_attacker_type;
 }
 
-void char_data::setLastAttackerType(ubit8 value)
+void char_data::setLastAttackerType(uint8_t value)
 {
     m_last_attacker_type = value;
 }

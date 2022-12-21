@@ -20,7 +20,7 @@ public:
      * @param unit We have to pass this in because there data in the middle that doesn't belong to char_point_data
      * @param error Error count
      */
-    void readFrom(CByteBuffer &buf, ubit8 unit_version, unit_data *unit, int &error);
+    void readFrom(CByteBuffer &buf, uint8_t unit_version, unit_data *unit, int &error);
 
     ubit32 getCharacterFlags() const;
     ubit32 *getCharacterFlagsPtr();
@@ -66,26 +66,26 @@ private:
     int getSpeedPercentage(bool isPC);
 
 public:
-    ubit8 getNaturalArmor() const;
-    void setNaturalArmor(ubit8 value);
-    ubit8 *getNaturalArmorPtr();
+    uint8_t getNaturalArmor() const;
+    void setNaturalArmor(uint8_t value);
+    uint8_t *getNaturalArmorPtr();
 
-    ubit8 getAttackType() const;
-    void setAttackType(ubit8 value);
-    ubit8 *getAttackTypePtr();
+    uint8_t getAttackType() const;
+    void setAttackType(uint8_t value);
+    uint8_t *getAttackTypePtr();
 
-    ubit8 getSex() const;
-    void setSex(ubit8 value);
-    ubit8 *getSexPtr();
+    uint8_t getSex() const;
+    void setSex(uint8_t value);
+    uint8_t *getSexPtr();
 
-    ubit8 getLevel() const;
-    void setLevel(ubit8 value);
-    ubit8 *getLevelPtr();
+    uint8_t getLevel() const;
+    void setLevel(uint8_t value);
+    uint8_t *getLevelPtr();
     void incrementLevel();
 
-    ubit8 getPosition() const;
-    void setPosition(ubit8 value);
-    ubit8 *getPositionPtr();
+    uint8_t getPosition() const;
+    void setPosition(uint8_t value);
+    uint8_t *getPositionPtr();
 
     sbit16 getAbilityAtIndex(size_t index) const;
     sbit16 *getAbilityAtIndexPtr(size_t index);
@@ -119,11 +119,11 @@ private:
     sbit16 offensive{0};                            ///< The OB of a character.
     sbit16 defensive{0};                            ///< The DB of a character.
     sbit16 speed{0};                                ///< The speed for combat
-    ubit8 natural_armour{0};                        ///< The natural built-in armour (ARM_)
-    ubit8 attack_type{0};                           ///< PC/NPC Attack Type for bare hands (WPN_)
-    ubit8 dex_reduction{0};                         ///< For speed of armour calculations only
-    ubit8 sex{0};                                   ///< PC / NPC s sex
-    ubit8 level{0};                                 ///< PC / NPC s level
-    ubit8 position{0};                              ///< Standing, sitting, fighting...
+    uint8_t natural_armour{0};                      ///< The natural built-in armour (ARM_)
+    uint8_t attack_type{0};                         ///< PC/NPC Attack Type for bare hands (WPN_)
+    uint8_t dex_reduction{0};                       ///< For speed of armour calculations only
+    uint8_t sex{0};                                 ///< PC / NPC s sex
+    uint8_t level{0};                               ///< PC / NPC s level
+    uint8_t position{0};                            ///< Standing, sitting, fighting...
     std::array<sbit16, ABIL_TREE_MAX> abilities{0}; ///< Str/dex etc.
 };

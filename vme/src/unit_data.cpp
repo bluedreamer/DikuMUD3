@@ -17,7 +17,7 @@
     #include "vmc/vmc_process.h"
 #endif
 
-unit_data *new_unit_data(ubit8 type, file_index_type *fi)
+unit_data *new_unit_data(uint8_t type, file_index_type *fi)
 {
     if (type == UNIT_ST_ROOM)
     {
@@ -42,7 +42,7 @@ unit_data *new_unit_data(ubit8 type, file_index_type *fi)
     return nullptr; // Need to avoid warning on Git actions.
 }
 
-unit_data::unit_data(ubit8 type, file_index_type *fi)
+unit_data::unit_data(uint8_t type, file_index_type *fi)
     : m_func{nullptr}
     , m_affected{nullptr}
     , m_fi{nullptr}
@@ -138,7 +138,6 @@ unit_data::~unit_data()
         assert(FALSE);
     }
 }
-
 
 std::string unit_data::json()
 {
@@ -424,7 +423,7 @@ const file_index_type *unit_data::getFileIndex() const
 void unit_data::setFileIndex(file_index_type *fi)
 {
     if (fi == nullptr)
-        return;   // Ideally some day nullptr will not be allowed
+        return; // Ideally some day nullptr will not be allowed
 
     if (m_fi)
     {
@@ -433,7 +432,7 @@ void unit_data::setFileIndex(file_index_type *fi)
 
     if (fi->getType() != this->m_status)
     {
-        slog(LOG_ALL, 0, "ERROR: FI set but the FI %s@%s type isn't the same as the unit type.",  fi->getName(), fi->getZone()->getName());
+        slog(LOG_ALL, 0, "ERROR: FI set but the FI %s@%s type isn't the same as the unit type.", fi->getName(), fi->getZone()->getName());
     }
 
     m_fi = fi;
@@ -640,42 +639,42 @@ void unit_data::increaseSizeBy(ubit16 value)
     m_size += value;
 }
 
-ubit8 unit_data::getUnitType() const
+uint8_t unit_data::getUnitType() const
 {
     return m_status;
 }
 
-ubit8 unit_data::getOpenFlags() const
+uint8_t unit_data::getOpenFlags() const
 {
     return m_open_flags;
 }
 
-ubit8 *unit_data::getOpenFlagsPtr()
+uint8_t *unit_data::getOpenFlagsPtr()
 {
     return &m_open_flags;
 }
 
-void unit_data::setAllOpenFlags(ubit8 value)
+void unit_data::setAllOpenFlags(uint8_t value)
 {
     m_open_flags = value;
 }
 
-void unit_data::setOpenFlag(ubit8 value)
+void unit_data::setOpenFlag(uint8_t value)
 {
     m_open_flags |= value;
 }
 
-ubit8 unit_data::getOpenDifficulty() const
+uint8_t unit_data::getOpenDifficulty() const
 {
     return m_open_diff;
 }
 
-ubit8 *unit_data::getOpenDifficultyPtr()
+uint8_t *unit_data::getOpenDifficultyPtr()
 {
     return &m_open_diff;
 }
 
-void unit_data::setOpenDifficulty(ubit8 value)
+void unit_data::setOpenDifficulty(uint8_t value)
 {
     m_open_diff = value;
 }
@@ -725,7 +724,7 @@ void unit_data::changeTransparentLightOutputBy(sbit16 value)
     m_illum += value;
 }
 
-ubit8 unit_data::getNumberOfCharactersInsideUnit() const
+uint8_t unit_data::getNumberOfCharactersInsideUnit() const
 {
     return m_chars;
 }
@@ -740,22 +739,22 @@ void unit_data::incrementNumberOfCharactersInsideUnit()
     ++m_chars;
 }
 
-void unit_data::setNumberOfCharactersInsideUnit(ubit8 value)
+void unit_data::setNumberOfCharactersInsideUnit(uint8_t value)
 {
     m_chars = value;
 }
 
-ubit8 unit_data::getLevelOfWizardInvisibility() const
+uint8_t unit_data::getLevelOfWizardInvisibility() const
 {
     return m_minv;
 }
 
-ubit8 *unit_data::getLevelOfWizardInvisibilityPtr()
+uint8_t *unit_data::getLevelOfWizardInvisibilityPtr()
 {
     return &m_minv;
 }
 
-void unit_data::setLevelOfWizardInvisibility(ubit8 value)
+void unit_data::setLevelOfWizardInvisibility(uint8_t value)
 {
     m_minv = value;
 }

@@ -34,9 +34,9 @@ void modify_bright(unit_data *unit, int bright);
 void trans_set(unit_data *u);
 void trans_unset(unit_data *u);
 
-unit_data *equipment(unit_data *ch, ubit8 pos);
-unit_data *equipment_type(unit_data *ch, int pos, ubit8 type);
-void equip_char(unit_data *ch, unit_data *obj, ubit8 pos);
+unit_data *equipment(unit_data *ch, uint8_t pos);
+unit_data *equipment_type(unit_data *ch, int pos, uint8_t type);
+void equip_char(unit_data *ch, unit_data *obj, uint8_t pos);
 
 unit_data *unequip_object(unit_data *obj);
 

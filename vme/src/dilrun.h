@@ -64,7 +64,7 @@ void dil_free_frame(dilframe *frame);
 
 char dil_getbool(dilval *v, dilprg *prg);
 int dil_getval(dilval *v);
-void dil_add_secure(dilprg *prg, unit_data *sup, ubit8 *lab);
+void dil_add_secure(dilprg *prg, unit_data *sup, uint8_t *lab);
 int dil_sub_secure(dilframe *frm, unit_data *sup, int bForeach = FALSE);
 void dil_clear_extras(dilprg *prg, extra_descr_data *exd);
 void dil_clear_non_secured(dilprg *prg);
@@ -84,7 +84,7 @@ void dil_typeerr(dilprg *p, const char *where);
 int dil_type_check(const char *f, dilprg *p, int tot, ...);
 
 void dil_intr_remove(dilprg *p, int idx);
-int dil_intr_insert(dilprg *p, ubit8 *lab, ubit8 *elab, ubit16 flags);
+int dil_intr_insert(dilprg *p, uint8_t *lab, uint8_t *elab, ubit16 flags);
 int run_dil(spec_arg *sarg);
 void dil_free_template(diltemplate *tmpl, int copy);
 void dil_function_table_setup();

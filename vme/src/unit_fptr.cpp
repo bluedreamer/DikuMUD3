@@ -38,7 +38,7 @@ void unit_fptr::setFunctionPointerIndex(ubit16 value)
     index = value;
 }
 
-ubit8 unit_fptr::getFunctionPriority() const
+uint8_t unit_fptr::getFunctionPriority() const
 {
     return priority;
 }
@@ -48,7 +48,7 @@ void unit_fptr::readFunctionPriorityFrom(CByteBuffer &buf, int &nError)
     priority = buf.ReadU8(&nError);
 }
 
-void unit_fptr::setFunctionPriority(ubit8 value)
+void unit_fptr::setFunctionPriority(uint8_t value)
 {
     priority = value;
 }

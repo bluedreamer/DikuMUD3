@@ -118,7 +118,7 @@ int getPlayerProfessionByIndex(unit_data *pc, int index)
     return exdp->vals.Value(index + 1);
 }
 
-int profession_cost::getProfessionBonus(unit_data *pc, ubit8 teachtype)
+int profession_cost::getProfessionBonus(unit_data *pc, uint8_t teachtype)
 {
     if (!pc->isPC())
     {
@@ -186,7 +186,7 @@ void profession_cost::setProfessionBonus(int professionIndex, int8_t value)
 
 /* ===================================================================== */
 
-skill_collection::skill_collection(int nSize, ubit8 tt)
+skill_collection::skill_collection(int nSize, uint8_t tt)
 {
     teachtype = tt;
     prof_table = std::make_unique<profession_cost[]>(nSize);

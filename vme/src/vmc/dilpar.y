@@ -58,7 +58,7 @@ char cur_tmplref[8192];              /* generated template reference (if -t) */
 extern int dillinenum;
 
 char **var_names;       /* names of variables */
-ubit8 in_foreach = 0;   /* inside foreach */
+uint8_t in_foreach = 0;   /* inside foreach */
 
 ubit16 label_no;         /* number of labels */
 char **label_names;      /* names of labels */
@@ -98,8 +98,8 @@ char **ref_usednames; /* used names, registered in tmpl */
 int refcount = 0;     /* number of ext. ref. */
 int drefcount = 0;    /* number of ext. ref. */
 
-ubit8 *wcore;         /* writing pointer (in cur.core )  */
-ubit8 *wtmp;          /* writing pointer (in cur.core )  */
+uint8_t *wcore;         /* writing pointer (in cur.core )  */
+uint8_t *wtmp;          /* writing pointer (in cur.core )  */
 int dilint_list[300]; /* Data for string lists */
 
 int addint = 0;
@@ -117,7 +117,7 @@ void dilwarning(const char *str);
 void dilsyntax(const char *str);
 void dumpdiltemplate(struct diltemplate *tmpl);
 void dumpdil(struct dilprg *prg);
-int dil_corecrc(ubit8 *core, int len);
+int dil_corecrc(uint8_t *core, int len);
 int dil_headercrc(char **name, DilVarType_e *type);
 void dil_free_template(struct diltemplate *tmpl, int copy, int dil = FALSE);
 void dil_free_var(struct dilvar *var);
@@ -131,7 +131,7 @@ struct sSyms
 };
 
 #define INITEXP(v)                                                             \
-    CREATE(v.code, ubit8, CODESIZE);                                           \
+    CREATE(v.code, uint8_t, CODESIZE);                                           \
     v.codep = v.code;                                                          \
     v.num = 0;                                                                 \
     v.typ = v.rtyp = DilVarType_e::DILV_NULL;                                                \
@@ -161,15 +161,15 @@ struct sSyms
     struct
     {
         ubit32 fst, lst; /* first, last addr in core */
-        ubit8 dsl, typ;  /* if expression: leftvalue, type */
-        ubit8 boolean;
+        uint8_t dsl, typ;  /* if expression: leftvalue, type */
+        uint8_t boolean;
     } ins;
     struct dilxref xref;
     struct sSyms *syms;
 }
 
 %{
-void add_ubit8(struct exptype *dest, ubit8 d);
+void add_ubit8(struct exptype *dest, uint8_t d);
 void add_ubit32(struct exptype *dest, ubit32 d);
 void add_sbit32(struct exptype *dest, sbit32 d);
 void add_ubit16(struct exptype *dest, ubit16 d);
@@ -410,7 +410,7 @@ dilinit : /* nothing */
         }
         /* Set up template  */
         CREATE(tmpl.argt, DilVarType_e, ARGMAX);
-        CREATE(tmpl.core, ubit8, CODESIZE);
+        CREATE(tmpl.core, uint8_t, CODESIZE);
         CREATE(tmpl.vart, DilVarType_e, VARMAX);
         CREATE(tmpl.varg, char *, VARMAX);
         tmpl.prgname = strdup("NONAME");
@@ -5457,7 +5457,7 @@ corevar   : variable
 ihold   : /* instruction core placeholder */
     {
         $$ = wcore - tmpl.core;
-        wcore++; /* ubit8 */
+        wcore++; /* uint8_t */
     }
     ;
 
@@ -7366,7 +7366,7 @@ void update_labels(void)
 {
     int i;
     char buf[255];
-    ubit8 *wtmp;
+    uint8_t *wtmp;
 
     for (i = 0; i < label_use_no; i++)
     {
@@ -7445,7 +7445,7 @@ void moredilcore(ubit32 size)
     if (p1 < p2)
     {
         pos = wcore - tmpl.core;
-        RECREATE(tmpl.core, ubit8, tmpl.coresz + CODESIZE);
+        RECREATE(tmpl.core, uint8_t, tmpl.coresz + CODESIZE);
         tmpl.coresz += CODESIZE;
         wcore = &tmpl.core[pos];
     }
@@ -7453,10 +7453,10 @@ void moredilcore(ubit32 size)
 
 /* expression manipulation */
 
-void add_ubit8(struct exptype *dest, ubit8 d)
+void add_ubit8(struct exptype *dest, uint8_t d)
 {
     /*   fprintf(stderr, "UBIT8\n");*/
-    if (dest->codep - dest->code + sizeof(ubit8) >= CODESIZE)
+    if (dest->codep - dest->code + sizeof(uint8_t) >= CODESIZE)
     {
         dilfatal("U8: Expression too large");
     }
@@ -7588,7 +7588,7 @@ void copy_code(struct exptype *dest, struct exptype *src)
     dest->num = src->num;
 }
 
-ubit16 UpdateCRC(ubit8 c, ubit16 crc)
+ubit16 UpdateCRC(uint8_t c, ubit16 crc)
 {
     /*
 
@@ -7653,7 +7653,7 @@ int dil_headercrc(char **name, DilVarType_e *type)
     return crc;
 }
 
-int dil_corecrc(ubit8 *core, int len)
+int dil_corecrc(uint8_t *core, int len)
 {
     int i;
     ubit16 crc = 0;
@@ -7710,7 +7710,7 @@ void add_ref(struct dilref *ref)
         CREATE(refs[refcount].argv, char *, ref->argc);
         memcpy(refs[refcount].argv, ref->argv, ref->argc * sizeof(char *));
         CREATE(refs[refcount].argt, DilVarType_e, ref->argc);
-        memcpy(refs[refcount].argt, ref->argt, ref->argc * sizeof(ubit8));
+        memcpy(refs[refcount].argt, ref->argt, ref->argc * sizeof(uint8_t));
     }
     else
     {

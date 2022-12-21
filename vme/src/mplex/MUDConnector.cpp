@@ -304,7 +304,7 @@ int cMudHook::read_mud()
     int p = 0;
     int n = 0;
     char *data = nullptr;
-    ubit8 text_type = 0;
+    uint8_t text_type = 0;
 
     p = protocol_parse_incoming(this, &id, &len, &data, &text_type);
     // slog(LOG_OFF, 0, "read_mud(): p=%d. len=%d", p, len);
@@ -435,7 +435,7 @@ int cMudHook::read_mud()
                             // Dont page to the web-client - it pops up an overlay instead.
                             if (con->m_pWebsServer)
                             {
-                                con->Write((ubit8 *)parsed, strlen(parsed));
+                                con->Write((uint8_t *)parsed, strlen(parsed));
                             }
                             else
                             {
@@ -449,7 +449,7 @@ int cMudHook::read_mud()
                             break;
 
                         default:
-                            con->Write((ubit8 *)parsed, strlen(parsed));
+                            con->Write((uint8_t *)parsed, strlen(parsed));
                             break;
                     }
                     break;

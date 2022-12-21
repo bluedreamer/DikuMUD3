@@ -116,7 +116,7 @@ int cMultiHook::Read()
     ubit16 id = 0;
     ubit16 len = 0;
     char *data = nullptr;
-    ubit8 text_type = 0;
+    uint8_t text_type = 0;
 
     p = protocol_parse_incoming(this, &id, &len, &data, &text_type);
 
@@ -195,7 +195,7 @@ int cMultiHook::Read()
         case MULTI_HOST_CHAR:
             if (d && data)
             {
-                ubit8 *b = (ubit8 *)data;
+                uint8_t *b = (uint8_t *)data;
 
                 d->setMplexPortNum(bread_ubit16(&b));
                 d->setSerialLine(bread_ubit8(&b));

@@ -24,8 +24,8 @@ public:
 
     void AppendBuffer(CByteBuffer *pBuf);
     int ReadBuffer(CByteBuffer *pBuf, int unit_version);
-    void bread(ubit8 **b);
-    void bwrite(ubit8 **b);
+    void bread(uint8_t **b);
+    void bwrite(uint8_t **b);
 
     char *catnames();
     std::string json();

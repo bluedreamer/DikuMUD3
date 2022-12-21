@@ -145,7 +145,7 @@ void add_crime(unit_data *criminal, unit_data *victim, int type)
 // crime_type can be CRIME_EXTRA, CRIME_STEALING, CRIME_MURDER, CRIME_PK
 // active ?
 //
-void log_crime(unit_data *criminal, unit_data *victim, ubit8 crime_type, int active)
+void log_crime(unit_data *criminal, unit_data *victim, uint8_t crime_type, int active)
 {
     int i = 0;
     int j = 0;
@@ -437,7 +437,7 @@ void set_witness(class unit_data *criminal, class unit_data *witness,
 {
     class unit_affected_type af;
 
-    void activate_accuse(class unit_data * npc, ubit8 crime_type,
+    void activate_accuse(class unit_data * npc, uint8_t crime_type,
                          const char *cname);
     struct diltemplate *tmpl;
 
@@ -768,7 +768,7 @@ int accuse(struct spec_arg *sarg)
 /*struct npc_accuse_data
 {
     char *criminal_name;
-    ubit8 crime_type;
+    uint8_t crime_type;
     int was_wimpy;
 };
 */
@@ -835,7 +835,7 @@ int accuse(struct spec_arg *sarg)
 }
 i*/
 // MS2020: this must be broken now. Convert to DIL?
-// id activate_accuse(class unit_data *npc, ubit8 crime_type, const char *cname)
+// id activate_accuse(class unit_data *npc, uint8_t crime_type, const char *cname)
 //
 //  struct npc_accuse_data *nad;
 //  class unit_data *prison;

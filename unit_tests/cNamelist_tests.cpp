@@ -1,7 +1,9 @@
 #define BOOST_TEST_MODULE "cNamelists Unit Tests"
-#include <boost/test/unit_test.hpp>
 #include "namelist.h"
+
 #include <vector>
+
+#include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(cNamelist_tests)
 
@@ -179,9 +181,9 @@ BOOST_AUTO_TEST_CASE(AppendBuffer1_test)
     ////////////////////////// Test Subject //////////////////////////////
     {
         auto len = buf.GetLength();
-        std::vector<ubit8> ret(buf.GetData(), buf.GetData() + len);
+        std::vector<uint8_t> ret(buf.GetData(), buf.GetData() + len);
         BOOST_TEST(len == 4);
-        ubit8 expected[4]{0, 0, 0, 0};
+        uint8_t expected[4]{0, 0, 0, 0};
         BOOST_REQUIRE(len == sizeof(expected));
         BOOST_TEST(expected == ret);
     }
@@ -209,9 +211,9 @@ BOOST_AUTO_TEST_CASE(AppendBuffer3_test)
     ////////////////////////// Test Subject //////////////////////////////
     {
         auto len = buf.GetLength();
-        std::vector<ubit8> ret(buf.GetData(), buf.GetData() + len);
+        std::vector<uint8_t> ret(buf.GetData(), buf.GetData() + len);
         BOOST_TEST(len == 22);
-        ubit8 expected[22] = {3, 0, 0, 0, 'T', 'h', 'o', 'r', 0, 'T', 'y', 'r', 0, 'H', 'e', 'i', 'm', 'd', 'a', 'l', 'l'};
+        uint8_t expected[22] = {3, 0, 0, 0, 'T', 'h', 'o', 'r', 0, 'T', 'y', 'r', 0, 'H', 'e', 'i', 'm', 'd', 'a', 'l', 'l'};
         BOOST_REQUIRE(len == sizeof(expected));
         BOOST_TEST(expected == ret);
     }
@@ -297,7 +299,7 @@ BOOST_AUTO_TEST_CASE(bread1_test)
     cNamelist list;
     // This coredumps as doesn't check for null
     // TODO enable after refactor
-    // ubit8 **b{};
+    // uint8_t **b{};
     ////////////////////////// Test Subject //////////////////////////////
     // list.bread(b);
     ////////////////////////// Test Subject //////////////////////////////
@@ -307,8 +309,8 @@ BOOST_AUTO_TEST_CASE(bread1_test)
 BOOST_AUTO_TEST_CASE(bread2_test)
 {
     cNamelist list;
-    ubit8 buffer[100]{};
-    ubit8 *buf_ptr = buffer;
+    uint8_t buffer[100]{};
+    uint8_t *buf_ptr = buffer;
     ////////////////////////// Test Subject //////////////////////////////
     list.bread(&buf_ptr);
     ////////////////////////// Test Subject //////////////////////////////
@@ -318,8 +320,8 @@ BOOST_AUTO_TEST_CASE(bread2_test)
 BOOST_AUTO_TEST_CASE(bread3_test)
 {
     cNamelist list;
-    ubit8 buffer[100]{3, 0, 0, 0, 'T', 'y', 'r', 0, 'L', 'o', 'k', 'i', 0, 'T', 'h', 'o', 'r'};
-    ubit8 *buf_ptr = buffer;
+    uint8_t buffer[100]{3, 0, 0, 0, 'T', 'y', 'r', 0, 'L', 'o', 'k', 'i', 0, 'T', 'h', 'o', 'r'};
+    uint8_t *buf_ptr = buffer;
     ////////////////////////// Test Subject //////////////////////////////
     list.bread(&buf_ptr);
     ////////////////////////// Test Subject //////////////////////////////
@@ -337,7 +339,7 @@ BOOST_AUTO_TEST_CASE(bwrite1_test)
     cNamelist list;
     // This coredumps as doesn't check for null
     // TODO enable after refactor
-    // ubit8 **b{};
+    // uint8_t **b{};
     ////////////////////////// Test Subject //////////////////////////////
     // list.bwrite(b);
     ////////////////////////// Test Subject //////////////////////////////
@@ -347,12 +349,12 @@ BOOST_AUTO_TEST_CASE(bwrite1_test)
 BOOST_AUTO_TEST_CASE(bwrite2_test)
 {
     cNamelist list;
-    ubit8 buffer[100]{};
-    ubit8 *buf_ptr = buffer;
+    uint8_t buffer[100]{};
+    uint8_t *buf_ptr = buffer;
     ////////////////////////// Test Subject //////////////////////////////
     list.bwrite(&buf_ptr);
     ////////////////////////// Test Subject //////////////////////////////
-    ubit8 expected[100]{};
+    uint8_t expected[100]{};
     BOOST_TEST(buffer == expected);
 }
 
@@ -362,12 +364,12 @@ BOOST_AUTO_TEST_CASE(bwrite3_test)
     list.AppendName("Tyr");
     list.AppendName("Loki");
     list.AppendName("Thor");
-    ubit8 buffer[100]{};
-    ubit8 *buf_ptr = buffer;
+    uint8_t buffer[100]{};
+    uint8_t *buf_ptr = buffer;
     ////////////////////////// Test Subject //////////////////////////////
     list.bwrite(&buf_ptr);
     ////////////////////////// Test Subject //////////////////////////////
-    ubit8 expected[100]{3, 0, 0, 0, 'T', 'y', 'r', 0, 'L', 'o', 'k', 'i', 0, 'T', 'h', 'o', 'r'};
+    uint8_t expected[100]{3, 0, 0, 0, 'T', 'y', 'r', 0, 'L', 'o', 'k', 'i', 0, 'T', 'h', 'o', 'r'};
     BOOST_TEST(buffer == expected);
 }
 
@@ -1088,7 +1090,6 @@ BOOST_AUTO_TEST_CASE(IsNameRawIdx6_test)
     BOOST_TEST(ret == -1);
 }
 
-
 BOOST_AUTO_TEST_CASE(IsNameRawIdx7_test)
 {
     cNamelist list;
@@ -1281,7 +1282,6 @@ BOOST_AUTO_TEST_CASE(IsName7_test)
     BOOST_REQUIRE_NE(ret, nullptr);
     BOOST_TEST(std::string(ret) == "to  Loki ");
 }
-
 
 BOOST_AUTO_TEST_CASE(Length_test)
 {

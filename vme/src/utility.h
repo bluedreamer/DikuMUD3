@@ -27,18 +27,18 @@ public:
     log_buffer() = default;
     void setString(std::string str) { m_str = std::move(str); }
     void setLevel(log_level level) { m_level = level; }
-    void setWizInvLevel(ubit8 level) { m_wizinv_level = level; }
+    void setWizInvLevel(uint8_t level) { m_wizinv_level = level; }
 
     const std::string &getString() const { return m_str; }
     log_level getLevel() const { return m_level; }
-    ubit8 getWizInvLevel() const { return m_wizinv_level; }
+    uint8_t getWizInvLevel() const { return m_wizinv_level; }
 
     void clearString() { m_str.clear(); }
 
 private:
     std::string m_str{};
     log_level m_level{};
-    ubit8 m_wizinv_level{};
+    uint8_t m_wizinv_level{};
 };
 
 /**
@@ -48,7 +48,7 @@ private:
 struct obj_type_t
 {
     const char *fmt;
-    ubit8 v[5];
+    uint8_t v[5];
 };
 
 int is_in(int a, int from, int to);

@@ -286,7 +286,7 @@ void cHook::PushWrite()
     int sofar = 0;
     int len = 0;
     int thisround = 0;
-    ubit8 buf[1460];
+    uint8_t buf[1460];
 
     if (!cHook::IsHooked())
     {
@@ -295,7 +295,7 @@ void cHook::PushWrite()
 
     while (!qTX.IsEmpty())
     {
-        len = MIN(sizeof(buf)-1, qTX.Bytes());
+        len = MIN(sizeof(buf) - 1, qTX.Bytes());
 
         qTX.CutCopy(buf, len);
 
@@ -337,7 +337,7 @@ void cHook::PushWrite()
     }
 }
 
-void cHook::Write(ubit8 *pData, ubit32 nLen, int bCopy)
+void cHook::Write(uint8_t *pData, ubit32 nLen, int bCopy)
 {
     if (nLen <= 0)
     {
@@ -368,11 +368,11 @@ int cHook::ReadToQueue()
 
     for (;;)
     {
-        thisround = this->read(buf, sizeof(buf)-1);
+        thisround = this->read(buf, sizeof(buf) - 1);
 
         if (thisround > 0)
         {
-            qRX.Append(new cQueueElem((ubit8 *)buf, (ubit32)thisround));
+            qRX.Append(new cQueueElem((uint8_t *)buf, (ubit32)thisround));
         }
         else if (thisround == 0)
         {

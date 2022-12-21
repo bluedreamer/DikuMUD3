@@ -70,67 +70,67 @@ void obj_data::setPricePerDay(ubit32 value)
     m_cost_per_day = value;
 }
 
-ubit8 obj_data::getObjectFlags() const
+uint8_t obj_data::getObjectFlags() const
 {
     return m_flags;
 }
 
-ubit8 *obj_data::getObjectFlagsPtr()
+uint8_t *obj_data::getObjectFlagsPtr()
 {
     return &m_flags;
 }
 
-void obj_data::setObjectFlag(ubit8 value)
+void obj_data::setObjectFlag(uint8_t value)
 {
     m_flags |= value;
 }
 
-void obj_data::removeObjectFlag(ubit8 value)
+void obj_data::removeObjectFlag(uint8_t value)
 {
     m_flags &= ~value;
 }
 
 void obj_data::setAllObjectFlags(ubit32 value)
 {
-    m_flags = static_cast<ubit8>(value);
+    m_flags = static_cast<uint8_t>(value);
 }
 
-ubit8 obj_data::getObjectItemType() const
+uint8_t obj_data::getObjectItemType() const
 {
     return m_type;
 }
 
-ubit8 *obj_data::getObjectItemTypePtr()
+uint8_t *obj_data::getObjectItemTypePtr()
 {
     return &m_type;
 }
 
-void obj_data::setObjectItemType(ubit8 value)
+void obj_data::setObjectItemType(uint8_t value)
 {
     m_type = value;
 }
 
-ubit8 obj_data::getEquipmentPosition() const
+uint8_t obj_data::getEquipmentPosition() const
 {
     return m_equip_pos;
 }
 
-void obj_data::setEquipmentPosition(ubit8 value)
+void obj_data::setEquipmentPosition(uint8_t value)
 {
     m_equip_pos = value;
 }
 
-ubit8 obj_data::getMagicResistance() const
+uint8_t obj_data::getMagicResistance() const
 {
     return m_resistance;
 }
 
-ubit8 *obj_data::getMagicResistancePtr()
+uint8_t *obj_data::getMagicResistancePtr()
 {
     return &m_resistance;
 }
 
-void obj_data::setMagicResistance(ubit8 value)
+void obj_data::setMagicResistance(uint8_t value)
 {
     m_resistance = value;
 }

@@ -92,7 +92,7 @@ char *read_info_file(const char *name, char *oldstr);
 char *read_info_file(const std::string &name, char *oldstr);
 void boot_db();
 void db_shutdown();
-int bread_affect(CByteBuffer *pBuf, unit_data *u, ubit8 nVersion);
+int bread_affect(CByteBuffer *pBuf, unit_data *u, uint8_t nVersion);
 
 extern int g_room_number;
 extern unit_data *g_unit_list;

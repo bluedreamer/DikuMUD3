@@ -44,7 +44,7 @@ public:
     static OutputCapture *Instance();
     static void EnableOutputCapture();
 
-    static void slog(log_level level, ubit8 wizinv_level, const std::string &fmt, const std::string &msg);
+    static void slog(log_level level, uint8_t wizinv_level, const std::string &fmt, const std::string &msg);
     [[nodiscard]] const slog_data &getSLogData() const;
     [[nodiscard]] const std::vector<slog_data> &getSLogDataMulti() const;
 

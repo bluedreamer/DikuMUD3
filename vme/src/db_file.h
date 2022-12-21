@@ -11,12 +11,12 @@
 #include "unit_affected_type.h"
 #include "unit_fptr.h"
 
-void *bread_dil(CByteBuffer *pBuf, unit_data *, ubit8 version, unit_fptr *fptr, int stspec = TRUE);
+void *bread_dil(CByteBuffer *pBuf, unit_data *, uint8_t version, unit_fptr *fptr, int stspec = TRUE);
 
 diltemplate *bread_diltemplate(CByteBuffer *pBuf, int version);
 int bread_extra(CByteBuffer *pBuf, extra_list &cExtra, int unit_version);
 
-unit_fptr *bread_func(CByteBuffer *pBuf, ubit8 version, unit_data *owner, int stspec = TRUE);
+unit_fptr *bread_func(CByteBuffer *pBuf, uint8_t version, unit_data *owner, int stspec = TRUE);
 
 void bread_block(FILE *datafile, long file_pos, int length, void *buffer);
 

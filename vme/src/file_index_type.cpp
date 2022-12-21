@@ -4,8 +4,7 @@
 #include "utils.h"
 #include "vme.h"
 
-
-file_index_type::file_index_type(zone_type *zone, const char *name, ubit8 type)
+file_index_type::file_index_type(zone_type *zone, const char *name, uint8_t type)
 {
     assert(zone);
     assert(name);
@@ -16,7 +15,6 @@ file_index_type::file_index_type(zone_type *zone, const char *name, ubit8 type)
     m_zone = zone;
     m_type = type;
 }
-
 
 unit_data *file_index_type::find_symbolic_instance_ref(unit_data *ref, ubit16 bitvector)
 {
@@ -166,7 +164,7 @@ ubit16 file_index_type::getRoomNum() const
     return m_room_no;
 }
 
-ubit8 file_index_type::getType() const
+uint8_t file_index_type::getType() const
 {
     return m_type;
 }

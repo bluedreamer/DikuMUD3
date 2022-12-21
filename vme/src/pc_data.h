@@ -202,10 +202,10 @@ public:
      * @todo Add range checking to indexes
      * @{
      */
-    ubit8 getSpellLevelAtIndex(size_t index) const;
-    ubit8 *getSpellLevelAtIndexPtr(size_t index);
-    ubit8 *getSpellLevelArrayPtr();
-    void setSpellLevelAtIndexTo(size_t index, ubit8 value);
+    uint8_t getSpellLevelAtIndex(size_t index) const;
+    uint8_t *getSpellLevelAtIndexPtr(size_t index);
+    uint8_t *getSpellLevelArrayPtr();
+    void setSpellLevelAtIndexTo(size_t index, uint8_t value);
     /// @}
 
     /**
@@ -226,10 +226,10 @@ public:
      * @todo Add range checking to indexes
      * @{
      */
-    ubit8 getSkillLevelAtIndex(size_t index) const;
-    ubit8 *getSkillLevelAtIndexPtr(size_t index);
-    ubit8 *getSkillLevelArrayPtr();
-    void setSkillLevelAtIndexTo(size_t index, ubit8 value);
+    uint8_t getSkillLevelAtIndex(size_t index) const;
+    uint8_t *getSkillLevelAtIndexPtr(size_t index);
+    uint8_t *getSkillLevelArrayPtr();
+    void setSkillLevelAtIndexTo(size_t index, uint8_t value);
     /// @}
 
     /**
@@ -250,10 +250,10 @@ public:
      * @todo Add range checking to indexes
      * @{
      */
-    ubit8 getWeaponSkillLevelAtIndex(size_t index) const;
-    ubit8 *getWeaponSkillLevelAtIndexPtr(size_t index);
-    ubit8 *getWeaponSkillLevelArrayPtr();
-    void setWeaponSkillLevelAtIndexTo(size_t index, ubit8 value);
+    uint8_t getWeaponSkillLevelAtIndex(size_t index) const;
+    uint8_t *getWeaponSkillLevelAtIndexPtr(size_t index);
+    uint8_t *getWeaponSkillLevelArrayPtr();
+    void setWeaponSkillLevelAtIndexTo(size_t index, uint8_t value);
     /// @}
 
     /**
@@ -261,10 +261,10 @@ public:
      * @todo Add range checking to indexes
      * @{
      */
-    ubit8 getAbilityLevelAtIndex(size_t index) const;
-    ubit8 *getAbilityLevelAtIndexPtr(size_t index);
-    ubit8 *getAbilityLevelArrayPtr();
-    void setAbilityLevelAtIndexTo(size_t index, ubit8 value);
+    uint8_t getAbilityLevelAtIndex(size_t index) const;
+    uint8_t *getAbilityLevelAtIndexPtr(size_t index);
+    uint8_t *getAbilityLevelArrayPtr();
+    void setAbilityLevelAtIndexTo(size_t index, uint8_t value);
     /// @}
 
     /**
@@ -283,8 +283,8 @@ public:
      * @name Access Level
      * @{
      */
-    ubit8 getAccessLevel() const;
-    void setAccessLevel(ubit8 value);
+    uint8_t getAccessLevel() const;
+    void setAccessLevel(uint8_t value);
     /// @}
 
     /**
@@ -343,14 +343,14 @@ private:
     ubit16 m_crack_attempts{0};                          ///< Number of wrong passwords entered
     ubit16 m_lifespan{0};                                ///< How many year to live....
     sbit16 m_spells[SPL_TREE_MAX]{0};                    ///< The spells learned
-    ubit8 m_spell_lvl[SPL_TREE_MAX]{0};                  ///< Practiced within that level
+    uint8_t m_spell_lvl[SPL_TREE_MAX]{0};                ///< Practiced within that level
     sbit16 m_skills[SKI_TREE_MAX]{0};                    ///< The skills learned
-    ubit8 m_skill_lvl[SKI_TREE_MAX]{0};                  ///< The skills practiced within level
+    uint8_t m_skill_lvl[SKI_TREE_MAX]{0};                ///< The skills practiced within level
     sbit16 m_weapons[WPN_TREE_MAX]{0};                   ///< The weapons learned
-    ubit8 m_weapon_lvl[WPN_TREE_MAX]{0};                 ///< The weapons learned
-    ubit8 m_ability_lvl[ABIL_TREE_MAX]{0};               ///< The abilities learned
+    uint8_t m_weapon_lvl[WPN_TREE_MAX]{0};               ///< The weapons learned
+    uint8_t m_ability_lvl[ABIL_TREE_MAX]{0};             ///< The abilities learned
     int8_t m_conditions[3]{0};                           ///< Drunk full etc.
-    ubit8 m_nAccessLevel{0};                             ///< Access Level for BBS use
+    uint8_t m_nAccessLevel{0};                           ///< Access Level for BBS use
     char m_pwd[PC_MAX_PASSWORD]{0};                      ///< Needed when loaded w/o descriptor
     char m_filename[PC_MAX_NAME]{0};                     ///< The name on disk...
     ubit32 m_lasthosts[5]{0};                            ///< last 5 different IPs

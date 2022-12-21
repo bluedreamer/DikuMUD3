@@ -33,19 +33,19 @@ struct spec_arg
 
 struct command_info
 {
-    ubit8 combat_speed;  ///< The speed of a combat command
-    ubit8 combat_buffer; ///< Use the combat speed / buffer system?
+    uint8_t combat_speed;  ///< The speed of a combat command
+    uint8_t combat_buffer; ///< Use the combat speed / buffer system?
 
     char *cmd_str;
 
     sbit32 no;
 
-    ubit8 minimum_position;
+    uint8_t minimum_position;
 
     void (*cmd_fptr)(unit_data *ch, char *arg, const command_info *c);
 
-    ubit8 minimum_level;
-    ubit8 log_level; ///<  For logging certain immortal commands
+    uint8_t minimum_level;
+    uint8_t log_level; ///<  For logging certain immortal commands
 
     diltemplate *tmpl; ///< Perhaps a DIL template...
     ubit32 type;

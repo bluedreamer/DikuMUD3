@@ -34,47 +34,47 @@ void room_data::setRoomDirectionDataForExitTo(size_t index, room_direction_data 
     m_dir_option.at(index) = value;
 }
 
-ubit8 room_data::getRoomFlags() const
+uint8_t room_data::getRoomFlags() const
 {
     return m_flags;
 }
 
-ubit8 *room_data::getRoomFlagsPtr()
+uint8_t *room_data::getRoomFlagsPtr()
 {
     return &m_flags;
 }
 
 void room_data::setAllRoomFlags(ubit16 value)
 {
-    m_flags = static_cast<ubit8>(value);
+    m_flags = static_cast<uint8_t>(value);
 }
 
-ubit8 room_data::getLandscapeTerrain() const
+uint8_t room_data::getLandscapeTerrain() const
 {
     return m_movement_type;
 }
 
-ubit8 *room_data::getLandscapeTerrainPtr()
+uint8_t *room_data::getLandscapeTerrainPtr()
 {
     return &m_movement_type;
 }
 
-void room_data::setLandscapeTerrain(ubit8 value)
+void room_data::setLandscapeTerrain(uint8_t value)
 {
     m_movement_type = value;
 }
 
-ubit8 room_data::getRoomMagicalResistance() const
+uint8_t room_data::getRoomMagicalResistance() const
 {
     return m_resistance;
 }
 
-ubit8 *room_data::getRoomMagicalResistancePtr()
+uint8_t *room_data::getRoomMagicalResistancePtr()
 {
     return &m_resistance;
 }
 
-void room_data::setRoomMagicalResistance(ubit8 value)
+void room_data::setRoomMagicalResistance(uint8_t value)
 {
     m_resistance = value;
 }

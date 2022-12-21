@@ -166,7 +166,7 @@ static void chg_columns(unit_data *ch, const char *arg)
 
     act("Your screen width is now $2d columns.", A_ALWAYS, ch, &width, cActParameter(), TO_CHAR);
 
-    UPC(ch)->getTerminalSetupType().width = (ubit8)width;
+    UPC(ch)->getTerminalSetupType().width = (uint8_t)width;
 
     MplexSendSetup(CHAR_DESCRIPTOR(ch));
 }
@@ -187,7 +187,7 @@ static void chg_rows(unit_data *ch, const char *arg)
         return;
     }
 
-    UPC(ch)->getTerminalSetupType().height = (ubit8)height;
+    UPC(ch)->getTerminalSetupType().height = (uint8_t)height;
 
     act("Your screen height is $2d rows.", A_ALWAYS, ch, &height, cActParameter(), TO_CHAR);
 

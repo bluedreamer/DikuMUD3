@@ -33,7 +33,7 @@ namespace fs = boost::filesystem;
 char player_directory[1024] = "\0";
 int max_id = -1;
 int top_id = 200000;
-ubit8 *ids = nullptr; /** For checking duplicate players... */
+uint8_t *ids = nullptr; /** For checking duplicate players... */
 
 #define OUTPUT_DIR "lib/"
 
@@ -729,7 +729,7 @@ void cleanup()
 void cleanup_playerfile(int c)
 {
     top_id = read_player_id();
-    CREATE(ids, ubit8, top_id + 1);
+    CREATE(ids, uint8_t, top_id + 1);
 
     memset(ids, 0, top_id);
 

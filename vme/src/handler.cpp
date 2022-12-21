@@ -552,7 +552,7 @@ void trans_unset(unit_data *u)
     u->setTransparentLightOutput(0);
 }
 
-unit_data *equipment(unit_data *ch, ubit8 pos)
+unit_data *equipment(unit_data *ch, uint8_t pos)
 {
     unit_data *u = nullptr;
 
@@ -571,7 +571,7 @@ unit_data *equipment(unit_data *ch, ubit8 pos)
 
 /* The following functions find armor / weapons on a person with     */
 /* type checks (i.e. trash does not protect!).                       */
-unit_data *equipment_type(unit_data *ch, int pos, ubit8 type)
+unit_data *equipment_type(unit_data *ch, int pos, uint8_t type)
 {
     unit_data *obj = nullptr;
 
@@ -587,7 +587,7 @@ unit_data *equipment_type(unit_data *ch, int pos, ubit8 type)
     }
 }
 
-void equip_char(unit_data *ch, unit_data *obj, ubit8 pos)
+void equip_char(unit_data *ch, unit_data *obj, uint8_t pos)
 {
     unit_affected_type *af = nullptr;
     unit_affected_type newaf;

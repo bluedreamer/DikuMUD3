@@ -162,7 +162,6 @@ void zone_type::setZoneResetTime(ubit16 value)
     m_zone_time = value;
 }
 
-
 ubit32 zone_type::getCrc() const
 {
     return m_crc;
@@ -183,7 +182,6 @@ void zone_type::setCrc(ubit32 crc)
         }
     }
 }
-
 
 ubit16 *zone_type::getZoneResetTimePtr()
 {
@@ -224,57 +222,57 @@ ubit16 zone_type::getNumOfNPCs() const
     return m_no_npcs;
 }
 
-ubit8 zone_type::getResetMode() const
+uint8_t zone_type::getResetMode() const
 {
     return m_reset_mode;
 }
 
-ubit8 *zone_type::getResetModePtr()
+uint8_t *zone_type::getResetModePtr()
 {
     return &m_reset_mode;
 }
 
-void zone_type::setResetMode(ubit8 value)
+void zone_type::setResetMode(uint8_t value)
 {
     m_reset_mode = value;
 }
 
-ubit8 zone_type::getAccessLevel() const
+uint8_t zone_type::getAccessLevel() const
 {
     return m_access;
 }
 
-void zone_type::setAccessLevel(ubit8 value)
+void zone_type::setAccessLevel(uint8_t value)
 {
     m_access = value;
 }
 
-ubit8 zone_type::getLevelRequiredToLoadItems() const
+uint8_t zone_type::getLevelRequiredToLoadItems() const
 {
     return m_loadlevel;
 }
 
-ubit8 *zone_type::getLevelRequiredToLoadItemsPtr()
+uint8_t *zone_type::getLevelRequiredToLoadItemsPtr()
 {
     return &m_loadlevel;
 }
 
-void zone_type::setLevelRequiredToLoadItems(ubit8 value)
+void zone_type::setLevelRequiredToLoadItems(uint8_t value)
 {
     m_loadlevel = value;
 }
 
-ubit8 zone_type::getPayOnly() const
+uint8_t zone_type::getPayOnly() const
 {
     return m_payonly;
 }
 
-ubit8 *zone_type::getPayOnlyPtr()
+uint8_t *zone_type::getPayOnlyPtr()
 {
     return &m_payonly;
 }
 
-void zone_type::setPayOnly(ubit8 value)
+void zone_type::setPayOnly(uint8_t value)
 {
     m_payonly = value;
 }
@@ -366,7 +364,7 @@ unit_data *zone_type::findFirstUnitOfType(int type)
 
 file_index_type *zone_type::findOrCreatePlayerFileIndex(const char *name)
 {
-    assert(this == find_zone(g_player_zone));  // This should only be done in the special player zone
+    assert(this == find_zone(g_player_zone)); // This should only be done in the special player zone
 
     if (auto it = m_mmp_fi.find(name); it != m_mmp_fi.end())
     {

@@ -20,51 +20,51 @@ enum DilVarType_e : uint8_t
     DILV_INVALID = 0,
 
     /* Legal variable values */
-    DILV_UP=1,  /* unit pointer Rexpr Var */
-    DILV_SP=2,  /* string pointer Rexpr Var */
-    DILV_SLP=3, /* string list pointer Var */
-    DILV_EDP=4, /* extra description pointer Rexpr Var */
-    DILV_INT=5, /* integer Rexpr Var */
+    DILV_UP = 1,  /* unit pointer Rexpr Var */
+    DILV_SP = 2,  /* string pointer Rexpr Var */
+    DILV_SLP = 3, /* string list pointer Var */
+    DILV_EDP = 4, /* extra description pointer Rexpr Var */
+    DILV_INT = 5, /* integer Rexpr Var */
 
     /* Other return values */
-    DILV_UPR=6,  /* unit pointer ref Lexpr */
-    DILV_SPR=7,  /* string pointer Rexpr */
-    DILV_SLPR=8, /* string list pointer */
-    DILV_EDPR=9, /* extra descr pointer ref Lexpr */
+    DILV_UPR = 6,  /* unit pointer ref Lexpr */
+    DILV_SPR = 7,  /* string pointer Rexpr */
+    DILV_SLPR = 8, /* string list pointer */
+    DILV_EDPR = 9, /* extra descr pointer ref Lexpr */
 
     /* Different pointers for different size fields */
-    DILV_SINT1R=10, /* integer ref, 8 bit, sgn Lexpr */
-    DILV_SINT2R=11, /* integer ref, 16 bit, sgn Lexpr */
-    DILV_SINT4R=12, /* integer ref, 32 bit, sgn Lexpr */
-    DILV_UINT1R=13, /* integer ref, 8 bit, usgn Lexpr */
-    DILV_UINT2R=14, /* integer ref, 16 bit, usgn Lexpr */
-    DILV_UINT4R=15, /* integer ref, 32 bit, usgn Lexpr */
+    DILV_SINT1R = 10, /* integer ref, 8 bit, sgn Lexpr */
+    DILV_SINT2R = 11, /* integer ref, 16 bit, sgn Lexpr */
+    DILV_SINT4R = 12, /* integer ref, 32 bit, sgn Lexpr */
+    DILV_UINT1R = 13, /* integer ref, 8 bit, usgn Lexpr */
+    DILV_UINT2R = 14, /* integer ref, 16 bit, usgn Lexpr */
+    DILV_UINT4R = 15, /* integer ref, 32 bit, usgn Lexpr */
 
-    DILV_ERR=16,  /* fatal error value */
-    DILV_NULL=17, /* value is null */
-    DILV_FAIL=18, /* value is failed */
+    DILV_ERR = 16,  /* fatal error value */
+    DILV_NULL = 17, /* value is null */
+    DILV_FAIL = 18, /* value is failed */
 
-    DILV_UEDP=19,    /* FOR COMPILER ONLY! (shared fields) */
-    DILV_FUNC=20,    /* FOR COMPILER ONLY! functions */
-    DILV_PROC=21,    /* FOR COMPILER ONLY! procedures */
-    DILV_HASHSTR=22, /* Hashed String */
+    DILV_UEDP = 19,    /* FOR COMPILER ONLY! (shared fields) */
+    DILV_FUNC = 20,    /* FOR COMPILER ONLY! functions */
+    DILV_PROC = 21,    /* FOR COMPILER ONLY! procedures */
+    DILV_HASHSTR = 22, /* Hashed String */
 
-    DILV_ZP=23,     /* Zone Pointer Rexpr */
-    DILV_ZPR=24,    /* zone pointer Lexpr */
-    DILV_UZP=25,    /* FOR COMPILER ONLY! unit/zone shared */
-    DILV_EZP=26,    /* FOR COMPILER ONLY! extra/zone shared */
-    DILV_UEZP=27,   /* FOR COMPILER ONLY! all shared */
-    DILV_SP_SLP=28, /* FOR COMPILER ONLY! all shared */
-    DILV_CP=29,     /* Command Pointer Rexpr */
-    DILV_CPR=30,    /* Command pointer Lexpr */
-    DILV_UEZCP=31,  /* FOR COMPILER ONLY! all shared */
-    DILV_UCP=32,    /* FOR COMPILER ONLY! all shared */
-    DILV_ESLP=33,   /* FOR COMPILER ONLY! all shared */
-    DILV_ILP=34,    /* intlist pointer Rexpr */
-    DILV_ILPR=35,   /* intlist pointer Lexpr */
-    DILV_ESLIP=36,  /* For compiler shared e sl il */
-    DILV_ALL=37,    /* sym functions can return anything at runtim */
-    DILV_MAX=37     // Max DILV_ number, used in array allocation
+    DILV_ZP = 23,     /* Zone Pointer Rexpr */
+    DILV_ZPR = 24,    /* zone pointer Lexpr */
+    DILV_UZP = 25,    /* FOR COMPILER ONLY! unit/zone shared */
+    DILV_EZP = 26,    /* FOR COMPILER ONLY! extra/zone shared */
+    DILV_UEZP = 27,   /* FOR COMPILER ONLY! all shared */
+    DILV_SP_SLP = 28, /* FOR COMPILER ONLY! all shared */
+    DILV_CP = 29,     /* Command Pointer Rexpr */
+    DILV_CPR = 30,    /* Command pointer Lexpr */
+    DILV_UEZCP = 31,  /* FOR COMPILER ONLY! all shared */
+    DILV_UCP = 32,    /* FOR COMPILER ONLY! all shared */
+    DILV_ESLP = 33,   /* FOR COMPILER ONLY! all shared */
+    DILV_ILP = 34,    /* intlist pointer Rexpr */
+    DILV_ILPR = 35,   /* intlist pointer Lexpr */
+    DILV_ESLIP = 36,  /* For compiler shared e sl il */
+    DILV_ALL = 37,    /* sym functions can return anything at runtim */
+    DILV_MAX = 37     // Max DILV_ number, used in array allocation
 };
 
 /* The following "dilarg" structs are used only for VMC purposes to allow
@@ -85,7 +85,7 @@ struct dilargtype
 
 struct dilargstype
 {
-    ubit8 no;
+    uint8_t no;
     char *name;
     dilargtype dilarg[256];
 };
@@ -130,7 +130,7 @@ struct dilargstype
 #define DILE_NULL 19 /* null */
 
 /* DIL functions */
-#define DILE_FLD 20  /* get field + ubit8 DILF_? */
+#define DILE_FLD 20  /* get field + uint8_t DILF_? */
 #define DILE_ATOI 21 /* atoi(#) */
 #define DILE_ITOA 22 /* itoa(#) */
 #define DILE_RND 23  /* rnd(#,#) */
@@ -464,22 +464,21 @@ struct dilargstype
 
 #define DILF_MAX 127 /* The maximum field number */
 
-
 class zone_type;
 class command_info;
 
-enum class DilIType_e : ubit8
+enum class DilIType_e : uint8_t
 {
-   Regular  = 1,  // A regular DIL variable
-   Global = 2     // A global DIL variable (do not free)
+    Regular = 1, // A regular DIL variable
+    Global = 2   // A global DIL variable (do not free)
 };
 
 /* DIL variable structure */
 struct dilvar
 {
-    DilVarType_e type;  /* variable type - string, integer, ...*/
-    DilIType_e itype; /* UNUSED - Regular, constant, argument */
-    char *name;  /* variable name */
+    DilVarType_e type; /* variable type - string, integer, ...*/
+    DilIType_e itype;  /* UNUSED - Regular, constant, argument */
+    char *name;        /* variable name */
     union
     {
         unit_data *unitptr;
@@ -495,11 +494,11 @@ struct dilvar
 
 // std::map<std::string, std::unique<dilvar>> g_global_dilvars;
 
-enum class DilValAlloc_e : ubit8
+enum class DilValAlloc_e : uint8_t
 {
-   NotAllocated  = 0,  // DILA_NONE, no malloc, e.g. INT
-   GlobalPointer = 1,  // DILA_NORM, Pointer to e.g. a zone, should not be freed
-   Allocated     = 2   // DILA_EXP, allocated, e.g. a string malloc. Needs to be freed
+    NotAllocated = 0,  // DILA_NONE, no malloc, e.g. INT
+    GlobalPointer = 1, // DILA_NORM, Pointer to e.g. a zone, should not be freed
+    Allocated = 2      // DILA_EXP, allocated, e.g. a string malloc. Needs to be freed
 };
 
 /* allocation strategy */
@@ -515,7 +514,7 @@ public:
     ~dilval();
 
     DilVarType_e type; /* result type     */
-    ubit8 atyp; /* allocation type */
+    uint8_t atyp;      /* allocation type */
     union
     {
         void *ptr;  /* result pointer  */
@@ -528,7 +527,7 @@ public:
 struct dilsecure
 {
     unit_data *sup; /* A direct reference to the variabel! */
-    ubit8 *lab;     /* address to jump to, NULL=foreach */
+    uint8_t *lab;   /* address to jump to, NULL=foreach */
 };
 
 /*
@@ -538,9 +537,9 @@ struct dilsecure
  */
 struct dilxref
 {
-    char *name;  /* func/proc name [@ zone] */
+    char *name;         /* func/proc name [@ zone] */
     DilVarType_e rtnt;  /* return type */
-    ubit8 argc;  /* number of arguments (min 1) */
+    uint8_t argc;       /* number of arguments (min 1) */
     DilVarType_e *argt; /* argument types */
 };
 
@@ -556,20 +555,20 @@ struct diltemplate
     zone_type *zone; /* Pointer to owner of structure    */
 
     ubit32 flags; /* recall, etc. */
-    ubit8 priority;
-    ubit16 intrcount; /* max number of interrupts */
-    ubit16 varcrc;    /* variable crc from compiler */
-    ubit16 corecrc;   /* core crc from compiler */
-    ubit8 rtnt;       /* return type */
-    ubit8 argc;       /* number of arguments */
-    DilVarType_e *argt;      /* argument types */
+    uint8_t priority;
+    ubit16 intrcount;   /* max number of interrupts */
+    ubit16 varcrc;      /* variable crc from compiler */
+    ubit16 corecrc;     /* core crc from compiler */
+    uint8_t rtnt;       /* return type */
+    uint8_t argc;       /* number of arguments */
+    DilVarType_e *argt; /* argument types */
 
     ubit32 coresz; /* size of coreblock */
-    ubit8 *core;   /* instructions, expressions and statics */
+    uint8_t *core; /* instructions, expressions and statics */
 
-    ubit16 varc; /* number of variables */
+    ubit16 varc;        /* number of variables */
     DilVarType_e *vart; /* variable types */
-    char **varg;  // the name of a global variable or null
+    char **varg;        // the name of a global variable or null
 
     ubit16 xrefcount;     /* number of external references   */
     diltemplate **extprg; /* external programs (SERVER only) */
@@ -586,9 +585,9 @@ struct diltemplate
 
 struct dilintr
 {
-    ubit16 flags; /* what message types to react on 0=off */
-    ubit8 *lab;   /* where to perform check */
-    ubit8 *elab;  /* where the end of the check evals to*/
+    ubit16 flags;  /* what message types to react on 0=off */
+    uint8_t *lab;  /* where to perform check */
+    uint8_t *elab; /* where the end of the check evals to*/
 };
 
 /*
@@ -603,10 +602,10 @@ struct dilframe
     diltemplate *tmpl; /* current template */
     dilvar *vars;      /* variables */
 
-    ubit8 *pc; /* program counter */
+    uint8_t *pc; /* program counter */
 
-    ubit16 securecount; /* number of secures (not saved) */
-    dilsecure *secure;  /* secured vars (not saved) */
+    ubit16 securecount;   /* number of secures (not saved) */
+    dilsecure *secure;    /* secured vars (not saved) */
     bool wasSecureTested; // Set to true if dil_test_secure() was called on this frame
 
     ubit16 intrcount; /* number of interrupts */

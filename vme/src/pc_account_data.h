@@ -7,7 +7,7 @@ class pc_account_data
 public:
     pc_account_data() = default;
 
-    void readFrom(CByteBuffer &buf, ubit8 unit_version, int &error);
+    void readFrom(CByteBuffer &buf, uint8_t unit_version, int &error);
 
     void writeTo(CByteBuffer &buf);
     float getAccountBalance() const;
@@ -26,11 +26,11 @@ public:
     sbit16 getLastFourDigitsofCreditCard();
     void setLastFourDigitsofCreditCard(sbit16 value);
 
-    ubit8 getCrackAttempts() const;
-    void setCrackAttempts(ubit8 value);
+    uint8_t getCrackAttempts() const;
+    void setCrackAttempts(uint8_t value);
 
-    ubit8 getDiscountPercentage() const;
-    void setDiscountPercentage(ubit8 value);
+    uint8_t getDiscountPercentage() const;
+    void setDiscountPercentage(uint8_t value);
 
     const ubit32 &getFlatRateExpirationDate() const;
     void incFlatRateExpirationDate(ubit32 value);
@@ -41,7 +41,7 @@ private:
     ubit32 credit_limit{0}; ///< In coin units (i.e. cents / oerer)
     ubit32 total_credit{0}; ///< Accumulated credit to date (coin units)
     sbit16 last4{-1};       ///< The last four digits of his credit card, or -1
-    ubit8 cracks{0};        ///< Crack-attempts on CC last4
-    ubit8 discount{0};      ///< 0 - 100% discount
+    uint8_t cracks{0};      ///< Crack-attempts on CC last4
+    uint8_t discount{0};    ///< 0 - 100% discount
     ubit32 flatrate{0};     ///< The expiration date of a flat rate service
 };

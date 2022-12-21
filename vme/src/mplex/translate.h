@@ -12,41 +12,41 @@
 namespace mplex
 {
 
-void protocol_translate(cConHook *con, ubit8 code, char **b);
+void protocol_translate(cConHook *con, uint8_t code, char **b);
 void translate_init();
 
-void Control_Echo_Off(cConHook *con, char **b, ubit8 code);
-void Control_Echo_On(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Bold(cConHook *con, char **b, ubit8 code);
+void Control_Echo_Off(cConHook *con, char **b, uint8_t code);
+void Control_Echo_On(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Bold(cConHook *con, char **b, uint8_t code);
 
-void Control_ANSI_Bg(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fg(cConHook *con, char **b, ubit8 code, int bBold);
+void Control_ANSI_Bg(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fg(cConHook *con, char **b, uint8_t code, int bBold);
 
-void Control_ANSI_Fg_Black(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fg_Red(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fg_Green(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fg_Yellow(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fg_Blue(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fg_Magenta(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fg_Cyan(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fg_White(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fgb_Black(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fgb_Red(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fgb_Green(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fgb_Yellow(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fgb_Blue(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fgb_Magenta(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fgb_Cyan(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Fgb_White(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Bg_Black(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Bg_Red(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Bg_Green(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Bg_Yellow(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Bg_Blue(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Bg_Magenta(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Bg_Cyan(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Bg_White(cConHook *con, char **b, ubit8 code);
-void Control_ANSI_Echo_Off(cConHook *con, char **b, ubit8 code);
+void Control_ANSI_Fg_Black(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fg_Red(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fg_Green(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fg_Yellow(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fg_Blue(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fg_Magenta(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fg_Cyan(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fg_White(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fgb_Black(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fgb_Red(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fgb_Green(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fgb_Yellow(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fgb_Blue(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fgb_Magenta(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fgb_Cyan(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Fgb_White(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Bg_Black(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Bg_Red(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Bg_Green(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Bg_Yellow(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Bg_Blue(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Bg_Magenta(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Bg_Cyan(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Bg_White(cConHook *con, char **b, uint8_t code);
+void Control_ANSI_Echo_Off(cConHook *con, char **b, uint8_t code);
 /* Use these Super Colour defines, so that we can easilly change the
    default colours */
 

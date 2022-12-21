@@ -942,7 +942,7 @@ void dilfi_rtf(dilprg *p)
 
         dilval *v1 = p->stack.pop();
 
-        ubit8 typ = dil_getval(v1);
+        uint8_t typ = dil_getval(v1);
         if (typ != p->fp->tmpl->rtnt)
         {
             slog(LOG_ALL, 0, "DIL: Error return types do not match.");
@@ -1140,7 +1140,7 @@ void dil_push_frame(dilprg *p, diltemplate *rtmpl)
         frm->vars = nullptr;
     }
 
-    ubit8 tmp = 0;
+    uint8_t tmp = 0;
 
     for (i = 0; i < rtmpl->argc; i++)
     {
@@ -1218,7 +1218,7 @@ void dilfi_rfunc(dilprg *p)
 {
     int xrefi = 0;
     diltemplate *ctmpl = nullptr;
-    ubit8 argcnt = 0;
+    uint8_t argcnt = 0;
 
     p->waitcmd--;
 
@@ -1259,7 +1259,7 @@ void dilfi_rsfunc(dilprg *p)
     int i = 0;
     diltemplate /* *ctmpl,*/ *ntmpl = nullptr;
     dilval *v1 = p->stack.pop();
-    ubit8 argcnt = 0;
+    uint8_t argcnt = 0;
     int fail = 0;
 
     p->waitcmd--;
@@ -1683,7 +1683,7 @@ void dilfi_ass(dilprg *p)
                 case DILV_FAIL:
                     break;
                 case DILV_INT:
-                    *((ubit8 *)v1->ref) = v2->val.num;
+                    *((uint8_t *)v1->ref) = v2->val.num;
                     break;
                 default:
                     /* ERROR incompatible types */
@@ -1933,7 +1933,7 @@ void dilfi_set(dilprg *p)
                 *((sbit32 *)v1->ref) |= v2->val.num;
                 break;
             case DILV_UINT1R:
-                *((ubit8 *)v1->ref) |= v2->val.num;
+                *((uint8_t *)v1->ref) |= v2->val.num;
                 break;
             case DILV_UINT2R:
                 *((ubit16 *)v1->ref) |= v2->val.num;
@@ -1977,7 +1977,7 @@ void dilfi_uset(dilprg *p)
                 REMOVE_BIT(*((sbit32 *)v1->ref), v2->val.num);
                 break;
             case DILV_UINT1R:
-                REMOVE_BIT(*((ubit8 *)v1->ref), v2->val.num);
+                REMOVE_BIT(*((uint8_t *)v1->ref), v2->val.num);
                 break;
             case DILV_UINT2R:
                 REMOVE_BIT(*((ubit16 *)v1->ref), v2->val.num);
@@ -2435,7 +2435,7 @@ void dilfi_exec(dilprg *p)
 void dilfi_waitnoop(dilprg *p)
 {
     ubit32 coreptr = 0;
-    ubit8 *oldpc = nullptr;
+    uint8_t *oldpc = nullptr;
     coreptr = bread_ubit32(&(p->fp->pc));
     oldpc = &(p->fp->tmpl->core[coreptr]);
 
@@ -2458,7 +2458,7 @@ void dilfi_wit(dilprg *p)
     dilval *v2 = p->stack.pop();
     dilval *v1 = p->stack.pop();
     ubit32 coreptr = 0;
-    ubit8 *oldpc = nullptr;
+    uint8_t *oldpc = nullptr;
     coreptr = bread_ubit32(&(p->fp->pc));
     oldpc = &(p->fp->tmpl->core[coreptr]);
 
@@ -2589,7 +2589,7 @@ void dilfi_on(dilprg *p)
     dilval *v1 = p->stack.pop();
     ubit32 adr = 0;
     ubit16 maxlab = 0;
-    ubit8 *brkptr = nullptr;
+    uint8_t *brkptr = nullptr;
 
     p->waitcmd--;
 

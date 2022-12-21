@@ -187,7 +187,7 @@ void cConHook::PressReturn(const char *cmd)
         {
             char buf[1000];
             strcpy(buf, ParseOutput("<br/><div class='return'>*** Read Done ***</div><br/>"));
-            Write((ubit8 *)buf, strlen(buf));
+            Write((uint8_t *)buf, strlen(buf));
             PlayLoop("");
         }
     }
@@ -241,7 +241,7 @@ void cConHook::Unhook()
     }
 }
 
-void cConHook::Write(ubit8 *pData, ubit32 nLen, int bCopy)
+void cConHook::Write(uint8_t *pData, ubit32 nLen, int bCopy)
 {
     if (this->m_pWebsServer)
     {
@@ -327,7 +327,7 @@ void cConHook::TransmitCommand(const char *text)
 /* ======================= TEXT PARSE & ECHO INPUT ====================== */
 
 /* Maybe this would be overall easier? */
-char cConHook::AddInputChar(ubit8 c)
+char cConHook::AddInputChar(uint8_t c)
 {
     char *cp = m_aInputBuf;
 
@@ -450,7 +450,7 @@ void cConHook::AddString(char *str)
 
     if (m_sSetup.echo)
     {
-        Write((ubit8 *)echobuf, eb - echobuf);
+        Write((uint8_t *)echobuf, eb - echobuf);
     }
 }
 
@@ -489,7 +489,7 @@ void cConHook::Input(int nFlags)
     else if (nFlags & SELECT_READ)
     {
         char *c = nullptr;
-        ubit8 buf[1024];
+        uint8_t buf[1024];
 
 #if defined(_WINDOWS)
         b = (char *)buf;
@@ -568,7 +568,7 @@ void cConHook::WriteCon(const char *text)
         return;
     }
 
-    Write((ubit8 *)text, strlen(text));
+    Write((uint8_t *)text, strlen(text));
 }
 
 void cConHook::WriteCon(const std::string &text)
@@ -1096,7 +1096,7 @@ void cConHook::StripHTML(char *dest, const char *src)
 // This should only be called for telnet
 char *cConHook::ParseOutput(const char *text)
 {
-    static char Outbuf[65536];  // I know this sucks. Got to rewrite thath StripHTML and 
+    static char Outbuf[65536];  // I know this sucks. Got to rewrite thath StripHTML and
     static char Outbuf2[65536]; // rewrite indentText too to either stop at the end or realloc...
 
     assert(strlen(text) < sizeof(Outbuf));
@@ -1177,7 +1177,7 @@ void cConHook::PromptErase (void)
     m_nPromptLen = 0;
 
     if (*buf)
-        Write ((ubit8 *) buf, strlen (buf));
+        Write ((uint8_t *) buf, strlen (buf));
 }
 */
 
@@ -1186,12 +1186,12 @@ void cConHook::PromptRedraw(const char *prompt)
 {
     if (*prompt)
     {
-        Write((ubit8 *)prompt, strlen(prompt));
+        Write((uint8_t *)prompt, strlen(prompt));
     }
 
     if (*m_aInputBuf)
     {
-        Write((ubit8 *)m_aInputBuf, strlen(m_aInputBuf));
+        Write((uint8_t *)m_aInputBuf, strlen(m_aInputBuf));
     }
 
     m_nPromptLen = strlen(prompt);
@@ -1199,7 +1199,7 @@ void cConHook::PromptRedraw(const char *prompt)
 
 /* ======================= 'Con' handling ====================== */
 
-void cConHook::SequenceCompare(ubit8 *pBuf, int *pnLen)
+void cConHook::SequenceCompare(uint8_t *pBuf, int *pnLen)
 {
     // static const char *match = "a";
     static const char *match = "[W32-V/C@SiGn]";
@@ -1236,7 +1236,7 @@ void cConHook::SequenceCompare(ubit8 *pBuf, int *pnLen)
     }
 }
 
-void cConHook::testChar(ubit8 c)
+void cConHook::testChar(uint8_t c)
 {
     switch (m_nFirst)
     {
@@ -1321,7 +1321,7 @@ void cConHook::testChar(ubit8 c)
     }
 }
 
-void cConHook::getLine(ubit8 buf[], int *size)
+void cConHook::getLine(uint8_t buf[], int *size)
 {
     int i = 0;
 
@@ -1426,7 +1426,7 @@ void cConHook::ShowChunk()
 
     assert(strlen(buffer) < sizeof(buffer));
 
-    Write((ubit8 *)buffer, strlen(buffer));
+    Write((uint8_t *)buffer, strlen(buffer));
 }
 
 typedef websocketpp::server<websocketpp::config::asio> wsserver;

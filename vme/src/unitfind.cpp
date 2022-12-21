@@ -320,7 +320,7 @@ unit_data *find_unit_general_abbrev(const unit_data *viewer,
                                     char **arg,
                                     const unit_data *list,
                                     const ubit32 bitvector,
-                                    ubit8 type,
+                                    uint8_t type,
                                     int original_number)
 {
     unit_data *best = nullptr;
@@ -571,7 +571,7 @@ unit_data *find_unit_general_abbrev(const unit_data *viewer,
 // function only returns units that are visible to the viewer, or not.
 //
 unit_data *
-find_unit_general(const unit_data *viewer, const unit_data *ch, char **arg, const unit_data *list, const ubit32 bitvector, ubit8 type)
+find_unit_general(const unit_data *viewer, const unit_data *ch, char **arg, const unit_data *list, const ubit32 bitvector, uint8_t type)
 {
     unit_data *best = nullptr;
     int best_len = 0;
@@ -943,7 +943,7 @@ unit_data *find_unit(const unit_data *ch, char **arg, const unit_data *list, con
     return find_unit_general(ch, ch, arg, list, bitvector);
 }
 
-unit_data *find_unit_dil(const unit_data *ch, char **arg, const unit_data *list, const ubit32 bitvector, ubit8 type)
+unit_data *find_unit_dil(const unit_data *ch, char **arg, const unit_data *list, const ubit32 bitvector, uint8_t type)
 {
     return find_unit_general(ch, ch, arg, list, bitvector, type);
 }
@@ -1017,7 +1017,7 @@ static void double_unit_vector()
 /* units of types which match 'flags' in the 'room' specified.           */
 /* Difference to scan4_unit is that a room is searched for contents,     */
 /* but not outside room.                                                 */
-void scan4_unit_room(unit_data *room, ubit8 type)
+void scan4_unit_room(unit_data *room, uint8_t type)
 {
     unit_data *u = nullptr;
     unit_data *uu = nullptr;
@@ -1064,7 +1064,7 @@ void scan4_unit_room(unit_data *room, ubit8 type)
 /* Scan the chars surroundings and all transparent surroundsings for all */
 /* units of types which match 'flags'. Updates the 'g_unit_vector' for     */
 /* use in local routines.                                                */
-void scan4_unit(unit_data *ch, ubit8 type)
+void scan4_unit(unit_data *ch, uint8_t type)
 {
     unit_data *u = nullptr;
     unit_data *uu = nullptr;

@@ -543,7 +543,7 @@ char *str_next_word_copy(const char *argument, char *first_arg)
 
     *first_arg = '\0';
 
-    return (char *) skip_spaces(argument);
+    return (char *)skip_spaces(argument);
 }
 
 /* Copy next word from argument into first_arg and make lowercase*/
@@ -563,7 +563,7 @@ char *str_next_word_delim(const char *argument, char *first_arg, char delim)
     if (*argument == delim)
         argument++;
 
-    return (char *) skip_spaces(argument);
+    return (char *)skip_spaces(argument);
 }
 
 /* Copy next word from argument into first_arg and make lowercase*/
@@ -580,7 +580,7 @@ char *str_next_word(const char *argument, char *first_arg)
 
     *first_arg = '\0';
 
-    return (char *) skip_spaces(argument);
+    return (char *)skip_spaces(argument);
 }
 
 /*  Find the first sub-argument of a string,
@@ -666,8 +666,8 @@ int search_block_abbrevs(const char *oarg, const char **list, const char **end)
             d = str_next_word(d, buf2);
             if (is_multi_abbrev(buf1, buf2))
             {
-                s = (char *) skip_spaces(s);
-                d = (char *) skip_spaces(d);
+                s = (char *)skip_spaces(s);
+                d = (char *)skip_spaces(d);
                 match++;
             }
             else
@@ -1299,7 +1299,7 @@ static const uint8_t utf8d[] = {
     1,   3,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1, // s7..s8
 };
 
-ubit32 inline utf8_decode(ubit32 *state, ubit32 *codep, ubit8 byte)
+ubit32 inline utf8_decode(ubit32 *state, ubit32 *codep, uint8_t byte)
 {
     ubit32 type = utf8d[byte];
 

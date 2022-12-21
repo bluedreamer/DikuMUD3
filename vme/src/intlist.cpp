@@ -65,7 +65,7 @@ int cintlist::ReadBuffer(CByteBuffer *pBuf)
     return corrupt;
 }
 
-void cintlist::bread(ubit8 **b)
+void cintlist::bread(uint8_t **b)
 {
     sbit32 len = 0;
     sbit32 i = 0;

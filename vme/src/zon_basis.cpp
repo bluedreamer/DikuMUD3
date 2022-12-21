@@ -138,14 +138,14 @@ int info_rod(spec_arg *sarg)
 
 int log_object(spec_arg *sarg)
 {
-    ubit8 *ip = nullptr;
+    uint8_t *ip = nullptr;
     log_level lev = LOG_OFF;
     char c = 0;
     unit_data *ch = sarg->owner->getUnitIn();
 
     if (sarg->fptr->getData() == nullptr)
     {
-        CREATE(ip, ubit8, 1);
+        CREATE(ip, uint8_t, 1);
         *ip = 0;
 
         UOBJ(sarg->owner)->setValueAtIndexTo(0, 'a');
@@ -153,7 +153,7 @@ int log_object(spec_arg *sarg)
     }
     else
     {
-        ip = (ubit8 *)sarg->fptr->getData();
+        ip = (uint8_t *)sarg->fptr->getData();
     }
 
     c = OBJ_VALUE(sarg->owner, 0);

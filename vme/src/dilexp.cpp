@@ -2865,8 +2865,8 @@ void dilfe_intr(dilprg *p)
     dilval *v = new dilval;
     /* add interrupt to current frame */
     ubit16 intnum = 0;
-    ubit8 *beg = nullptr;
-    ubit8 *end = nullptr;
+    uint8_t *beg = nullptr;
+    uint8_t *end = nullptr;
     ubit32 endptr = 0;
     ubit32 begptr = 0;
 

@@ -52,14 +52,14 @@ public:
     /**
      * @return All room flags
      */
-    ubit8 getRoomFlags() const;
+    uint8_t getRoomFlags() const;
     /**
      * @return Pointer to all room flags
      */
-    ubit8 *getRoomFlagsPtr();
+    uint8_t *getRoomFlagsPtr();
     /**
      * Sets all room flags to value
-     * @param value NB this is cast down to ubit8
+     * @param value NB this is cast down to uint8_t
      */
     void setAllRoomFlags(ubit16 value);
     /// @}
@@ -72,22 +72,22 @@ public:
      * Returns terrain type for the room
      * @return one of SECT_* types
      */
-    ubit8 getLandscapeTerrain() const;
-    ubit8 *getLandscapeTerrainPtr();
+    uint8_t getLandscapeTerrain() const;
+    uint8_t *getLandscapeTerrainPtr();
     /**
      * Sets room terrain movement type
      * @param value
      */
-    void setLandscapeTerrain(ubit8 value);
+    void setLandscapeTerrain(uint8_t value);
     /// @}
 
     /**
      * @name Magical Resistance
      * @{
      */
-    ubit8 getRoomMagicalResistance() const;
-    ubit8 *getRoomMagicalResistancePtr();
-    void setRoomMagicalResistance(ubit8 value);
+    uint8_t getRoomMagicalResistance() const;
+    uint8_t *getRoomMagicalResistancePtr();
+    void setRoomMagicalResistance(uint8_t value);
     /// @}
 
     /**
@@ -118,9 +118,9 @@ public:
     /// @}
 private:
     std::array<room_direction_data *, MAX_EXIT + 1> m_dir_option{nullptr}; ///<
-    ubit8 m_flags{0};                                                      ///< Room flags
-    ubit8 m_movement_type{0};                                              ///< The type of movement (city, hills etc.)
-    ubit8 m_resistance{0};                                                 ///< Magic resistance of the room
+    uint8_t m_flags{0};                                                    ///< Room flags
+    uint8_t m_movement_type{0};                                            ///< The type of movement (city, hills etc.)
+    uint8_t m_resistance{0};                                               ///< Magic resistance of the room
     sbit16 m_mapx{-1};                                                     ///< Graphical map coordinates
     sbit16 m_mapy{-1};                                                     ///< Graphical map coordinates
     int m_sc{0};                                                           ///< strong component, used for shortest path

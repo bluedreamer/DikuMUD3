@@ -1,11 +1,11 @@
 #include "zone_reset_cmd.h"
 
-void zone_reset_cmd::setCommandNum(ubit8 value)
+void zone_reset_cmd::setCommandNum(uint8_t value)
 {
     cmd_no = value;
 }
 
-ubit8 zone_reset_cmd::getCommandNum() const
+uint8_t zone_reset_cmd::getCommandNum() const
 {
     return cmd_no;
 }
@@ -30,7 +30,7 @@ void zone_reset_cmd::setNum(size_t index, sbit16 value)
     num.at(index) = value;
 }
 
-void zone_reset_cmd::setCompleteFlag(ubit8 value)
+void zone_reset_cmd::setCompleteFlag(uint8_t value)
 {
     cmpl = value;
 }
@@ -45,7 +45,7 @@ void zone_reset_cmd::setNestedPtr(zone_reset_cmd *value)
     nested = value;
 }
 
-ubit8 zone_reset_cmd::getCompleteFlag() const
+uint8_t zone_reset_cmd::getCompleteFlag() const
 {
     return cmpl;
 }

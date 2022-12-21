@@ -128,7 +128,7 @@ const char *g_bodyparts[] = {"arms",       "left arm",  "right arm", "legs",    
                              "neck",       "butt",      "eyes",      "right eye", "left eye",   "mouth",     "ears", "right ear",
                              "left ear",   "teeth",     "tounge",    "nose",      "nostrils",   nullptr};
 
-const ubit8 g_bodyparts_cover[31][5] = {
+const uint8_t g_bodyparts_cover[31][5] = {
     {WEAR_ARMS, WEAR_UNUSED},                                    /* arms */
     {WEAR_ARMS, WEAR_UNUSED},                                    /* left arm */
     {WEAR_ARMS, WEAR_UNUSED},                                    /* right arm */

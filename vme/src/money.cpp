@@ -591,7 +591,7 @@ ubit1 char_can_afford(unit_data *ch, amount_t amt, currency_t currency)
 }
 
 /* Check if there is some money of `type' in unit. (For piling purposes.) */
-unit_data *unit_has_money_type(unit_data *unit, ubit8 type)
+unit_data *unit_has_money_type(unit_data *unit, uint8_t type)
 {
     unit_data *tmp = nullptr;
 
@@ -833,7 +833,7 @@ static void set_relval(FILE *fl, int idx)
  *    1: cut of trailing whitespace from line
  *    2: return a copy of read string
  */
-static char *get_string(FILE *fl, const char *err, ubit8 flag)
+static char *get_string(FILE *fl, const char *err, uint8_t flag)
 {
     static char buf[256];
 
@@ -948,7 +948,7 @@ void boot_money()
             slog(LOG_OFF, 0, "Error reading coins_per_weight");
             assert(FALSE);
         }
-        g_money_types[idx].coins_per_weight = (ubit8)tmp;
+        g_money_types[idx].coins_per_weight = (uint8_t)tmp;
 
 #ifndef VMC_SRC
         g_money_types[idx].fi = str_to_file_index(get_string(fl, "unit-string", 1));

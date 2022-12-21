@@ -1629,7 +1629,7 @@ void dilfe_fld(dilprg *p)
                     auto *unit = reinterpret_cast<unit_data *>(v1->val.ptr);
                     if (unit)
                     {
-                        /* ubit8 openflags */
+                        /* uint8_t openflags */
                         v->atyp = DILA_NONE;
                         v->type = DILV_UINT1R;
                         v->ref = unit->getOpenFlagsPtr();
@@ -1660,7 +1660,7 @@ void dilfe_fld(dilprg *p)
                     auto *unit = reinterpret_cast<unit_data *>(v1->val.ptr);
                     if (unit)
                     {
-                        /* ubit8 openflags */
+                        /* uint8_t openflags */
                         v->atyp = DILA_NONE;
                         v->type = DILV_UINT1R;
                         v->ref = unit->getOpenDifficultyPtr();

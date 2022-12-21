@@ -44,22 +44,22 @@ public:
      * @name Default Position
      * @{
      */
-    ubit8 getDefaultPosition() const;
-    ubit8 *getDefaultPositionPtr();
-    void setDefaultPosition(ubit8 value);
+    uint8_t getDefaultPosition() const;
+    uint8_t *getDefaultPositionPtr();
+    void setDefaultPosition(uint8_t value);
     /// @}
 
     /**
      * @name NPC Flags
      * @{
      */
-    ubit8 getAllNPCFlags() const;
-    ubit8 *getAllNPCFlagsPtr();
-    void setAllNPCFlags(ubit8 value);
+    uint8_t getAllNPCFlags() const;
+    uint8_t *getAllNPCFlagsPtr();
+    void setAllNPCFlags(uint8_t value);
     /// @}
 private:
     std::array<sbit16, WPN_GROUP_MAX> m_weapons{0}; ///<
     std::array<sbit16, SPL_GROUP_MAX> m_spells{0};  ///<
-    ubit8 m_default_pos{POSITION_STANDING};         ///< Default position for NPC
-    ubit8 m_flags{0};                               ///< flags for NPC behavior
+    uint8_t m_default_pos{POSITION_STANDING};       ///< Default position for NPC
+    uint8_t m_flags{0};                             ///< flags for NPC behavior
 };

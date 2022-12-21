@@ -87,7 +87,7 @@ void type_validate_64()
     // particular architecture.
     static_assert(sizeof(char) == 1);
     static_assert(sizeof(ubit1) == 1);
-    static_assert(sizeof(ubit8) == 1);
+    static_assert(sizeof(uint8_t) == 1);
     static_assert(sizeof(ubit16) == 2);
     static_assert(sizeof(ubit32) == 4);
     static_assert(sizeof(ubit64) == 8);

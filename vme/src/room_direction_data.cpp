@@ -53,36 +53,36 @@ void room_direction_data::setToRoom(unit_data *value)
     to_room = value;
 }
 
-ubit8 room_direction_data::getSkillDifficulty() const
+uint8_t room_direction_data::getSkillDifficulty() const
 {
     return difficulty;
 }
 
-void room_direction_data::setSkillDifficulty(ubit8 value)
+void room_direction_data::setSkillDifficulty(uint8_t value)
 {
     difficulty = value;
 }
 
-ubit8 *room_direction_data::getSkillDifficultyPtr()
+uint8_t *room_direction_data::getSkillDifficultyPtr()
 {
     return &difficulty;
 }
 
-ubit8 room_direction_data::getDoorFlags() const
+uint8_t room_direction_data::getDoorFlags() const
 {
     return exit_info;
 }
 
-bool room_direction_data::isDoorFlagSet(ubit8 value) const
+bool room_direction_data::isDoorFlagSet(uint8_t value) const
 {
     return exit_info & value;
 }
 
-void room_direction_data::setDoorFlags(ubit8 value)
+void room_direction_data::setDoorFlags(uint8_t value)
 {
     exit_info = value;
 }
-ubit8 *room_direction_data::getDoorFlagsPtr()
+uint8_t *room_direction_data::getDoorFlagsPtr()
 {
     return &exit_info;
 }

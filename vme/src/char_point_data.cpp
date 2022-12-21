@@ -210,62 +210,62 @@ void char_point_data::setSpeed(sbit16 value)
     speed = value;
 }
 
-ubit8 char_point_data::getNaturalArmor() const
+uint8_t char_point_data::getNaturalArmor() const
 {
     return natural_armour;
 }
 
-void char_point_data::setNaturalArmor(ubit8 value)
+void char_point_data::setNaturalArmor(uint8_t value)
 {
     natural_armour = value;
 }
 
-ubit8 *char_point_data::getNaturalArmorPtr()
+uint8_t *char_point_data::getNaturalArmorPtr()
 {
     return &natural_armour;
 }
 
-ubit8 char_point_data::getAttackType() const
+uint8_t char_point_data::getAttackType() const
 {
     return attack_type;
 }
 
-void char_point_data::setAttackType(ubit8 value)
+void char_point_data::setAttackType(uint8_t value)
 {
     attack_type = value;
 }
 
-ubit8 *char_point_data::getAttackTypePtr()
+uint8_t *char_point_data::getAttackTypePtr()
 {
     return &attack_type;
 }
 
-ubit8 char_point_data::getSex() const
+uint8_t char_point_data::getSex() const
 {
     return sex;
 }
 
-void char_point_data::setSex(ubit8 value)
+void char_point_data::setSex(uint8_t value)
 {
     sex = value;
 }
 
-ubit8 *char_point_data::getSexPtr()
+uint8_t *char_point_data::getSexPtr()
 {
     return &sex;
 }
 
-ubit8 char_point_data::getLevel() const
+uint8_t char_point_data::getLevel() const
 {
     return level;
 }
 
-void char_point_data::setLevel(ubit8 value)
+void char_point_data::setLevel(uint8_t value)
 {
     level = value;
 }
 
-ubit8 *char_point_data::getLevelPtr()
+uint8_t *char_point_data::getLevelPtr()
 {
     return &level;
 }
@@ -275,17 +275,17 @@ void char_point_data::incrementLevel()
     ++level;
 }
 
-ubit8 char_point_data::getPosition() const
+uint8_t char_point_data::getPosition() const
 {
     return position;
 }
 
-void char_point_data::setPosition(ubit8 value)
+void char_point_data::setPosition(uint8_t value)
 {
     position = value;
 }
 
-ubit8 *char_point_data::getPositionPtr()
+uint8_t *char_point_data::getPositionPtr()
 {
     return &position;
 }
@@ -401,7 +401,7 @@ void char_point_data::setHPP(sbit16 value)
 }
 
 /// @todo unit should not need to be passed, but it looks like there are parent fields in middle of char_point_data in the binary file
-void char_point_data::readFrom(CByteBuffer &buf, ubit8 unit_version, unit_data *unit, int &error)
+void char_point_data::readFrom(CByteBuffer &buf, uint8_t unit_version, unit_data *unit, int &error)
 {
     exp = buf.ReadS32(&error);
     flags = buf.ReadU32(&error);
@@ -415,7 +415,7 @@ void char_point_data::readFrom(CByteBuffer &buf, ubit8 unit_version, unit_data *
     {
         if (unit_version >= 39)
         {
-            ubit8 spd = buf.ReadU8(&error); // Ensure correct conversion
+            uint8_t spd = buf.ReadU8(&error); // Ensure correct conversion
             speed = spd;
             if (unit->isPC())
             {

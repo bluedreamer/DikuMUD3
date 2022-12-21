@@ -18,7 +18,7 @@ struct trie_entry
 struct trie_type
 {
     void *data;
-    ubit8 size;
+    uint8_t size;
     trie_entry *nexts;
 };
 

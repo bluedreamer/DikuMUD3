@@ -181,23 +181,23 @@ struct objheaderold
     sbit16 length; /* length of data */
     char zone[FI_MAX_ZONENAME + 1];
     char unit[FI_MAX_UNITNAME + 1];
-    ubit8 level;      /* level of 'containment' (depth) */
-    ubit8 equip;      /* equipment position */
-    ubit8 compressed; /* compressed? */
-    ubit8 type;       /* NPC or OBJ? */
+    uint8_t level;      /* level of 'containment' (depth) */
+    uint8_t equip;      /* equipment position */
+    uint8_t compressed; /* compressed? */
+    uint8_t type;       /* NPC or OBJ? */
 };
 
 /* Per-object header */
 struct objheadernew
 {
-    ubit32 length;  /* length of data */
-    ubit8 nVersion; // Version number
+    ubit32 length;    /* length of data */
+    uint8_t nVersion; // Version number
     char zone[FI_MAX_ZONENAME + 1];
     char unit[FI_MAX_UNITNAME + 1];
-    ubit8 level;      /* level of 'containment' (depth) */
-    ubit8 equip;      /* equipment position */
-    ubit8 compressed; /* compressed? */
-    ubit8 type;       /* NPC or OBJ? */
+    uint8_t level;      /* level of 'containment' (depth) */
+    uint8_t equip;      /* equipment position */
+    uint8_t compressed; /* compressed? */
+    uint8_t type;       /* NPC or OBJ? */
 };
 /* Local global variables */
 
@@ -270,8 +270,8 @@ void enlist(CByteBuffer *pBuf, unit_data *unit, int level, int fast)
     ho.compressed = 0;
     ho.type = 0;
 
-    pBuf->Append((ubit8 *)&ho, sizeof(ho)); // This is effectively a marker to read the new header
-    pBuf->Append((ubit8 *)&hn, sizeof(hn));
+    pBuf->Append((uint8_t *)&ho, sizeof(ho)); // This is effectively a marker to read the new header
+    pBuf->Append((uint8_t *)&hn, sizeof(hn));
     pBuf->Append(&TmpBuf);
 }
 
@@ -494,7 +494,7 @@ unit_data *base_load_contents(const char *pFileName, const unit_data *unit)
 
     for (init = TRUE; InvBuf.GetReadPosition() < InvBuf.GetLength();)
     {
-        if (InvBuf.Read((ubit8 *)&ho, sizeof(ho)))
+        if (InvBuf.Read((uint8_t *)&ho, sizeof(ho)))
         {
             break;
         }
@@ -503,7 +503,7 @@ unit_data *base_load_contents(const char *pFileName, const unit_data *unit)
         if ((strcmp(ho.zone, "_obsoleted") == 0) && (strcmp(ho.unit, "_obsoleted") == 0))
         {
             // It's a new version
-            if (InvBuf.Read((ubit8 *)&hn, sizeof(hn)))
+            if (InvBuf.Read((uint8_t *)&hn, sizeof(hn)))
             {
                 break;
             }

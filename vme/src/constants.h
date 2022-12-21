@@ -27,7 +27,7 @@ extern const char *g_fullness[];
 extern const char *g_arm_text[];
 extern const char *g_shi_text[];
 extern const char *g_bodyparts[];
-extern const ubit8 g_bodyparts_cover[31][5];
+extern const uint8_t g_bodyparts_cover[31][5];
 extern const char *g_where[];
 extern const char *g_npc_class_types[];
 extern const char *g_sfb_flags[];

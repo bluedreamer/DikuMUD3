@@ -16,7 +16,7 @@
  * @param type One of UNIT_ST_ROOM, UNIT_ST_OBJ, UNIT_ST_PC, UNIT_ST_NPC
  * @return new'ed pointer to clasee
  */
-unit_data *new_unit_data(ubit8 type, file_index_type *fi);
+unit_data *new_unit_data(uint8_t type, file_index_type *fi);
 
 class unit_data : public basedestruct
 {
@@ -35,7 +35,7 @@ public:
     /**
      * @param unit_type One of UNIT_ST_NPC, UNIT_ST_PC, UNIT_ST_ROOM, UNIT_ST_OBJ
      */
-    explicit unit_data(ubit8 unit_type, file_index_type *fi);
+    explicit unit_data(uint8_t unit_type, file_index_type *fi);
 
     unit_data(const unit_data &) = delete;            ///< Delete copy ctor
     unit_data(unit_data &&) = delete;                 ///< Delete move ctor
@@ -50,7 +50,7 @@ public:
      * @name What type is this object related code
      * @{
      */
-    ubit8 getUnitType() const;
+    uint8_t getUnitType() const;
     bool isRoom() const { return m_status == UNIT_ST_ROOM; }
     bool isObj() const { return m_status == UNIT_ST_OBJ; }
     bool isNPC() const { return m_status == UNIT_ST_NPC; }
@@ -81,7 +81,7 @@ public:
     /**
      * @return Characters sex or neutral if not a character
      */
-    virtual ubit8 getSex() const { return SEX_NEUTRAL; }
+    virtual uint8_t getSex() const { return SEX_NEUTRAL; }
 
     /**
      * @name Name related code
@@ -237,15 +237,15 @@ public:
      * @name Open object related code
      * @{
      */
-    ubit8 getOpenFlags() const;
-    ubit8 *getOpenFlagsPtr();
-    void setAllOpenFlags(ubit8 value);
-    void setOpenFlag(ubit8 value);
-    bool isOpenFlagSet(ubit8 flag) const { return IS_SET(m_open_flags, flag); }
+    uint8_t getOpenFlags() const;
+    uint8_t *getOpenFlagsPtr();
+    void setAllOpenFlags(uint8_t value);
+    void setOpenFlag(uint8_t value);
+    bool isOpenFlagSet(uint8_t flag) const { return IS_SET(m_open_flags, flag); }
 
-    ubit8 getOpenDifficulty() const;
-    ubit8 *getOpenDifficultyPtr();
-    void setOpenDifficulty(ubit8 value);
+    uint8_t getOpenDifficulty() const;
+    uint8_t *getOpenDifficultyPtr();
+    void setOpenDifficulty(uint8_t value);
     /// @}
 
     /**
@@ -269,19 +269,19 @@ public:
      * @name
      * @{
      */
-    ubit8 getNumberOfCharactersInsideUnit() const;
+    uint8_t getNumberOfCharactersInsideUnit() const;
     void decrementNumberOfCharactersInsideUnit();
     void incrementNumberOfCharactersInsideUnit();
-    void setNumberOfCharactersInsideUnit(ubit8 value);
+    void setNumberOfCharactersInsideUnit(uint8_t value);
     /// @}
 
     /**
      * @name
      * @{
      */
-    ubit8 getLevelOfWizardInvisibility() const;
-    ubit8 *getLevelOfWizardInvisibilityPtr();
-    void setLevelOfWizardInvisibility(ubit8 value);
+    uint8_t getLevelOfWizardInvisibility() const;
+    uint8_t *getLevelOfWizardInvisibilityPtr();
+    void setLevelOfWizardInvisibility(uint8_t value);
     /// @}
 
     /**
@@ -384,14 +384,14 @@ private:
     sbit32 m_weight{0};                      ///< Current weight of a room/obj/char
     sbit16 m_capacity{0};                    ///< Capacity of obj/char/room, -1 => any
     ubit16 m_size{0};                        ///< (cm) MOBs height, weapons size, ropes length
-    ubit8 m_status{0};                       ///< IS_ROOM, IS_OBJ, IS_PC, IS_NPC
-    ubit8 m_open_flags{0};                   ///< In general OPEN will mean can "enter"?
-    ubit8 m_open_diff{0};                    ///< Open difficulty
+    uint8_t m_status{0};                     ///< IS_ROOM, IS_OBJ, IS_PC, IS_NPC
+    uint8_t m_open_flags{0};                 ///< In general OPEN will mean can "enter"?
+    uint8_t m_open_diff{0};                  ///< Open difficulty
     sbit16 m_light{0};                       ///< Number of active light sources in unit
     sbit16 m_bright{0};                      ///< How much the unit shines
     sbit16 m_illum{0};                       ///< how much bright is by transparency
-    ubit8 m_chars{0};                        ///< How many chars is inside the unit
-    ubit8 m_minv{0};                         ///< Level of wizard invisible
+    uint8_t m_chars{0};                      ///< How many chars is inside the unit
+    uint8_t m_minv{0};                       ///< Level of wizard invisible
     sbit32 m_max_hp{0};                      ///< The maximum number of hitpoints
     sbit32 m_hp{0};                          ///< The actual amount of hitpoints left
     sbit16 m_alignment{0};                   ///< +-1000 for alignments

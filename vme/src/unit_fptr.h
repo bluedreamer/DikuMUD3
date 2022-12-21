@@ -16,9 +16,9 @@ public:
     void readFunctionPointerIndexFrom(CByteBuffer &buf, int &nError);
     void setFunctionPointerIndex(ubit16 value);
 
-    ubit8 getFunctionPriority() const;
+    uint8_t getFunctionPriority() const;
     void readFunctionPriorityFrom(CByteBuffer &buf, int &nError);
-    void setFunctionPriority(ubit8 value);
+    void setFunctionPriority(uint8_t value);
 
     ubit16 getHeartBeat() const;
     ubit16 *getHeartBeatPtr();
@@ -47,7 +47,7 @@ public:
 
 private:
     ubit16 index{0};                  ///< Index to function pointer array
-    ubit8 priority{FN_PRI_CHORES};    ///< Order to insert ftpr on unit (2020)
+    uint8_t priority{FN_PRI_CHORES};  ///< Order to insert ftpr on unit (2020)
     ubit16 heart_beat{PULSE_SEC * 5}; ///< in 1/4 of a sec
     ubit16 flags{0};                  ///< When to override next function (boolean)
     void *data{nullptr};              ///< Pointer to data local for this unit

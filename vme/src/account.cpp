@@ -122,7 +122,7 @@ int index_to_time(int index)
 }
 
 /* Hours in 0..23, minutes in 0..59 */
-int time_to_index(ubit8 hours, ubit8 minutes)
+int time_to_index(uint8_t hours, uint8_t minutes)
 {
     return ((hours * 60) + minutes) / MINUTE_GRANULARITY;
 }
@@ -275,7 +275,7 @@ void account_closed(unit_data *ch)
     }
 }
 
-static ubit32 seconds_used(ubit8 bhr, ubit8 bmi, ubit8 bse, ubit8 ehr, ubit8 emi, ubit8 ese)
+static ubit32 seconds_used(uint8_t bhr, uint8_t bmi, uint8_t bse, uint8_t ehr, uint8_t emi, uint8_t ese)
 {
     ubit32 secs = 0;
 
@@ -654,7 +654,7 @@ void do_account(unit_data *ch, char *arg, const command_info *cmd)
         return;
     }
 
-    c = (char *) skip_spaces(c);
+    c = (char *)skip_spaces(c);
 
 #ifdef ACCOUNT_DEBUG
 
@@ -844,7 +844,7 @@ void account_defaults(unit_data *pc)
     PC_ACCOUNT(pc).setFlatRateExpirationDate(0);
 }
 
-void charge_sanity(ubit8 b_hr, ubit8 b_min, ubit8 e_hr, ubit8 e_min, int charge)
+void charge_sanity(uint8_t b_hr, uint8_t b_min, uint8_t e_hr, uint8_t e_min, int charge)
 {
     if (charge < 0)
     {
